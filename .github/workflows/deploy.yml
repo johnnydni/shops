@@ -1,0 +1,54 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# GitHub-Pages-Deploy braucht diese Permissions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Mehrere parallele Deploys verhindern (letzter Push gewinnt)
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build (Vite + postbuild 404 fallback)
+        run: npm run build
+        env:
+          # Cloudflare Worker checkout endpoint.
+          # Override here OR set it as a repo Variable in
+          # Settings → Secrets and variables → Actions → Variables.
+          VITE_CHECKOUT_URL: ${{ vars.VITE_CHECKOUT_URL }}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

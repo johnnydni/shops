@@ -4,7 +4,12 @@
       "Bash(git pull *)",
       "Bash(gh pr *)",
       "PowerShell(gh --version)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(git rm *)",
+      "Bash(git fetch *)",
+      "Bash(git ls-tree *)"
     ]
   }
 }

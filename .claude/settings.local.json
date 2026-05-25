@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git pull *)",
+      "Bash(gh pr *)",
+      "PowerShell(gh --version)",
+      "Bash(git add *)"
+    ]
+  }
+}

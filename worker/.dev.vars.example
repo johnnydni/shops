@@ -1,0 +1,4 @@
+# Copy to .dev.vars (gitignored) and fill in for local dev (`wrangler dev`).
+# In production, set these with `wrangler secret put` instead.
+STRIPE_SECRET_KEY=sk_test_REPLACE_ME
+STRIPE_WEBHOOK_SECRET=whsec_REPLACE_ME

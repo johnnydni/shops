@@ -6,37 +6,66 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0A0A0A">
   <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="assets/css/ritmo.css">
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:#0A0A0A;color:#fff;
-      font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter',sans-serif;
-      -webkit-font-smoothing:antialiased}
-    body{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
-    .card{max-width:420px}
-    .num{font-size:120px;font-weight:900;font-style:italic;letter-spacing:-3px;
-      color:#FF7A1A;line-height:.9;margin-bottom:16px}
-    h1{font-size:24px;font-weight:900;font-style:italic;letter-spacing:-.5px;margin:0 0 12px}
-    p{color:rgba(255,255,255,.65);font-size:14px;line-height:1.55;margin:0 0 24px}
-    .row{display:flex;flex-direction:column;gap:14px;align-items:center}
-    a.btn{display:inline-block;padding:14px 22px;
-      background:#FF7A1A;color:#000;font-weight:800;text-decoration:none;
-      letter-spacing:.3px;box-shadow:0 8px 28px rgba(255,122,26,.4)}
-    a.btn:hover{transform:translateY(-1px)}
-    a.link{color:rgba(255,255,255,.55);font-size:12px;letter-spacing:.4px;text-decoration:none;
-      border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:2px}
-    a.link:hover{color:#FF7A1A;border-color:#FF7A1A}
+    body{display:flex;flex-direction:column;min-height:100vh}
+    main{flex:1;display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:24px;position:relative;overflow:hidden}
+    .err{max-width:480px;position:relative;z-index:1}
+    .num{font-size:clamp(120px,22vw,200px);font-weight:900;font-style:italic;
+      letter-spacing:-5px;color:var(--orange);line-height:.9;margin-bottom:8px}
+    .err h1{font-size:clamp(28px,4vw,40px);font-weight:900;font-style:italic;
+      letter-spacing:-.8px;margin:0 0 14px}
+    .err p{color:var(--t2);font-size:15px;line-height:1.6;margin:0 0 32px}
+    .err .links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="num">404</div>
-    <h1>Hier ist nichts.</h1>
-    <p>Die Seite, die du suchst, existiert nicht. Geh zurück zum Shop
-       oder direkt in die App.</p>
-    <div class="row">
-      <a class="btn" href="/">Zum Shop</a>
-      <a class="link" href="https://ritmopadel.app/">ritmopadel.app</a>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap topbar">
+      <a class="word" href="./"><span>RITMO</span><span class="dot"></span><span class="pipe">·</span><span class="sub">Shop</span></a>
+      <nav class="nav">
+        <a href="./#sortiment">Sortiment</a>
+        <a href="./#newsletter">News</a>
+        <a class="cart-link" href="warenkorb.html"><span class="bag"></span><span class="count">0</span></a>
+      </nav>
     </div>
+  </header>
+
+  <main>
+    <div class="bg-anim" aria-hidden="true">
+      <div class="blob-y"></div>
+      <div class="blob-b"></div>
+      <div class="blob-r"></div>
+    </div>
+    <div class="err">
+      <div class="num">404</div>
+      <h1>Diese Seite gibt es <span style="color:var(--orange)">nicht</span>.</h1>
+      <p>Vielleicht ist sie umgezogen, vielleicht hat es sie nie gegeben. Zurück zum Shop?</p>
+      <div class="links">
+        <a class="btn btn-pri" href="./">Zum Shop</a>
+        <a class="btn btn-out" href="./#sortiment">Sortiment ansehen</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="yr">2026</span> RITMO Padel.</div>
+      <div>
+        <a href="https://ritmopadel.app/" rel="noopener">App</a> &nbsp;·&nbsp;
+        <a href="https://ritmopadel.de/" rel="noopener">ritmopadel.de</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="bauhausline" aria-hidden="true">
+    <span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span><span class="e"></span>
   </div>
+
+  <script src="assets/js/ritmo.js"></script>
 </body>
 </html>

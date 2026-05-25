@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Warenkorb — RITMO Shop</title>
+  <meta name="description" content="Dein Warenkorb bei RITMO Shop.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="assets/css/ritmo.css">
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap topbar">
+      <a class="word" href="./"><span>RITMO</span><span class="dot"></span><span class="pipe">·</span><span class="sub">Shop</span></a>
+      <nav class="nav">
+        <a href="./#sortiment">Sortiment</a>
+        <a href="./#newsletter">News</a>
+        <a href="https://ritmopadel.app/" rel="noopener">App</a>
+        <a class="cart-link" href="warenkorb.html"><span class="bag"></span><span class="count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="cart-page">
+    <div class="wrap">
+      <h1>Warenkorb<span class="accent">.</span></h1>
+      <p class="lead">Prüfe deine Auswahl und gehe zur Kasse.</p>
+
+      <div class="cart-grid">
+        <!-- Items list (rendered by JS) -->
+        <div id="cart-items" class="cart-items" aria-live="polite"></div>
+
+        <!-- Summary -->
+        <aside class="cart-summary">
+          <h3>Zusammenfassung</h3>
+          <div class="line"><span>Zwischensumme</span><span id="sub-subtotal">€0</span></div>
+          <div class="line"><span>Versand</span><span id="sub-shipping">Frei</span></div>
+          <div class="line"><span>MwSt. (19% enthalten)</span><span id="sub-vat">€0</span></div>
+          <div class="line total"><span>Gesamt</span><span id="sub-total"><span class="cur">€</span>0</span></div>
+
+          <button id="checkout-btn" class="btn btn-pri btn-lg" type="button" disabled>
+            Zur Kasse · Stripe
+          </button>
+          <p class="secure">
+            🔒 Bezahlung erfolgt verschlüsselt über Stripe. Im nächsten
+            Build-Schritt wird die Checkout-Strecke live geschaltet.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="yr">2026</span> RITMO Padel. Made with ♥ in DACH.</div>
+      <div>
+        <a href="https://ritmopadel.app/" rel="noopener">App</a> &nbsp;·&nbsp;
+        <a href="https://ritmopadel.de/" rel="noopener">ritmopadel.de</a> &nbsp;·&nbsp;
+        <a href="https://ritmopadel.de/#impressum">Impressum</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="bauhausline" aria-hidden="true">
+    <span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span><span class="e"></span>
+  </div>
+
+  <script src="assets/js/ritmo.js"></script>
+  <script>
+    /* Cart page — render from RitmoCart, wire qty/remove controls. */
+    (function () {
+      'use strict';
+      var listEl   = document.getElementById('cart-items');
+      var elSub    = document.getElementById('sub-subtotal');
+      var elVat    = document.getElementById('sub-vat');
+      var elTot    = document.getElementById('sub-total');
+      var btn      = document.getElementById('checkout-btn');
+
+      function eur(n) { return '€' + n.toFixed(2).replace('.', ','); }
+
+      function render() {
+        var items = RitmoCart.read();
+        if (!items.length) {
+          listEl.innerHTML =
+            '<div class="cart-empty">' +
+              '<div class="icon">∅</div>' +
+              'Dein Warenkorb ist leer.<br>' +
+              '<a href="./" style="color:var(--orange);font-weight:700;letter-spacing:1.5px;' +
+              'text-transform:uppercase;font-size:12px;margin-top:14px;display:inline-block;' +
+              'border-bottom:1px solid var(--orange);padding-bottom:2px">Zum Shop →</a>' +
+            '</div>';
+          elSub.textContent = '€0';
+          elVat.textContent = '€0';
+          elTot.innerHTML   = '<span class="cur">€</span>0';
+          btn.disabled = true;
+          return;
+        }
+
+        listEl.innerHTML = items.map(function (i, idx) {
+          var safeName    = String(i.name || '').replace(/</g, '&lt;');
+          var safeCat     = String(i.cat  || '').replace(/</g, '&lt;');
+          var safeVariant = i.variant ? String(i.variant).replace(/</g, '&lt;') : '';
+          return '<div class="cart-row" data-idx="' + idx + '">' +
+            '<div class="thumb">' +
+              '<svg viewBox="0 0 80 80" preserveAspectRatio="xMidYMid slice">' +
+                '<rect width="80" height="80" fill="#FF7A1A"/>' +
+                '<circle cx="40" cy="40" r="20" fill="#0A0A0A"/>' +
+              '</svg>' +
+              (i.img ? '<img src="' + i.img + '" alt="" onerror="this.remove()">' : '') +
+            '</div>' +
+            '<div class="body">' +
+              '<span class="cat">' + safeCat + '</span>' +
+              '<span class="name">' + safeName + '</span>' +
+              (safeVariant ? '<span class="meta">' + safeVariant + '</span>' : '') +
+              '<div class="qty" style="margin-top:8px">' +
+                '<button type="button" data-act="dec" aria-label="Weniger">−</button>' +
+                '<input type="number" min="1" value="' + i.qty + '" data-act="set" aria-label="Menge">' +
+                '<button type="button" data-act="inc" aria-label="Mehr">+</button>' +
+              '</div>' +
+            '</div>' +
+            '<div class="right">' +
+              '<span class="price">' + eur(i.price * i.qty) + '</span>' +
+              '<button type="button" class="remove" data-act="remove">Entfernen</button>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+
+        // wire row controls
+        listEl.querySelectorAll('.cart-row').forEach(function (row) {
+          var idx = parseInt(row.dataset.idx, 10);
+          var item = items[idx];
+          row.querySelectorAll('[data-act]').forEach(function (b) {
+            var act = b.dataset.act;
+            if (act === 'inc') b.addEventListener('click', function () {
+              RitmoCart.setQty(item.id, item.variant, (item.qty || 1) + 1);
+            });
+            if (act === 'dec') b.addEventListener('click', function () {
+              RitmoCart.setQty(item.id, item.variant, Math.max(1, (item.qty || 1) - 1));
+            });
+            if (act === 'set' && b.tagName === 'INPUT') b.addEventListener('change', function () {
+              var n = parseInt(b.value, 10);
+              if (isNaN(n) || n < 1) n = 1;
+              RitmoCart.setQty(item.id, item.variant, n);
+            });
+            if (act === 'remove') b.addEventListener('click', function () {
+              RitmoCart.remove(item.id, item.variant);
+            });
+          });
+        });
+
+        // summary
+        var sub = RitmoCart.subtotal();
+        var vat = sub - (sub / 1.19);   // German VAT included in price
+        elSub.textContent = eur(sub);
+        elVat.textContent = eur(vat);
+        elTot.innerHTML   = '<span class="cur">€</span>' + sub.toFixed(2).replace('.', ',');
+        btn.disabled = false;
+      }
+
+      // re-render on cart changes (same tab + cross-tab)
+      window.addEventListener('ritmo:cart', render);
+      window.addEventListener('storage', function (e) {
+        if (e.key === 'ritmo.cart.v1') render();
+      });
+
+      // checkout stub — Stripe integration plugs in here
+      btn.addEventListener('click', function () {
+        RitmoToast('<b>Stripe-Checkout</b> wird im nächsten Build-Schritt aktiviert.');
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

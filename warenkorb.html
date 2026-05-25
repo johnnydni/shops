@@ -45,9 +45,10 @@
           <button id="checkout-btn" class="btn btn-pri btn-lg" type="button" disabled>
             Zur Kasse · Stripe
           </button>
+          <p id="checkout-error" class="secure" style="color:var(--red);display:none"></p>
           <p class="secure">
-            🔒 Bezahlung erfolgt verschlüsselt über Stripe. Im nächsten
-            Build-Schritt wird die Checkout-Strecke live geschaltet.
+            🔒 Bezahlung läuft verschlüsselt über Stripe Hosted Checkout.
+            Es werden keine Zahlungsdaten auf dieser Seite gespeichert.
           </p>
         </aside>
       </div>
@@ -71,7 +72,14 @@
 
   <script src="assets/js/ritmo.js"></script>
   <script>
-    /* Cart page — render from RitmoCart, wire qty/remove controls. */
+    /* ─── Worker endpoint ──────────────────────────────────────────
+       Change this when you deploy the worker. For local dev:
+         window.RITMO_CHECKOUT_URL = "http://localhost:8787/api/checkout";
+    */
+    window.RITMO_CHECKOUT_URL = "https://api.ritmopadel.shop/api/checkout";
+  </script>
+  <script>
+    /* Cart page — render from RitmoCart, wire qty/remove controls, checkout. */
     (function () {
       'use strict';
       var listEl   = document.getElementById('cart-items');
@@ -79,6 +87,7 @@
       var elVat    = document.getElementById('sub-vat');
       var elTot    = document.getElementById('sub-total');
       var btn      = document.getElementById('checkout-btn');
+      var errEl    = document.getElementById('checkout-error');
 
       function eur(n) { return '€' + n.toFixed(2).replace('.', ','); }
 
@@ -167,9 +176,55 @@
         if (e.key === 'ritmo.cart.v1') render();
       });
 
-      // checkout stub — Stripe integration plugs in here
-      btn.addEventListener('click', function () {
-        RitmoToast('<b>Stripe-Checkout</b> wird im nächsten Build-Schritt aktiviert.');
+      /* ─── Checkout ─────────────────────────────────────────────
+         POST minimal cart {id, qty, variant} to the worker; the
+         worker re-prices from its catalog and returns a Stripe
+         Checkout Session URL. Then we redirect.
+         Client price is NEVER sent — server is the source of truth.
+      */
+      function showError(msg) {
+        errEl.textContent = msg;
+        errEl.style.display = 'block';
+      }
+      function clearError() {
+        errEl.textContent = '';
+        errEl.style.display = 'none';
+      }
+
+      btn.addEventListener('click', async function () {
+        var items = RitmoCart.read();
+        if (!items.length) return;
+        if (!window.RITMO_CHECKOUT_URL || /REPLACE_ME|example/i.test(window.RITMO_CHECKOUT_URL)) {
+          showError('Checkout-URL nicht konfiguriert. Bitte später erneut versuchen.');
+          return;
+        }
+
+        clearError();
+        var originalLabel = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Weiterleitung zu Stripe…';
+
+        try {
+          var resp = await fetch(window.RITMO_CHECKOUT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              items: items.map(function (i) {
+                return { id: i.id, qty: i.qty, variant: i.variant || '' };
+              })
+            })
+          });
+          var data = await resp.json().catch(function () { return {}; });
+          if (!resp.ok || !data.url) {
+            throw new Error(data.error || ('HTTP ' + resp.status));
+          }
+          // hand off to Stripe Hosted Checkout
+          window.location.href = data.url;
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = originalLabel;
+          showError('Checkout fehlgeschlagen: ' + (err && err.message ? err.message : 'unbekannt'));
+        }
       });
 
       render();

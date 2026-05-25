@@ -1,0 +1,38 @@
+name = "ritmo-shop"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+# ────────────────────────────────────────────────────────────────────
+# Public (non-secret) config.
+# Override per environment in the [env.*] blocks below if you split
+# staging/prod.
+# ────────────────────────────────────────────────────────────────────
+[vars]
+SUCCESS_URL    = "https://ritmopadel.shop/bestellt.html"
+CANCEL_URL     = "https://ritmopadel.shop/abbruch.html"
+ALLOWED_ORIGIN = "https://ritmopadel.shop,https://www.ritmopadel.shop"
+
+# ────────────────────────────────────────────────────────────────────
+# Secrets are NOT in this file. Set them with:
+#   wrangler secret put STRIPE_SECRET_KEY
+#   wrangler secret put STRIPE_WEBHOOK_SECRET
+# ────────────────────────────────────────────────────────────────────
+
+# To attach a custom domain (recommended — avoids CORS edge cases):
+# 1. Add your domain to Cloudflare (orange-cloud).
+# 2. Uncomment the [[routes]] block below and adjust the pattern.
+# 3. `wrangler deploy`
+#
+# [[routes]]
+# pattern = "api.ritmopadel.shop/api/*"
+# zone_name = "ritmopadel.shop"
+
+# Optional: pin to a specific account/zone if you have several
+# account_id = ""
+
+# ────────────────────────────────────────────────────────────────────
+# Local dev:  wrangler dev
+#   Then set SECRETS in a local .dev.vars file (gitignored):
+#     STRIPE_SECRET_KEY=sk_test_...
+#     STRIPE_WEBHOOK_SECRET=whsec_...
+# ────────────────────────────────────────────────────────────────────

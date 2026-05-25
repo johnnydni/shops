@@ -170,13 +170,23 @@
           img:     btn.dataset.img || ''
         };
         if (!item.id || !item.name) return;
-        // pull variant from sibling .opt-btn.active if present
+        // pull variant from sibling .opt-btn.active if present.
+        // Also accumulate any data-price-delta values onto the unit price
+        // so the cart display matches what the server will charge.
+        // The server (worker/src/catalog.js) re-resolves prices from its own
+        // table — this client math is for DISPLAY only.
         var scope = btn.closest('[data-prod-scope]') || document;
         var activeVariants = scope.querySelectorAll('.opt-row [data-variant].active');
         if (activeVariants.length) {
-          item.variant = Array.prototype.map.call(activeVariants, function (v) {
-            return v.dataset.variant;
-          }).join(' / ');
+          var labels = [], delta = 0;
+          for (var i = 0; i < activeVariants.length; i++) {
+            var v = activeVariants[i];
+            labels.push(v.dataset.variant);
+            var d = parseFloat(v.dataset.priceDelta);
+            if (!isNaN(d)) delta += d;
+          }
+          item.variant = labels.join(' / ');
+          item.price = (item.price || 0) + delta;
         }
         Cart.add(item);
         toast('<b>' + item.name + '</b> in den Warenkorb gelegt.');

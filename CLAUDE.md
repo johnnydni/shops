@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Static, multi-page shop for RITMO Padel — deployed via GitHub Pages to `ritmopadel.shop` (see `CNAME`). No build step, no backend yet, no analytics. Cart state lives in `localStorage`. **Stripe checkout will be wired in a follow-up build** — the cart page already has the integration seam (`#checkout-btn` in `warenkorb.html`).
+Static multi-page shop for RITMO Padel — deployed via GitHub Pages to `ritmopadel.shop` (see `CNAME`). No build step on the frontend, no analytics. Cart state lives in `localStorage`. Checkout uses **Stripe Hosted Checkout**, backed by a small **Cloudflare Worker** under `worker/` that re-prices the cart and creates the session.
 
 ## Local preview
 
@@ -24,21 +24,25 @@ GitHub Pages, `main` branch, root. Pushing to `main` deploys. The `CNAME` file p
 
 ```
 index.html              Shop home (hero, filter, product grid, newsletter)
-warenkorb.html          Cart page — reads localStorage, qty/remove, totals
+warenkorb.html          Cart page — reads localStorage, qty/remove, POST→worker→Stripe
+bestellt.html           Stripe success URL — clears cart, shows confirmation
+abbruch.html            Stripe cancel URL  — preserves cart, CTA to retry
 404.html                Bauhaus-styled not-found
-produkt/
-  schlaeger-pro.html        RITMO Pro (flagship — most detailed PDP)
-  schlaeger-edge.html       RITMO Edge
-  balls-tournament.html     Tournament 12er
-  balls-3pack.html          RITMO Ball Set
-  tee-schwarz.html          RITMO Tee
-  hoodie-crew.html          RITMO Hoodie
-  poster-app-live.html      "App ist Live" Print
-  print-dna.html            RITMO DNA Print
+produkt/                8 luxury-style PDPs (one HTML file per product)
 assets/
-  css/ritmo.css         Single shared stylesheet — tokens, components, PDP layout, animations
-  js/ritmo.js           Shared client code — cart store, badge sync, reveal, filter, toast
+  css/ritmo.css         Single shared stylesheet
+  js/ritmo.js           Cart store, badge sync, reveal, filter, toast, variant pricing
   products/*.jpg        OPTIONAL product photos (see Fallback pattern)
+worker/                 Cloudflare Worker — Stripe Checkout backend
+  src/index.js          Route table
+  src/catalog.js        Server-side product catalog (PRICE SOURCE OF TRUTH)
+  src/checkout.js       POST /api/checkout — creates Stripe session
+  src/webhook.js        POST /api/webhook — Web-Crypto signature verification
+  src/cors.js           CORS helper
+  wrangler.toml         Worker config (vars; secrets via `wrangler secret put`)
+  package.json          wrangler dev/deploy
+  README.md             Step-by-step deploy guide
+  .dev.vars.example     Template for local-dev secrets
 ```
 
 ## Architecture notes
@@ -60,12 +64,59 @@ Defined as CSS custom properties in `:root` (top of `ritmo.css`). Reuse — don'
 - Motion easings: `--ease`, `--ease-out`; respect `prefers-reduced-motion`
 - Mobile-first; product grid collapses 4 → 3 → 2 → 1; PDP hero stacks at ≤920px
 
-## Stripe integration (planned)
+## Checkout architecture (Stripe Hosted + Cloudflare Worker)
 
-`warenkorb.html` has the seam: `#checkout-btn` is currently a stub that fires a toast. The intended flow:
+End-to-end flow:
 
-1. Add Stripe.js (`<script src="https://js.stripe.com/v3/">`) only on `warenkorb.html`.
-2. POST `RitmoCart.read()` to a serverless endpoint that creates a Checkout Session and returns the session id.
-3. `stripe.redirectToCheckout({ sessionId })` and clear the cart on the success URL.
+```
+   PDP "In den Warenkorb"  →  localStorage (ritmo.cart.v1)
+                              ↓
+   warenkorb.html "Zur Kasse"  ──POST {id,qty,variant}──▶  CF Worker
+                                                                ↓
+                                            re-price from catalog.js
+                                                                ↓
+                                            create Stripe Checkout Session
+                                                                ↓
+   browser  ←──────────────────  { url: stripe.com/c/pay/... }  ─┘
+        ↓
+   Stripe Hosted Checkout (card, address, payment)
+        ↓
+   ┌────────────────┬──────────────────┐
+   ↓                                     ↓
+   bestellt.html?session_id=…       abbruch.html
+   (clears cart)                    (cart preserved)
+        ↑
+   Stripe webhook ──POST──▶ CF Worker /api/webhook
+                              (Web-Crypto signature verify, log/dispatch)
+```
 
-Until that's wired, do NOT enable the checkout button for real money. The button starts `disabled` and is only re-enabled when the cart has items — adding Stripe requires removing the toast-stub in `warenkorb.html` and replacing it with the redirect call.
+**Key invariants:**
+
+- **Client prices are never trusted.** The worker re-resolves every line via `worker/src/catalog.js`. The client only sends `{id, qty, variant}`.
+- **`worker/src/catalog.js` is the single source of truth for prices.** Both the displayed PDP price *and* the Stripe charge derive from it (PDPs hard-code base prices in `data-price`; variant deltas live in `data-price-delta` and must match the `variantPriceMap` in the catalog). When you change a price, update both.
+- **Variants are "A / B / C" strings.** The cart joins active option buttons with `" / "`. The worker splits on that separator and looks each segment up in `variantPriceMap`.
+- **No PCI scope.** All payment data lives on `stripe.com`. The frontend never sees card details.
+
+## Worker deploy (one-time)
+
+See `worker/README.md` for the full walkthrough. TL;DR:
+
+```bash
+cd worker
+npm install
+npx wrangler login
+npx wrangler secret put STRIPE_SECRET_KEY        # sk_test_... first
+npx wrangler secret put STRIPE_WEBHOOK_SECRET    # whsec_... (from Stripe webhook setup)
+npx wrangler deploy
+```
+
+Then in `warenkorb.html`, set `window.RITMO_CHECKOUT_URL` to the deployed worker URL (or your custom subdomain, e.g. `https://api.ritmopadel.shop/api/checkout`).
+
+Configure the Stripe webhook to POST `checkout.session.completed` to `<worker-url>/api/webhook`.
+
+## Adding a new variant or product
+
+1. **Server (price truth):** add an entry to `worker/src/catalog.js`. For variants that change price, add a `variantPriceMap` keyed by the exact `data-variant` string (not the user-facing label).
+2. **PDP markup:** add the option button with `data-variant="…"` and (if price changes) `data-price-delta="<eur>"` matching the catalog entry. The shared JS handles wiring.
+3. **Cart card on the home grid:** copy an existing `<article class="card-prod">` block in `index.html`.
+4. **Test locally:** `cd worker && npm run dev` and point `window.RITMO_CHECKOUT_URL` at `http://localhost:8787/api/checkout`. Use Stripe test card `4242 4242 4242 4242`.

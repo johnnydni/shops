@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Bestellung bestätigt — RITMO Shop</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="assets/css/ritmo.css">
+  <style>
+    .ok-page{padding:64px 0 120px;text-align:center;position:relative;overflow:hidden;min-height:60vh}
+    .ok-inner{max-width:560px;margin:0 auto;padding:0 var(--gutter);position:relative;z-index:1}
+    .ok-mark{width:96px;height:96px;margin:0 auto 28px;border:3px solid var(--orange);
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      animation:scaleIn .6s var(--ease-out) both, pulseRing 2.4s var(--ease) 1s infinite}
+    .ok-mark svg{width:48px;height:48px;display:block}
+    @keyframes pulseRing{
+      0%,100%{box-shadow:0 0 0 0 rgba(255,122,26,.5)}
+      50%{box-shadow:0 0 0 18px rgba(255,122,26,0)}
+    }
+    .ok-page h1{font-size:clamp(40px,6vw,72px);font-weight:900;font-style:italic;
+      letter-spacing:-1.5px;line-height:1;margin-bottom:16px}
+    .ok-page h1 .accent{color:var(--orange)}
+    .ok-page p.lead{color:var(--t2);font-size:16px;line-height:1.6;margin:0 0 28px;
+      max-width:46ch;margin-left:auto;margin-right:auto}
+    .ok-meta{display:inline-block;padding:14px 22px;background:var(--card);
+      border:1px solid var(--line);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      font-size:12px;letter-spacing:.5px;color:var(--t2);margin:0 0 32px;word-break:break-all}
+    .ok-meta .label{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+      color:var(--orange);font-weight:800;margin-bottom:6px;font-family:inherit;font-family:-apple-system,sans-serif}
+    .ok-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap topbar">
+      <a class="word" href="./"><span>RITMO</span><span class="dot"></span><span class="pipe">·</span><span class="sub">Shop</span></a>
+      <nav class="nav">
+        <a href="./#sortiment">Sortiment</a>
+        <a href="./#newsletter">News</a>
+        <a class="cart-link" href="warenkorb.html"><span class="bag"></span><span class="count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="ok-page">
+    <div class="bg-anim" aria-hidden="true">
+      <div class="blob-y"></div>
+      <div class="blob-b"></div>
+      <div class="blob-r"></div>
+    </div>
+    <div class="ok-inner fu">
+      <div class="ok-mark">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#FF7A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 16 L13 23 L26 9"/>
+        </svg>
+      </div>
+      <h1>Danke<span class="accent">.</span></h1>
+      <p class="lead">
+        Deine Bestellung ist bei uns angekommen. Du bekommst gleich eine
+        Bestätigung per E-Mail von Stripe — mit allen Details und der
+        Rechnung als PDF.
+      </p>
+      <div id="order-ref" class="ok-meta" hidden>
+        <span class="label">Bestell-Referenz</span>
+        <code id="order-id">—</code>
+      </div>
+      <div class="ok-links">
+        <a class="btn btn-pri" href="./">Weiter shoppen</a>
+        <a class="btn btn-out" href="https://ritmopadel.app/" rel="noopener">RITMO App öffnen</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="yr">2026</span> RITMO Padel. Made with ♥ in DACH.</div>
+      <div>
+        <a href="https://ritmopadel.app/" rel="noopener">App</a> &nbsp;·&nbsp;
+        <a href="https://ritmopadel.de/" rel="noopener">ritmopadel.de</a> &nbsp;·&nbsp;
+        <a href="https://ritmopadel.de/#impressum">Impressum</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="bauhausline" aria-hidden="true">
+    <span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span><span class="e"></span>
+  </div>
+
+  <script src="assets/js/ritmo.js"></script>
+  <script>
+    /* Stripe redirected here with ?session_id=cs_test_...
+       1. Clear the cart (purchase happened — local state is stale).
+       2. Show the session id so the customer can quote it in support.
+       Verification of payment status happens via the webhook, NOT here. */
+    (function () {
+      try { RitmoCart.clear(); } catch (e) {}
+      var params = new URLSearchParams(window.location.search);
+      var sid = params.get('session_id');
+      if (sid) {
+        var box = document.getElementById('order-ref');
+        document.getElementById('order-id').textContent = sid;
+        box.hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>

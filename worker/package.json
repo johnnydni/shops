@@ -1,0 +1,17 @@
+{
+  "name": "ritmo-shop-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stripe Checkout backend for ritmopadel.shop — Cloudflare Worker.",
+  "type": "module",
+  "scripts": {
+    "dev":     "wrangler dev",
+    "deploy":  "wrangler deploy",
+    "tail":    "wrangler tail",
+    "secrets:put-stripe":  "wrangler secret put STRIPE_SECRET_KEY",
+    "secrets:put-webhook": "wrangler secret put STRIPE_WEBHOOK_SECRET"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

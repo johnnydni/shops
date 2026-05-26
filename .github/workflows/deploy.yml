@@ -11,9 +11,13 @@ permissions:
   pages: write
   id-token: write
 
-# Mehrere parallele Deploys verhindern (letzter Push gewinnt)
+# Mehrere parallele Deploys verhindern (letzter Push gewinnt).
+# Group bewusst "pages-v2" weil der Outage am 26.05. einen
+# Zombie-Run in der "pages"-Group hinterlassen hat, der weder
+# cancelled noch deleted werden konnte und alle nachfolgenden
+# Runs blockiert hat.
 concurrency:
-  group: pages
+  group: pages-v2
   cancel-in-progress: false
 
 jobs:

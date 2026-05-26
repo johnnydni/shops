@@ -51,8 +51,14 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 html,body{background:var(--bg);color:var(--t1);
-  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue','Inter',sans-serif;
+  /* Body: Public Sans (skill recommendation, neubrutalist body) → system fallback */
+  font-family:'Public Sans',-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue','Inter',sans-serif;
   -webkit-font-smoothing:antialiased;line-height:1.4}
+/* Display headlines: Lexend Mega (geometric, bold, neubrutalist) */
+h1,h2,h3,.font-display,.hjourney-eyebrow,.bento-tile h3{
+  font-family:'Lexend Mega','Public Sans',-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
+  letter-spacing:-.02em;
+}
 body{overflow-x:hidden;min-height:100vh}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -653,3 +659,165 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   letter-spacing:-.8px;margin:0 0 14px}
 .notfound p{color:var(--t2);font-size:15px;line-height:1.6;margin:0 0 32px}
 .notfound .links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HOME PAGE — new sections (ui-ux-pro-max skill recommendations)
+   - Vibrant & Block-based style, neubrutalist typography
+   - 48px+ section gaps, 200-300ms hover transitions
+   - Scroll-snap horizontal journey, Apple-style bento, social-proof strip
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Hero upgrade (bigger headline + scroll hint) ──────────────── */
+.hero-xl h1{
+  font-size:clamp(64px,14vw,200px);
+  font-weight:900;font-style:italic;letter-spacing:-.04em;
+  line-height:.88;text-transform:uppercase;
+}
+.hero-xl h1 .accent{color:var(--orange)}
+.hero-xl h1 .slash{color:var(--t3);font-style:normal;font-weight:400;
+  display:inline-block;margin:0 .08em;transform:translateY(-.05em)}
+.hero-xl .scroll-hint{
+  margin-top:40px;display:inline-flex;align-items:center;gap:12px;
+  font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--t3);
+}
+.hero-xl .scroll-hint svg{width:24px;height:24px;
+  animation:nudgeRight 1.8s var(--ease) infinite}
+@keyframes nudgeRight{
+  0%,100%{transform:translateX(0);opacity:.6}
+  50%{transform:translateX(6px);opacity:1}
+}
+
+/* ─── Horizontal Scroll Journey ────────────────────────────────── */
+.hjourney{padding:32px 0 96px;position:relative}
+.hjourney-header{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:24px;padding:0 var(--gutter);margin:0 auto 32px;max-width:var(--wrap-wide)}
+.hjourney-header h2{font-size:clamp(32px,5vw,56px);font-weight:900;font-style:italic;
+  letter-spacing:-.02em;line-height:1;margin:0}
+.hjourney-header h2 .accent{color:var(--orange)}
+.hjourney-header .progress{
+  font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--t3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+.hjourney-track{
+  display:flex;gap:24px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-padding-left:var(--gutter);
+  scrollbar-width:thin;scrollbar-color:var(--orange) transparent;
+  padding:0 var(--gutter) 28px;
+  scroll-behavior:smooth;
+}
+.hjourney-track::-webkit-scrollbar{height:6px}
+.hjourney-track::-webkit-scrollbar-track{background:var(--line)}
+.hjourney-track::-webkit-scrollbar-thumb{background:var(--orange)}
+
+.hjourney-panel{
+  flex:0 0 min(82vw,420px);scroll-snap-align:start;
+  background:var(--card);border:1px solid var(--line);
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:border-color var(--med) var(--ease),background var(--med) var(--ease)}
+.hjourney-panel:hover{border-color:var(--orange);background:var(--card2)}
+.hjourney-panel:hover .hjourney-cat-stripe{height:8px}
+
+.hjourney-cat-stripe{width:100%;height:4px;transition:height var(--med) var(--ease)}
+.hjourney-panel.cat-schlaeger .hjourney-cat-stripe{background:var(--orange)}
+.hjourney-panel.cat-baelle    .hjourney-cat-stripe{background:var(--yellow)}
+.hjourney-panel.cat-apparel   .hjourney-cat-stripe{background:var(--blue)}
+.hjourney-panel.cat-prints    .hjourney-cat-stripe{background:var(--red)}
+
+.hjourney-visual{aspect-ratio:4/3;background:var(--card2);
+  position:relative;overflow:hidden}
+.hjourney-visual svg{position:absolute;inset:0;width:100%;height:100%;
+  transition:transform var(--slow) var(--ease)}
+.hjourney-panel:hover .hjourney-visual svg{transform:scale(1.04)}
+.hjourney-num{
+  position:absolute;top:14px;right:18px;z-index:2;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:14px;font-weight:800;color:rgba(0,0,0,.6);letter-spacing:.5px}
+
+.hjourney-body{padding:24px 26px 26px;display:flex;flex-direction:column;
+  flex:1;gap:6px}
+.hjourney-eyebrow{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--orange);font-weight:800;margin-bottom:6px}
+.hjourney-name{font-size:28px;font-weight:900;font-style:italic;
+  letter-spacing:-.02em;line-height:1.05}
+.hjourney-desc{font-size:13px;color:var(--t2);line-height:1.55;margin-top:6px;flex:1}
+.hjourney-foot{display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.hjourney-foot .price{font-size:22px;font-weight:900;font-style:italic;letter-spacing:-.02em}
+.hjourney-foot .price .cur{font-size:14px;font-weight:700;font-style:normal;
+  color:var(--t3);margin-right:3px;vertical-align:1px}
+
+@media(max-width:540px){
+  .hjourney-panel{flex:0 0 86vw}
+  .hjourney-header{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* ─── Bento Grid Showcase ──────────────────────────────────────── */
+.bento{padding:96px 0;border-top:1px solid var(--line)}
+.bento-header{padding:0 var(--gutter);max-width:var(--wrap-wide);
+  margin:0 auto 40px}
+.bento-header h2{font-size:clamp(32px,5vw,56px);font-weight:900;font-style:italic;
+  letter-spacing:-.02em;line-height:1;margin-bottom:14px}
+.bento-header h2 .accent{color:var(--orange)}
+.bento-header p{color:var(--t2);font-size:15px;line-height:1.6;max-width:46ch}
+
+.bento-grid{padding:0 var(--gutter);max-width:var(--wrap-wide);margin:0 auto;
+  display:grid;gap:20px;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:200px;
+  grid-template-areas:
+    "a a b c"
+    "a a d e"
+    "f g g h";
+}
+@media(max-width:980px){
+  .bento-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;
+    grid-template-areas:"a a" "b c" "d e" "f g" "g h"}
+}
+@media(max-width:600px){
+  .bento-grid{grid-template-columns:1fr;grid-template-areas:
+    "a" "b" "c" "d" "e" "f" "g" "h"}
+}
+.bento-tile{
+  background:var(--card);border:1px solid var(--line);padding:22px;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  justify-content:flex-end;cursor:default;
+  transition:border-color var(--med) var(--ease),background var(--med) var(--ease),
+    color var(--med) var(--ease)}
+.bento-tile.t-a{grid-area:a;justify-content:space-between}
+.bento-tile.t-b{grid-area:b}.bento-tile.t-c{grid-area:c}
+.bento-tile.t-d{grid-area:d}.bento-tile.t-e{grid-area:e}
+.bento-tile.t-f{grid-area:f}.bento-tile.t-g{grid-area:g}
+.bento-tile.t-h{grid-area:h}
+
+.bento-tile h3{font-size:18px;font-weight:900;font-style:italic;
+  letter-spacing:-.01em;line-height:1.1;margin-bottom:6px}
+.bento-tile p{font-size:12px;color:var(--t2);line-height:1.5}
+.bento-tile .eyebrow{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--orange);font-weight:800;margin-bottom:10px;display:block}
+.bento-tile .icon{width:36px;height:36px;color:var(--orange);margin-bottom:14px}
+.bento-tile.t-a h3{font-size:clamp(28px,3.2vw,42px)}
+.bento-tile.t-a p{font-size:14px;max-width:38ch}
+.bento-tile.t-g{background:var(--orange);color:#000;border-color:var(--orange)}
+.bento-tile.t-g h3,.bento-tile.t-g p,.bento-tile.t-g .eyebrow{color:#000}
+.bento-tile.t-g .icon{color:#000}
+
+/* hover: color shift only (no scale → no layout shift, skill rule) */
+.bento-tile:not(.t-g):hover{border-color:var(--orange);background:var(--card2)}
+.bento-tile.t-g:hover{background:#fff}
+
+.bento-tile .bento-shape{position:absolute;pointer-events:none;opacity:.6;
+  transition:transform var(--slow) var(--ease)}
+.bento-tile:hover .bento-shape{transform:scale(1.08) rotate(6deg)}
+
+/* ─── Social Proof Strip (marquee-style stats) ─────────────────── */
+.proof{padding:48px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#000}
+.proof-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
+  padding:0 var(--gutter);max-width:var(--wrap-wide);margin:0 auto;text-align:center}
+@media(max-width:780px){.proof-inner{grid-template-columns:repeat(2,1fr);gap:24px}}
+.proof-stat .n{font-size:clamp(36px,5vw,56px);font-weight:900;font-style:italic;
+  letter-spacing:-.02em;line-height:1;color:var(--orange)}
+.proof-stat .l{margin-top:6px;font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--t3);font-weight:800}

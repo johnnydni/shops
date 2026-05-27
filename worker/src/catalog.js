@@ -88,7 +88,7 @@ export const CATALOG = {
   },
   'ritmo-ring': {
     name: 'RITMO Ring',
-    price: 19900,
+    price: 3999,
     category: 'Smart Gear',
     // No price-affecting variants — size + colour are flat-priced
   },

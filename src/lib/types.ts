@@ -30,6 +30,13 @@ export interface VariantOption {
   label?: string;         // optional display override
   priceDelta?: number;    // EUR, default 0
   swatch?: 'black' | 'white' | 'orange' | 'yellow' | 'blue' | 'pink';
+  /**
+   * Optional product image for this specific option. When set, picking
+   * this variant swaps the PDP hero image. Typically attached to colour
+   * variants — size/format options usually leave this empty.
+   * Path relative to public/, e.g. `/assets/products/<slug>/<slug>-<farbe>.jpg`.
+   */
+  image?: string;
 }
 
 export interface VariantGroup {

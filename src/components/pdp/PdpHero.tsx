@@ -31,18 +31,27 @@ export function PdpHero({ product, ctaRef }: Props) {
   });
 
   // Compute current unit price (base + sum of selected variant deltas)
-  const { price, variantLabel } = useMemo(() => {
+  // PLUS resolve the active hero image — first variant group whose
+  // selected option has an `image` set wins, falling back to the
+  // product's default heroImageSrc/imageSrc.
+  const { price, variantLabel, heroImage } = useMemo(() => {
     let p = product.price;
     const parts: string[] = [];
+    let img: string | undefined;
     product.variants?.forEach((g) => {
       const v = selected[g.label];
       const opt = g.options.find((o) => o.value === v);
       if (opt) {
         if (opt.priceDelta) p += opt.priceDelta;
         parts.push(opt.value);
+        if (opt.image && !img) img = opt.image;
       }
     });
-    return { price: p, variantLabel: parts.join(' / ') };
+    return {
+      price: p,
+      variantLabel: parts.join(' / '),
+      heroImage: img ?? product.heroImageSrc ?? product.imageSrc,
+    };
   }, [product, selected]);
 
   const { cur, value } = eurParts(price);
@@ -64,7 +73,7 @@ export function PdpHero({ product, ctaRef }: Props) {
       <div className="wrap pdp-hero-grid">
         <PdpStage
           illustration={product.illustration}
-          imageSrc={product.heroImageSrc ?? product.imageSrc}
+          imageSrc={heroImage}
           alt={product.name}
         />
 

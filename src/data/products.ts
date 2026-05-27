@@ -60,9 +60,9 @@ export const PRODUCTS: Product[] = [
         label: 'Farbe',
         defaultValue: 'Orange',
         options: [
-          { value: 'Orange',  swatch: 'orange' },
-          { value: 'Schwarz', swatch: 'black'  },
-          { value: 'Gelb',    swatch: 'yellow' },
+          { value: 'Orange',  swatch: 'orange', image: '/assets/products/schlaeger-pro/schlaeger-pro-orange.jpg'  },
+          { value: 'Schwarz', swatch: 'black',  image: '/assets/products/schlaeger-pro/schlaeger-pro-schwarz.jpg' },
+          { value: 'Gelb',    swatch: 'yellow', image: '/assets/products/schlaeger-pro/schlaeger-pro-gelb.jpg'    },
         ],
       },
     ],
@@ -138,8 +138,8 @@ export const PRODUCTS: Product[] = [
     variants: [
       { label: 'Griff-Größe', defaultValue: 'M', options: [{ value: 'S' }, { value: 'M' }, { value: 'L' }] },
       { label: 'Farbe', defaultValue: 'Blau', options: [
-        { value: 'Blau', swatch: 'blue' },
-        { value: 'Schwarz', swatch: 'black' },
+        { value: 'Blau',    swatch: 'blue',  image: '/assets/products/schlaeger-edge/schlaeger-edge-blau.jpg'    },
+        { value: 'Schwarz', swatch: 'black', image: '/assets/products/schlaeger-edge/schlaeger-edge-schwarz.jpg' },
       ]},
     ],
     trust: [
@@ -333,9 +333,9 @@ export const PRODUCTS: Product[] = [
         { value: 'S' }, { value: 'M' }, { value: 'L' }, { value: 'XL' }, { value: 'XXL' },
       ]},
       { label: 'Farbe', defaultValue: 'Schwarz', options: [
-        { value: 'Schwarz', swatch: 'black' },
-        { value: 'Weiß',    swatch: 'white' },
-        { value: 'Orange',  swatch: 'orange' },
+        { value: 'Schwarz', swatch: 'black',  image: '/assets/products/tee-schwarz/tee-schwarz-schwarz.jpg' },
+        { value: 'Weiß',    swatch: 'white',  image: '/assets/products/tee-schwarz/tee-schwarz-weiss.jpg'   },
+        { value: 'Orange',  swatch: 'orange', image: '/assets/products/tee-schwarz/tee-schwarz-orange.jpg'  },
       ]},
     ],
     trust: [
@@ -402,8 +402,8 @@ export const PRODUCTS: Product[] = [
         { value: 'S' }, { value: 'M' }, { value: 'L' }, { value: 'XL' }, { value: 'XXL' },
       ]},
       { label: 'Farbe', defaultValue: 'Schwarz', options: [
-        { value: 'Schwarz', swatch: 'black' },
-        { value: 'Orange',  swatch: 'orange' },
+        { value: 'Schwarz', swatch: 'black',  image: '/assets/products/hoodie-crew/hoodie-crew-schwarz.jpg' },
+        { value: 'Orange',  swatch: 'orange', image: '/assets/products/hoodie-crew/hoodie-crew-orange.jpg'  },
       ]},
     ],
     trust: [
@@ -565,12 +565,12 @@ export const PRODUCTS: Product[] = [
     category: 'tech',
     name: 'RITMO Ring',
     nameAccent: 'Ring',
-    eyebrow: 'Smart Gear · Hands-free',
+    eyebrow: 'Smart Gear · Score-Remote',
     tagline:
-      'Bluetooth-Ring, der während des Spiels die Punkte mit­zählt — und sich automatisch mit der RITMO Padel App synchronisiert. Titan-Carbon-Composite, 3,2 g, IP68. So leicht, dass du ihn vergisst.',
+      'Bluetooth-Ring zum Steuern des Scores in der RITMO Padel App. Tippen → Punkt vergeben. Doppel-Tippen → zurücksetzen mit voller Historie. Keine Sensoren, kein Tracking — nur ein präziser Daumendruck pro Punkt.',
     shortDesc:
-      'Bluetooth-Ring · zählt Scores live in die RITMO App. 3,2 g, IP68, 5 Tage Akku.',
-    price: 199,
+      'Bluetooth-Score-Remote für die RITMO Padel App. Punkt vergeben per Tap. 3,2 g, IP68.',
+    price: 39.99,
     illustration: RitmoRing,
     imageSrc: '/assets/products/ritmo-ring/ritmo-ring-schwarz.png',
     heroImageSrc: '/assets/products/ritmo-ring/ritmo-ring-schwarz.png',
@@ -588,9 +588,9 @@ export const PRODUCTS: Product[] = [
         label: 'Farbe',
         defaultValue: 'Schwarz',
         options: [
-          { value: 'Schwarz', swatch: 'black'  },
-          { value: 'Pink',    swatch: 'pink'   },
-          { value: 'Orange',  swatch: 'orange' },
+          { value: 'Schwarz', swatch: 'black',  image: '/assets/products/ritmo-ring/ritmo-ring-schwarz.png' },
+          { value: 'Pink',    swatch: 'pink',   image: '/assets/products/ritmo-ring/ritmo-ring-pink.png'    },
+          { value: 'Orange',  swatch: 'orange', image: '/assets/products/ritmo-ring/ritmo-ring-orange.jpg'  },
         ],
       },
     ],
@@ -601,12 +601,12 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · Konnektivität',
-        title: 'Bluetooth LE 5.3.',
-        titleAccent: 'Pair once. Forget.',
+        eyebrow: '01 · Steuerung',
+        title: 'Tap → Punkt.',
+        titleAccent: 'Double-Tap → Undo.',
         body: [
-          'Sobald der Ring einmal mit der RITMO Padel App gekoppelt ist, verbindet er sich automatisch jedes Mal wenn du auf den Court gehst. Kein Menü, kein Tippen — Match starten, spielen.',
-          'Der Ring trackt Beschleunigung, Drehung und Treffer-Muster und meldet den aktuellen Score live an die App. Du spielst, sie zählt.',
+          'Ein einzelner Tap an der Außenseite vergibt einen Punkt für dein Team in der RITMO Padel App. Doppel-Tap nimmt den letzten Punkt zurück — mit vollständiger Historie, falls du später nochmal nachschauen willst.',
+          'Lang gedrückt halten setzt den aktuellen Game zurück. Mehr Bedienelemente gibt es bewusst nicht — der Ring soll dich nicht ablenken.',
         ],
         visual: RingBluetooth,
       },
@@ -616,7 +616,7 @@ export const PRODUCTS: Product[] = [
         titleAccent: '3,2 Gramm.',
         body: [
           '0,4 mm Titan-Außenschale über einem Carbon-Composite-Kern. Schlag-, kratz- und korrosionsfest — geht auch in die Dusche mit (IP68).',
-          'Innenseite glatt-poliert, kein Wing-Detail das am Griff hängenbleibt. Du merkst ihn nach 30 Sekunden am Finger nicht mehr.',
+          'Keine Sensoren, kein Beschleunigungs-Tracking, kein GPS. Nur ein kapazitiver Touch-Punkt + Bluetooth-Funk. Akku hält drei Wochen weil so wenig Elektronik drin steckt.',
         ],
         reverse: true,
         alt: true,
@@ -626,7 +626,7 @@ export const PRODUCTS: Product[] = [
     bleed: {
       title: 'Spielen.',
       titleAccent: 'Nicht zählen.',
-      body: 'Du konzentrierst dich auf den nächsten Ballwechsel. Der Ring kümmert sich um den Rest — Score, Match-Statistik, Verlauf.',
+      body: 'Du brauchst keine Hand am Telefon mehr nach jedem Ballwechsel. Ein Tap, ein Punkt — der Score läuft in der App mit, mit voller Historie und Undo.',
     },
     videos: [
       {
@@ -638,24 +638,26 @@ export const PRODUCTS: Product[] = [
       },
       {
         kind: 'placeholder',
-        title: 'Court-Test',
-        subtitle: 'Live-Match — Score läuft automatisch mit.',
-        tag: 'Test',
-        duration: '3:12',
+        title: 'Match-Demo',
+        subtitle: 'Live-Spiel — Punkte per Tap, Undo per Double-Tap.',
+        tag: 'Demo',
+        duration: '2:18',
       },
       {
         kind: 'placeholder',
         title: 'Akku & Laden',
-        subtitle: 'Magnet-Ladestation, USB-C, 60 min auf voll.',
+        subtitle: 'Magnet-Ladestation, USB-C, 60 min auf voll — 3 Wochen Spielzeit.',
         tag: 'Erklärung',
         duration: '1:08',
       },
     ],
     specs: [
+      { label: 'Funktion',         value: 'Bluetooth Score-Remote für die RITMO Padel App' },
+      { label: 'Eingaben',         value: 'Tap (Punkt) · Double-Tap (Undo) · Long-Press (Reset)' },
       { label: 'Konnektivität',    value: 'Bluetooth Low Energy 5.3' },
       { label: 'App',              value: 'RITMO Padel · iOS · Android' },
-      { label: 'Sensoren',         value: '6-Achs-IMU (Accelerometer + Gyro) · Touch' },
-      { label: 'Batterie',         value: '5 Tage Spielzeit · 60 min Schnellladung' },
+      { label: 'Sensorik',         value: 'Kapazitiver Touch-Punkt (keine Bewegungs-Sensoren)' },
+      { label: 'Batterie',         value: '3 Wochen Spielzeit · 60 min Schnellladung' },
       { label: 'Material',         value: 'Titan-Außenschale + Carbon-Composite-Kern' },
       { label: 'Gewicht',          value: '3,2 g' },
       { label: 'Wasserschutz',     value: 'IP68 · Schwimmbad-tauglich' },

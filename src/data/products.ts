@@ -45,8 +45,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Carbon-3K Rahmen, EVA-Soft-Kern, runde Form. Für Spieler:innen mit Kontrolle & Punch.',
     price: 189,
     illustration: PadelRacketPro,
-    imageSrc: '/assets/products/schlaeger-pro.jpg',
-    heroImageSrc: '/assets/products/schlaeger-pro.jpg',
+    imageSrc: '/assets/products/schlaeger-pro/schlaeger-pro-orange.jpg',
+    heroImageSrc: '/assets/products/schlaeger-pro/schlaeger-pro-orange.jpg',
     flag: { label: 'Flagship', tone: 'soon' },
     variants: [
       {
@@ -133,8 +133,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Diamantform, harte EVA, maximale Power. Für aggressive Netz-Spieler.',
     price: 159,
     illustration: PadelRacketEdge,
-    imageSrc: '/assets/products/schlaeger-edge.jpg',
-    heroImageSrc: '/assets/products/schlaeger-edge.jpg',
+    imageSrc: '/assets/products/schlaeger-edge/schlaeger-edge-blau.jpg',
+    heroImageSrc: '/assets/products/schlaeger-edge/schlaeger-edge-blau.jpg',
     variants: [
       { label: 'Griff-Größe', defaultValue: 'M', options: [{ value: 'S' }, { value: 'M' }, { value: 'L' }] },
       { label: 'Farbe', defaultValue: 'Blau', options: [
@@ -208,8 +208,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Drucklose Padel-Bälle in Turnier-Qualität. 4 Drei-Pack-Dosen.',
     price: 34,
     illustration: BallsTournament,
-    imageSrc: '/assets/products/balls-tournament.jpg',
-    heroImageSrc: '/assets/products/balls-tournament.jpg',
+    imageSrc: '/assets/products/balls-tournament/balls-tournament-gelb.jpg',
+    heroImageSrc: '/assets/products/balls-tournament/balls-tournament-gelb.jpg',
     variants: [
       { label: 'Stückzahl', defaultValue: '12er', options: [
         { value: '12er', label: '12er' },
@@ -274,8 +274,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Klassische Drei-Pack-Dose, perfekt fürs nächste Match.',
     price: 9,
     illustration: BallsThreePack,
-    imageSrc: '/assets/products/balls-3pack.jpg',
-    heroImageSrc: '/assets/products/balls-3pack.jpg',
+    imageSrc: '/assets/products/balls-3pack/balls-3pack-gelb.jpg',
+    heroImageSrc: '/assets/products/balls-3pack/balls-3pack-gelb.jpg',
     variants: [
       { label: 'Menge', defaultValue: '1 Dose', options: [
         { value: '1 Dose',  label: '1 Dose · €9' },
@@ -326,8 +326,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Weiches Heavy-Cotton, oversized Cut, italic Brust-Logo. S–XXL.',
     price: 39,
     illustration: TeeBlack,
-    imageSrc: '/assets/products/tee-schwarz.jpg',
-    heroImageSrc: '/assets/products/tee-schwarz.jpg',
+    imageSrc: '/assets/products/tee-schwarz/tee-schwarz-schwarz.jpg',
+    heroImageSrc: '/assets/products/tee-schwarz/tee-schwarz-schwarz.jpg',
     variants: [
       { label: 'Größe', defaultValue: 'M', options: [
         { value: 'S' }, { value: 'M' }, { value: 'L' }, { value: 'XL' }, { value: 'XXL' },
@@ -395,8 +395,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Schwerer Baumwoll-Crew-Hoodie, gefütterte Kapuze, orangenes Bauhaus-Print.',
     price: 79,
     illustration: HoodieCrew,
-    imageSrc: '/assets/products/hoodie-crew.jpg',
-    heroImageSrc: '/assets/products/hoodie-crew.jpg',
+    imageSrc: '/assets/products/hoodie-crew/hoodie-crew-schwarz.jpg',
+    heroImageSrc: '/assets/products/hoodie-crew/hoodie-crew-schwarz.jpg',
     variants: [
       { label: 'Größe', defaultValue: 'M', options: [
         { value: 'S' }, { value: 'M' }, { value: 'L' }, { value: 'XL' }, { value: 'XXL' },
@@ -461,8 +461,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Limited Print, 50×70 cm, gerollt geliefert. Premium-Mattpapier 250 g/m².',
     price: 24,
     illustration: PosterAppLive,
-    imageSrc: '/assets/products/poster-app-live.jpg',
-    heroImageSrc: '/assets/products/poster-app-live.jpg',
+    imageSrc: '/assets/products/poster-app-live/poster-app-live-schwarz.jpg',
+    heroImageSrc: '/assets/products/poster-app-live/poster-app-live-schwarz.jpg',
     variants: [
       { label: 'Format', defaultValue: 'A2', options: [
         { value: 'A3' },
@@ -516,8 +516,8 @@ export const PRODUCTS: Product[] = [
     shortDesc: 'Bauhaus-Komposition aus den drei Padel-Spielstil-Grundformen. A3.',
     price: 18,
     illustration: PrintDna,
-    imageSrc: '/assets/products/print-dna.jpg',
-    heroImageSrc: '/assets/products/print-dna.jpg',
+    imageSrc: '/assets/products/print-dna/print-dna-schwarz.jpg',
+    heroImageSrc: '/assets/products/print-dna/print-dna-schwarz.jpg',
     variants: [
       { label: 'Format', defaultValue: 'A3', options: [
         { value: 'A3' },
@@ -572,8 +572,8 @@ export const PRODUCTS: Product[] = [
       'Bluetooth-Ring · zählt Scores live in die RITMO App. 3,2 g, IP68, 5 Tage Akku.',
     price: 199,
     illustration: RitmoRing,
-    imageSrc: '/assets/products/ritmoring.jpg',
-    heroImageSrc: '/assets/products/ritmoring.jpg',
+    imageSrc: '/assets/products/ritmo-ring/ritmo-ring-schwarz.png',
+    heroImageSrc: '/assets/products/ritmo-ring/ritmo-ring-schwarz.png',
     flag: { label: 'Neu', tone: 'new' },
     variants: [
       {

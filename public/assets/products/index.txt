@@ -1,0 +1,117 @@
+═══════════════════════════════════════════════════════════════════════
+  RITMO SHOP — PRODUCT ASSETS INDEX
+  Letzte Aktualisierung: 2026-05-27
+═══════════════════════════════════════════════════════════════════════
+
+STRUKTUR
+────────
+  /assets/products/
+    <product-slug>/
+      <product-slug>-<farbe>.<ext>
+
+Jedes Produkt hat ein eigenes Verzeichnis (Name = product slug aus
+src/data/products.ts). Innen liegen pro Farbvariante eine Bild-Datei.
+Die Default-Variante pro Produkt steht in products.ts unter `imageSrc`
+und `heroImageSrc`.
+
+NAMENS-KONVENTION
+──────────────────
+  produktname-modellvariante-farbe.<ext>
+
+  ┌─ Examples ─────────────────────────────────────────┐
+  │  schlaeger-pro-orange.jpg                          │
+  │  schlaeger-pro-schwarz.jpg                         │
+  │  ritmo-ring-pink.png                               │
+  └────────────────────────────────────────────────────┘
+
+Ausnahmen (dokumentiert in den jeweiligen Sektionen unten):
+  • Produkte ohne Farbvariante (Bälle, Prints, Poster):
+    Dateiname nutzt die dominante Farbe des Produkts als `farbe`-Segment.
+    → balls-tournament-gelb.jpg (gelbe Filz-Bälle)
+    → print-dna-schwarz.jpg (schwarzer Hintergrund)
+  • Ring-Variante "schwarz" und "pink" sind PNG (nicht JPG) weil sie
+    Transparenz oder höhere Qualität benötigen. Re-Export zu JPG würde
+    Lossy sein.
+
+PLATZHALTER vs ECHTE DATEIEN
+─────────────────────────────
+  - Echte Photos: > 0 Bytes, gültiger Bild-Header
+  - Platzhalter:  0 Bytes (leer, nur damit Pfad existiert)
+
+Wenn das Frontend einen 0-Byte-Bildpfad lädt, schlägt das Decoding fehl
+und der inline-SVG-Fallback (siehe components/illustrations/index.tsx)
+greift automatisch. Das ist gewollt: sobald jemand das echte Photo dort
+hinlegt, überlagert es den SVG ohne Code-Änderung.
+
+═══════════════════════════════════════════════════════════════════════
+  PRODUCT INVENTORY
+═══════════════════════════════════════════════════════════════════════
+
+▌ schlaeger-pro/ ──────────────────────────────────  Schläger · Flagship
+  schlaeger-pro-orange.jpg       ✓ Photo · default
+  schlaeger-pro-schwarz.jpg      □ Platzhalter
+  schlaeger-pro-gelb.jpg         □ Platzhalter
+
+▌ schlaeger-edge/ ─────────────────────────────────  Schläger · Power
+  schlaeger-edge-blau.jpg        ✓ Photo · default
+  schlaeger-edge-schwarz.jpg     □ Platzhalter
+
+▌ balls-tournament/ ──────────────────────────────  Bälle · Tournament 12er
+  (Keine Farbvarianten — Bälle sind immer gelb)
+  balls-tournament-gelb.jpg      □ Platzhalter · default
+
+▌ balls-3pack/ ────────────────────────────────────  Bälle · RITMO Ball Set
+  (Keine Farbvarianten — Bälle sind immer gelb)
+  balls-3pack-gelb.jpg           □ Platzhalter · default
+
+▌ tee-schwarz/ ────────────────────────────────────  Apparel · RITMO Tee
+  (Slug enthält "schwarz" historisch — Doppel-schwarz in Dateinamen ist
+   beabsichtigt und folgt der strikten Konvention.)
+  tee-schwarz-schwarz.jpg        ✓ Photo · default
+  tee-schwarz-weiss.jpg          ✓ Photo
+  tee-schwarz-orange.jpg         ✓ Photo
+
+▌ hoodie-crew/ ────────────────────────────────────  Apparel · RITMO Hoodie
+  hoodie-crew-schwarz.jpg        ✓ Photo · default
+  hoodie-crew-orange.jpg         □ Platzhalter
+
+▌ poster-app-live/ ───────────────────────────────  Print · "App ist Live"
+  (Keine Farbvarianten — der Print ist selbst schon Bauhaus-bunt)
+  poster-app-live-schwarz.jpg    □ Platzhalter · default
+
+▌ print-dna/ ──────────────────────────────────────  Print · RITMO DNA
+  (Keine Farbvarianten — siehe Poster oben)
+  print-dna-schwarz.jpg          ✓ Photo · default
+
+▌ ritmo-ring/ ─────────────────────────────────────  Smart Gear
+  ritmo-ring-schwarz.png         ✓ Photo · default · PNG
+  ritmo-ring-orange.jpg          ✓ Photo
+  ritmo-ring-pink.png            ✓ Photo · PNG
+
+═══════════════════════════════════════════════════════════════════════
+  WIE ICH EIN NEUES PHOTO REINLEGE
+═══════════════════════════════════════════════════════════════════════
+
+  1. Datei nach <slug>/<slug>-<farbe>.jpg legen (Endung .jpg bevorzugt;
+     .png nur wenn Transparenz nötig).
+  2. Empfohlenes Format: JPG, 800×640 px oder 1200×1200 px (Hero),
+     unter 200 KB pro Datei.
+  3. Falls die Datei eine bereits existierende Platzhalter-Datei
+     überschreibt: einfach drüberkopieren. Keine Code-Änderung nötig
+     wenn der Pfad identisch ist.
+  4. Falls neue Farbe → in products.ts unter `variants[].options`
+     einfügen UND in worker/src/catalog.js wenn es preis-relevant ist.
+
+═══════════════════════════════════════════════════════════════════════
+  WIE ICH EIN NEUES PRODUKT ANLEGE
+═══════════════════════════════════════════════════════════════════════
+
+  1. Neues Verzeichnis: /assets/products/<neuer-slug>/
+  2. Mindestens ein Photo: /<neuer-slug>/<neuer-slug>-<farbe>.jpg
+     (Default-Farbe wählen)
+  3. Platzhalter für weitere Farben anlegen mit `touch` (0-Byte-Files)
+  4. Eintrag in src/data/products.ts (`imageSrc` + `heroImageSrc`
+     auf das Default-Photo zeigen lassen)
+  5. Eintrag in worker/src/catalog.js (Server-side Price-Source)
+  6. SVG-Fallback in src/components/illustrations/index.tsx ergänzen
+  7. Diese index.txt erweitern

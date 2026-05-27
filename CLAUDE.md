@@ -39,7 +39,11 @@ tsconfig*.json
 scripts/postbuild.mjs   dist/index.html → dist/404.html for SPA fallback
 public/                 Static passthrough — CNAME + product photos
   CNAME
-  assets/products/*.jpg
+  assets/products/
+    index.txt           ⭐ Asset inventory + naming convention (read first when working with photos)
+    <product-slug>/     One directory per product
+      <slug>-<farbe>.jpg / .png   One file per colour variant
+                                  (placeholders are 0-byte; SVG fallback shows)
 src/
   main.tsx              React mount + global stylesheet import
   App.tsx               Routes + shared chrome (header/footer/toast)
@@ -77,6 +81,7 @@ worker/                 UNCHANGED — Cloudflare Worker (Stripe Checkout backend
 - **Add-to-cart is hook-driven, not declarative.** Old `data-add-to-cart` attribute pattern is gone. Buttons call `add({ id, name, cat, price, variant, img })` directly from the PDP hero where variant state lives.
 - **Single PDP component.** `ProductPage` reads `:slug`, looks up `PRODUCTS`, and composes `PdpHero → FeatureBlock(s) → EditorialBleed → VideoGallery → SpecsTable → CrossSell → StickyBuyBar`. Adding a 9th product = one entry in `products.ts` + one SVG component; **no new page file**.
 - **Image fallback pattern preserved.** `ProductImage` renders the SVG illustration always; layers the photo on top with `onError → unmount`. Identical visual behaviour to the old `onerror="this.remove()"` trick.
+- **Asset naming convention.** Every product gets a directory under `public/assets/products/<slug>/`. File names follow `<slug>-<farbe>.<ext>` (e.g. `schlaeger-pro-orange.jpg`, `ritmo-ring-pink.png`). Placeholders are 0-byte files — the SVG fallback above kicks in until a real photo replaces them. **Source of truth is `public/assets/products/index.txt`** — read it before adding/renaming any image.
 - **Animated backgrounds are pure CSS.** `<AnimatedBg />` wraps three keyframed Bauhaus blobs. Swap for video/Lottie by replacing the inner JSX — the parent positioning stays.
 - **One stylesheet, no Tailwind/CSS Modules.** `src/styles/ritmo.css` is the single design system (~30 KB). Components apply class names defined there (`btn btn-pri btn-lg`, `card-prod`, `pdp-section`, etc). Keeps the Bauhaus look 1:1 with the previous static version and makes design changes trivially global.
 

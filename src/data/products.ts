@@ -29,6 +29,7 @@ import {
   PressurelessSpec, FeltDetail, PopCan,
   BoxyCut, FabricWeight, HoodieWeight, HoodiePrint,
   PosterPaper, DnaDetail,
+  RitmoRing, RingBluetooth, RingTitanium,
 } from '../components/illustrations';
 
 export const PRODUCTS: Product[] = [
@@ -555,6 +556,115 @@ export const PRODUCTS: Product[] = [
       { label: 'Herkunft', value: 'Gedruckt in Berlin' },
     ],
     related: ['poster-app-live', 'tee-schwarz'],
+  },
+
+  /* ─────────────────────────────────────────────────────────────── */
+  {
+    id: 'ritmo-ring',
+    slug: 'ritmo-ring',
+    category: 'tech',
+    name: 'RITMO Ring',
+    nameAccent: 'Ring',
+    eyebrow: 'Smart Gear · Hands-free',
+    tagline:
+      'Bluetooth-Ring, der während des Spiels die Punkte mit­zählt — und sich automatisch mit der RITMO Padel App synchronisiert. Titan-Carbon-Composite, 3,2 g, IP68. So leicht, dass du ihn vergisst.',
+    shortDesc:
+      'Bluetooth-Ring · zählt Scores live in die RITMO App. 3,2 g, IP68, 5 Tage Akku.',
+    price: 199,
+    illustration: RitmoRing,
+    imageSrc: '/assets/products/ritmoring.jpg',
+    heroImageSrc: '/assets/products/ritmoring.jpg',
+    flag: { label: 'Neu', tone: 'new' },
+    variants: [
+      {
+        label: 'Größe',
+        defaultValue: '9',
+        options: [
+          { value: '7'  }, { value: '8'  }, { value: '9'  },
+          { value: '10' }, { value: '11' }, { value: '12' },
+        ],
+      },
+      {
+        label: 'Farbe',
+        defaultValue: 'Schwarz',
+        options: [
+          { value: 'Schwarz', swatch: 'black'  },
+          { value: 'Pink',    swatch: 'pink'   },
+          { value: 'Orange',  swatch: 'orange' },
+        ],
+      },
+    ],
+    trust: [
+      { label: 'Versand',   value: '2–4 Werktage · DACH frei' },
+      { label: 'Garantie',  value: '24 Monate' },
+      { label: 'Rückgabe',  value: '30 Tage, ohne Wenn' },
+    ],
+    story: [
+      {
+        eyebrow: '01 · Konnektivität',
+        title: 'Bluetooth LE 5.3.',
+        titleAccent: 'Pair once. Forget.',
+        body: [
+          'Sobald der Ring einmal mit der RITMO Padel App gekoppelt ist, verbindet er sich automatisch jedes Mal wenn du auf den Court gehst. Kein Menü, kein Tippen — Match starten, spielen.',
+          'Der Ring trackt Beschleunigung, Drehung und Treffer-Muster und meldet den aktuellen Score live an die App. Du spielst, sie zählt.',
+        ],
+        visual: RingBluetooth,
+      },
+      {
+        eyebrow: '02 · Build',
+        title: 'Titan + Carbon.',
+        titleAccent: '3,2 Gramm.',
+        body: [
+          '0,4 mm Titan-Außenschale über einem Carbon-Composite-Kern. Schlag-, kratz- und korrosionsfest — geht auch in die Dusche mit (IP68).',
+          'Innenseite glatt-poliert, kein Wing-Detail das am Griff hängenbleibt. Du merkst ihn nach 30 Sekunden am Finger nicht mehr.',
+        ],
+        reverse: true,
+        alt: true,
+        visual: RingTitanium,
+      },
+    ],
+    bleed: {
+      title: 'Spielen.',
+      titleAccent: 'Nicht zählen.',
+      body: 'Du konzentrierst dich auf den nächsten Ballwechsel. Der Ring kümmert sich um den Rest — Score, Match-Statistik, Verlauf.',
+    },
+    videos: [
+      {
+        kind: 'placeholder',
+        title: 'Erste Kopplung',
+        subtitle: 'Wie der Ring in 30 Sekunden mit der RITMO Padel App spricht.',
+        tag: 'Erklärung',
+        duration: '0:45',
+      },
+      {
+        kind: 'placeholder',
+        title: 'Court-Test',
+        subtitle: 'Live-Match — Score läuft automatisch mit.',
+        tag: 'Test',
+        duration: '3:12',
+      },
+      {
+        kind: 'placeholder',
+        title: 'Akku & Laden',
+        subtitle: 'Magnet-Ladestation, USB-C, 60 min auf voll.',
+        tag: 'Erklärung',
+        duration: '1:08',
+      },
+    ],
+    specs: [
+      { label: 'Konnektivität',    value: 'Bluetooth Low Energy 5.3' },
+      { label: 'App',              value: 'RITMO Padel · iOS · Android' },
+      { label: 'Sensoren',         value: '6-Achs-IMU (Accelerometer + Gyro) · Touch' },
+      { label: 'Batterie',         value: '5 Tage Spielzeit · 60 min Schnellladung' },
+      { label: 'Material',         value: 'Titan-Außenschale + Carbon-Composite-Kern' },
+      { label: 'Gewicht',          value: '3,2 g' },
+      { label: 'Wasserschutz',     value: 'IP68 · Schwimmbad-tauglich' },
+      { label: 'Größen',           value: 'US 7 · 8 · 9 · 10 · 11 · 12' },
+      { label: 'Farben',           value: 'Schwarz · Pink · Orange' },
+      { label: 'Lieferumfang',     value: 'Ring · Magnet-Ladestation · USB-C-Kabel' },
+      { label: 'Garantie',         value: '24 Monate' },
+    ],
+    related: ['schlaeger-pro', 'schlaeger-edge', 'balls-tournament'],
   },
 ];
 

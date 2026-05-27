@@ -7,7 +7,7 @@
 import type { ComponentType, SVGProps } from 'react';
 
 /** Top-level category — must match `data-cat` filter chip ids. */
-export type Category = 'schlaeger' | 'baelle' | 'apparel' | 'prints';
+export type Category = 'schlaeger' | 'baelle' | 'apparel' | 'prints' | 'tech';
 
 /** Display label per category (German). */
 export const CATEGORY_LABEL: Record<Category, string> = {
@@ -15,6 +15,7 @@ export const CATEGORY_LABEL: Record<Category, string> = {
   baelle: 'Bälle',
   apparel: 'Apparel',
   prints: 'Print-Editionen',
+  tech: 'Smart Gear',
 };
 
 /* ───────── Variants ───────── */
@@ -28,7 +29,7 @@ export interface VariantOption {
   value: string;          // canonical key (matches worker variantPriceMap)
   label?: string;         // optional display override
   priceDelta?: number;    // EUR, default 0
-  swatch?: 'black' | 'white' | 'orange' | 'yellow' | 'blue';
+  swatch?: 'black' | 'white' | 'orange' | 'yellow' | 'blue' | 'pink';
 }
 
 export interface VariantGroup {

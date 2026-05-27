@@ -13,6 +13,7 @@ const CHIPS: Array<{ value: ChipValue; label: string }> = [
   { value: 'baelle',    label: 'Bälle' },
   { value: 'apparel',   label: 'Apparel' },
   { value: 'prints',    label: 'Prints' },
+  { value: 'tech',      label: 'Smart Gear' },
 ];
 
 export function CategoryFilter({ active, onChange }: Props) {

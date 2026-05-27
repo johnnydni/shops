@@ -307,3 +307,83 @@ export const DnaDetail = (p: SVGProps<SVGSVGElement>) =>
       <rect x="40" y="270" width="320" height="4" fill="#FF7A1A" />
     </>
   ));
+
+/* ───────── Smart Gear / Tech ───────── */
+/**
+ * RitmoRing — main illustration. Top-down view of the ring as a
+ * Bauhaus donut (outer circle, inner hole), orange LED indicator
+ * at 12-o'clock, and three Bluetooth arc waves emanating to the
+ * right suggesting connectivity.
+ */
+export const RitmoRing = (p: SVGProps<SVGSVGElement>) =>
+  SVG(p, '0 0 400 320', (
+    <>
+      <rect width="400" height="320" fill="#0A0A0A" />
+      {/* Bauhaus orange backdrop card */}
+      <rect x="40" y="36" width="320" height="248" fill="#FF7A1A" />
+      {/* Outer ring (donut) */}
+      <circle cx="180" cy="160" r="90" fill="#0A0A0A" />
+      <circle cx="180" cy="160" r="60" fill="#FF7A1A" />
+      {/* LED indicator dot at 12 o'clock */}
+      <circle cx="180" cy="80" r="7" fill="#FFD60A" />
+      <circle cx="180" cy="80" r="14" fill="none" stroke="#FFD60A" strokeWidth="2" opacity="0.4" />
+      {/* Bluetooth arcs radiating to the right */}
+      <path d="M 285 130 Q 305 160 285 190" stroke="#fff" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <path d="M 305 115 Q 335 160 305 205" stroke="#fff" strokeWidth="2.5" fill="none" strokeLinecap="round" opacity="0.7" />
+      <path d="M 325 100 Q 365 160 325 220" stroke="#fff" strokeWidth="2.5" fill="none" strokeLinecap="round" opacity="0.45" />
+      {/* Bauhaus accent square */}
+      <rect x="310" y="50" width="22" height="22" fill="#0A0A0A" />
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">RITMO RING</text>
+    </>
+  ));
+
+/**
+ * RingBluetooth — story-section visual for the connectivity block.
+ * Stylized Bluetooth glyph + signal-strength bars on a black ground.
+ */
+export const RingBluetooth = (p: SVGProps<SVGSVGElement>) =>
+  SVG(p, '0 0 400 320', (
+    <>
+      <rect width="400" height="320" fill="#0A0A0A" />
+      {/* Bluetooth "B" glyph, large + bold */}
+      <path
+        d="M 160 80 L 160 240 L 220 200 L 180 160 L 220 120 L 160 80 Z"
+        fill="none" stroke="#FF7A1A" strokeWidth="6" strokeLinejoin="round"
+      />
+      <line x1="160" y1="80" x2="180" y2="100" stroke="#FF7A1A" strokeWidth="6" />
+      <line x1="160" y1="240" x2="180" y2="220" stroke="#FF7A1A" strokeWidth="6" />
+      {/* Signal-strength radiating bars on the right */}
+      <g stroke="#FFD60A" strokeWidth="3" fill="none" strokeLinecap="round">
+        <path d="M 270 150 Q 285 160 270 170" />
+        <path d="M 290 130 Q 320 160 290 190" opacity="0.75" />
+        <path d="M 310 110 Q 350 160 310 210" opacity="0.5" />
+      </g>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">BLE 5.3 · PAIR ONCE</text>
+    </>
+  ));
+
+/**
+ * RingTitanium — story-section visual for the build/material block.
+ * Cross-section of the ring showing layered titanium + carbon-composite
+ * construction as concentric annuli, on a yellow Bauhaus card.
+ */
+export const RingTitanium = (p: SVGProps<SVGSVGElement>) =>
+  SVG(p, '0 0 400 320', (
+    <>
+      <rect width="400" height="320" fill="#FFD60A" />
+      {/* Concentric ring cross-section */}
+      <circle cx="200" cy="155" r="110" fill="none" stroke="#000" strokeWidth="3" />
+      <circle cx="200" cy="155" r="80"  fill="none" stroke="#000" strokeWidth="2" />
+      <circle cx="200" cy="155" r="55"  fill="#0A0A0A" />
+      <circle cx="200" cy="155" r="32"  fill="#FFD60A" stroke="#000" strokeWidth="2" />
+      {/* Layer labels with leader-lines */}
+      <g stroke="#000" strokeWidth="1.5">
+        <line x1="200" y1="20"  x2="200" y2="44" />
+        <line x1="200" y1="74"  x2="200" y2="95" />
+        <line x1="200" y1="123" x2="200" y2="135" />
+      </g>
+      <text x="200" y="16" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="10" fill="#000" letterSpacing="2">TITAN · 0.4 MM</text>
+      <text x="200" y="68" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="10" fill="#000" letterSpacing="2">CARBON-CORE</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">3.2 G · IP68</text>
+    </>
+  ));

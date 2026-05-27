@@ -365,6 +365,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .opt-swatch.sw-orange{background:var(--orange)}
 .opt-swatch.sw-yellow{background:var(--yellow)}
 .opt-swatch.sw-blue{background:var(--blue)}
+.opt-swatch.sw-pink{background:#FF4D8A}
 
 .pdp-cta-row{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
 .pdp-cta-row .btn{flex:1;min-width:180px}
@@ -724,6 +725,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .hjourney-panel.cat-baelle    .hjourney-cat-stripe{background:var(--yellow)}
 .hjourney-panel.cat-apparel   .hjourney-cat-stripe{background:var(--blue)}
 .hjourney-panel.cat-prints    .hjourney-cat-stripe{background:var(--red)}
+.hjourney-panel.cat-tech      .hjourney-cat-stripe{background:var(--t1)}
 
 .hjourney-visual{aspect-ratio:4/3;background:var(--card2);
   position:relative;overflow:hidden}

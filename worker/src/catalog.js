@@ -86,6 +86,12 @@ export const CATALOG = {
       'Schwarzer Holzrahmen': 2900, // +€29
     },
   },
+  'ritmo-ring': {
+    name: 'RITMO Ring',
+    price: 19900,
+    category: 'Smart Gear',
+    // No price-affecting variants — size + colour are flat-priced
+  },
 };
 
 /**

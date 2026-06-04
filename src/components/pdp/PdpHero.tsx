@@ -7,6 +7,7 @@ import { VariantPicker } from './VariantPicker';
 import { Button } from '../ui/Button';
 import { useCart } from '../../hooks/useCart';
 import { toast } from '../ui/Toast';
+import { isSoldOut } from '../../data/products';
 
 interface Props {
   product: Product;
@@ -20,6 +21,7 @@ interface Props {
  */
 export function PdpHero({ product, ctaRef }: Props) {
   const { add } = useCart();
+  const sold = isSoldOut(product);
 
   // Initialise selected variant value per group
   const [selected, setSelected] = useState<Record<string, string>>(() => {
@@ -112,9 +114,24 @@ export function PdpHero({ product, ctaRef }: Props) {
           )}
 
           <div className="pdp-cta-row" ref={ctaRef}>
-            <Button variant="pri" size="lg" onClick={handleAdd}>In den Warenkorb</Button>
+            {sold ? (
+              <Button variant="pri" size="lg" disabled>Ausverkauft</Button>
+            ) : (
+              <Button variant="pri" size="lg" onClick={handleAdd}>
+                In den Warenkorb
+              </Button>
+            )}
             <a className="btn btn-out btn-lg" href="#story">Mehr erfahren</a>
           </div>
+          {sold && (
+            <p className="pdp-soldout-note">
+              Aktuell nicht verfügbar. Für Restock-Benachrichtigung in den{' '}
+              <a href="/news" style={{ color: 'var(--orange)', borderBottom: '1px solid var(--orange)' }}>
+                Newsletter
+              </a>{' '}
+              eintragen.
+            </p>
+          )}
 
           {product.trust && product.trust.length > 0 && (
             <div className="pdp-trust">

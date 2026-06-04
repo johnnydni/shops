@@ -123,6 +123,13 @@ export interface Product {
 
   /** Trust badges in the PDP hero info panel (3 cells). */
   trust?: Array<{ label: string; value: string }>;
+
+  /**
+   * When true, the product is unavailable. PDP CTA + cards reflect it
+   * (sold-out badge, dim image, disabled add-to-cart). For "everything
+   * sold out for now", flip `SOLDOUT_ALL` in `data/products.ts` instead.
+   */
+  soldOut?: boolean;
 }
 
 /* ───────── Events ───────── */
@@ -144,11 +151,26 @@ export const EVENT_TYPE_TONE: Record<EventType, string> = {
   popup:    'red',
 };
 
+/**
+ * One ticket tier within an event. Events can have several (e.g. a
+ * tournament with player tickets + spectator tickets at different prices).
+ * Use `EventItem.tickets` for the multi-tier case; the flat `price` field
+ * is kept for single-tier events.
+ */
+export interface TicketTier {
+  name: string;                          // "Spieler", "Zuschauer", …
+  price: number;                         // EUR
+  capacity?: number;                     // undefined = unlimited
+  status?: 'open' | 'soldout' | 'waitlist';
+}
+
 export interface EventItem {
   /** URL slug — kept short, lower-kebab. */
   id: string;
   type: EventType;
   title: string;
+  /** Optional secondary heading shown below the title (e.g. "Founders Edition"). */
+  subtitle?: string;
   /** ISO date string (yyyy-mm-dd) for the start. Sorting key. */
   date: string;
   /** ISO end date for multi-day events. Optional. */
@@ -158,7 +180,16 @@ export interface EventItem {
   /** Optional venue name shown above the city if you want a 2-line venue. */
   venue?: string;
   shortDesc: string;
-  /** EUR. 0 means free. Undefined = "auf Anfrage". */
+
+  /** Multi-tier ticket pricing — preferred over flat `price` when present. */
+  tickets?: TicketTier[];
+  /** Sale-window dates — surfaces a "Verkauf ab/bis" mini-info on the card. */
+  salesStart?: string;
+  salesEnd?: string;
+  /** Free-form display chips next to the type badge (e.g. "House Music"). */
+  tags?: string[];
+
+  /** Single-tier price (EUR). 0 = free. Undefined = "auf Anfrage". */
   price?: number;
   capacity?: number;
   status?: 'open' | 'soldout' | 'waitlist';

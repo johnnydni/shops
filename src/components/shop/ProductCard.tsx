@@ -3,6 +3,7 @@ import type { Product } from '../../lib/types';
 import { CATEGORY_LABEL } from '../../lib/types';
 import { ProductImage } from './ProductImage';
 import { eurParts } from '../../lib/format';
+import { isSoldOut } from '../../data/products';
 
 interface Props {
   product: Product;
@@ -13,18 +14,23 @@ interface Props {
 export function ProductCard({ product, animationDelay }: Props) {
   const href = `/produkt/${product.slug}`;
   const { cur, value } = eurParts(product.price);
+  const sold = isSoldOut(product);
+
   return (
     <article
-      className={`card-prod fi${animationDelay ? ` d${animationDelay}` : ''}`}
+      className={`card-prod fi${sold ? ' is-soldout' : ''}${animationDelay ? ` d${animationDelay}` : ''}`}
       data-cat={product.category}
     >
       <Link to={href} className="prod-img" aria-label={`${product.name} ansehen`}>
         <ProductImage illustration={product.illustration} src={product.imageSrc} alt="" />
-        {product.flag && (
+        {/* Sold-out flag takes precedence over editorial flag */}
+        {sold ? (
+          <span className="prod-flag soldout">Ausverkauft</span>
+        ) : product.flag ? (
           <span className={`prod-flag${product.flag.tone ? ` ${product.flag.tone}` : ''}`}>
             {product.flag.label}
           </span>
-        )}
+        ) : null}
       </Link>
       <div className="prod-body">
         <div className="prod-cat">{CATEGORY_LABEL[product.category]}</div>
@@ -32,7 +38,9 @@ export function ProductCard({ product, animationDelay }: Props) {
         <p className="prod-desc">{product.shortDesc}</p>
         <div className="prod-row">
           <div className="prod-price"><span className="cur">{cur}</span>{value}</div>
-          <Link to={href} className="prod-btn">Ansehen</Link>
+          <Link to={href} className="prod-btn">
+            {sold ? 'Details' : 'Ansehen'}
+          </Link>
         </div>
       </div>
     </article>

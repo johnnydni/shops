@@ -20,6 +20,18 @@
  * ═══════════════════════════════════════════════════════════════════
  */
 import type { Product } from '../lib/types';
+
+/**
+ * Master switch for "everything is unavailable right now".
+ * Flip to `false` when restock lands. Per-product overrides via
+ * `Product.soldOut = true | false` still apply on top of this.
+ */
+export const SOLDOUT_ALL = true;
+
+/** Single source of truth for "is this product buyable?". */
+export function isSoldOut(product: Product): boolean {
+  return SOLDOUT_ALL || product.soldOut === true;
+}
 import {
   PadelRacketPro, PadelRacketEdge,
   BallsTournament, BallsThreePack,

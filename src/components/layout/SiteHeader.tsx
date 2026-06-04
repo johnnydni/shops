@@ -38,7 +38,31 @@ export function SiteHeader() {
           <Link to="/sortiment">Sortiment</Link>
           <Link to="/events">Events</Link>
           <Link to="/news">News</Link>
-          <a href="https://ritmopadel.app/" rel="noopener">App</a>
+          <a
+            href="https://ritmopadel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-ext"
+            aria-label="RITMO App (öffnet in neuem Tab)"
+          >
+            App
+            <svg
+              className="ext-icon"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              {/* Box (square minus top-right corner) */}
+              <path d="M9 3H3v10h10V7" />
+              {/* Arrow */}
+              <path d="M9 2h5v5" />
+              <path d="M14 2L7.5 8.5" />
+            </svg>
+          </a>
           <Link
             to="/warenkorb"
             className="cart-link"

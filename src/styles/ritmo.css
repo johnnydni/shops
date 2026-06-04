@@ -670,7 +670,10 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 
 /* ─── Hero upgrade (bigger headline + scroll hint) ──────────────── */
 .hero-xl h1{
-  font-size:clamp(64px,14vw,200px);
+  /* Scaled down 30% from clamp(64px,14vw,200px) — gives the lead text
+     more breathing room and keeps the headline above the fold on
+     tighter laptop screens. */
+  font-size:clamp(45px,9.8vw,140px);
   font-weight:900;font-style:italic;letter-spacing:-.04em;
   line-height:.88;text-transform:uppercase;
 }
@@ -1055,3 +1058,9 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 }
 .drop-card.featured .drop-title{font-size:clamp(26px,3vw,34px)}
 .drop-card.featured .drop-body{font-size:15px;line-height:1.65;max-width:60ch}
+
+/* ─── External-link nav item (App) ─────────────────────────────── */
+.nav .nav-ext{display:inline-flex;align-items:center;gap:6px}
+.nav .nav-ext .ext-icon{width:12px;height:12px;display:block;flex-shrink:0;
+  transition:transform var(--fast) var(--ease)}
+.nav .nav-ext:hover .ext-icon{transform:translate(2px,-2px)}

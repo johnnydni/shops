@@ -12,7 +12,9 @@ export default defineConfig({
     target: 'es2020',
   },
   server: {
-    port: 5173,
+    // Port is read from the PORT env var (set by Claude preview MCP /
+    // any process manager); falls back to Vite's default 5173 otherwise.
+    // No hardcode here so autoPort in .claude/launch.json works.
     open: false,
   },
   preview: {

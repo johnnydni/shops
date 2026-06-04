@@ -1237,3 +1237,83 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 /* ─── FINAL CTA ────────────────────────────────────────────────── */
 .evp-final{padding:96px 0}
 .evp-final-ctas{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Burger nav — 3-line icon button + dropdown panel
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Burger button — always visible, sits right of the cart-link */
+.nav-burger{
+  position:relative;display:inline-flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:5px;
+  width:38px;height:38px;padding:0;
+  background:transparent;border:1px solid var(--line2);
+  cursor:pointer;
+  transition:border-color var(--fast) var(--ease),background var(--fast) var(--ease);
+  margin-left:6px;
+}
+.nav-burger:hover{border-color:var(--t1)}
+.nav-burger:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+.burger-bar{
+  display:block;width:18px;height:2px;background:var(--t1);
+  transition:transform var(--med) var(--ease),
+             opacity var(--fast) var(--ease),
+             margin var(--med) var(--ease);
+  transform-origin:50% 50%;
+}
+
+/* Open state: middle bar fades, top/bottom rotate into an X */
+.nav-burger.open{background:var(--orange);border-color:var(--orange)}
+.nav-burger.open .burger-bar{background:#000}
+.nav-burger.open .burger-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open .burger-bar:nth-child(2){opacity:0}
+.nav-burger.open .burger-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ─── Dropdown panel ─────────────────────────────────────────────── */
+.nav-menu{
+  position:absolute;top:100%;left:0;right:0;z-index:60;
+  background:rgba(10,10,10,.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.65);
+}
+
+.nav-menu-list{
+  list-style:none;margin:0;padding:14px 0 22px;
+  display:flex;flex-direction:column;
+}
+
+.nav-menu-link{
+  display:flex;flex-direction:column;gap:2px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+  transition:padding-left var(--med) var(--ease),
+             color var(--fast) var(--ease);
+  position:relative;
+}
+.nav-menu-link::before{
+  content:"";position:absolute;left:-12px;top:50%;
+  width:6px;height:6px;background:var(--orange);border-radius:50%;
+  transform:translateY(-50%) scale(0);
+  transition:transform var(--med) var(--ease);
+}
+.nav-menu-link:hover{padding-left:14px;color:var(--orange)}
+.nav-menu-link:hover::before{transform:translateY(-50%) scale(1)}
+
+.nav-menu-list > li:last-child .nav-menu-link{border-bottom:0}
+
+.nav-menu-label{
+  font-size:clamp(20px,3.5vw,28px);
+  font-weight:900;font-style:italic;letter-spacing:-.02em;
+  color:inherit;
+  line-height:1.1;
+}
+.nav-menu-hint{
+  font-size:12px;letter-spacing:1.2px;color:var(--t3);font-weight:600;
+  margin-top:4px;
+}
+
+.nav-menu-sep{
+  height:1px;background:var(--line2);margin:8px 0;
+}

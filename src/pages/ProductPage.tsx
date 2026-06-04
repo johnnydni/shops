@@ -30,7 +30,7 @@ export function ProductPage() {
       <Crumbs
         items={[
           { label: 'Shop', to: '/' },
-          { label: categoryLabel, to: '/#sortiment' },
+          { label: categoryLabel, to: '/sortiment' },
           { label: product.name },
         ]}
       />

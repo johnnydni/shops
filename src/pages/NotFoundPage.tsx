@@ -17,7 +17,7 @@ export function NotFoundPage() {
         </p>
         <div className="links">
           <ButtonLink to="/">Zum Shop</ButtonLink>
-          <ButtonLink variant="out" to="/#sortiment">
+          <ButtonLink variant="out" to="/sortiment">
             Sortiment ansehen
           </ButtonLink>
         </div>

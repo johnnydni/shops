@@ -35,8 +35,9 @@ export function SiteHeader() {
           <span className="sub">Shop</span>
         </Link>
         <nav className="nav" aria-label="Seitennavigation">
-          <Link to="/#sortiment">Sortiment</Link>
-          <Link to="/#newsletter">News</Link>
+          <Link to="/sortiment">Sortiment</Link>
+          <Link to="/events">Events</Link>
+          <Link to="/news">News</Link>
           <a href="https://ritmopadel.app/" rel="noopener">App</a>
           <Link
             to="/warenkorb"

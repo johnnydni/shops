@@ -125,6 +125,48 @@ export interface Product {
   trust?: Array<{ label: string; value: string }>;
 }
 
+/* ───────── Events ───────── */
+/** Event taxonomy — must match filter-chip ids on /events. */
+export type EventType = 'turnier' | 'demo' | 'training' | 'popup';
+
+export const EVENT_TYPE_LABEL: Record<EventType, string> = {
+  turnier:  'Turnier',
+  demo:     'Demo Day',
+  training: 'Training',
+  popup:    'Pop-up',
+};
+
+/** Optional shorthand for CSS variant class (added to .event-type-badge). */
+export const EVENT_TYPE_TONE: Record<EventType, string> = {
+  turnier:  'orange',
+  demo:     'yellow',
+  training: 'blue',
+  popup:    'red',
+};
+
+export interface EventItem {
+  /** URL slug — kept short, lower-kebab. */
+  id: string;
+  type: EventType;
+  title: string;
+  /** ISO date string (yyyy-mm-dd) for the start. Sorting key. */
+  date: string;
+  /** ISO end date for multi-day events. Optional. */
+  endDate?: string;
+  /** Single line like "RITMO Center · Berlin" or just "Hamburg". */
+  location: string;
+  /** Optional venue name shown above the city if you want a 2-line venue. */
+  venue?: string;
+  shortDesc: string;
+  /** EUR. 0 means free. Undefined = "auf Anfrage". */
+  price?: number;
+  capacity?: number;
+  status?: 'open' | 'soldout' | 'waitlist';
+  ctaLabel?: string;
+  /** External ticketing / signup URL (Eventbrite, Mailchimp form, etc.). */
+  ctaUrl?: string;
+}
+
 /* ───────── Cart ───────── */
 export interface CartLine {
   id: string;

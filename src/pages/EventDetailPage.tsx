@@ -338,19 +338,19 @@ function TicketsBlock({ event }: { event: EventItem }) {
               <ul className="evp-ticket-card-list">
                 {t.name === 'Spieler' ? (
                   <>
-                    <li>Turnier-Teilnahme (Gruppe + KO)</li>
+                    <li>Turnier-Teilnahme (Gruppe + KO oder Ehren-Bracket)</li>
                     <li>Court-Zeit garantiert</li>
-                    <li>Welcome-Drink</li>
-                    <li>Catering ab 18:00</li>
-                    <li>After-Party-Eintritt</li>
+                    <li>Welcome-Drink ab 18:00</li>
+                    <li>Catering &amp; Drinks inkl.</li>
+                    <li>After-Party bis Mitternacht</li>
                     <li>Drop-Reveal Zugang</li>
                   </>
                 ) : (
                   <>
-                    <li>Eintritt ab 14:00</li>
-                    <li>Welcome-Drink</li>
-                    <li>Sunset Session</li>
-                    <li>After-Party-Eintritt</li>
+                    <li>Eintritt ab 17:30</li>
+                    <li>Welcome-Drink um 18:00</li>
+                    <li>Sunset Session &amp; Live-Matches</li>
+                    <li>After-Party bis Mitternacht</li>
                     <li>Drinks &amp; Catering separat</li>
                   </>
                 )}

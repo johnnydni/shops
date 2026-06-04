@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { dayRange, monthShort, fullDate } from '../../lib/dates';
 import {
   type EventItem,
@@ -58,7 +59,11 @@ export function EventCard({ event }: { event: EventItem }) {
           ))}
         </div>
 
-        <h3 className="event-title">{event.title}</h3>
+        <h3 className="event-title">
+          <Link to={`/events/${event.id}`} className="event-title-link">
+            {event.title}
+          </Link>
+        </h3>
         {event.subtitle && (
           <p className="event-subtitle">{event.subtitle}</p>
         )}
@@ -132,11 +137,11 @@ export function EventCard({ event }: { event: EventItem }) {
             >
               {event.ctaLabel ?? 'Mehr erfahren'} →
             </a>
-          ) : event.ctaLabel ? (
-            <span className="event-cta event-cta-static">
-              {event.ctaLabel}
-            </span>
-          ) : null}
+          ) : (
+            <Link to={`/events/${event.id}`} className="event-cta">
+              Details ansehen →
+            </Link>
+          )}
         </div>
       </div>
     </motion.article>

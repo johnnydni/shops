@@ -196,6 +196,34 @@ export interface EventItem {
   ctaLabel?: string;
   /** External ticketing / signup URL (Eventbrite, Mailchimp form, etc.). */
   ctaUrl?: string;
+
+  /* ─── Detail-page fields (optional) ─────────────────────────── */
+
+  /** Hero image for the detail page (path under public/, optional). */
+  heroImageSrc?: string;
+
+  /** Multi-paragraph long description rendered as the detail-page lead. */
+  longDesc?: string[];
+
+  /** Schedule rows for the program timeline: time + title + optional note. */
+  schedule?: Array<{ time: string; title: string; note?: string }>;
+
+  /** High-level program phases (e.g. group stage / KO / sunset session). */
+  program?: Array<{ phase: string; details: string }>;
+
+  /** FAQ entries shown as an accordion-style list. */
+  faq?: Array<{ q: string; a: string }>;
+
+  /** Venue information block. Strings here support inline links. */
+  venueInfo?: {
+    name: string;
+    address?: string;
+    web?: string;
+    blurb?: string;
+  };
+
+  /** Partner badge — e.g. "in Kooperation mit Padel Haus". */
+  partner?: { name: string; web?: string };
 }
 
 /* ───────── Cart ───────── */

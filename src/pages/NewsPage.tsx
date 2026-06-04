@@ -108,11 +108,11 @@ const ARTICLES: Article[] = [
     when: 'Juni 2026',
     title: 'Willkommen bei RITMO.',
     body:
-      'Wir haben RITMO gegründet, weil eine Padel-Marke fehlte, die nicht nur ' +
-      'Equipment verkauft, sondern eine Haltung. Bauhaus-Klarheit, ehrliche ' +
-      'Materialien, kompromisslose Produkte — für die, die das Spiel als ' +
-      'Kunstform begreifen. Wir bauen RITMO in DACH, mit DACH, für eine ' +
-      'Padel-Generation, die mehr will als Massenware. Danke, dass du da bist.',
+      'Mit RITMO Padel bringen wir einen neuen Rhythmus auf den Platz. ' +
+      'Wir stehen für eine klare Designsprache — Bauhaus-Reduktion statt ' +
+      'Logo-Lärm, geometrische Präzision statt Beliebigkeit. Was wir bauen ' +
+      'ist simpel. Aber effektiv. Und vor allem: kreativ. RITMO ist für die, ' +
+      'die Padel als Bewegung begreifen — auf dem Court und in der Ästhetik.',
     signature: '— Illy, Nadin & Alessandra · Gründerinnen',
     kind: 'Founders Letter',
     live: true,
@@ -132,7 +132,7 @@ const ARTICLES: Article[] = [
   },
   {
     when: 'Q3 2026',
-    title: 'Summer Collection · Drop III',
+    title: 'Summer Collection · Drop I',
     body:
       'Tees, Crew-Hoodies und Caps in einer reduzierten Sommer-Palette. ' +
       'Heavy-Cotton, Bio-zertifiziert, made in Portugal. Inklusive Restock ' +

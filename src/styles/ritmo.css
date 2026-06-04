@@ -1064,3 +1064,176 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .nav .nav-ext .ext-icon{width:12px;height:12px;display:block;flex-shrink:0;
   transition:transform var(--fast) var(--ease)}
 .nav .nav-ext:hover .ext-icon{transform:translate(2px,-2px)}
+
+/* ═══════════════════════════════════════════════════════════════════
+   /events/:id  — Event Detail Page  (.evp-*)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Title-link on event cards (used on /events) ───────────────── */
+.event-title-link{color:inherit;border:none;display:inline-block;
+  transition:color var(--fast) var(--ease)}
+.event-title-link:hover{color:var(--orange)}
+
+/* ─── HERO ──────────────────────────────────────────────────────── */
+.evp-hero{padding:48px 0 64px;position:relative;overflow:hidden}
+.evp-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+@media(max-width:920px){.evp-hero-grid{grid-template-columns:1fr;gap:32px}}
+
+/* Stage = big visual block, date column left + visual right */
+.evp-stage{display:grid;grid-template-columns:140px 1fr;
+  border:1px solid var(--line);overflow:hidden;background:var(--card);
+  min-height:460px;position:relative}
+@media(max-width:540px){.evp-stage{grid-template-columns:96px 1fr;min-height:380px}}
+
+.evp-stage-date{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;color:#000;padding:24px 8px;
+  border-right:1px solid var(--line);
+  font-style:italic;font-weight:900;letter-spacing:-.025em;line-height:.9}
+.evp-stage-day{font-size:clamp(48px,8vw,82px)}
+.evp-stage-month{font-size:15px;letter-spacing:2.5px;text-transform:uppercase;
+  font-style:normal;font-weight:800;margin-top:8px}
+.evp-stage-year{font-size:12px;letter-spacing:2px;font-style:normal;font-weight:700;
+  margin-top:6px;opacity:.65}
+
+.evp-stage-visual{position:relative;overflow:hidden;background:var(--bg-elev)}
+.evp-stage-bauhaus{position:absolute;inset:0;width:100%;height:100%;display:block}
+.evp-stage-visual > img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1}
+.evp-stage-meta{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  display:flex;align-items:center;gap:10px;padding:16px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.55) 60%)}
+.evp-partner-badge{font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.85);
+  font-weight:700}
+.evp-partner-badge b{font-style:italic}
+
+/* ─── Hero info column ──────────────────────────────────────────── */
+.evp-info{display:flex;flex-direction:column;gap:14px;padding-top:8px}
+.evp-eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  font-weight:800;color:var(--orange)}
+.evp-title{font-size:clamp(34px,5vw,56px);font-weight:900;font-style:italic;
+  letter-spacing:-.025em;line-height:1.0;margin:0}
+.evp-subtitle{font-size:15px;letter-spacing:1.5px;text-transform:uppercase;
+  font-weight:700;color:var(--orange)}
+.evp-venue-line{font-size:14px;color:var(--t2);letter-spacing:.4px}
+.evp-venue-line strong{color:var(--t1);font-style:italic}
+.evp-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+
+/* Ticket panel inside hero info */
+.evp-ticket-panel{margin-top:18px;background:var(--card);border:1px solid var(--line);
+  padding:22px;display:flex;flex-direction:column;gap:14px}
+.evp-ticket-line{display:grid;grid-template-columns:1fr auto auto;gap:14px;
+  align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.evp-ticket-line:last-of-type{border-bottom:0}
+.evp-ticket-name{font-weight:800;font-style:italic;font-size:17px;color:var(--t1)}
+.evp-ticket-cap{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--t3);font-weight:700}
+.evp-ticket-price{font-size:20px;font-weight:900;font-style:italic;
+  letter-spacing:-.01em;color:var(--orange)}
+.evp-sales-note{font-size:12px;letter-spacing:.4px;color:var(--t3);font-style:italic;margin-top:-4px}
+.evp-cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.evp-cta-row .btn{flex:1 1 auto}
+
+/* ─── Section heads / titles ────────────────────────────────────── */
+.evp-section-head{display:flex;align-items:flex-end;gap:18px;
+  margin-bottom:32px;flex-wrap:wrap}
+.evp-section-head .rule{margin:0}
+.evp-section-title{font-size:clamp(28px,4vw,44px);font-weight:900;font-style:italic;
+  letter-spacing:-.02em;line-height:1;margin:0}
+
+/* ─── STORY paragraphs ──────────────────────────────────────────── */
+.evp-story{padding:72px 0}
+.evp-story-p{font-size:clamp(17px,1.6vw,20px);line-height:1.7;color:var(--t1);
+  max-width:62ch;font-weight:400;margin-bottom:22px}
+.evp-story-p.right{margin-left:auto;color:var(--t2)}
+
+/* ─── PROGRAMM phases ───────────────────────────────────────────── */
+.evp-program{padding:88px 0;border-top:1px solid var(--line)}
+.evp-program-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.evp-program-card{background:var(--card);border:1px solid var(--line);
+  padding:26px 24px;display:flex;flex-direction:column;gap:12px;
+  transition:transform var(--med) var(--ease),border-color var(--med) var(--ease)}
+.evp-program-card:hover{transform:translateY(-3px);border-color:var(--orange)}
+.evp-program-phase{font-size:14px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--orange)}
+.evp-program-detail{font-size:14.5px;line-height:1.6;color:var(--t2)}
+
+/* ─── SCHEDULE timeline ────────────────────────────────────────── */
+.evp-schedule{padding:88px 0}
+.evp-schedule.alt{background:var(--bg-elev);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)}
+.evp-schedule-list{list-style:none;margin:0;padding:0;
+  display:flex;flex-direction:column;gap:0;
+  border-left:2px solid var(--orange);margin-left:18px}
+.evp-schedule-row{display:grid;grid-template-columns:120px 1fr;gap:24px;
+  padding:18px 0 18px 28px;position:relative}
+@media(max-width:540px){
+  .evp-schedule-row{grid-template-columns:80px 1fr;gap:14px;padding-left:18px}
+}
+.evp-schedule-row::before{content:"";position:absolute;left:-9px;top:24px;
+  width:16px;height:16px;background:var(--orange);border:3px solid var(--bg-elev);
+  border-radius:50%}
+.evp-schedule-time{font-size:18px;font-weight:900;font-style:italic;
+  letter-spacing:-.01em;color:var(--t1)}
+.evp-schedule-title{font-weight:700;font-size:15px;color:var(--t1)}
+.evp-schedule-note{font-size:13px;color:var(--t3);margin-top:4px;letter-spacing:.3px}
+
+/* ─── TICKETS detail cards ──────────────────────────────────────── */
+.evp-tickets-detail{padding:88px 0;border-top:1px solid var(--line)}
+.evp-tickets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.evp-ticket-card{background:var(--card);border:1px solid var(--line);
+  padding:28px 26px;display:flex;flex-direction:column;gap:12px;
+  transition:transform var(--med) var(--ease),border-color var(--med) var(--ease)}
+.evp-ticket-card:hover{transform:translateY(-3px);border-color:var(--orange)}
+.evp-ticket-card.is-sold{opacity:.55}
+.evp-ticket-card-name{font-size:22px;font-weight:900;font-style:italic;
+  letter-spacing:-.01em;margin:0}
+.evp-ticket-card-price{font-size:36px;font-weight:900;font-style:italic;
+  color:var(--orange);letter-spacing:-.025em;line-height:1}
+.evp-ticket-card-cap{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  font-weight:700;color:var(--t3);margin-bottom:6px}
+.evp-ticket-card-list{list-style:none;margin:0;padding:14px 0;
+  border-top:1px solid var(--line);
+  display:flex;flex-direction:column;gap:8px}
+.evp-ticket-card-list li{position:relative;padding-left:18px;color:var(--t2);
+  font-size:13.5px;line-height:1.5}
+.evp-ticket-card-list li::before{content:"";position:absolute;left:0;top:8px;
+  width:8px;height:2px;background:var(--orange)}
+.evp-ticket-card .btn{margin-top:8px}
+
+/* ─── VENUE ─────────────────────────────────────────────────────── */
+.evp-venue{padding:88px 0}
+.evp-venue.alt{background:var(--bg-elev);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)}
+.evp-venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:860px){.evp-venue-grid{grid-template-columns:1fr;gap:32px}}
+.evp-venue-blurb{font-size:16px;line-height:1.7;color:var(--t2);margin:20px 0 24px;max-width:48ch}
+.evp-venue-meta{display:flex;flex-direction:column;gap:14px}
+.evp-venue-meta > div{display:flex;flex-direction:column;gap:4px}
+.evp-venue-meta .label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--t3);font-weight:800}
+.evp-venue-meta .value{font-size:14px;color:var(--t1);font-weight:600}
+.evp-venue-link{color:var(--orange);border-bottom:1px solid transparent;padding-bottom:1px;
+  transition:border-color var(--fast) var(--ease)}
+.evp-venue-link:hover{border-color:var(--orange)}
+.evp-venue-visual{background:var(--card);border:1px solid var(--line);overflow:hidden;
+  aspect-ratio:5/4}
+.evp-venue-visual svg{display:block;width:100%;height:100%}
+
+/* ─── FAQ ───────────────────────────────────────────────────────── */
+.evp-faq{padding:88px 0;border-top:1px solid var(--line)}
+.evp-faq-list{list-style:none;margin:0;padding:0;
+  border-top:1px solid var(--line)}
+.evp-faq-item{border-bottom:1px solid var(--line)}
+.evp-faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding:22px 0;text-align:left;background:transparent;
+  font-size:17px;font-weight:700;color:var(--t1);
+  transition:color var(--fast) var(--ease);cursor:pointer}
+.evp-faq-q:hover{color:var(--orange)}
+.evp-faq-toggle{font-size:24px;font-weight:300;color:var(--orange);
+  width:24px;text-align:center;line-height:1;display:inline-block}
+.evp-faq-a{padding:0 0 22px;font-size:15px;line-height:1.65;color:var(--t2);max-width:60ch}
+.evp-faq-item.open .evp-faq-q{color:var(--orange)}
+
+/* ─── FINAL CTA ────────────────────────────────────────────────── */
+.evp-final{padding:96px 0}
+.evp-final-ctas{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}

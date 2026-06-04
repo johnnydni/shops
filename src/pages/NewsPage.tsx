@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { NewsletterBanner } from '../components/shop/NewsletterBanner';
 
 /**
  * /news — standalone editorial + newsletter page.
  *
  * Three blocks:
- *  1. Intro / page header
- *  2. Drops timeline teaser (placeholder — populate from CMS later)
+ *  1. Page intro
+ *  2. Articles list — Founders Letter + upcoming Event + Summer Drop
  *  3. Newsletter sign-up (reused component)
  */
 export function NewsPage() {
@@ -21,12 +22,11 @@ export function NewsPage() {
         <div className="wrap">
           <p className="rule">News</p>
           <h1 className="page-title">
-            Drops &amp; <span className="accent">Editorials</span>.
+            Founders &amp; <span className="accent">Drops</span>.
           </h1>
           <p className="page-lead">
-            Was als Nächstes kommt, was wir gerade entwickeln und welche
-            Edition wann fällig ist. Newsletter unten — kein Spam, jederzeit
-            abbestellbar.
+            Wer wir sind, was als Nächstes kommt und welche Edition wann
+            fällig ist. Newsletter unten — kein Spam, jederzeit abbestellbar.
           </p>
         </div>
       </motion.section>
@@ -42,21 +42,36 @@ export function NewsPage() {
       >
         <div className="wrap">
           <div className="drops-grid">
-            {DROPS.map((d) => (
+            {ARTICLES.map((a) => (
               <motion.article
-                key={d.title}
-                className={`drop-card${d.live ? ' live' : ''}`}
+                key={a.title}
+                className={[
+                  'drop-card',
+                  a.live ? 'live' : '',
+                  a.featured ? 'featured' : '',
+                ].filter(Boolean).join(' ')}
                 variants={{
                   hidden: { opacity: 0, y: 24 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
                 }}
               >
                 <div className="drop-meta">
-                  <span className="drop-when">{d.when}</span>
-                  {d.live ? <span className="drop-badge">Live</span> : <span className="drop-badge soon">Bald</span>}
+                  <span className="drop-when">{a.when}</span>
+                  {a.live
+                    ? <span className="drop-badge">Live</span>
+                    : <span className="drop-badge soon">Bald</span>}
+                  {a.kind && <span className="drop-kind">{a.kind}</span>}
                 </div>
-                <h2 className="drop-title">{d.title}</h2>
-                <p className="drop-body">{d.body}</p>
+                <h2 className="drop-title">{a.title}</h2>
+                <p className="drop-body">{a.body}</p>
+                {a.signature && (
+                  <p className="drop-signature">{a.signature}</p>
+                )}
+                {a.cta && (
+                  <Link to={a.cta.to} className="drop-cta">
+                    {a.cta.label} →
+                  </Link>
+                )}
               </motion.article>
             ))}
           </div>
@@ -68,30 +83,62 @@ export function NewsPage() {
   );
 }
 
-/** Placeholder drops — feed from a CMS / Markdown later. */
-const DROPS = [
+interface Article {
+  when: string;
+  title: string;
+  body: string;
+  live: boolean;
+  /** Optional small label after the live/soon badge (e.g. "Founders Letter"). */
+  kind?: string;
+  /** Optional italic signature line below the body (founders, editorial team, …). */
+  signature?: string;
+  /** Visual emphasis flag — spans wider on large screens. */
+  featured?: boolean;
+  /** Optional internal link below the body. */
+  cta?: { label: string; to: string };
+}
+
+/**
+ * Articles list — currently inline. Move to CMS / Markdown later.
+ * Ordered as the founders intended: greeting first, upcoming event,
+ * then the next product drop.
+ */
+const ARTICLES: Article[] = [
   {
-    when: 'Q4 2026',
-    title: 'RITMO Pro — Carbon 3K Drop II',
-    body: 'Zweite Edition mit nummerierten 200 Stück. Neuer Griff-Tape-Pattern, identischer Rahmen.',
-    live: false,
+    when: 'Juni 2026',
+    title: 'Willkommen bei RITMO.',
+    body:
+      'Wir haben RITMO gegründet, weil eine Padel-Marke fehlte, die nicht nur ' +
+      'Equipment verkauft, sondern eine Haltung. Bauhaus-Klarheit, ehrliche ' +
+      'Materialien, kompromisslose Produkte — für die, die das Spiel als ' +
+      'Kunstform begreifen. Wir bauen RITMO in DACH, mit DACH, für eine ' +
+      'Padel-Generation, die mehr will als Massenware. Danke, dass du da bist.',
+    signature: '— Illy, Nadin & Alessandra · Gründerinnen',
+    kind: 'Founders Letter',
+    live: true,
+    featured: true,
+  },
+  {
+    when: 'Juli 2026',
+    title: 'RITMO X Padel Haus · Summer Sunset',
+    body:
+      'Founders-Edition unseres DNA Cups: Turnier mit Gruppen- und KO-Phase, ' +
+      'gefolgt von Sunset-Session mit House Music, Drinks und Verpflegung. ' +
+      '20 Spieler-Spots (€39), unlimitierte Zuschauer-Tickets (€15). ' +
+      'Verkauf startet 18. Juni 2026.',
+    live: true,
+    kind: 'Event',
+    cta: { label: 'Zum Event', to: '/events' },
   },
   {
     when: 'Q3 2026',
-    title: 'Bauhaus Print Series',
-    body: 'Drei A2-Editionen — Kreis · Quadrat · Dreieck. Limitiert. Mattpapier 250 g/m².',
-    live: true,
-  },
-  {
-    when: 'Q3 2026',
-    title: 'Tournament Ball Restock',
-    body: 'Druckslose Wettkampf-Bälle wieder lieferbar. 12er- und 24er-Kits.',
-    live: true,
-  },
-  {
-    when: 'Q1 2027',
-    title: 'RITMO Apparel SS27',
-    body: 'Frühjahr-Sommer Kollektion. Heavy-Cotton Tees, Court-Cap, Wristband-Set.',
+    title: 'Summer Collection · Drop III',
+    body:
+      'Tees, Crew-Hoodies und Caps in einer reduzierten Sommer-Palette. ' +
+      'Heavy-Cotton, Bio-zertifiziert, made in Portugal. Inklusive Restock ' +
+      'der RITMO-DNA-Print-Editionen und ein neuer A1-Poster-Cut.',
     live: false,
+    kind: 'Drop',
+    cta: { label: 'Zum Sortiment', to: '/sortiment' },
   },
 ];

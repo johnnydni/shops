@@ -18,7 +18,16 @@ const cardVariant = {
 
 /**
  * One event tile. Date-block left (day + month), content right.
- * Tone (badge colour) is driven by the event type token map.
+ *
+ *   Type-badge / status / tag chips
+ *   Title  (+ subtitle below)
+ *   Date · Venue meta row
+ *   Description
+ *   Ticket tiers (when present, otherwise flat price)
+ *   Sales-window mini line
+ *   Foot: capacity hint + CTA
+ *
+ * Tone (date-block + type-badge colour) is driven by EVENT_TYPE_TONE.
  */
 export function EventCard({ event }: { event: EventItem }) {
   const tone = EVENT_TYPE_TONE[event.type];
@@ -30,11 +39,13 @@ export function EventCard({ event }: { event: EventItem }) {
       className={`event-card${sold ? ' is-sold' : ''}`}
       variants={cardVariant}
     >
+      {/* ─── Date block ────────────────────────────────────────── */}
       <div className={`event-date tone-${tone}`}>
         <div className="event-day">{dayRange(event.date, event.endDate)}</div>
         <div className="event-month">{monthShort(event.date)}</div>
       </div>
 
+      {/* ─── Body ──────────────────────────────────────────────── */}
       <div className="event-body">
         <div className="event-meta-top">
           <span className={`event-type-badge tone-${tone}`}>
@@ -42,9 +53,15 @@ export function EventCard({ event }: { event: EventItem }) {
           </span>
           {sold && <span className="event-status sold">Ausverkauft</span>}
           {wait && <span className="event-status wait">Warteliste</span>}
+          {event.tags?.map((t) => (
+            <span key={t} className="event-tag">{t}</span>
+          ))}
         </div>
 
         <h3 className="event-title">{event.title}</h3>
+        {event.subtitle && (
+          <p className="event-subtitle">{event.subtitle}</p>
+        )}
 
         <div className="event-meta-row">
           <span className="event-date-long" aria-label="Datum">
@@ -54,21 +71,55 @@ export function EventCard({ event }: { event: EventItem }) {
           <span className="event-sep" aria-hidden>·</span>
           <span className="event-location">
             {event.venue ? <strong>{event.venue}</strong> : null}
-            {event.venue ? ', ' : ''}
-            {event.location}
+            {event.venue && event.venue !== event.location ? ', ' : ''}
+            {event.venue !== event.location ? event.location : ''}
           </span>
         </div>
 
         <p className="event-desc">{event.shortDesc}</p>
 
+        {/* ─── Ticket tiers ─────────────────────────────────────── */}
+        {event.tickets && event.tickets.length > 0 ? (
+          <ul className="event-tickets" aria-label="Ticket-Kategorien">
+            {event.tickets.map((t) => (
+              <li
+                key={t.name}
+                className={`event-tier${t.status === 'soldout' ? ' is-sold' : ''}`}
+              >
+                <span className="tier-name">{t.name}</span>
+                <span className="tier-cap">
+                  {t.capacity != null
+                    ? `${t.capacity} Spots`
+                    : 'Unlimited'}
+                </span>
+                <span className="tier-price">{eur(t.price)}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        {/* ─── Sales window ─────────────────────────────────────── */}
+        {(event.salesStart || event.salesEnd) && (
+          <p className="event-sales">
+            {event.salesStart && event.salesEnd
+              ? `Verkauf vom ${fullDate(event.salesStart)} bis ${fullDate(event.salesEnd)}`
+              : event.salesStart
+              ? `Verkauf ab ${fullDate(event.salesStart)}`
+              : `Verkauf endet ${fullDate(event.salesEnd!)}`}
+          </p>
+        )}
+
+        {/* ─── Foot — fallback flat price (single-tier) + CTA ───── */}
         <div className="event-foot">
           <div className="event-price">
-            {event.price === 0
+            {event.tickets && event.tickets.length > 0
+              ? '' /* tiers shown above; foot stays clean */
+              : event.price === 0
               ? 'Eintritt frei'
               : event.price != null
               ? eur(event.price)
               : 'Auf Anfrage'}
-            {event.capacity != null && (
+            {!event.tickets && event.capacity != null && (
               <span className="event-cap"> · {event.capacity} Plätze</span>
             )}
           </div>

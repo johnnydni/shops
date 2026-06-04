@@ -988,3 +988,70 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .event-cta:hover{background:var(--orange);color:#000;transform:translateX(2px)}
 .event-cta-static{cursor:default;border-color:var(--line2);color:var(--t3)}
 .event-cta-static:hover{transform:none;background:transparent;color:var(--t3)}
+
+/* ═══════════════════════════════════════════════════════════════════
+   EVENT — extended fields (subtitle, tags, tickets, sales window)
+   ═══════════════════════════════════════════════════════════════════ */
+.event-subtitle{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
+  font-weight:700;color:var(--orange);margin-top:-2px}
+
+.event-tag{display:inline-block;padding:3px 9px;background:transparent;
+  border:1px solid var(--line2);color:var(--t2);
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+
+.event-tickets{list-style:none;margin:10px 0 4px;padding:0;
+  display:flex;flex-direction:column;gap:8px}
+.event-tier{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:baseline;
+  padding:10px 14px;background:var(--bg-elev);border:1px solid var(--line);
+  transition:border-color var(--fast) var(--ease)}
+.event-tier:hover{border-color:var(--orange)}
+.event-tier.is-sold{opacity:.5}
+.event-tier .tier-name{font-weight:800;font-style:italic;font-size:15px;
+  letter-spacing:-.01em;color:var(--t1)}
+.event-tier .tier-cap{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--t3);font-weight:700}
+.event-tier .tier-price{font-size:16px;font-weight:900;font-style:italic;
+  letter-spacing:-.01em;color:var(--orange)}
+
+.event-sales{margin-top:10px;font-size:12px;letter-spacing:.4px;color:var(--t3);
+  font-style:italic}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRODUCTS — sold-out treatment (cards + PDP)
+   ═══════════════════════════════════════════════════════════════════ */
+.card-prod.is-soldout .prod-img{filter:grayscale(.7) brightness(.7)}
+.card-prod.is-soldout .prod-price{opacity:.45;text-decoration:line-through;
+  text-decoration-thickness:1.5px;text-decoration-color:rgba(255,255,255,.5)}
+.card-prod.is-soldout:hover .prod-img{filter:grayscale(.5) brightness(.85)}
+
+.prod-flag.soldout{background:#000;color:#fff;border:1px solid #fff;
+  letter-spacing:2px}
+
+.pdp-soldout-note{margin-top:14px;font-size:13px;color:var(--t3);
+  letter-spacing:.4px;line-height:1.5}
+
+/* ═══════════════════════════════════════════════════════════════════
+   NEWS — extended (signature, kind label, drop-cta, featured)
+   ═══════════════════════════════════════════════════════════════════ */
+.drop-kind{margin-left:auto;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  font-weight:800;color:var(--orange);padding-left:10px;border-left:1px solid var(--line)}
+
+.drop-signature{margin-top:10px;font-size:13px;font-style:italic;
+  color:var(--t2);letter-spacing:.2px;line-height:1.5;
+  border-top:1px solid var(--line);padding-top:12px}
+
+.drop-cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+  font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--orange);border-bottom:1px solid var(--orange);padding-bottom:2px;
+  width:fit-content;transition:transform var(--fast) var(--ease),
+                                color var(--fast) var(--ease)}
+.drop-cta:hover{transform:translateX(3px);color:var(--t1);border-color:var(--t1)}
+
+/* Featured card spans two columns on wide layouts and reads more like a letter */
+.drop-card.featured{padding:36px 32px}
+@media(min-width:780px){
+  .drops-grid:has(.drop-card.featured){grid-template-columns:repeat(2,1fr)}
+  .drops-grid .drop-card.featured{grid-column:1 / -1}
+}
+.drop-card.featured .drop-title{font-size:clamp(26px,3vw,34px)}
+.drop-card.featured .drop-body{font-size:15px;line-height:1.65;max-width:60ch}

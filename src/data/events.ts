@@ -17,7 +17,7 @@ export const EVENTS: EventItem[] = [
     venue: 'Padel Haus',
     location: 'Großmehring',
     shortDesc:
-      'Gruppenphase auf Punkte, Top 14 in die KO-Phase mit Viertel-/Halb-/Finale (Top 2 bekommen Bye zum Halbfinale), parallel Ehren-Bracket auf Court 1 — niemand sitzt nur rum. Sunset, Drinks, House Music von 18 Uhr bis Mitternacht. Bei Padel Haus in Großmehring.',
+      'Gruppenphase auf Punkte, Top 14 in die KO-Phase mit Viertelfinale (Court 1–3), Halbfinale (Court 2+3) und RITMO Grande Finale auf Court 3 (Top 2 bekommen Bye direkt zum Halbfinale). Parallel Ehren-Bracket auf Court 1 — niemand sitzt nur rum. Sunset, Drinks, House Music von 18 Uhr bis Mitternacht. Bei Padel Haus in Großmehring.',
     tags: ['Founders Edition', 'RITMO DNA Cup', 'House Music', 'Sunset'],
     tickets: [
       { name: 'Spieler',   price: 39, capacity: 22 },
@@ -42,15 +42,18 @@ export const EVENTS: EventItem[] = [
       'Die Top 14 nach Punkten ziehen in die KO-Phase. Die ersten beiden ' +
       'Platzierten bekommen ein Bye direkt ins Halbfinale.',
 
-      'KO-Phase: Viertelfinale (12 → 6) im Hin+Rückspiel-Format, Best of Three. ' +
-      'Halbfinale mit den 6 Siegern plus den 2 Bye-Spielern aus der Gruppenphase ' +
-      '= 8 Spieler (8 → 4) im Hin+Rückspiel-Format, Best of Three. Das Große ' +
-      'Finale auf Court 3 ist nur ein Spiel — alles oder nichts.',
+      'KO-Phase: Viertelfinale (12 → 6) auf allen drei Courts im Hin+Rückspiel-' +
+      'Format, Best of Three. Danach Halbfinale auf Court 2 und 3 — die 6 Sieger ' +
+      'plus die 2 Bye-Spieler aus der Gruppenphase = 8 Spieler (8 → 4), wieder ' +
+      'Hin+Rückspiel Best of Three. Das RITMO Grande Finale auf Court 3 ist nur ' +
+      'ein Spiel — kein Best-of-Three, kein Rückspiel, alles oder nichts.',
 
-      'Parallel auf Court 1 läuft das Ehren-Bracket für die 8 aus der ' +
-      'Gruppenphase Ausgeschiedenen: Halbfinale, dann Ehren-Finale. So sitzt ' +
-      'niemand nur rum. Während gespielt wird, läuft die Sunset Session — ' +
-      'House-Music-DJ, Drinks, Verpflegung. Bis Mitternacht.',
+      'Sobald das Halbfinale läuft, wird Court 1 frei und das Ehren-Bracket ' +
+      'startet: Ehren-Halbfinale (8 → 2) für die in der Gruppenphase ' +
+      'Ausgeschiedenen. Das Ehren-Finale läuft im Anschluss auf Court 3, kurz ' +
+      'vor dem RITMO Grande Finale. So bekommt jede:r mehrere Matches. ' +
+      'Währenddessen: Sunset Session, House-Music-DJ, Drinks, Verpflegung. ' +
+      'Bis Mitternacht.',
     ],
 
     schedule: [
@@ -58,11 +61,11 @@ export const EVENTS: EventItem[] = [
       { time: '18:00', title: 'Welcome Drink · Sunset Session Start' },
       { time: '18:15', title: 'Gruppenphase · Punkte sammeln',     note: '22 Spieler · jeder gegen jeden · Court 1–3 parallel' },
       { time: '19:30', title: 'Top 14 stehen fest',                note: 'Top 2: Bye zum Halbfinale · Platz 3–14: Viertelfinale' },
-      { time: '19:45', title: 'Viertelfinale · 12 → 6',            note: 'Court 2 + 3 · Hin+Rückspiel · Best of Three' },
+      { time: '19:45', title: 'Viertelfinale · 12 → 6',            note: 'Court 1 + 2 + 3 · alle Courts · Hin+Rückspiel · Best of Three' },
       { time: '20:45', title: 'Halbfinale · 8 → 4',                note: 'Court 2 + 3 · 6 Sieger + 2 Bye · Hin+Rück · BoT' },
-      { time: '20:45', title: 'Ehren-Bracket Halbfinale · 8 → 2',  note: 'Court 1 · für die 8 aus der Gruppe Ausgeschiedenen' },
-      { time: '21:45', title: 'Ehren-Finale',                      note: 'Court 1' },
-      { time: '22:00', title: 'Großes Finale · 1 Game',            note: 'Court 3 · Flutlicht · Center Stage · Top 4' },
+      { time: '20:45', title: 'Ehren-Bracket Halbfinale · 8 → 2',  note: 'Court 1 · parallel zum Hauptbracket-Halbfinale' },
+      { time: '21:45', title: 'Ehren-Finale · 2 → 1',              note: 'Court 3 · gleich nach dem Hauptbracket-Halbfinale' },
+      { time: '22:00', title: 'RITMO Grande Finale · 1 Game',      note: 'Court 3 · Flutlicht · Center Stage · Top 4 · alles oder nichts' },
       { time: '22:30', title: 'Siegerehrung & Drop-Reveal' },
       { time: '23:00', title: 'After-Party · House Music' },
       { time: '00:00', title: 'Closing' },
@@ -78,28 +81,27 @@ export const EVENTS: EventItem[] = [
           'Niemand fliegt komplett raus.',
       },
       {
-        phase: '02 · KO-Phase (Court 2 + 3)',
+        phase: '02 · Viertelfinale (Court 1 + 2 + 3)',
         details:
-          'Viertelfinale: Plätze 3–14 spielen 6 Matches (12 → 6) im Hin+Rückspiel-Format, ' +
-          'Best of Three. Halbfinale: Die 6 Sieger plus die 2 Top-Spieler aus der ' +
-          'Gruppenphase (Bye-Slots) bilden 4 Halbfinal-Matches (8 → 4), ebenfalls ' +
-          'Hin+Rückspiel Best of Three. Großes Finale: Top 4 spielen ein Spiel ' +
-          'auf Court 3 — kein Rückspiel, kein Decider.',
+          'Plätze 3–14 spielen 6 Matches (12 → 6) auf allen drei Courts parallel ' +
+          'im Hin+Rückspiel-Format, Best of Three. Alle drei Courts sind in Action — ' +
+          'volles Padel-Haus-Feeling.',
       },
       {
-        phase: '03 · Ehren-Bracket (Court 1)',
+        phase: '03 · Halbfinale (Court 2 + 3) & Ehren-Bracket (Court 1)',
         details:
-          'Parallel zur KO-Phase spielen die 8 aus der Gruppenphase Ausgeschiedenen ' +
-          'auf Court 1 weiter: Ehren-Halbfinale (8 → 2) ab dem Hauptbracket-Halbfinale, ' +
-          'danach Ehren-Finale. So bekommt jede:r mehrere Matches — niemand wird ' +
-          'abgemeldet.',
+          'Sobald das Viertelfinale durch ist, läuft das Halbfinale auf Court 2 + 3 ' +
+          '(6 Sieger + 2 Top-Bye-Spieler = 8 → 4, Hin+Rückspiel Best of Three). ' +
+          'Parallel startet auf Court 1 das Ehren-Bracket Halbfinale (8 → 2) für ' +
+          'die in der Gruppenphase Ausgeschiedenen — niemand wird abgemeldet.',
       },
       {
-        phase: '04 · Sunset, Drop & Party',
+        phase: '04 · Ehren-Finale & RITMO Grande Finale (Court 3)',
         details:
-          'Während aller Phasen läuft die Sunset Session: DJ, Drinks, Catering. ' +
-          'Bei der Siegerehrung enthüllen wir den nächsten RITMO-Drop. Danach: ' +
-          'After-Party bis Mitternacht.',
+          'Court 3 wird zur Bühne: zuerst das Ehren-Finale (2 → 1), dann das ' +
+          'RITMO Grande Finale — Top 4, ein Spiel, kein Rückspiel, kein Decider. ' +
+          'Unter Flutlicht, mit House-Music-Backdrop. Anschließend Siegerehrung, ' +
+          'Drop-Reveal, After-Party bis Mitternacht.',
       },
     ],
 
@@ -127,12 +129,15 @@ export const EVENTS: EventItem[] = [
       {
         q: 'Wie läuft das Turnier ab?',
         a: 'Gruppenphase: 22 Spieler:innen, jeder gegen jeden, offene Punkte-Wertung ' +
-           '— keine Sätze, keine Games, nur Punkte. Die Top 14 ziehen in die KO-Phase ' +
-           'auf Court 2 + 3. Die ersten beiden bekommen direkt ein Bye ins Halbfinale. ' +
-           'Plätze 3–14 spielen Viertelfinale (12 → 6) im Hin+Rückspiel-Modus, Best of ' +
-           'Three. Im Halbfinale (8 → 4) gleiches Format. Das Große Finale auf Court 3 ' +
-           'ist nur ein Spiel. Parallel läuft auf Court 1 das Ehren-Bracket für die 8 ' +
-           'aus der Gruppenphase Ausgeschiedenen — Ehren-Halbfinale, Ehren-Finale.',
+           '— keine Sätze, keine Games, nur Punkte. Die Top 14 ziehen in die KO-Phase. ' +
+           'Die ersten beiden Platzierten bekommen direkt ein Bye ins Halbfinale. ' +
+           'Viertelfinale (Plätze 3–14, 12 → 6) wird auf allen drei Courts im ' +
+           'Hin+Rückspiel-Modus gespielt, Best of Three. Halbfinale (8 → 4) läuft ' +
+           'auf Court 2 + 3, gleiches Format. Parallel startet auf Court 1 das ' +
+           'Ehren-Bracket Halbfinale (8 → 2) für die in der Gruppenphase ' +
+           'Ausgeschiedenen. Das Ehren-Finale und das RITMO Grande Finale (Top 4, ' +
+           'nur 1 Spiel — kein Best-of-Three, kein Rückspiel) laufen beide auf ' +
+           'Court 3.',
       },
       {
         q: 'Was ist im Spieler-Ticket enthalten?',

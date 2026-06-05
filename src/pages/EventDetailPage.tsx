@@ -44,8 +44,11 @@ export function EventDetailPage() {
       <Hero event={event} />
       <StorySections event={event} />
       <Programm event={event} />
+      <ScoringSection event={event} />
       <Schedule event={event} />
       <TicketsBlock event={event} />
+      <CateringSection event={event} />
+      <MusicSection event={event} />
       <Venue event={event} />
       <Faq event={event} />
       <FinalCta event={event} />
@@ -339,19 +342,21 @@ function TicketsBlock({ event }: { event: EventItem }) {
                 {t.name === 'Spieler' ? (
                   <>
                     <li>Turnier-Teilnahme (Gruppe + KO oder Ehren-Bracket)</li>
-                    <li>Court-Zeit garantiert</li>
-                    <li>Welcome-Drink ab 18:00</li>
-                    <li>Catering &amp; Drinks inkl.</li>
-                    <li>After-Party bis Mitternacht</li>
+                    <li>Court-Zeit garantiert · mehrere Matches</li>
+                    <li><b>1 Aperol Spritz</b> · Welcome-Drink</li>
+                    <li><b>1 großer Burger</b> · Manny&apos;s BBQ</li>
+                    <li><b>Zugang RITMO Refresh Bar</b> · Obst & Säfte</li>
+                    <li>After-Party · Open End</li>
                     <li>Drop-Reveal Zugang</li>
                   </>
                 ) : (
                   <>
                     <li>Eintritt ab 17:30</li>
-                    <li>Welcome-Drink um 18:00</li>
+                    <li><b>1 Softdrink</b> · Welcome-Drink</li>
+                    <li><b>1 kleiner Burger</b> · Manny&apos;s BBQ</li>
                     <li>Sunset Session &amp; Live-Matches</li>
-                    <li>After-Party bis Mitternacht</li>
-                    <li>Drinks &amp; Catering separat</li>
+                    <li>After-Party · Open End</li>
+                    <li>Aperol &amp; weitere Drinks separat</li>
                   </>
                 )}
               </ul>
@@ -446,11 +451,158 @@ function Faq({ event }: { event: EventItem }) {
                   <span>{f.q}</span>
                   <span className="evp-faq-toggle" aria-hidden>{open ? '−' : '+'}</span>
                 </button>
-                {open && <div className="evp-faq-a">{f.a}</div>}
+                {open && (
+                  <div className="evp-faq-a">
+                    {f.a.split('\n\n').map((p, j) => (
+                      <p key={j}>{p}</p>
+                    ))}
+                  </div>
+                )}
               </li>
             );
           })}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   SCORING — RITMO Match Tiers table
+   ─────────────────────────────────────────────────────────────────── */
+function ScoringSection({ event }: { event: EventItem }) {
+  const s = event.scoring;
+  if (!s || s.tiers.length === 0) return null;
+  return (
+    <section className="evp-scoring" id="scoring">
+      <div className="wrap">
+        <header className="evp-section-head">
+          <p className="rule">Scoring</p>
+          <h2 className="evp-section-title">
+            {s.title}<span className="accent">.</span>
+          </h2>
+        </header>
+        <p className="evp-scoring-blurb">{s.description}</p>
+        <motion.ul
+          className="evp-tier-list"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.06 } },
+          }}
+        >
+          {s.tiers.map((t) => (
+            <motion.li
+              key={t.tier}
+              className={`evp-tier evp-tier-${t.tier.toLowerCase()}`}
+              variants={{
+                hidden: { opacity: 0, x: -12 },
+                show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+              }}
+            >
+              <span className="evp-tier-badge">{t.tier}</span>
+              <span className="evp-tier-bonus">
+                {t.bonus > 0 ? '+' : ''}{t.bonus}
+                <span className="evp-tier-bonus-suffix"> Pkt.</span>
+              </span>
+              <span className="evp-tier-label">{t.label ?? `${t.tier}-Tier`}</span>
+            </motion.li>
+          ))}
+        </motion.ul>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   CATERING — Verpflegung stations
+   ─────────────────────────────────────────────────────────────────── */
+function CateringSection({ event }: { event: EventItem }) {
+  const stations = event.catering;
+  if (!stations || stations.length === 0) return null;
+  return (
+    <section className="evp-catering alt" id="verpflegung">
+      <div className="wrap">
+        <header className="evp-section-head">
+          <p className="rule">Verpflegung</p>
+          <h2 className="evp-section-title">
+            Drei Stationen<span className="accent">.</span>
+          </h2>
+        </header>
+        <motion.div
+          className="evp-catering-grid"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.1 } },
+          }}
+        >
+          {stations.map((c) => (
+            <motion.article
+              key={c.name}
+              className="evp-catering-card"
+              variants={{
+                hidden: { opacity: 0, y: 24 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+              }}
+            >
+              <div className="evp-catering-visual">
+                <CateringBauhaus name={c.name} />
+                {c.imageSrc && (
+                  <img
+                    src={c.imageSrc}
+                    alt={c.name}
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).remove(); }}
+                  />
+                )}
+              </div>
+              <div className="evp-catering-body">
+                {c.tagline && <span className="evp-catering-tagline">{c.tagline}</span>}
+                <h3 className="evp-catering-name">{c.name}</h3>
+                <p className="evp-catering-desc">{c.description}</p>
+              </div>
+            </motion.article>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   MUSIC — DJ headliner + follow-up
+   ─────────────────────────────────────────────────────────────────── */
+function MusicSection({ event }: { event: EventItem }) {
+  const m = event.music;
+  if (!m) return null;
+  return (
+    <section className="evp-music" id="musik">
+      <div className="wrap evp-music-grid">
+        <div className="evp-music-visual">
+          <MusicBauhaus />
+          {m.imageSrc && (
+            <img
+              src={m.imageSrc}
+              alt={m.djName}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).remove(); }}
+            />
+          )}
+        </div>
+        <div className="evp-music-body">
+          <p className="rule">Musik</p>
+          <h2 className="evp-section-title">
+            {m.djName}<span className="accent">.</span>
+          </h2>
+          {m.setTitle && <p className="evp-music-set">{m.setTitle}</p>}
+          <p className="evp-music-desc">{m.description}</p>
+          {m.followUp && (
+            <p className="evp-music-followup">{m.followUp}</p>
+          )}
+        </div>
       </div>
     </section>
   );
@@ -543,6 +695,48 @@ function CourtSVG() {
       <rect x="40" y="40" width="320" height="240" fill="none" stroke="#fff" strokeWidth="1" strokeDasharray="3 6" opacity=".4" />
       <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontStyle="italic"
             fontSize="13" fill="#fff" letterSpacing="3">PADEL HAUS · COURT</text>
+    </svg>
+  );
+}
+
+function CateringBauhaus({ name }: { name: string }) {
+  // Pick a tone per station name so the three cards read as distinct
+  const tone =
+    /refresh/i.test(name) ? '#FFD60A' :
+    /bbq|burger|manny/i.test(name) ? '#E84545' :
+    /aperol|spritz/i.test(name) ? '#FF7A1A' :
+    '#0A84FF';
+  return (
+    <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="400" height="320" fill="#0A0A0A" />
+      <circle cx="280" cy="120" r="100" fill={tone} opacity=".9" />
+      <rect x="60" y="180" width="120" height="120" fill="#fff" opacity=".06" />
+      <polygon points="40,300 160,120 280,300" fill={tone} opacity=".18" />
+      <rect x="0" y="298" width="400" height="3" fill="#FF7A1A" />
+    </svg>
+  );
+}
+
+function MusicBauhaus() {
+  return (
+    <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="400" height="320" fill="#0A0A0A" />
+      <defs>
+        <linearGradient id="djSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0"  stopColor="#FF7A1A" stopOpacity=".26" />
+          <stop offset="1"  stopColor="#0A0A0A" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="320" fill="url(#djSky)" />
+      {/* turntable disc */}
+      <circle cx="200" cy="170" r="90" fill="#0A84FF" opacity=".85" />
+      <circle cx="200" cy="170" r="56" fill="#0A0A0A" />
+      <circle cx="200" cy="170" r="10" fill="#FF7A1A" />
+      {/* needle arm */}
+      <line x1="312" y1="84" x2="232" y2="148" stroke="#FFD60A" strokeWidth="3" />
+      <circle cx="312" cy="84" r="6" fill="#FFD60A" />
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontStyle="italic"
+            fontSize="13" fill="#fff" letterSpacing="3">SUNSET · DJ-SET</text>
     </svg>
   );
 }

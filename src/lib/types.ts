@@ -224,6 +224,45 @@ export interface EventItem {
 
   /** Partner badge — e.g. "in Kooperation mit Padel Haus". */
   partner?: { name: string; web?: string };
+
+  /**
+   * Catering / food + drink stations on site. Each renders as a card
+   * with optional image placeholder (Bauhaus SVG fallback if imageSrc
+   * fails to load).
+   */
+  catering?: Array<{
+    name: string;          // "RITMO Refresh Bar"
+    tagline?: string;      // "Obstbar"
+    description: string;
+    imageSrc?: string;     // /assets/events/<id>-<station>.jpg
+  }>;
+
+  /**
+   * Music block — DJ headliner + optional follow-up section.
+   * Single object since most events have one main music story.
+   */
+  music?: {
+    djName: string;        // "ANKOE"
+    setTitle?: string;     // "Ready Mix für RITMO X Padel Haus"
+    description: string;
+    followUp?: string;     // "Danach: LNRT House Music bis Mitternacht"
+    imageSrc?: string;
+  };
+
+  /**
+   * RITMO Match Tier bonus system. Group-phase matches get tier-rated
+   * by opponent quality; winning a higher-tier match earns more bonus
+   * points on top of the regular point race.
+   */
+  scoring?: {
+    title: string;         // "RITMO Match Tiers"
+    description: string;
+    tiers: Array<{
+      tier: string;        // "S", "A", "B", "C", "X"
+      bonus: number;       // +4, +3, +2, +1, 0
+      label?: string;      // optional descriptor, e.g. "Top-Pairings"
+    }>;
+  };
 }
 
 /* ───────── Cart ───────── */

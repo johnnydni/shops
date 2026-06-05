@@ -1317,3 +1317,42 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .nav-menu-sep{
   height:1px;background:var(--line2);margin:8px 0;
 }
+
+/* ─── Mobile fix: ticket rows overflow on narrow viewports ──────────
+   1fr auto auto with gaps + uppercase letter-spacing on the cap can
+   push past the right edge on screens ≤ ~360 px. Stack to two rows
+   below 540 px: name + price on top, capacity hint underneath.
+   ───────────────────────────────────────────────────────────────── */
+@media(max-width:540px){
+
+  /* Event-card ticket tier (used on /events list) */
+  .event-tier{
+    grid-template-columns:1fr auto;
+    grid-template-areas:"name price" "cap cap";
+    gap:4px 14px;
+    padding:10px 12px;
+  }
+  .event-tier .tier-name{grid-area:name;min-width:0}
+  .event-tier .tier-price{grid-area:price}
+  .event-tier .tier-cap{grid-area:cap;font-size:10px;color:var(--t3);
+    margin-top:2px}
+
+  /* Hero ticket-panel rows on /events/:id */
+  .evp-ticket-line{
+    grid-template-columns:1fr auto;
+    grid-template-areas:"name price" "cap cap";
+    gap:4px 14px;
+  }
+  .evp-ticket-name{grid-area:name;min-width:0;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .evp-ticket-price{grid-area:price}
+  .evp-ticket-cap{grid-area:cap;font-size:10px;color:var(--t3);
+    letter-spacing:1.2px}
+
+  /* Hero ticket-panel tightens horizontal padding for breathing room */
+  .evp-ticket-panel{padding:18px}
+
+  /* CTA buttons inside hero ticket panel — guarantee they stack
+     instead of overflowing in a single row on the narrowest devices */
+  .evp-cta-row .btn{flex-basis:100%}
+}

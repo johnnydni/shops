@@ -1580,3 +1580,29 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;z-index:1;display:block;
 }
+
+/* ─── Variant picker dropdown (used by Spielstil on DNA Tee) ────── */
+.opt-dropdown-wrap{
+  position:relative;display:inline-block;width:100%;max-width:340px;
+}
+.opt-dropdown{
+  width:100%;padding:14px 44px 14px 16px;
+  background:var(--card);color:var(--t1);
+  border:1px solid var(--line2);
+  font-family:inherit;font-size:14px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+  cursor:pointer;
+  transition:border-color var(--fast) var(--ease),background var(--fast) var(--ease);
+}
+.opt-dropdown:hover{border-color:var(--t1)}
+.opt-dropdown:focus{outline:none;border-color:var(--orange)}
+.opt-dropdown:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.opt-dropdown option{
+  background:var(--card);color:var(--t1);
+  font-weight:700;letter-spacing:1px;
+}
+.opt-dropdown-arrow{
+  position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  width:12px;height:8px;color:var(--orange);pointer-events:none;
+}

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Product } from '../../lib/types';
 import { CATEGORY_LABEL } from '../../lib/types';
-import { eurParts } from '../../lib/format';
+import { eurParts, slugify } from '../../lib/format';
 import { PdpStage } from './PdpStage';
 import { VariantPicker } from './VariantPicker';
 import { Button } from '../ui/Button';
@@ -33,13 +33,18 @@ export function PdpHero({ product, ctaRef }: Props) {
   });
 
   // Compute current unit price (base + sum of selected variant deltas)
-  // PLUS resolve the active hero image — first variant group whose
-  // selected option has an `image` set wins, falling back to the
-  // product's default heroImageSrc/imageSrc.
+  // PLUS resolve the active hero image. Two resolution paths:
+  //   1. product.imagePattern with {label} placeholders → composed
+  //      from ALL selected variants (e.g. spielstil + schnitt + farbe
+  //      → '/assets/products/dna-tee/motor-male-black.jpg')
+  //   2. per-option `image` field → first variant group with an
+  //      `image` set wins
+  // Falls through to heroImageSrc → imageSrc when neither resolves.
   const { price, variantLabel, heroImage } = useMemo(() => {
     let p = product.price;
     const parts: string[] = [];
     let img: string | undefined;
+    const slugMap: Record<string, string> = {};
     product.variants?.forEach((g) => {
       const v = selected[g.label];
       const opt = g.options.find((o) => o.value === v);
@@ -47,8 +52,19 @@ export function PdpHero({ product, ctaRef }: Props) {
         if (opt.priceDelta) p += opt.priceDelta;
         parts.push(opt.value);
         if (opt.image && !img) img = opt.image;
+        slugMap[slugify(g.label)] = opt.valueSlug ?? slugify(opt.value);
       }
     });
+    // Pattern wins when all placeholders resolve.
+    if (product.imagePattern) {
+      const resolved = product.imagePattern.replace(
+        /\{(\w+)\}/g,
+        (_m, key: string) => slugMap[key.toLowerCase()] ?? ''
+      );
+      if (resolved && !resolved.includes('//') && !/\/\.jpg$/i.test(resolved)) {
+        img = resolved;
+      }
+    }
     return {
       price: p,
       variantLabel: parts.join(' / '),

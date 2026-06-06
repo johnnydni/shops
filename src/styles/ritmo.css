@@ -734,7 +734,15 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   position:relative;overflow:hidden}
 .hjourney-visual svg{position:absolute;inset:0;width:100%;height:100%;
   transition:transform var(--slow) var(--ease)}
-.hjourney-panel:hover .hjourney-visual svg{transform:scale(1.04)}
+/* Real photo overlay — same Bauhaus-fallback pattern as ProductCard.
+   Sits on top of the SVG (z-index:1), underneath .hjourney-num (z:2).
+   Without this, an image loaded by <ProductImage> in the Journey
+   would render at natural size and miss the cover-crop. */
+.hjourney-visual > img{position:absolute;inset:0;z-index:1;
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform var(--slow) var(--ease)}
+.hjourney-panel:hover .hjourney-visual svg,
+.hjourney-panel:hover .hjourney-visual > img{transform:scale(1.04)}
 .hjourney-num{
   position:absolute;top:14px;right:18px;z-index:2;
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;

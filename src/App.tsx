@@ -5,6 +5,7 @@ import { SiteHeader } from './components/layout/SiteHeader';
 import { SiteFooter } from './components/layout/SiteFooter';
 import { BauhausLine } from './components/layout/BauhausLine';
 import { ToastHost } from './components/ui/Toast';
+import { ScrollToTop } from './components/ui/ScrollToTop';
 import { HomePage } from './pages/HomePage';
 import { SortimentPage } from './pages/SortimentPage';
 import { NewsPage } from './pages/NewsPage';
@@ -19,13 +20,20 @@ import { NotFoundPage } from './pages/NotFoundPage';
 /**
  * Root component. Composes the shared chrome (grain, header, footer,
  * bauhaus stripe, toast host) once and routes pages into the middle.
+ *
+ * Two scroll-helpers live here:
+ *  - ResetScrollOnRouteChange: jumps the window to top whenever the
+ *    URL changes (React Router otherwise preserves the previous scroll
+ *    position when navigating).
+ *  - ScrollToTop (UI component): the floating bottom-left button the
+ *    user clicks to scroll back up manually.
  */
 export function App() {
   return (
     <>
       <Grain />
       <SiteHeader />
-      <ScrollToTop />
+      <ResetScrollOnRouteChange />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sortiment" element={<SortimentPage />} />
@@ -41,12 +49,13 @@ export function App() {
       <SiteFooter />
       <BauhausLine />
       <ToastHost />
+      <ScrollToTop />
     </>
   );
 }
 
 /** Reset scroll on route change — without this React Router preserves position. */
-function ScrollToTop() {
+function ResetScrollOnRouteChange() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });

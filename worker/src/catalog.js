@@ -53,6 +53,12 @@ export const CATALOG = {
       '6 Dosen': 4000,  // €9 + €40 = €49 (6 cans, €5 off vs buying separately)
     },
   },
+  'ritmo-dna-tee': {
+    name: 'RITMO DNA Tee',
+    price: 3900,
+    category: 'Apparel',
+    // Spielstil + Größe + Farbe — all no price delta
+  },
   'tee-schwarz': {
     name: 'RITMO Tee',
     price: 3900,

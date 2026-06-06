@@ -42,9 +42,112 @@ import {
   BoxyCut, FabricWeight, HoodieWeight, HoodiePrint,
   PosterPaper, DnaDetail,
   RitmoRing, RingBluetooth, RingTitanium,
+  RitmoDnaTee,
 } from '../components/illustrations';
 
 export const PRODUCTS: Product[] = [
+  /* ─────────────────────────────────────────────────────────────── */
+  /* RITMO DNA Tee — featured, Spielstil-dropdown + Farb-swatches    */
+  {
+    id: 'ritmo-dna-tee',
+    slug: 'ritmo-dna-tee',
+    category: 'apparel',
+    name: 'RITMO DNA Tee',
+    nameAccent: 'DNA',
+    eyebrow: 'Apparel · 7 Spielstile',
+    tagline:
+      'Sieben Spielstile, ein Tee. MOTOR · CHICO/CHICA · TORO · MURO · INDIVIDUOSO · FANTASMA · HYSTERICA — jeder Stil als eigene Bauhaus-Grafik. 240 g/m² Heavy-Cotton, oversized Cut, italic Brust-Logo. Wähl deinen Spielstil.',
+    shortDesc:
+      'Sieben Spielstile als Bauhaus-Print. Heavy-Cotton, oversized. In Schwarz oder Weiß.',
+    price: 39,
+    illustration: RitmoDnaTee,
+    imageSrc: '/assets/products/ritmo-dna-tee/ritmo-dna-tee.jpg',
+    heroImageSrc: '/assets/products/ritmo-dna-tee/ritmo-dna-tee.jpg',
+    /**
+     * Hero image = Spielstil × Schnitt × Farbe.
+     * Resolved at render-time by PdpHero from the active selection.
+     * Asset paths follow `{spielstil}-{schnitt}-{farbe}.jpg`.
+     */
+    imagePattern: '/assets/products/ritmo-dna-tee/{spielstil}-{schnitt}-{farbe}.jpg',
+    flag: { label: 'Drop I', tone: 'new' },
+    variants: [
+      {
+        label: 'Spielstil',
+        displayAs: 'dropdown',
+        defaultValue: 'MOTOR',
+        options: [
+          { value: 'MOTOR',       valueSlug: 'motor' },
+          { value: 'CHICO/CHICA', valueSlug: 'chico-chica' },
+          { value: 'TORO',        valueSlug: 'toro' },
+          { value: 'MURO',        valueSlug: 'muro' },
+          { value: 'INDIVIDUOSO', valueSlug: 'individuoso' },
+          { value: 'FANTASMA',    valueSlug: 'fantasma' },
+          { value: 'HYSTERICA',   valueSlug: 'hysterica' },
+        ],
+      },
+      {
+        label: 'Schnitt',
+        defaultValue: 'Herren',
+        options: [
+          { value: 'Damen',  valueSlug: 'female' },
+          { value: 'Herren', valueSlug: 'male' },
+        ],
+      },
+      {
+        label: 'Größe',
+        defaultValue: 'M',
+        options: [
+          { value: 'S' }, { value: 'M' }, { value: 'L' }, { value: 'XL' }, { value: 'XXL' },
+        ],
+      },
+      {
+        label: 'Farbe',
+        defaultValue: 'Schwarz',
+        options: [
+          { value: 'Schwarz', valueSlug: 'black', swatch: 'black' },
+          { value: 'Weiß',    valueSlug: 'white', swatch: 'white' },
+        ],
+      },
+    ],
+    trust: [
+      { label: 'Versand',  value: '2–4 Werktage' },
+      { label: 'Material', value: '100% Bio-Baumwolle' },
+      { label: 'Rückgabe', value: '30 Tage' },
+    ],
+    story: [
+      {
+        eyebrow: '01 · DNA',
+        title: 'Sieben Spielstile.',
+        titleAccent: 'Ein Tee.',
+        body: [
+          'Jeder Padel-Mensch spielt anders. Der MOTOR rennt alles ab. Der TORO bricht die Wand. Die FANTASMA spielt unsichtbar. Wir haben sieben Archetypen mit Bauhaus-Geometrien übersetzt — Kreis, Quadrat, Dreieck in 7 Variationen.',
+        ],
+        visual: DnaDetail,
+      },
+      {
+        eyebrow: '02 · Stoff',
+        title: '240 g/m².',
+        titleAccent: 'Heavy-Cotton, oversized.',
+        body: [
+          'Single-Jersey, 100% Bio-Baumwolle, garngefärbt. Boxy Cut, etwas länger als Standard. Wasserbasierter Siebdruck pro Spielstil. Fair produziert in Portugal.',
+        ],
+        visual: FabricWeight,
+      },
+    ],
+    specs: [
+      { label: 'Material',  value: '100% Bio-Baumwolle (GOTS)' },
+      { label: 'Gewicht',   value: '240 g/m² · Single-Jersey' },
+      { label: 'Cut',       value: 'Oversized · Boxy' },
+      { label: 'Schnitt',   value: 'Damen · Herren' },
+      { label: 'Größen',    value: 'S · M · L · XL · XXL' },
+      { label: 'Spielstile',value: 'MOTOR · CHICO/CHICA · TORO · MURO · INDIVIDUOSO · FANTASMA · HYSTERICA' },
+      { label: 'Farben',    value: 'Schwarz · Weiß' },
+      { label: 'Druck',     value: 'Wasserbasierter Siebdruck' },
+      { label: 'Herkunft',  value: 'Made in Portugal' },
+    ],
+    related: ['tee-schwarz', 'hoodie-crew', 'print-dna'],
+  },
+
   /* ─────────────────────────────────────────────────────────────── */
   {
     id: 'schlaeger-pro',

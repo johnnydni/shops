@@ -37,12 +37,27 @@ export interface VariantOption {
    * Path relative to public/, e.g. `/assets/products/<slug>/<slug>-<farbe>.jpg`.
    */
   image?: string;
+  /**
+   * URL-safe slug for this option, used by `Product.imagePattern` to
+   * compose multi-variant image paths. Falls back to a slugified value.
+   * Use this when display value (e.g. "CHICO/CHICA") differs from the
+   * intended filename token (e.g. "chico-chica").
+   */
+  valueSlug?: string;
 }
 
 export interface VariantGroup {
   label: string;          // "Größe", "Farbe", "Format", …
   options: VariantOption[];
   defaultValue?: string;  // defaults to options[0].value
+  /**
+   * UI hint for the picker. Default behaviour:
+   *  - all options have `swatch`  → swatch buttons
+   *  - otherwise                  → chip buttons
+   * Use 'dropdown' when there are many options (>5) or the labels
+   * are long — picks render as a styled <select> instead.
+   */
+  displayAs?: 'dropdown' | 'buttons' | 'swatches';
 }
 
 /* ───────── Story / spec / video building blocks ───────── */
@@ -112,6 +127,21 @@ export interface Product {
   /** Optional real photo paths; missing → fallback to illustration. */
   imageSrc?: string;
   heroImageSrc?: string;
+  /**
+   * Optional path template with `{label}` placeholders that compose the
+   * PDP hero image from MULTIPLE selected variants. Each `{label}` is
+   * substituted with the slug-form of the option selected for that
+   * group (using `option.valueSlug` or a slugified value).
+   *
+   * Example:
+   *   imagePattern: '/assets/products/dna-tee/{spielstil}-{schnitt}-{farbe}.jpg'
+   *
+   * When set, this takes precedence over the per-option `image` field
+   * (which is "first hit wins" and can't compose). If a placeholder
+   * can't resolve, falls back to per-option `image` → `heroImageSrc`
+   * → `imageSrc`.
+   */
+  imagePattern?: string;
 
   story: FeatureSection[];
   bleed?: EditorialBleed;

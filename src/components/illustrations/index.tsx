@@ -117,6 +117,25 @@ export const TeeBlack = (p: SVGProps<SVGSVGElement>) =>
     </>
   ));
 
+export const RitmoDnaTee = (p: SVGProps<SVGSVGElement>) =>
+  SVG(p, '0 0 400 320', (
+    <>
+      <rect width="400" height="320" fill="#FF7A1A" />
+      {/* Tee silhouette */}
+      <path
+        d="M 130 70 L 100 100 L 130 130 L 145 110 L 145 280 L 255 280 L 255 110 L 270 130 L 300 100 L 270 70 L 235 70 Q 235 95 200 95 Q 165 95 165 70 Z"
+        fill="#0A0A0A" stroke="#000" strokeWidth="3"
+      />
+      {/* DNA Bauhaus print on chest: 3 forms representing 3 spielstil archetypes */}
+      <circle cx="170" cy="180" r="18" fill="#FFD60A" />
+      <rect x="190" y="162" width="36" height="36" fill="#E84545" />
+      <polygon points="240,200 270,200 255,170" fill="#0A84FF" />
+      {/* RITMO mark */}
+      <text x="200" y="245" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontStyle="italic" fontSize="14" fill="#FFFFFF" letterSpacing="3">RITMO DNA</text>
+      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">DNA TEE · 7 SPIELSTILE</text>
+    </>
+  ));
+
 export const HoodieCrew = (p: SVGProps<SVGSVGElement>) =>
   SVG(p, '0 0 400 320', (
     <>

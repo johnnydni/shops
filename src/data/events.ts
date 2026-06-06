@@ -11,13 +11,13 @@ export const EVENTS: EventItem[] = [
   {
     id: 'ritmo-x-padel-haus-summer-sunset-2026',
     type: 'turnier',
-    title: 'RITMO X Padel Haus · Summer Sunset',
+    title: 'RITMO X Padel Haus · Summer Sunset Special',
     subtitle: 'RITMO DNA Cup · Founders Edition',
     date: '2026-07-18',
     venue: 'Padel Haus',
     location: 'Großmehring',
     shortDesc:
-      'Gruppenphase im Mexicano-Format (rotierende Partner), Top 14 in die KO-Phase: Viertelfinale 1 Set (Court 1–3), Halbfinale 2 Sets (Court 2+3), RITMO Grande Finale 1 Spiel auf Court 3. Parallel Ehren-Bracket auf Court 1 — niemand sitzt nur rum. Sunset, Drinks, House Music von 18 Uhr bis Mitternacht. Bei Padel Haus in Großmehring.',
+      'Gruppenphase im Mexicano-Format (rotierende Partner, alle werden durchgemixt), Top 14 in die KO-Phase: Knock-Out 1 Set (Court 1–3), Halbfinale 2 Sets (Court 2+3), RITMO Grande Finale Best of 3 auf Court 3. Parallel Ehren-Bracket auf Court 1 — niemand sitzt nur rum. Sunset, Drinks, House Music ab 18 Uhr bis Open End. Bei Padel Haus in Großmehring.',
     tags: ['Founders Edition', 'RITMO DNA Cup', 'House Music', 'Sunset'],
     tickets: [
       { name: 'Spieler',   price: 39, capacity: 22 },
@@ -43,12 +43,12 @@ export const EVENTS: EventItem[] = [
       'spielt mit unterschiedlichen Leuten. Die Top 14 nach Punkten ziehen in die ' +
       'KO-Phase. Die ersten beiden Platzierten bekommen ein Bye direkt ins Halbfinale.',
 
-      'KO-Phase: Viertelfinale (12 → 6) auf allen drei Courts — pro Pairing ' +
+      'KO-Phase: Knock-Out (12 → 6) auf allen drei Courts — pro Pairing ' +
       '1 Set bis 6 Games mit Tiebreak bei 5:5. Halbfinale auf Court 2 und 3: ' +
       '6 Sieger plus 2 Bye-Spieler = 8 Spieler (8 → 4), pro Pairing 2 Sets ' +
       '(Hin + Rück, ohne Decider — entschieden über die zwei Sätze). ' +
-      'Das RITMO Grande Finale auf Court 3 ist nur ein Spiel — ein Satz, ein ' +
-      'Sieger, kein Rückspiel.',
+      'Das RITMO Grande Finale auf Court 3 ist ein klassisches Best of 3 ' +
+      'Sätze bis 6 (Tiebreak bei 5:5).',
 
       'Parallel zum Halbfinale läuft auf Court 1 das Ehren-Bracket Halbfinale ' +
       'für die 8 aus der Gruppenphase Ausgeschiedenen — kurze Sätze, damit ' +
@@ -61,8 +61,8 @@ export const EVENTS: EventItem[] = [
       { time: '17:30', title: 'Doors & Check-in',                  note: 'Spielerregistrierung, Bändchen-Pickup' },
       { time: '18:00', title: 'Welcome Drink · Sunset Session Start' },
       { time: '18:15', title: 'Gruppenphase · Mexicano-Format',    note: '22 Spieler · rotierende Partner · Court 1–3 parallel · ~75 min' },
-      { time: '19:30', title: 'Top 14 stehen fest',                note: 'Top 2: Bye zum Halbfinale · Platz 3–14: Viertelfinale' },
-      { time: '19:45', title: 'Viertelfinale · 12 → 6',            note: 'Court 1 + 2 + 3 · alle Courts · 1 Set (Tiebreak bei 5:5)' },
+      { time: '19:30', title: 'Top 14 stehen fest',                note: 'Top 2: Bye zum Halbfinale · Platz 3–14: Knock-Out' },
+      { time: '19:45', title: 'Knock-Out · 12 → 6',                note: 'Court 1 + 2 + 3 · alle Courts · 1 Set (Tiebreak bei 5:5)' },
       { time: '20:45', title: 'Halbfinale · 8 → 4',                note: 'Court 2 + 3 · 6 Sieger + 2 Bye · 2 Sets (Hin + Rück, kein Decider)' },
       { time: '20:45', title: 'Ehren-Bracket Halbfinale · 8 → 2',  note: 'Court 1 · parallel · kurze Sätze' },
       { time: '22:00', title: 'Ehren-Finale · 2 → 1',              note: 'Court 3 · 1 Set · direkt nach dem Halbfinale' },
@@ -83,7 +83,7 @@ export const EVENTS: EventItem[] = [
           'übrigen 8 ins Ehren-Bracket. Niemand fliegt komplett raus.',
       },
       {
-        phase: '02 · Viertelfinale (Court 1 + 2 + 3)',
+        phase: '02 · Knock-Out (Court 1 + 2 + 3)',
         details:
           'Plätze 3–14 spielen 6 Matches (12 → 6) auf allen drei Courts parallel. ' +
           '1 Set pro Pairing, bis 6 Games mit Tiebreak bei 5:5. Schnell, ' +
@@ -92,7 +92,7 @@ export const EVENTS: EventItem[] = [
       {
         phase: '03 · Halbfinale (Court 2 + 3) & Ehren-Bracket (Court 1)',
         details:
-          'Sobald das Viertelfinale durch ist, läuft das Halbfinale auf Court 2 + 3 ' +
+          'Sobald die Knock-Out-Runde durch ist, läuft das Halbfinale auf Court 2 + 3 ' +
           '(6 Sieger + 2 Top-Bye-Spieler = 8 → 4). 2 Sets pro Pairing — Hin und ' +
           'Rück, ohne Decider, der Sieger steht über die zwei Sätze fest. Parallel ' +
           'startet auf Court 1 das Ehren-Bracket Halbfinale (8 → 2) für die in ' +
@@ -122,9 +122,11 @@ export const EVENTS: EventItem[] = [
 
     faq: [
       {
-        q: 'Brauche ich ein Doppel-Team?',
-        a: 'Ja, das Turnier wird im Doppel gespielt. Wenn du noch keinen Partner hast, ' +
-           'schreib uns eine kurze Mail — wir matchen Spieler:innen auf ähnlichem Niveau.',
+        q: 'Brauche ich einen Doppel-Partner?',
+        a: 'Nein — du kannst dich allein anmelden. Das Turnier läuft im Mexicano-Format: ' +
+           'alle Spieler:innen werden über mehrere Runden durchgemixt und rotieren ' +
+           'Partner sowie Gegner. Heißt: du spielst mit vielen unterschiedlichen Leuten ' +
+           'und musst dir keinen festen Partner suchen. Punkte sammelst du individuell.',
       },
       {
         q: 'Welches Niveau wird erwartet?',
@@ -141,7 +143,7 @@ export const EVENTS: EventItem[] = [
            '— gewinnst du ein höher-tieriges Match, bekommst du Bonus-Punkte. Details unten in ' +
            'der "Match-Tier"-Sektion.' +
            '\n\n' +
-           'VIERTELFINALE (Court 1+2+3 parallel, ~60 min): 12 → 6. Pro Pairing genau 1 Satz ' +
+           'KNOCK-OUT (Court 1+2+3 parallel, ~60 min): 12 → 6. Pro Pairing genau 1 Satz ' +
            'bis 6 Games gewonnen, Tiebreak bei 5:5. Kein Rückspiel, kein Best-of-Three.' +
            '\n\n' +
            'HALBFINALE (Court 2+3 parallel, ~75 min): 8 → 4. Pro Pairing 2 Sätze (Hin + Rück), ' +

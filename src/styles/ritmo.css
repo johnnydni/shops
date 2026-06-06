@@ -1529,3 +1529,54 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
     line-height:1.3;
   }
 }
+
+/* ─── Event detail — Highlights row + Venue image overlay ────────── */
+
+.evp-highlights{padding:32px 0 8px}
+.evp-highlights-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+@media(max-width:860px){.evp-highlights-row{grid-template-columns:repeat(2,1fr);gap:14px}}
+@media(max-width:480px){.evp-highlights-row{grid-template-columns:1fr;gap:12px}}
+
+.evp-highlight{
+  display:flex;flex-direction:column;align-items:flex-start;gap:6px;
+  padding:18px 18px 16px;
+  background:var(--card);border:1px solid var(--line);
+  position:relative;overflow:hidden;
+  transition:transform var(--med) var(--ease),border-color var(--med) var(--ease);
+}
+.evp-highlight:hover{transform:translateY(-2px);border-color:var(--orange)}
+
+.evp-highlight-dot{
+  width:16px;height:16px;border-radius:50%;display:block;
+  /* tone set per .tone-* below */
+  margin-bottom:4px;
+}
+.evp-highlight.tone-orange .evp-highlight-dot{background:var(--orange);
+  box-shadow:0 0 0 4px rgba(255,122,26,.18)}
+.evp-highlight.tone-yellow .evp-highlight-dot{background:var(--yellow);
+  box-shadow:0 0 0 4px rgba(255,214,10,.18)}
+.evp-highlight.tone-blue   .evp-highlight-dot{background:var(--blue);
+  box-shadow:0 0 0 4px rgba(10,132,255,.18)}
+.evp-highlight.tone-red    .evp-highlight-dot{background:var(--red);
+  box-shadow:0 0 0 4px rgba(232,69,69,.18)}
+
+.evp-highlight-value{
+  font-size:clamp(20px,2.4vw,28px);
+  font-weight:900;font-style:italic;letter-spacing:-.02em;line-height:1;
+  color:var(--t1);
+}
+.evp-highlight-label{
+  font-size:11px;letter-spacing:1.8px;text-transform:uppercase;
+  font-weight:700;color:var(--t3);line-height:1.4;
+}
+
+/* ─── Venue visual — image overlay when imageSrc is provided ─────── */
+.evp-venue-visual{position:relative}
+.evp-venue-visual > img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1;display:block;
+}

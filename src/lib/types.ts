@@ -220,6 +220,8 @@ export interface EventItem {
     address?: string;
     web?: string;
     blurb?: string;
+    /** Optional venue photo. Falls back to inline CourtSVG if missing. */
+    imageSrc?: string;
   };
 
   /** Partner badge — e.g. "in Kooperation mit Padel Haus". */

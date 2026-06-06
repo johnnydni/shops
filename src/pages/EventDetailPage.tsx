@@ -343,7 +343,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                   <>
                     <li>Turnier-Teilnahme (Gruppe + KO oder Ehren-Bracket)</li>
                     <li>Court-Zeit garantiert · mehrere Matches</li>
-                    <li><b>1 Aperol Spritz</b> · Welcome-Drink</li>
+                    <li><b>1 Welcome-Drink</b> · Aperol Spritz, Padelé Spritz oder non-alk.</li>
                     <li><b>1 großer Burger</b> · Manny&apos;s BBQ</li>
                     <li><b>Zugang RITMO Refresh Bar</b> · Obst & Säfte</li>
                     <li>After-Party · Open End</li>
@@ -352,7 +352,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                 ) : (
                   <>
                     <li>Eintritt ab 17:30</li>
-                    <li><b>1 Softdrink</b> · Welcome-Drink</li>
+                    <li><b>1 Welcome-Drink</b> · Softdrink oder non-alk.</li>
                     <li><b>1 kleiner Burger</b> · Manny&apos;s BBQ</li>
                     <li>Sunset Session &amp; Live-Matches</li>
                     <li>After-Party · Open End</li>

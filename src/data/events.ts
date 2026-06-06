@@ -59,7 +59,7 @@ export const EVENTS: EventItem[] = [
 
     schedule: [
       { time: '17:30', title: 'Doors & Check-in',                  note: 'Spielerregistrierung, Bändchen-Pickup' },
-      { time: '18:00', title: 'Welcome Drink · Sunset Session Start' },
+      { time: '18:00', title: 'Sunset Session Start' },
       { time: '18:15', title: 'Gruppenphase · Mexicano-Format',    note: '22 Spieler · rotierende Partner · Court 1–3 parallel · ~75 min' },
       { time: '19:30', title: 'Top 14 stehen fest',                note: 'Top 2: Bye zum Halbfinale · Platz 3–14: Knock-Out' },
       { time: '19:45', title: 'Knock-Out · 12 → 6',                note: 'Court 1 + 2 + 3 · alle Courts · 1 Set (Tiebreak bei 5:5)' },
@@ -204,11 +204,12 @@ export const EVENTS: EventItem[] = [
       },
       {
         name: 'Aperol Bar',
-        tagline: 'Spritz · Drinks · Sundowner',
+        tagline: 'Spritz · Signature',
         description:
-          'Klassischer Aperol Spritz, Hugo, Lillet — und ein Sunset-Special. ' +
-          'Spieler-Tickets bekommen einen Aperol gratis, Zuschauer einen Softdrink. ' +
-          'Weitere Drinks à la carte.',
+          'Zwei Drinks auf der Karte: klassischer Aperol Spritz und der ' +
+          'Padelé Spritz — unser Signature Drink für den Cup, exklusiv vor Ort. ' +
+          'Spieler-Tickets bekommen einen Welcome-Drink inklusive (auch ' +
+          'non-alkoholische Variante verfügbar), Zuschauer einen Softdrink.',
         imageSrc: '/assets/events/sunset-aperol-bar.jpg',
       },
     ],

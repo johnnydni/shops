@@ -1098,7 +1098,12 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .evp-stage-visual{position:relative;overflow:hidden;background:var(--bg-elev)}
 .evp-stage-bauhaus{position:absolute;inset:0;width:100%;height:100%;display:block}
 .evp-stage-visual > img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;z-index:1}
+  object-fit:cover;z-index:1;
+  /* Shift visible content rightward so a centred subject (e.g. the
+     RITMO X Padel Haus logo on the Summer Sunset poster) clears the
+     date column on the left. Override per-event later with an inline
+     style if needed. */
+  object-position:10% 50%}
 .evp-stage-meta{position:absolute;left:0;right:0;bottom:0;z-index:2;
   display:flex;align-items:center;gap:10px;padding:16px;
   background:linear-gradient(180deg,transparent,rgba(0,0,0,.55) 60%)}

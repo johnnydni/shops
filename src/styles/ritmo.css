@@ -1495,3 +1495,37 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   .scroll-top{left:16px;bottom:16px;width:44px;height:44px}
   .scroll-top svg{width:18px;height:18px}
 }
+
+/* ─── Event detail hero — mobile overflow fix ────────────────────
+   The hero stage + ticket panel rendered past the right viewport
+   edge on iPhone widths. Two reasons:
+   1. Grid items default to `min-width: auto`, which prevents them
+      from shrinking below their intrinsic content width.
+   2. .btn elements have `white-space: nowrap`, so long disabled
+      labels like "TICKET SICHERN · BALD VERFÜGBAR" pushed the
+      whole panel wider than the viewport.
+   ───────────────────────────────────────────────────────────── */
+@media(max-width:540px){
+  /* Let every grid track in the hero shrink to fit the viewport. */
+  .evp-hero-grid{gap:24px}
+  .evp-hero-grid > *{min-width:0;max-width:100%}
+  .evp-stage{min-width:0;max-width:100%}
+  .evp-stage > *{min-width:0}
+  .evp-info{min-width:0;max-width:100%}
+
+  /* Ticket panel: tighter inner padding, less margin from the title block. */
+  .evp-ticket-panel{padding:18px 16px;margin-top:14px;max-width:100%}
+
+  /* CTA buttons: stack vertically, full-width, allow text wrap so
+     the "Bald verfügbar" suffix doesn't push past the viewport. */
+  .evp-cta-row{flex-direction:column;gap:8px}
+  .evp-cta-row .btn{
+    width:100%;
+    flex-basis:auto;
+    white-space:normal;
+    padding:14px 16px;
+    font-size:12px;
+    letter-spacing:1.2px;
+    line-height:1.3;
+  }
+}

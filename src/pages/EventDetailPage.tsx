@@ -42,6 +42,7 @@ export function EventDetailPage() {
         ]}
       />
       <Hero event={event} />
+      <HighlightsRow />
       <StorySections event={event} />
       <Programm event={event} />
       <ScoringSection event={event} />
@@ -196,6 +197,54 @@ function Hero({ event }: { event: EventItem }) {
 /* ───────────────────────────────────────────────────────────────────
    STORY — long description paragraphs rendered as alternating blocks
    ─────────────────────────────────────────────────────────────────── */
+/* ───────────────────────────────────────────────────────────────────
+   HIGHLIGHTS ROW — animated bauhaus dots with key facts above the
+   story. Sits between the hero and the long description.
+   ─────────────────────────────────────────────────────────────────── */
+function HighlightsRow() {
+  const reduce = useReducedMotion();
+  const items = [
+    { tone: 'orange', value: '22',         label: 'Spieler-Spots'   },
+    { tone: 'yellow', value: '3',          label: 'Courts in Padel Haus' },
+    { tone: 'blue',   value: '18 → Open',  label: 'Sunset bis Mitternacht+' },
+    { tone: 'red',    value: 'Founders',   label: 'Edition · RITMO DNA Cup' },
+  ];
+
+  return (
+    <section className="evp-highlights">
+      <motion.div
+        className="wrap evp-highlights-row"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: reduce ? 0 : 0.14, delayChildren: 0.08 } },
+        }}
+      >
+        {items.map((h) => (
+          <motion.div
+            key={h.label}
+            className={`evp-highlight tone-${h.tone}`}
+            variants={{
+              hidden: { opacity: 0, y: reduce ? 0 : 18 },
+              show: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
+              },
+            }}
+          >
+            <span className="evp-highlight-dot" aria-hidden />
+            <span className="evp-highlight-value">{h.value}</span>
+            <span className="evp-highlight-label">{h.label}</span>
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
+  );
+}
+
 function StorySections({ event }: { event: EventItem }) {
   if (!event.longDesc || event.longDesc.length === 0) return null;
   return (
@@ -416,6 +465,13 @@ function Venue({ event }: { event: EventItem }) {
         </div>
         <div className="evp-venue-visual">
           <CourtSVG />
+          {v.imageSrc && (
+            <img
+              src={v.imageSrc}
+              alt={v.name}
+              onError={(e) => { (e.currentTarget as HTMLImageElement).remove(); }}
+            />
+          )}
         </div>
       </div>
     </section>

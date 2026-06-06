@@ -79,8 +79,10 @@ export const EVENTS: EventItem[] = [
           '22 Spieler:innen, rotierende Partner über mehrere Runden auf allen ' +
           'drei Courts parallel. Offene Punkte-Wertung — keine Sätze, keine Games. ' +
           'Jede:r spielt mit unterschiedlichen Leuten, sammelt Punkte über alle ' +
-          'Runden. Die Top 14 nach Gesamtpunkten ziehen in die KO-Phase, die ' +
-          'übrigen 8 ins Ehren-Bracket. Niemand fliegt komplett raus.',
+          'Runden. Pausierende einer Runde bekommen den aufgerundeten Median ' +
+          'der Punkte aus der laufenden Runde gutgeschrieben — niemand verliert ' +
+          'durch eine Pause. Die Top 14 ziehen in die KO-Phase, die übrigen 8 ' +
+          'ins Ehren-Bracket. Niemand fliegt komplett raus.',
       },
       {
         phase: '02 · Knock-Out (Court 1 + 2 + 3)',
@@ -118,6 +120,7 @@ export const EVENTS: EventItem[] = [
         'Padel Haus in Großmehring (bei Ingolstadt) ist eine der modernsten ' +
         'Padel-Anlagen Süddeutschlands. Drei Premium-Courts, eigene Bar, ' +
         'Sound-System auf Club-Niveau. Genau der Ort, an dem ein Sunset-Cup hingehört.',
+      imageSrc: '/assets/events/sunset-court.jpg',
     },
 
     faq: [
@@ -139,6 +142,10 @@ export const EVENTS: EventItem[] = [
            'rotieren über mehrere Runden Partner und Gegner. Pro Match werden offene Punkte ' +
            'gespielt (z.B. 8 Punkte pro Runde, oder time-based). Keine Sätze, keine Games — ' +
            'nur die Gesamtpunkte zählen. ' +
+           'Pausen-Fairness: Wer eine Runde aussetzen muss (mit 22 Spielern auf 3 Courts ' +
+           'sitzen pro Runde 10 Personen), bekommt automatisch den aufgerundeten Median ' +
+           'der in dieser Runde erzielten Punkte gutgeschrieben — niemand verliert durch ' +
+           'eine Pause. ' +
            'Zusatz: Jedes Match wird per RITMO DNA in einen Match-Tier eingeordnet (S/A/B/C/X) ' +
            '— gewinnst du ein höher-tieriges Match, bekommst du Bonus-Punkte. Details unten in ' +
            'der "Match-Tier"-Sektion.' +

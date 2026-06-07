@@ -127,7 +127,7 @@ const ARTICLES: Article[] = [
       'und RITMO Grande Finale (Best of 3) auf Court 3 unter Flutlicht. Parallel ' +
       'Ehren-Bracket — niemand sitzt nur rum. Manny’s BBQ, Aperol- und Padelé-Spritz, ' +
       'DJ ANKOE Ready Mix → LNRT House Music. 18 Uhr bis Open End. ' +
-      '22 Spieler-Tickets (€39), unlimitierte Zuschauer-Tickets (€15). ' +
+      '22 Spieler-Tickets (€39), Zuschauer-Tickets (€15) solange der Vorrat reicht. ' +
       'Verkauf startet 18. Juni 2026.',
     live: true,
     kind: 'Event',

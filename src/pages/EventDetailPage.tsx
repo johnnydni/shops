@@ -152,7 +152,7 @@ function Hero({ event }: { event: EventItem }) {
               <div key={t.name} className="evp-ticket-line">
                 <span className="evp-ticket-name">{t.name}</span>
                 <span className="evp-ticket-cap">
-                  {t.capacity != null ? `${t.capacity} Spots` : 'Unlimited'}
+                  {t.capacity != null ? `${t.capacity} Spots` : 'Solange Vorrat reicht'}
                 </span>
                 <span className="evp-ticket-price">{eur(t.price)}</span>
               </div>
@@ -385,7 +385,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
               <h3 className="evp-ticket-card-name">{t.name}</h3>
               <div className="evp-ticket-card-price">{eur(t.price)}</div>
               <div className="evp-ticket-card-cap">
-                {t.capacity != null ? `${t.capacity} Spots verfügbar` : 'Unlimited'}
+                {t.capacity != null ? `${t.capacity} Spots verfügbar` : 'Solange der Vorrat reicht'}
               </div>
               <ul className="evp-ticket-card-list">
                 {t.name === 'Spieler' ? (

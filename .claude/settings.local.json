@@ -9,7 +9,8 @@
       "Bash(npm run *)",
       "Bash(git rm *)",
       "Bash(git fetch *)",
-      "Bash(git ls-tree *)"
+      "Bash(git ls-tree *)",
+      "Bash(sort -k2)"
     ]
   }
 }

@@ -5,10 +5,11 @@
   "description": "RITMO Padel Shop — Vite + React + TS SPA. Static-friendly, deploys to GitHub Pages.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/postbuild.mjs",
+    "dev": "node scripts/asset-index.mjs && vite",
+    "build": "node scripts/asset-index.mjs && tsc -b && vite build && node scripts/postbuild.mjs",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "assets:index": "node scripts/asset-index.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",

@@ -115,11 +115,12 @@ export const EVENTS: EventItem[] = [
     venueInfo: {
       name: 'Padel Haus',
       address: 'Großmehring · bei Ingolstadt · Standort wird mit Ticket bestätigt',
-      web:     'https://padelhaus.de',
+      web:     'https://padel-haus.de',
       blurb:
         'Padel Haus in Großmehring (bei Ingolstadt) ist eine der modernsten ' +
-        'Padel-Anlagen Süddeutschlands. Drei Premium-Courts, eigene Bar, ' +
-        'Sound-System auf Club-Niveau. Genau der Ort, an dem ein Sunset-Cup hingehört.',
+        'Padel-Anlagen Süddeutschlands. Drei Premium-Courts,' +
+        'Sound-System für die passenden Padel Vibes., ' +
+        'Genau der Ort, an dem ein Sunset-Cup hingehört.',
       imageSrc: '/assets/events/sunset-court.jpg',
     },
 
@@ -168,13 +169,13 @@ export const EVENTS: EventItem[] = [
       {
         q: 'Was ist im Spieler-Ticket enthalten?',
         a: 'Turnier-Teilnahme (Gruppenphase + KO oder Ehren-Bracket, abhängig vom ' +
-           'Abschneiden in der Gruppe), Court-Zeit, Welcome-Drink, Catering, After-Party ' +
+           'Abschneiden in der Gruppe), Court-Zeit, Welcome-Drink, Refresh Bar, After-Party ' +
            'und Drop-Reveal. Jede:r Spieler:in bekommt garantiert mehrere Matches.',
       },
       {
         q: 'Was ist im Zuschauer-Ticket enthalten?',
         a: 'Eintritt ab 17:30, Welcome-Drink, Zugang zur Sunset Session und After-Party. ' +
-           'Weitere Drinks und Catering separat.',
+           'Weitere Drinks und Food separat.',
       },
       {
         q: 'Stornierung möglich?',
@@ -189,7 +190,7 @@ export const EVENTS: EventItem[] = [
       },
     ],
 
-    /* ───────── Verpflegung / Catering ───────── */
+    /* ───────── Verpflegung / Proviant ───────── */
     catering: [
       {
         name: 'RITMO Refresh Bar',
@@ -230,7 +231,7 @@ export const EVENTS: EventItem[] = [
         'Sunset-Vibes zur Gruppenphase, Tempo-Anstieg fürs Halbfinale, ' +
         'Festival-Drop zum Grande Finale. Soundtrack, der mit dem Turnier wächst.',
       followUp:
-        'Nach dem Drop-Reveal übernimmt LNRT mit einem House-Music-Set bis Open End — ' +
+        'Nach dem Drop-Reveal läuft LNRT mit einem House-Music-Set bis Open End — ' +
         'tiefer, deeper, dancefloor-tauglich. Padel Haus wird zum Club.',
       imageSrc: '/assets/events/sunset-dj.jpg',
     },

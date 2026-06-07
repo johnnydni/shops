@@ -95,7 +95,7 @@ export function EventCard({ event }: { event: EventItem }) {
                 <span className="tier-cap">
                   {t.capacity != null
                     ? `${t.capacity} Spots`
-                    : 'Unlimited'}
+                    : 'Solange Vorrat reicht'}
                 </span>
                 <span className="tier-price">{eur(t.price)}</span>
               </li>

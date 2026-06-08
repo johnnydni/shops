@@ -4,35 +4,76 @@ compatibility_date = "2024-12-01"
 
 # ────────────────────────────────────────────────────────────────────
 # Public (non-secret) config.
-# Override per environment in the [env.*] blocks below if you split
-# staging/prod.
+# Override per environment in [env.*] blocks if you split staging/prod.
 # ────────────────────────────────────────────────────────────────────
 [vars]
-SUCCESS_URL    = "https://ritmopadel.shop/bestellt.html"
-CANCEL_URL     = "https://ritmopadel.shop/abbruch.html"
-ALLOWED_ORIGIN = "https://ritmopadel.shop,https://www.ritmopadel.shop"
+SUCCESS_URL          = "https://ritmopadel.shop/bestellt.html"
+CANCEL_URL           = "https://ritmopadel.shop/abbruch.html"
+ALLOWED_ORIGIN       = "https://ritmopadel.shop,https://www.ritmopadel.shop"
+
+# ── Event ticket system endpoints ──
+EVENT_SUCCESS_URL    = "https://ritmopadel.shop/event/success"
+EVENT_CANCEL_URL     = "https://ritmopadel.shop/event/cancel"
+TICKET_BASE_URL      = "https://ritmopadel.shop/event/ticket"
+
+# ── Resend (Email) ──
+# Must match a Resend-verified domain (SPF + DKIM + DMARC on ritmopadel.shop)
+RESEND_FROM          = "RITMO Padel <hello@ritmopadel.shop>"
+RESEND_REPLY_TO      = "hello@ritmopadel.shop"
+
+# ── Cloudflare Turnstile ──
+# Site key is public (rendered in HTML). Secret goes in `wrangler secret put`.
+TURNSTILE_SITE_KEY   = ""
+
+# ── Pre-sales test bypass ──
+# Lets internal testers POST /api/event/checkout BEFORE salesStart by
+# passing { bypassCode: "<value>" } in the body. ONLY the sales-window
+# check is skipped — all other guards (Turnstile, caps, quiz scoring,
+# Stripe pricing) still apply. Stripe is in TEST-mode for these flows.
+#
+# Rotate or unset before public launch:
+#   wrangler secret put EVENT_BYPASS_CODE   (overrides this var)
+#   wrangler secret delete EVENT_BYPASS_CODE  (to fully disable)
+# Setting this to an empty string disables the bypass.
+EVENT_BYPASS_CODE    = "1862"
+
+# ────────────────────────────────────────────────────────────────────
+# KV namespaces — create with:
+#   wrangler kv namespace create TICKETS
+#   wrangler kv namespace create TICKETS --preview
+# Replace the IDs below with the values wrangler prints.
+# ────────────────────────────────────────────────────────────────────
+[[kv_namespaces]]
+binding      = "TICKETS"
+id           = "REPLACE_WITH_PRODUCTION_ID"
+preview_id   = "REPLACE_WITH_PREVIEW_ID"
 
 # ────────────────────────────────────────────────────────────────────
 # Secrets are NOT in this file. Set them with:
 #   wrangler secret put STRIPE_SECRET_KEY
 #   wrangler secret put STRIPE_WEBHOOK_SECRET
+#   wrangler secret put EVENT_JWT_SECRET       (>=32 random bytes — `openssl rand -base64 48`)
+#   wrangler secret put EMAIL_HASH_PEPPER      (separate pepper for email hashing)
+#   wrangler secret put TURNSTILE_SECRET_KEY   (from dash → Turnstile → site → Settings)
+#   wrangler secret put RESEND_API_KEY         (from resend.com → API Keys)
+#   wrangler secret put ADMIN_CSV_SECRET       (HMAC token for doors-day CSV export)
 # ────────────────────────────────────────────────────────────────────
 
-# To attach a custom domain (recommended — avoids CORS edge cases):
-# 1. Add your domain to Cloudflare (orange-cloud).
-# 2. Uncomment the [[routes]] block below and adjust the pattern.
-# 3. `wrangler deploy`
-#
+# Custom domain (recommended — avoids CORS edge cases):
 # [[routes]]
-# pattern = "api.ritmopadel.shop/api/*"
+# pattern   = "api.ritmopadel.shop/api/*"
 # zone_name = "ritmopadel.shop"
 
-# Optional: pin to a specific account/zone if you have several
-# account_id = ""
-
 # ────────────────────────────────────────────────────────────────────
-# Local dev:  wrangler dev
-#   Then set SECRETS in a local .dev.vars file (gitignored):
-#     STRIPE_SECRET_KEY=sk_test_...
-#     STRIPE_WEBHOOK_SECRET=whsec_...
+# Local dev — `wrangler dev`
+# Set secrets in `.dev.vars` (gitignored):
+#   STRIPE_SECRET_KEY=sk_test_...
+#   STRIPE_WEBHOOK_SECRET=whsec_...
+#   EVENT_JWT_SECRET=local-dev-secret-please-rotate-min-32-bytes-xxxxx
+#   EMAIL_HASH_PEPPER=local-dev-pepper-rotate-me-too
+#   TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA   # CF "always passes" test key
+#   RESEND_API_KEY=re_dev_...
+#   ADMIN_CSV_SECRET=local-admin-secret
+# Frontend `shops/.env.local`:
+#   VITE_TURNSTILE_SITE_KEY=1x00000000000000000000AA            # "always passes"
 # ────────────────────────────────────────────────────────────────────

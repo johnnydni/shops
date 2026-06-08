@@ -37,11 +37,18 @@ function TicketCTA({
     const now = Date.now();
     const start = event.salesStart ? Date.parse(event.salesStart) : NaN;
     const end   = event.salesEnd   ? Date.parse(event.salesEnd)   : NaN;
-    if (Number.isFinite(start) && now < start) {
-      return <button className={cls} disabled>Verkauf ab {fullDate(event.salesStart!)}</button>;
-    }
     if (Number.isFinite(end) && now > end) {
       return <button className={cls} disabled>Verkauf beendet</button>;
+    }
+    if (Number.isFinite(start) && now < start) {
+      // Pre-sales: keep the button link-shaped so internal testers can
+      // reach the buy page with the test-bypass code. Public visitors
+      // see "Verkauf ab …" and won't be able to submit without the code.
+      return (
+        <Link to={`/event/buy/${event.id}`} className={cls} aria-label={`Verkauf ab ${fullDate(event.salesStart!)}`}>
+          Verkauf ab {fullDate(event.salesStart!)}
+        </Link>
+      );
     }
     return <Link to={`/event/buy/${event.id}`} className={cls}>{label} →</Link>;
   }

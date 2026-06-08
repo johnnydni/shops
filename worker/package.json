@@ -1,15 +1,25 @@
 {
   "name": "ritmo-shop-worker",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Stripe Checkout backend for ritmopadel.shop — Cloudflare Worker.",
+  "description": "Stripe Checkout + Event Ticketing backend for ritmopadel.shop — Cloudflare Worker.",
   "type": "module",
   "scripts": {
     "dev":     "wrangler dev",
     "deploy":  "wrangler deploy",
     "tail":    "wrangler tail",
-    "secrets:put-stripe":  "wrangler secret put STRIPE_SECRET_KEY",
-    "secrets:put-webhook": "wrangler secret put STRIPE_WEBHOOK_SECRET"
+    "kv:create-tickets":         "wrangler kv namespace create TICKETS",
+    "kv:create-tickets-preview": "wrangler kv namespace create TICKETS --preview",
+    "secrets:put-stripe":        "wrangler secret put STRIPE_SECRET_KEY",
+    "secrets:put-webhook":       "wrangler secret put STRIPE_WEBHOOK_SECRET",
+    "secrets:put-jwt":           "wrangler secret put EVENT_JWT_SECRET",
+    "secrets:put-pepper":        "wrangler secret put EMAIL_HASH_PEPPER",
+    "secrets:put-turnstile":     "wrangler secret put TURNSTILE_SECRET_KEY",
+    "secrets:put-resend":        "wrangler secret put RESEND_API_KEY",
+    "secrets:put-admin":         "wrangler secret put ADMIN_CSV_SECRET"
+  },
+  "dependencies": {
+    "jose": "^5.9.6"
   },
   "devDependencies": {
     "wrangler": "^3.90.0"

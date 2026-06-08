@@ -12,6 +12,50 @@ import { eur } from '../lib/format';
 import { dayRange, monthShort, fullDate } from '../lib/dates';
 
 /**
+ * Computes the right CTA flavour for a given event:
+ *   - tickets + within sales window → internal Link to /event/buy/<id>
+ *   - tickets + before sales start  → disabled button "Verkauf ab <date>"
+ *   - tickets + after sales end     → disabled "Verkauf beendet"
+ *   - external ctaUrl               → external link
+ *   - none                          → disabled "bald verfügbar"
+ *
+ * Used by all three CTAs on the detail page (hero, tickets block, final bleed).
+ */
+function TicketCTA({
+  event,
+  size,
+  fallbackLabel,
+}: {
+  event: EventItem;
+  size?: 'btn-lg';
+  fallbackLabel?: string;
+}) {
+  const cls = `btn btn-pri${size ? ' ' + size : ''}`;
+  const label = event.ctaLabel ?? fallbackLabel ?? 'Ticket sichern';
+
+  if (event.tickets && event.tickets.length) {
+    const now = Date.now();
+    const start = event.salesStart ? Date.parse(event.salesStart) : NaN;
+    const end   = event.salesEnd   ? Date.parse(event.salesEnd)   : NaN;
+    if (Number.isFinite(start) && now < start) {
+      return <button className={cls} disabled>Verkauf ab {fullDate(event.salesStart!)}</button>;
+    }
+    if (Number.isFinite(end) && now > end) {
+      return <button className={cls} disabled>Verkauf beendet</button>;
+    }
+    return <Link to={`/event/buy/${event.id}`} className={cls}>{label} →</Link>;
+  }
+  if (event.ctaUrl) {
+    return (
+      <a href={event.ctaUrl} target="_blank" rel="noopener noreferrer" className={cls}>
+        {label}
+      </a>
+    );
+  }
+  return <button className={cls} disabled>{label} · bald verfügbar</button>;
+}
+
+/**
  * /events/:id — full detail page for a single event.
  *
  * Composes:
@@ -169,20 +213,7 @@ function Hero({ event }: { event: EventItem }) {
             )}
 
             <div className="evp-cta-row">
-              {event.ctaUrl ? (
-                <a
-                  href={event.ctaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-pri btn-lg"
-                >
-                  {event.ctaLabel ?? 'Ticket sichern'}
-                </a>
-              ) : (
-                <button className="btn btn-pri btn-lg" disabled>
-                  {event.ctaLabel ?? 'Ticket sichern'} · bald verfügbar
-                </button>
-              )}
+              <TicketCTA event={event} size="btn-lg" />
               <a href="#programm" className="btn btn-out btn-lg">
                 Programm ansehen
               </a>
@@ -409,20 +440,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                   </>
                 )}
               </ul>
-              {event.ctaUrl ? (
-                <a
-                  href={event.ctaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-pri"
-                >
-                  {event.ctaLabel ?? 'Ticket sichern'}
-                </a>
-              ) : (
-                <button className="btn btn-pri" disabled>
-                  bald verfügbar
-                </button>
-              )}
+              <TicketCTA event={event} />
             </motion.article>
           ))}
         </div>
@@ -681,20 +699,7 @@ function FinalCta({ event }: { event: EventItem }) {
         </h2>
         <p>{event.subtitle ?? event.title} · {fullDate(event.date)}</p>
         <div className="evp-final-ctas">
-          {event.ctaUrl ? (
-            <a
-              href={event.ctaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-pri btn-lg"
-            >
-              {event.ctaLabel ?? 'Ticket sichern'}
-            </a>
-          ) : (
-            <button className="btn btn-pri btn-lg" disabled>
-              {event.ctaLabel ?? 'Ticket sichern'} · bald verfügbar
-            </button>
-          )}
+          <TicketCTA event={event} size="btn-lg" />
           <Link to="/events" className="btn btn-out btn-lg">
             Alle Events
           </Link>

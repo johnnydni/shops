@@ -11,6 +11,7 @@ import { SortimentPage } from './pages/SortimentPage';
 import { NewsPage } from './pages/NewsPage';
 import { EventsPage } from './pages/EventsPage';
 import { EventDetailPage } from './pages/EventDetailPage';
+import { EventBuyPage } from './pages/EventBuyPage';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
 import { SuccessPage } from './pages/SuccessPage';
@@ -40,6 +41,7 @@ export function App() {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/:id" element={<EventDetailPage />} />
+        <Route path="/event/buy/:eventId" element={<EventBuyPage />} />
         <Route path="/produkt/:slug" element={<ProductPage />} />
         <Route path="/warenkorb" element={<CartPage />} />
         <Route path="/bestellt" element={<SuccessPage />} />

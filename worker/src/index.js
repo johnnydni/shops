@@ -31,6 +31,7 @@ import { handleCheckout }       from './checkout.js';
 import { handleWebhook }        from './webhook.js';
 import { handleEventCheckout }  from './event/checkout.js';
 import { handleEventWebhook }   from './event/webhook.js';
+import { handleTicketRead, handleSessionLookup } from './event/ticket.js';
 import { preflight, jsonResponse, corsHeaders } from './cors.js';
 
 export default {
@@ -50,6 +51,12 @@ export default {
     // Event ticket endpoints
     if (url.pathname === '/api/event/checkout') return handleEventCheckout(request, env);
     if (url.pathname === '/api/event/webhook')  return handleEventWebhook(request, env);
+
+    // Read-only ticket lookups (token in path)
+    const ticketMatch = url.pathname.match(/^\/api\/event\/ticket\/([A-Za-z0-9._\-]+)$/);
+    if (ticketMatch) return handleTicketRead(request, env, ticketMatch[1]);
+    const sessionMatch = url.pathname.match(/^\/api\/event\/session\/([A-Za-z0-9_]+)$/);
+    if (sessionMatch) return handleSessionLookup(request, env, sessionMatch[1]);
 
     return new Response('not found', {
       status: 404,

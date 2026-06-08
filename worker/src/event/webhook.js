@@ -37,6 +37,7 @@ import {
   getCounts,
   releaseHold,
   markProcessed,
+  setSessionTickets,
   getEmailIndex,
 } from '../utils/kv.js';
 import { sendEmail } from '../utils/resend.js';
@@ -220,6 +221,10 @@ async function onCheckoutCompleted(session, env) {
   await addToEmailIndex(env.TICKETS, eventId, buyerEmailHash, ticketIds, eventDef.date);
   await bumpCounts(env.TICKETS, eventId, { [tier]: quantity, held: -quantity });
   await releaseHold(env.TICKETS, eventId, buyerEmailHash);
+
+  // Record ticketIds back to the idem entry so the /event/success page
+  // can poll and discover what to display.
+  await setSessionTickets(env.TICKETS, session.id, eventId, ticketIds);
 
   // Signed refund link — Phase 6 endpoint will accept it
   const refundToken = await signToken(env, 'magic',

@@ -145,15 +145,49 @@ export async function releaseHold(kv, eventId, emailHash) {
 /* ───────── Webhook idempotency ───────── */
 
 /**
- * Returns true if this Stripe session was first-time processed.
- * Returns false if already seen — webhook handlers must bail on false.
+ * Atomic-ish "claim this Stripe session" marker.
+ * Returns true if this was the first call (proceed with issuance).
+ * Returns false if already seen (skip — duplicate webhook delivery).
+ *
+ * NOTE: KV has no compare-and-swap — we read then write. Two webhook
+ * deliveries arriving truly simultaneously could both see "not set"
+ * and both proceed. The window is small (low-ms) and Stripe spaces its
+ * retries by seconds. As a second line of defense, ticket records are
+ * scoped per-attendee with deterministic IDs based on session+index
+ * (see issuance code).
  */
 export async function markProcessed(kv, stripeSessionId) {
   const k = idemKey(stripeSessionId);
   const prior = await kv.get(k);
   if (prior) return false;
-  await kv.put(k, '1', { expirationTtl: TTL_IDEM });
+  await kv.put(k, JSON.stringify({ at: new Date().toISOString() }), { expirationTtl: TTL_IDEM });
   return true;
+}
+
+/**
+ * Update the idem record with the issued ticket IDs + which event they
+ * belong to. Lets the success page poll `/api/event/session/:id` and
+ * learn which tickets to display.
+ *
+ * @param {KVNamespace} kv
+ * @param {string} stripeSessionId
+ * @param {string} eventId
+ * @param {string[]} ticketIds
+ */
+export async function setSessionTickets(kv, stripeSessionId, eventId, ticketIds) {
+  const k = idemKey(stripeSessionId);
+  await kv.put(
+    k,
+    JSON.stringify({ at: new Date().toISOString(), eventId, ticketIds }),
+    { expirationTtl: TTL_IDEM }
+  );
+}
+
+/**
+ * @returns {Promise<{ at: string, eventId?: string, ticketIds?: string[] } | null>}
+ */
+export async function getSessionRecord(kv, stripeSessionId) {
+  return await kv.get(idemKey(stripeSessionId), 'json');
 }
 
 /* ───────── TTL helper ───────── */

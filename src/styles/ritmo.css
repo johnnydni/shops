@@ -1815,3 +1815,221 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   border:1px solid var(--line2);font-family:'Lexend Mega',monospace;font-size:14px;letter-spacing:.18em}
 .bf-bypass-row input:focus{outline:none;border-color:var(--yellow)}
 .bf-bypass-hint{margin-top:8px;font-size:11px;color:var(--t3);line-height:1.5}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PHASE 4 · Event ticket display + success/cancel pages
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── EventSuccessPage ─── */
+.evs-main{min-height:60vh;padding-bottom:120px}
+.evs-hero{padding:48px 0 24px;border-bottom:1px solid var(--line)}
+.evs-body{padding:48px 0}
+
+.evs-loading{display:flex;flex-direction:column;align-items:center;gap:18px;padding:60px 20px;text-align:center;color:var(--t2);max-width:540px;margin:0 auto}
+.evs-loading p{font-size:15px;line-height:1.6}
+.evs-loading-note{font-size:13px;color:var(--t3);max-width:42ch}
+.evs-spinner{display:inline-flex;gap:8px}
+.evs-spinner span{display:inline-block;width:10px;height:10px;background:var(--orange);
+  animation:evs-blink 1.2s infinite ease-in-out both}
+.evs-spinner span:nth-child(2){animation-delay:.16s}
+.evs-spinner span:nth-child(3){animation-delay:.32s}
+@keyframes evs-blink{0%,80%,100%{opacity:.2;transform:scale(.85)}40%{opacity:1;transform:scale(1.1)}}
+
+.evs-timeout{padding:32px;background:var(--card);border:1px solid var(--line);max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.evs-timeout h2{font-size:22px}
+.evs-timeout p{color:var(--t2);font-size:15px;line-height:1.6}
+
+.evs-section-title{font-family:'Lexend Mega',sans-serif;font-size:clamp(20px,3vw,28px);
+  letter-spacing:-.01em;margin-bottom:8px}
+.evs-instructions{max-width:680px;margin:0 auto 32px;text-align:center;padding:0 12px}
+.evs-instructions p{color:var(--t2);font-size:15px;line-height:1.65;margin-top:8px}
+
+.evs-tickets{display:flex;flex-direction:column;gap:36px;align-items:center}
+.evs-ticket-actions{display:flex;justify-content:center;margin-top:10px}
+
+.evs-foot{margin-top:48px;padding-top:32px;border-top:1px solid var(--line);text-align:center;color:var(--t2);font-size:14px;line-height:1.6}
+
+.evs-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+
+.evs-wrap{padding:80px 0 60px;text-align:center}
+.evs-wrap .page-title{margin:8px 0 16px}
+
+/* ─── EventCancelPage ─── */
+.evc-main{min-height:60vh;padding-bottom:120px}
+.evc-hero{padding:80px 0 60px}
+.evc-wrap{text-align:center;max-width:640px;margin:0 auto}
+.evc-wrap .page-title{margin:8px 0 16px}
+.evc-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.evc-foot-note{margin-top:18px;font-size:13px;color:var(--t3)}
+
+/* ─── EventTicketPage ─── */
+.evt-main{min-height:60vh;padding-bottom:120px}
+.evt-head{padding:48px 0 24px;border-bottom:1px solid var(--line);text-align:center}
+.evt-head .page-title{margin:8px 0 12px}
+.evt-head .page-lead{max-width:520px;margin:0 auto 18px}
+.evt-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.evt-body{padding:48px 0}
+.evt-card-wrap{display:flex;justify-content:center}
+.evt-foot{padding:32px 0 64px;border-top:1px solid var(--line);margin-top:32px}
+.evt-foot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width:760px){.evt-foot-grid{grid-template-columns:1fr}}
+.evt-foot-head{font-family:'Lexend Mega',sans-serif;font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:8px;font-weight:700}
+.evt-foot-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.evt-foot-list li{position:relative;padding-left:14px;font-size:14px;color:var(--t2);line-height:1.5}
+.evt-foot-list li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--orange)}
+.evt-foot p{font-size:14px;color:var(--t2);line-height:1.6}
+.evt-error{color:var(--red)}
+.evt-loading{display:flex;flex-direction:column;gap:14px;align-items:center;padding:60px 0;color:var(--t2)}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TICKET CARD — 5:2 Bauhaus ticket with watermark + QR
+   ═══════════════════════════════════════════════════════════════════ */
+.tkt{
+  position:relative;
+  width:100%;
+  max-width:780px;
+  aspect-ratio:5/2;
+  background:var(--tkt-card);
+  color:var(--tkt-on);
+  border:2px solid var(--tkt-accent);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  font-family:'Public Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+}
+
+/* Diagonal name watermark */
+.tkt-watermark{
+  position:absolute;inset:0;width:100%;height:100%;
+  color:var(--tkt-accent);
+  opacity:.07;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* Top stripe */
+.tkt-stripe{
+  position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;
+  border-bottom:1px solid color-mix(in srgb, var(--tkt-on) 25%, transparent);
+  flex-shrink:0;
+}
+.tkt-brand{display:flex;align-items:center;gap:10px}
+.tkt-mark{width:18px;height:18px;background:var(--tkt-accent);display:block}
+.tkt-brand-text{font-family:'Lexend Mega',sans-serif;font-weight:800;letter-spacing:.16em;font-size:11px;color:var(--tkt-on)}
+.tkt-tier-pill{
+  padding:4px 12px;
+  background:var(--tkt-accent);
+  color:#000;
+  font-family:'Lexend Mega',sans-serif;
+  font-weight:800;
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+/* Main grid */
+.tkt-grid{
+  position:relative;z-index:2;
+  flex:1;
+  display:grid;
+  grid-template-columns:1.1fr 1.4fr .9fr;
+  gap:0;
+  min-height:0;
+}
+.tkt-grid > *{
+  padding:16px 18px;
+  border-right:1px dashed color-mix(in srgb, var(--tkt-on) 25%, transparent);
+  display:flex;flex-direction:column;
+  min-width:0;
+}
+.tkt-grid > *:last-child{border-right:none}
+
+.tkt-spst{align-items:center;justify-content:center;text-align:center;gap:8px}
+.tkt-glyph{width:80px;height:80px;flex-shrink:0}
+.tkt-spst-name{font-family:'Lexend Mega',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;color:var(--tkt-accent);line-height:1}
+.tkt-spst-sub{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--tkt-muted)}
+.tkt-spst-zuschauer{display:flex;flex-direction:column;align-items:center;gap:8px}
+.tkt-spst-mark{width:64px;height:64px;background:var(--tkt-accent);position:relative}
+.tkt-spst-mark::after{content:"";position:absolute;inset:18px;background:var(--tkt-card)}
+
+.tkt-meta{justify-content:space-between;gap:8px}
+.tkt-eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--tkt-muted);font-weight:700}
+.tkt-name{font-family:'Lexend Mega',sans-serif;font-weight:800;font-size:clamp(18px,2.6vw,26px);letter-spacing:-.02em;line-height:1.1;color:var(--tkt-on);margin:2px 0 8px;word-break:break-word}
+.tkt-event{display:flex;flex-direction:column;gap:2px;margin-bottom:8px}
+.tkt-event-title{font-size:13px;font-weight:700;color:var(--tkt-on);line-height:1.3}
+.tkt-event-line{font-size:11px;color:var(--tkt-muted);line-height:1.4}
+.tkt-perks{list-style:none;display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--tkt-muted)}
+.tkt-perks li{position:relative;padding-left:12px;line-height:1.4}
+.tkt-perks li::before{content:"";position:absolute;left:0;top:6px;width:5px;height:5px;background:var(--tkt-accent)}
+
+.tkt-qr{align-items:center;justify-content:center;gap:8px;padding:12px}
+.tkt-qr .qr{background:#fff;padding:6px;display:flex;align-items:center;justify-content:center}
+.tkt-qr .qr svg{display:block;width:100%;height:100%}
+.tkt-id{font-family:'Lexend Mega',sans-serif;font-weight:800;font-size:11px;letter-spacing:.1em;color:var(--tkt-on)}
+.tkt-scan-hint{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--tkt-muted);text-align:center}
+
+/* State overlay */
+.tkt-state{
+  position:absolute;inset:auto 0 0 0;z-index:3;
+  text-align:center;
+  font-family:'Lexend Mega',sans-serif;
+  font-weight:800;
+  font-size:14px;
+  letter-spacing:.2em;
+  padding:8px 14px;
+  text-transform:uppercase;
+}
+
+/* Mobile breakpoint — collapse from 3-col to stacked */
+@media (max-width:620px){
+  .tkt{aspect-ratio:auto}
+  .tkt-grid{grid-template-columns:1fr;grid-auto-rows:auto}
+  .tkt-grid > *{border-right:none;border-bottom:1px dashed color-mix(in srgb, var(--tkt-on) 25%, transparent);padding:18px}
+  .tkt-grid > *:last-child{border-bottom:none}
+  .tkt-spst{flex-direction:row;justify-content:flex-start;text-align:left;gap:14px}
+  .tkt-spst .tkt-glyph{width:64px;height:64px}
+  .tkt-qr .qr{width:140px !important;height:140px !important}
+}
+
+/* QR placeholder while loading */
+.qr-loading{background:rgba(0,0,0,.06);border:1px dashed rgba(0,0,0,.15)}
+.qr-error{font-size:11px;color:var(--red);padding:8px}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PRINT — only the ticket card, full-bleed white
+   ═══════════════════════════════════════════════════════════════════ */
+@media print{
+  /* Page setup — A6 landscape works well for a 5:2 card */
+  @page{size:auto;margin:12mm}
+  body{background:#fff !important;color:#000 !important}
+  .no-print, header, .site-footer, .site-header, .bauhaus-line,
+  .scroll-to-top, .toast-host, .evt-head, .evt-foot{display:none !important}
+  .evt-main{padding:0 !important;min-height:auto !important;background:#fff !important}
+  .evt-body{padding:0 !important}
+  .evt-card-wrap{justify-content:center;padding:0 !important}
+  .wrap{max-width:none !important;padding:0 !important}
+
+  /* Force ticket to a printable colour-safe theme */
+  .tkt{
+    background:#fff !important;
+    color:#000 !important;
+    border:2px solid var(--tkt-accent) !important;
+    box-shadow:none !important;
+    page-break-inside:avoid;
+    max-width:100% !important;
+  }
+  .tkt-watermark{opacity:.06 !important;color:#666 !important}
+  .tkt-stripe{border-bottom-color:#999 !important}
+  .tkt-grid > *{border-right-color:#999 !important;border-bottom-color:#999 !important}
+  .tkt-brand-text,.tkt-on,.tkt-name,.tkt-event-title,.tkt-id{color:#000 !important}
+  .tkt-tier-pill{background:var(--tkt-accent) !important;color:#000 !important}
+  .tkt-spst-name{color:var(--tkt-accent) !important}
+  .tkt-event-line,.tkt-perks,.tkt-spst-sub,.tkt-eyebrow,.tkt-scan-hint{color:#555 !important}
+
+  /* QR — already white-bg by component, keep it tight */
+  .tkt-qr .qr{padding:4px}
+}

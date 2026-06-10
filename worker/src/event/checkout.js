@@ -47,6 +47,17 @@ export async function handleEventCheckout(request, env) {
     return errJson(request, env, 405, 'method_not_allowed', 'POST required');
   }
 
+  /* ── 0) Global kill switch ── */
+  // BOOKING_LOCKED takes precedence over everything — including a valid
+  // bypass code. Flip via wrangler.toml [vars] BOOKING_LOCKED = "1" / "".
+  // The frontend mirrors this in src/lib/featureFlags.ts so the SPA
+  // doesn't even render the buy flow, but a determined caller could still
+  // POST to this endpoint — this guard ensures we 503 even then.
+  if (String(env.BOOKING_LOCKED || '') === '1') {
+    return errJson(request, env, 503, 'booking_locked',
+      'Ticketverkauf aktuell gesperrt. Bitte später erneut versuchen.');
+  }
+
   /* ── 1) Parse body ── */
   let body;
   try { body = await request.json(); }

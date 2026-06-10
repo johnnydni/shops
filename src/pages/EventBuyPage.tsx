@@ -23,6 +23,7 @@ import {
   EventCheckoutError,
   type CheckoutPayload,
 } from '../lib/eventCheckout';
+import { BOOKING_LOCKED } from '../lib/featureFlags';
 
 /**
  * /event/buy/:eventId — multi-step ticket purchase flow.
@@ -60,6 +61,11 @@ export function EventBuyPage() {
       return next;
     });
   }, []);
+
+  /* ───── Global kill switch — booking locked ───── */
+  if (BOOKING_LOCKED) {
+    return <Navigate to={event ? `/events/${event.id}` : '/events'} replace />;
+  }
 
   /* ───── Bail if event unknown ───── */
   if (!event) {

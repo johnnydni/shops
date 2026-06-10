@@ -157,6 +157,8 @@ function translateCode(code: string | undefined, http: number): string {
       return 'Sicherheitsprüfung fehlgeschlagen. Bitte Seite neu laden.';
     case 'honeypot_triggered':
       return 'Antrag konnte nicht verarbeitet werden.';
+    case 'booking_locked':
+      return 'Ticketverkauf aktuell gesperrt. Bitte später erneut versuchen.';
     default:
       return http >= 500
         ? 'Server-Fehler. Wir schauen uns das an — bitte kurz später erneut versuchen.'

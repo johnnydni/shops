@@ -69,13 +69,6 @@ export interface CheckoutPayload {
   turnstileToken: string;
   acceptedAgb: boolean;
   acceptedPrivacy: boolean;
-  /**
-   * Optional pre-sales test bypass code. When the Worker has
-   * `EVENT_BYPASS_CODE` set and this value matches, the sales-window
-   * check is skipped — all other guards (Turnstile, caps, quiz scoring,
-   * Stripe pricing) remain in force.
-   */
-  bypassCode?: string;
 }
 
 export interface CheckoutResponse {

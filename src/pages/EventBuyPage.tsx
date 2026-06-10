@@ -122,7 +122,6 @@ export function EventBuyPage() {
         turnstileToken: state.turnstileToken,
         acceptedAgb: state.acceptedAgb,
         acceptedPrivacy: state.acceptedPrivacy,
-        bypassCode: state.bypassCode || undefined,
       };
       const { url } = await createEventCheckout(payload);
       // Redirect away — sessionStorage cleared by the success page,
@@ -165,7 +164,6 @@ export function EventBuyPage() {
             {event.title}
           </h1>
           <StepProgress current={currentStep} visibleSteps={visibleSteps} />
-          <BypassCodeField event={evt} state={state} setState={setState} />
         </div>
       </motion.section>
 
@@ -231,58 +229,6 @@ export function EventBuyPage() {
         </div>
       </section>
     </main>
-  );
-}
-
-/**
- * Pre-sales test bypass code input.
- *
- * Renders ONLY while we're outside the sales window (e.g. before
- * `salesStart`). The input attaches a `bypassCode` field to the
- * checkout payload — the Worker checks it against `EVENT_BYPASS_CODE`
- * (constant-time compare) and skips ONLY the sales-window guard if
- * it matches. All other guards remain active.
- *
- * In-memory only — never persisted to sessionStorage.
- */
-function BypassCodeField({
-  event,
-  state,
-  setState,
-}: {
-  event: { salesStart?: string; salesEnd?: string };
-  state: BuyState;
-  setState: (next: Partial<BuyState>) => void;
-}) {
-  const now = Date.now();
-  const start = event.salesStart ? Date.parse(event.salesStart) : NaN;
-  const end   = event.salesEnd   ? Date.parse(event.salesEnd)   : NaN;
-  const outsideWindow =
-    (Number.isFinite(start) && now < start) ||
-    (Number.isFinite(end)   && now > end);
-  if (!outsideWindow) return null;
-
-  return (
-    <details className="bf-bypass">
-      <summary>Test-Zugang</summary>
-      <label className="bf-bypass-row">
-        <span className="bf-bypass-label">Code</span>
-        <input
-          type="text"
-          inputMode="numeric"
-          autoComplete="off"
-          spellCheck={false}
-          maxLength={32}
-          placeholder="•••••"
-          value={state.bypassCode}
-          onChange={(e) => setState({ bypassCode: e.target.value })}
-        />
-      </label>
-      <p className="bf-bypass-hint">
-        Umgeht ausschließlich das „Verkauf ab …"-Datum für interne Tests.
-        Alle anderen Prüfungen (Turnstile, Zahlung, Caps) bleiben aktiv.
-      </p>
-    </details>
   );
 }
 

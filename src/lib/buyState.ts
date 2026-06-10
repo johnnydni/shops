@@ -41,13 +41,6 @@ export interface BuyState {
   /** AGB + Datenschutz Pflicht-Checkboxen vor Checkout. */
   acceptedAgb: boolean;
   acceptedPrivacy: boolean;
-  /**
-   * Optional pre-sales test bypass code. In-memory only (never written to
-   * sessionStorage) — disposable per session, so leaking the field to
-   * the next user is impossible. Worker validates against its
-   * `EVENT_BYPASS_CODE` env value.
-   */
-  bypassCode: string;
 }
 
 export function emptyBuyer(): BuyerInfo {
@@ -74,7 +67,6 @@ export function initialState(eventId: string): BuyState {
     quiz: null,
     honeypot: '',
     turnstileToken: '',
-    bypassCode: '',
     acceptedAgb: false,
     acceptedPrivacy: false,
   };

@@ -47,6 +47,17 @@ export async function handleEventCheckout(request, env) {
     return errJson(request, env, 405, 'method_not_allowed', 'POST required');
   }
 
+  /* ── 0) Global kill switch ── */
+  // BOOKING_LOCKED takes precedence over everything else.
+  // Flip via wrangler.toml [vars] BOOKING_LOCKED = "1" / "".
+  // The frontend mirrors this in src/lib/featureFlags.ts so the SPA
+  // doesn't even render the buy flow, but a determined caller could still
+  // POST to this endpoint — this guard ensures we 503 even then.
+  if (String(env.BOOKING_LOCKED || '') === '1') {
+    return errJson(request, env, 503, 'booking_locked',
+      'Ticketverkauf aktuell gesperrt. Bitte später erneut versuchen.');
+  }
+
   /* ── 1) Parse body ── */
   let body;
   try { body = await request.json(); }
@@ -80,17 +91,9 @@ export async function handleEventCheckout(request, env) {
     return errJson(request, env, 400, e.code || 'unknown_event', e.message);
   }
 
-  /* ── 5) Sales window (+ optional test bypass) ── */
+  /* ── 5) Sales window ── */
   const sw = checkSalesWindow(event);
-  if (!sw.ok) {
-    const bypass = env.EVENT_BYPASS_CODE;
-    const provided = typeof v.payload.bypassCode === 'string' ? v.payload.bypassCode.trim() : '';
-    const bypassed = bypass && provided && timingSafeStrEqual(provided, bypass);
-    if (!bypassed) {
-      return errJson(request, env, 403, sw.reason, sw.reason);
-    }
-    console.log(`· event-checkout: sales-window bypass used (${sw.reason}) for ${v.payload.buyer.email}`);
-  }
+  if (!sw.ok) return errJson(request, env, 403, sw.reason, sw.reason);
 
   /* ── 6) Quantity rules ── */
   const qty = v.payload.quantity;
@@ -244,10 +247,7 @@ const NAME_RE  = /^[\p{L}\p{M}\s'`’.\-]{1,80}$/u;
 function validatePayload(body) {
   if (!body || typeof body !== 'object') return { ok: false, code: 'invalid_payload', message: 'body required' };
 
-  const { eventId, tier, quantity, buyer, attendees, quiz, honeypot, turnstileToken, acceptedAgb, acceptedPrivacy, bypassCode } = body;
-  if (bypassCode != null && (typeof bypassCode !== 'string' || bypassCode.length > 64)) {
-    return { ok: false, code: 'invalid_payload', message: 'bypassCode invalid' };
-  }
+  const { eventId, tier, quantity, buyer, attendees, quiz, honeypot, turnstileToken, acceptedAgb, acceptedPrivacy } = body;
 
   if (typeof eventId !== 'string' || eventId.length > 200) return { ok: false, code: 'invalid_event', message: 'eventId invalid' };
   if (tier !== 'spieler' && tier !== 'zuschauer')          return { ok: false, code: 'invalid_tier',  message: 'tier invalid' };
@@ -317,7 +317,6 @@ function validatePayload(body) {
       } : null,
       honeypot,
       turnstileToken,
-      bypassCode: typeof bypassCode === 'string' ? bypassCode : '',
     },
   };
 }
@@ -329,11 +328,3 @@ function nameOk(s) {
   return NAME_RE.test(t);
 }
 
-/** Constant-time string compare for short codes — protects bypass code lookup. */
-function timingSafeStrEqual(a, b) {
-  if (typeof a !== 'string' || typeof b !== 'string') return false;
-  if (a.length !== b.length) return false;
-  let mm = 0;
-  for (let i = 0; i < a.length; i++) mm |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return mm === 0;
-}

@@ -25,17 +25,13 @@ RESEND_REPLY_TO      = "hello@ritmopadel.shop"
 # Site key is public (rendered in HTML). Secret goes in `wrangler secret put`.
 TURNSTILE_SITE_KEY   = ""
 
-# ── Pre-sales test bypass ──
-# Lets internal testers POST /api/event/checkout BEFORE salesStart by
-# passing { bypassCode: "<value>" } in the body. ONLY the sales-window
-# check is skipped — all other guards (Turnstile, caps, quiz scoring,
-# Stripe pricing) still apply. Stripe is in TEST-mode for these flows.
-#
-# Rotate or unset before public launch:
-#   wrangler secret put EVENT_BYPASS_CODE   (overrides this var)
-#   wrangler secret delete EVENT_BYPASS_CODE  (to fully disable)
-# Setting this to an empty string disables the bypass.
-EVENT_BYPASS_CODE    = "1862"
+# ── Booking kill switch ──
+# When set to "1", /api/event/checkout returns 503 booking_locked
+# before any other validation runs. Frontend mirrors this in
+# `src/lib/featureFlags.ts → BOOKING_LOCKED` so the SPA doesn't even
+# render the buy flow. Set to "" or remove to unlock. Always change
+# BOTH layers together — if they drift, the lock wins.
+BOOKING_LOCKED       = "1"
 
 # ────────────────────────────────────────────────────────────────────
 # KV namespaces — create with:

@@ -10,6 +10,7 @@ import {
 } from '../lib/types';
 import { eur } from '../lib/format';
 import { dayRange, monthShort, fullDate } from '../lib/dates';
+import { BOOKING_LOCKED } from '../lib/featureFlags';
 
 /**
  * Computes the right CTA flavour for a given event:
@@ -33,6 +34,12 @@ function TicketCTA({
   const cls = `btn btn-pri${size ? ' ' + size : ''}`;
   const label = event.ctaLabel ?? fallbackLabel ?? 'Ticket sichern';
 
+  // Global kill switch — overrides every other state. Renders a flat
+  // disabled button with no link target.
+  if (BOOKING_LOCKED) {
+    return <button className={cls} disabled>Bald verfügbar</button>;
+  }
+
   if (event.tickets && event.tickets.length) {
     const now = Date.now();
     const start = event.salesStart ? Date.parse(event.salesStart) : NaN;
@@ -41,14 +48,7 @@ function TicketCTA({
       return <button className={cls} disabled>Verkauf beendet</button>;
     }
     if (Number.isFinite(start) && now < start) {
-      // Pre-sales: keep the button link-shaped so internal testers can
-      // reach the buy page with the test-bypass code. Public visitors
-      // see "Verkauf ab …" and won't be able to submit without the code.
-      return (
-        <Link to={`/event/buy/${event.id}`} className={cls} aria-label={`Verkauf ab ${fullDate(event.salesStart!)}`}>
-          Verkauf ab {fullDate(event.salesStart!)}
-        </Link>
-      );
+      return <button className={cls} disabled>Verkauf ab {fullDate(event.salesStart!)}</button>;
     }
     return <Link to={`/event/buy/${event.id}`} className={cls}>{label} →</Link>;
   }

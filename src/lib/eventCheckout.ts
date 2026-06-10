@@ -69,13 +69,6 @@ export interface CheckoutPayload {
   turnstileToken: string;
   acceptedAgb: boolean;
   acceptedPrivacy: boolean;
-  /**
-   * Optional pre-sales test bypass code. When the Worker has
-   * `EVENT_BYPASS_CODE` set and this value matches, the sales-window
-   * check is skipped — all other guards (Turnstile, caps, quiz scoring,
-   * Stripe pricing) remain in force.
-   */
-  bypassCode?: string;
 }
 
 export interface CheckoutResponse {
@@ -157,6 +150,8 @@ function translateCode(code: string | undefined, http: number): string {
       return 'Sicherheitsprüfung fehlgeschlagen. Bitte Seite neu laden.';
     case 'honeypot_triggered':
       return 'Antrag konnte nicht verarbeitet werden.';
+    case 'booking_locked':
+      return 'Ticketverkauf aktuell gesperrt. Bitte später erneut versuchen.';
     default:
       return http >= 500
         ? 'Server-Fehler. Wir schauen uns das an — bitte kurz später erneut versuchen.'

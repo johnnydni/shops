@@ -136,17 +136,22 @@ export const SPIELSTILE: Record<SpielstilId, Spielstil> = {
   },
   hysterica: {
     id: 'hysterica', slug: 'hysterica', name: 'HYSTERICA',
-    subtitle: 'Die Dramatikerin',
-    tagline: 'Drama ist Teil meines Spiels.',
+    subtitle: 'Die Unberechenbare',
+    tagline: 'Mal Querschläger. Mal Highlight-Reel.',
     desc:
-      'HYSTERICA spielt das Match auf zwei Ebenen — auf dem Court und über dem Court. Jubel ' +
-      'nach dem Punkt, ein Blick nach jedem Fehlentscheid, kleine Pause an der richtigen Stelle. ' +
-      'Nicht Schauspiel, sondern Strategie: Tempo brechen, Köpfe drehen, Energie ins eigene Team holen.',
-    kernwerte: ['Energie', 'Bühnenpräsenz', 'Momentum'],
-    strengths: ['Drift Tempo & Stimmung des Matches', 'Stark unter Publikum', 'Bricht gegnerischen Lauf nach 3 Punkten'],
-    shots: ['Loud Smash', 'Pause-und-Vibora', 'Comeback-Cross'],
-    weaknesses: ['Verliert Konzentration ohne Energie-Anker', 'Eigenes Drama als Bumerang'],
-    partners: ['fantasma', 'motor'],
+      'HYSTERICA spielt nach Gefühl. Bälle kreuz und quer, Positionswechsel ohne Ankündigung, ' +
+      'mal Bandeja aus dem Hocker, mal Backhand-Cross-Vibora aus dem Lauf. Klingt chaotisch — ' +
+      'bis der eine Shot kommt, an den sich danach alle erinnern. Du gewinnst nicht durch System, ' +
+      'sondern durch Momente.',
+    kernwerte: ['Chaos', 'Highlight', 'Gefühl'],
+    strengths: [
+      'Schlägt aus dem Nichts den Winner',
+      'Unlesbar für den Gegner',
+      'Macht aus jeder Situation einen Punkt',
+    ],
+    shots: ['Backhand-Cross aus dem Lauf', 'Surprise Vibora', 'Crash-Smash'],
+    weaknesses: ['Konsistenz? Eher nicht.', 'Braucht den richtigen Tag'],
+    partners: ['muro', 'motor'],
     accent: '#FF1F6F', card: '#20001A', text: '#000', symbol: 'diagonal',
   },
 };

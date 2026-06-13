@@ -2017,3 +2017,134 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   /* QR — already white-bg by component, keep it tight */
   .tkt-qr .qr{padding:4px}
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DNA QUIZ — /dna-quiz · standalone community page
+   ═══════════════════════════════════════════════════════════════════ */
+.dna-main{min-height:100vh;padding:0 0 120px;position:relative}
+.dna-stripe{
+  position:sticky;top:0;left:0;right:0;
+  height:4px;background:linear-gradient(90deg,
+    var(--orange) 0%, var(--yellow) 33%, var(--orange) 66%, #FF1F6F 100%);
+  z-index:5;
+}
+.dna-main .wrap{max-width:780px;margin:0 auto;padding-top:56px}
+
+.dna-eyebrow{font-family:'Lexend Mega',sans-serif;font-size:13px;
+  letter-spacing:.18em;color:var(--orange);font-weight:800;text-transform:uppercase;margin-bottom:12px}
+.dna-step{display:flex;flex-direction:column;gap:18px}
+
+/* ─── Phase 1: Name ─── */
+.dna-step-name{align-items:flex-start;padding:48px 0 32px}
+.dna-headline{font-family:'Lexend Mega',sans-serif;
+  font-size:clamp(40px,7vw,84px);line-height:.98;letter-spacing:-.03em;
+  font-weight:800;color:var(--t1);margin-bottom:8px}
+.dna-headline .accent{color:var(--orange)}
+.dna-lead{font-size:17px;color:var(--t2);line-height:1.55;max-width:60ch;margin-bottom:18px}
+.dna-lead strong{color:var(--t1)}
+
+.dna-name-field{display:flex;flex-direction:column;gap:8px;width:100%;max-width:520px;margin-top:18px}
+.dna-name-label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:700}
+.dna-name-field input{
+  height:62px;padding:0 20px;background:var(--card);color:var(--t1);
+  border:2px solid var(--line2);font-family:'Lexend Mega',sans-serif;
+  font-size:22px;font-weight:700;letter-spacing:-.01em;
+  transition:border var(--fast)
+}
+.dna-name-field input:focus{outline:none;border-color:var(--orange)}
+.dna-name-field input::placeholder{color:var(--t3);font-weight:400}
+
+.dna-actions{display:flex;gap:12px;margin-top:18px}
+.dna-fineprint{font-size:12px;color:var(--t3);margin-top:16px;line-height:1.5;max-width:48ch}
+
+/* ─── Phase 2: Quiz ─── */
+.dna-step-quiz{gap:24px}
+.dna-progress-row{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.dna-progress-count{font-family:'Lexend Mega',sans-serif;font-size:12px;
+  letter-spacing:.12em;color:var(--orange);font-weight:800;flex-shrink:0}
+.dna-progress-bar{flex:1;height:4px;background:var(--card2);position:relative;overflow:hidden}
+.dna-progress-fill{position:absolute;left:0;top:0;bottom:0;background:var(--orange);
+  transition:width .45s var(--ease-out)}
+
+.dna-q-card{
+  background:var(--card);border:1px solid var(--line);padding:32px;
+  display:flex;flex-direction:column;gap:18px
+}
+.dna-q-title{font-family:'Lexend Mega',sans-serif;
+  font-size:clamp(22px,3.5vw,32px);line-height:1.2;letter-spacing:-.02em;
+  color:var(--t1)}
+.dna-q-hint{font-size:14px;color:var(--t3);font-style:italic}
+.dna-q-answers{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+
+.dna-q-ans{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px 18px;background:var(--card2);border:1px solid var(--line);
+  text-align:left;cursor:pointer;color:var(--t1);
+  transition:border var(--fast), background var(--fast), transform var(--fast)
+}
+.dna-q-ans:hover{border-color:var(--orange);background:var(--card3);transform:translateX(2px)}
+.dna-q-ans.is-picked{
+  border-color:var(--orange);
+  background:rgba(255,122,26,.12);
+  box-shadow:0 0 0 1px var(--orange) inset
+}
+
+.dna-q-check{
+  flex-shrink:0;width:26px;height:26px;display:inline-flex;
+  align-items:center;justify-content:center;
+  border:1.5px solid var(--line2);background:transparent;
+  color:#000;transition:all var(--fast)
+}
+.dna-q-ans.is-picked .dna-q-check{
+  border-color:var(--orange);background:var(--orange);color:#000
+}
+.dna-q-text{flex:1;font-size:15px;line-height:1.5;padding-top:2px}
+
+.dna-nav-row{display:flex;justify-content:space-between;gap:14px;padding-top:8px}
+.dna-multi-hint{font-size:12px;color:var(--t3);text-align:center;line-height:1.5}
+
+/* ─── Phase 3: Result ─── */
+.dna-step-result{align-items:center;text-align:center;gap:24px;padding-top:32px}
+.dna-result-heading{
+  font-family:'Lexend Mega',sans-serif;
+  font-size:clamp(28px,5vw,52px);line-height:1.1;letter-spacing:-.02em;
+  font-weight:800;color:var(--t1);max-width:14ch
+}
+.dna-step-result > * + .spst-card{margin-top:8px}
+
+.dna-screenshot-hint{
+  display:flex;align-items:center;gap:16px;text-align:left;
+  background:var(--card);border:1px solid var(--line);padding:20px;
+  max-width:520px;width:100%;margin-top:24px
+}
+.dna-screenshot-mark{
+  flex-shrink:0;width:44px;height:44px;background:var(--yellow);
+  position:relative
+}
+.dna-screenshot-mark::before,
+.dna-screenshot-mark::after{content:"";position:absolute;background:var(--bg)}
+.dna-screenshot-mark::before{left:8px;right:8px;top:14px;height:18px}
+.dna-screenshot-mark::after{left:18px;right:18px;top:8px;height:6px}
+.dna-screenshot-hint strong{display:block;color:var(--t1);font-size:14px;
+  letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.dna-screenshot-hint p{font-size:13px;color:var(--t2);line-height:1.5}
+
+.dna-result-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.dna-result-brand-line{
+  font-size:13px;color:var(--t3);max-width:48ch;line-height:1.65;
+  margin-top:18px
+}
+.dna-result-brand-line a{color:var(--orange);text-decoration:underline}
+
+.dna-redo-link{
+  margin-top:8px;font-size:13px;color:var(--t3);
+  background:none;border:none;cursor:pointer;text-decoration:underline
+}
+.dna-redo-link:hover{color:var(--t1)}
+
+@media (max-width:560px){
+  .dna-main .wrap{padding-left:18px;padding-right:18px}
+  .dna-q-card{padding:22px}
+  .dna-screenshot-hint{flex-direction:column;align-items:flex-start}
+  .dna-name-field input{font-size:18px;height:54px}
+}

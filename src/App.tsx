@@ -15,6 +15,7 @@ import { EventBuyPage } from './pages/EventBuyPage';
 import { EventSuccessPage } from './pages/EventSuccessPage';
 import { EventCancelPage } from './pages/EventCancelPage';
 import { EventTicketPage } from './pages/EventTicketPage';
+import { DnaQuizPage } from './pages/DnaQuizPage';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
 import { SuccessPage } from './pages/SuccessPage';
@@ -48,6 +49,7 @@ export function App() {
         <Route path="/event/success" element={<EventSuccessPage />} />
         <Route path="/event/cancel" element={<EventCancelPage />} />
         <Route path="/event/ticket/:token" element={<EventTicketPage />} />
+        <Route path="/dna-quiz" element={<DnaQuizPage />} />
         <Route path="/produkt/:slug" element={<ProductPage />} />
         <Route path="/warenkorb" element={<CartPage />} />
         <Route path="/bestellt" element={<SuccessPage />} />

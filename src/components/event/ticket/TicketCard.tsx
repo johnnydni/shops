@@ -94,7 +94,7 @@ export function TicketCard({
         </div>
       </div>
 
-      {/* ── Main grid: Spielstil · Centre · QR ── */}
+      {/* ── Main grid: Spielstil, Centre, QR ── */}
       <div className="tkt-grid">
 
         {/* Spielstil column */}
@@ -109,7 +109,7 @@ export function TicketCard({
             <div className="tkt-spst-zuschauer">
               <div className="tkt-spst-mark" aria-hidden="true" />
               <div className="tkt-spst-name">ZUSCHAUER</div>
-              <div className="tkt-spst-sub">Court-Rand · Drinks · DJ</div>
+              <div className="tkt-spst-sub">Court-Rand, Drinks, DJ</div>
             </div>
           )}
         </div>
@@ -122,7 +122,7 @@ export function TicketCard({
           <div className="tkt-event">
             <div className="tkt-event-title">{ticket.eventName}</div>
             <div className="tkt-event-line">
-              {formatGermanDate(ticket.eventDateIso)} · ab 18 Uhr
+              {formatGermanDate(ticket.eventDateIso)}, ab 18 Uhr
             </div>
             <div className="tkt-event-line">{ticket.venueLine}</div>
           </div>

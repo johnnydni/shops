@@ -62,7 +62,7 @@ export interface VariantGroup {
 
 /* ───────── Story / spec / video building blocks ───────── */
 export interface FeatureSection {
-  eyebrow: string;        // "01 · Material"
+  eyebrow: string;        // "01, Material"
   title: string;          // headline; supports "<span class='accent'>…</span>" via dangerouslySetInnerHTML in component
   titleAccent?: string;   // accent half of the title, if you want it composed safely
   body: string[];         // paragraphs
@@ -205,7 +205,7 @@ export interface EventItem {
   date: string;
   /** ISO end date for multi-day events. Optional. */
   endDate?: string;
-  /** Single line like "RITMO Center · Berlin" or just "Hamburg". */
+  /** Single line like "RITMO Center, Berlin" or just "Hamburg". */
   location: string;
   /** Optional venue name shown above the city if you want a 2-line venue. */
   venue?: string;

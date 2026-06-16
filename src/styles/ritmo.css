@@ -164,6 +164,17 @@ input,select,textarea{font-family:inherit}
 .gradient-blinds-container{position:absolute;inset:0;width:100%;height:100%;
   overflow:hidden;z-index:0}
 
+/* ─── Universal product / feature image fallback ───────────────────
+   Orange→black Bauhaus gradient. Used by <ProductImage> whenever the
+   real photo is missing or fails to load (and by direct .fallback
+   divs in the editorial feature blocks). Replaces the old SVG
+   illustrations as the canonical fallback look. */
+.fallback{
+  background:
+    radial-gradient(120% 80% at 20% 0%, rgba(255,210,150,0.35) 0%, transparent 55%),
+    linear-gradient(155deg, #FF7A1A 0%, #C24A0E 38%, #1A0A00 100%);
+}
+
 /* Subtle film-grain overlay */
 .grain{position:fixed;inset:0;pointer-events:none;z-index:1000;mix-blend-mode:overlay;
   opacity:.08;
@@ -199,9 +210,9 @@ input,select,textarea{font-family:inherit}
 .card-prod:hover::before{left:100%}
 
 .prod-img{position:relative;width:100%;aspect-ratio:5/4;background:var(--card2);overflow:hidden}
-.prod-img > svg.fallback{position:absolute;inset:0;width:100%;height:100%;display:block;
+.prod-img > .fallback{position:absolute;inset:0;width:100%;height:100%;display:block;
   transition:transform var(--slow) var(--ease)}
-.card-prod:hover .prod-img > svg.fallback{transform:scale(1.05)}
+.card-prod:hover .prod-img > .fallback{transform:scale(1.05)}
 .prod-img > img{position:relative;z-index:1;width:100%;height:100%;
   object-fit:cover;display:block;transition:transform var(--slow) var(--ease)}
 .card-prod:hover .prod-img > img{transform:scale(1.05)}
@@ -327,7 +338,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 
 .pdp-stage{position:relative;aspect-ratio:1/1;background:var(--card2);
   border:1px solid var(--line);overflow:hidden}
-.pdp-stage > svg.fallback{position:absolute;inset:0;width:100%;height:100%}
+.pdp-stage > .fallback{position:absolute;inset:0;width:100%;height:100%}
 .pdp-stage > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 
 /* Animated background placeholder behind hero stage —
@@ -406,7 +417,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 
 .feat-visual{position:relative;aspect-ratio:5/4;background:var(--card);
   border:1px solid var(--line);overflow:hidden}
-.feat-visual > svg.fallback{position:absolute;inset:0;width:100%;height:100%}
+.feat-visual > .fallback{position:absolute;inset:0;width:100%;height:100%}
 .feat-visual > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 
 /* Full-bleed editorial section */
@@ -626,7 +637,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .video-sub{font-size:12px;color:var(--t3);margin-top:4px;line-height:1.5}
 
 /* ═══════════════════════════════════════════════════════════════════
-   SUCCESS · CANCEL · 404 page styles
+   SUCCESS, CANCEL, 404 page styles
    ═══════════════════════════════════════════════════════════════════ */
 .ok-page,.cancel-page{padding:64px 0 120px;text-align:center;position:relative;
   overflow:hidden;min-height:60vh}
@@ -739,16 +750,14 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 
 .hjourney-visual{aspect-ratio:4/3;background:var(--card2);
   position:relative;overflow:hidden}
-.hjourney-visual svg{position:absolute;inset:0;width:100%;height:100%;
+.hjourney-visual > .fallback{position:absolute;inset:0;width:100%;height:100%;
   transition:transform var(--slow) var(--ease)}
-/* Real photo overlay — same Bauhaus-fallback pattern as ProductCard.
-   Sits on top of the SVG (z-index:1), underneath .hjourney-num (z:2).
-   Without this, an image loaded by <ProductImage> in the Journey
-   would render at natural size and miss the cover-crop. */
+/* Real photo overlay — same gradient-fallback pattern as ProductCard.
+   Sits on top of the .fallback (z-index:1), underneath .hjourney-num (z:2). */
 .hjourney-visual > img{position:absolute;inset:0;z-index:1;
   width:100%;height:100%;object-fit:cover;display:block;
   transition:transform var(--slow) var(--ease)}
-.hjourney-panel:hover .hjourney-visual svg,
+.hjourney-panel:hover .hjourney-visual > .fallback,
 .hjourney-panel:hover .hjourney-visual > img{transform:scale(1.04)}
 .hjourney-num{
   position:absolute;top:14px;right:18px;z-index:2;
@@ -1378,10 +1387,10 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   EVENT DETAIL — Scoring · Catering · Music + Mobile ticket-card fix
+   EVENT DETAIL — Scoring, Catering, Music + Mobile ticket-card fix
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ─── Scoring · RITMO Match Tiers ────────────────────────────────── */
+/* ─── Scoring, RITMO Match Tiers ────────────────────────────────── */
 .evp-scoring{padding:88px 0;border-top:1px solid var(--line)}
 .evp-scoring-blurb{font-size:15.5px;line-height:1.7;color:var(--t2);
   max-width:60ch;margin:0 0 28px}
@@ -1517,7 +1526,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
    1. Grid items default to `min-width: auto`, which prevents them
       from shrinking below their intrinsic content width.
    2. .btn elements have `white-space: nowrap`, so long disabled
-      labels like "TICKET SICHERN · BALD VERFÜGBAR" pushed the
+      labels like "TICKET SICHERN, BALD VERFÜGBAR" pushed the
       whole panel wider than the viewport.
    ───────────────────────────────────────────────────────────── */
 @media(max-width:540px){
@@ -1624,7 +1633,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 
 /* ═══════════════════════════════════════════════════════════════════
    EVENT BUY FLOW — multi-step ticket purchase (/event/buy/:eventId)
-   Phase 2 · /src/components/event/buy + /src/pages/EventBuyPage.tsx
+   Phase 2, /src/components/event/buy + /src/pages/EventBuyPage.tsx
    ═══════════════════════════════════════════════════════════════════ */
 .bf-main{min-height:60vh;padding-bottom:120px}
 .bf-hero{padding:48px 0 24px;border-bottom:1px solid var(--line)}
@@ -1808,7 +1817,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .spst-compact-meta{display:flex;flex-direction:column}
 
 /* ═══════════════════════════════════════════════════════════════════
-   PHASE 4 · Event ticket display + success/cancel pages
+   PHASE 4, Event ticket display + success/cancel pages
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ─── EventSuccessPage ─── */

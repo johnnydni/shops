@@ -60,7 +60,7 @@ export function CartSummary() {
         disabled={disabled}
         onClick={handleCheckout}
       >
-        {busy ? 'Weiterleitung zu Stripe…' : 'Zur Kasse · Stripe'}
+        {busy ? 'Weiterleitung zu Stripe…' : 'Zur Kasse, Stripe'}
       </button>
 
       {err && (

@@ -84,7 +84,6 @@ export function HomePage() {
         >
           <motion.h1 variants={heroChild}>
             <span className="accent">SHOP</span>
-            <span className="slash">·</span>
             <br />
             BAUHAUS
             <br />
@@ -106,7 +105,7 @@ export function HomePage() {
             aria-label="Zur Produkt-Journey"
             variants={heroChild}
           >
-            <span>Scroll · Produkte</span>
+            <span>Scroll, Produkte</span>
             <svg
               viewBox="0 0 24 24"
               fill="none"

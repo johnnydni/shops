@@ -59,14 +59,14 @@ function TicketCTA({
       </a>
     );
   }
-  return <button className={cls} disabled>{label} · bald verfügbar</button>;
+  return <button className={cls} disabled>{label}, bald verfügbar</button>;
 }
 
 /**
  * /events/:id — full detail page for a single event.
  *
  * Composes:
- *   Crumbs · Hero (stage + info + ticket panel)
+ *   Crumbs, Hero (stage + info + ticket panel)
  *   Story (alternating sections from longDesc)
  *   Programm (high-level phases)
  *   Schedule timeline (time-based row list)
@@ -186,7 +186,7 @@ function Hero({ event }: { event: EventItem }) {
           )}
           <motion.div className="evp-venue-line" variants={child}>
             {event.venue && <strong>{event.venue}</strong>}
-            {event.venue && event.location !== event.venue ? ` · ${event.location}` : ''}
+            {event.venue && event.location !== event.venue ? `, ${event.location}` : ''}
           </motion.div>
 
           {event.tags && event.tags.length > 0 && (
@@ -245,7 +245,7 @@ function HighlightsRow() {
     { tone: 'orange', value: '22',         label: 'Spieler-Spots'   },
     { tone: 'yellow', value: '3',          label: 'Courts in Padel Haus' },
     { tone: 'blue',   value: '18 → Open',  label: 'Sunset bis Mitternacht+' },
-    { tone: 'red',    value: 'Founders',   label: 'Edition · RITMO DNA Cup' },
+    { tone: 'red',    value: 'Founders',   label: 'Edition, RITMO DNA Cup' },
   ];
 
   return (
@@ -429,20 +429,20 @@ function TicketsBlock({ event }: { event: EventItem }) {
                 {t.name === 'Spieler' ? (
                   <>
                     <li>Turnier-Teilnahme (Gruppe + KO oder Ehren-Bracket)</li>
-                    <li>Court-Zeit garantiert · mehrere Matches</li>
-                    <li><b>1 Welcome-Drink</b> · Aperol Spritz, Padelé Spritz oder non-alk.</li>
-                    <li><b>1 großer Burger</b> · Manny&apos;s BBQ</li>
-                    <li><b>Zugang RITMO Refresh Bar</b> · Obst & Säfte</li>
-                    <li>After-Party · Open End</li>
+                    <li>Court-Zeit garantiert, mehrere Matches</li>
+                    <li><b>1 Welcome-Drink</b>, Aperol Spritz, Padelé Spritz oder non-alk.</li>
+                    <li><b>1 großer Burger</b>, Manny&apos;s BBQ</li>
+                    <li><b>Zugang RITMO Refresh Bar</b>, Obst & Säfte</li>
+                    <li>After-Party, Open End</li>
                     <li>Drop-Reveal Zugang</li>
                   </>
                 ) : (
                   <>
                     <li>Eintritt ab 17:30</li>
-                    <li><b>1 Welcome-Drink</b> · Softdrink oder non-alk.</li>
-                    <li><b>1 kleiner Burger</b> · Manny&apos;s BBQ</li>
+                    <li><b>1 Welcome-Drink</b>, Softdrink oder non-alk.</li>
+                    <li><b>1 kleiner Burger</b>, Manny&apos;s BBQ</li>
                     <li>Sunset Session &amp; Live-Matches</li>
-                    <li>After-Party · Open End</li>
+                    <li>After-Party, Open End</li>
                     <li>Aperol &amp; weitere Drinks separat</li>
                   </>
                 )}
@@ -704,7 +704,7 @@ function FinalCta({ event }: { event: EventItem }) {
         <h2>
           Sei <span className="accent">dabei</span>.
         </h2>
-        <p>{event.subtitle ?? event.title} · {fullDate(event.date)}</p>
+        <p>{event.subtitle ?? event.title}, {fullDate(event.date)}</p>
         <div className="evp-final-ctas">
           <TicketCTA event={event} size="btn-lg" />
           <Link to="/events" className="btn btn-out btn-lg">
@@ -743,7 +743,7 @@ function BauhausVisual() {
       {/* Court line */}
       <rect x="0" y="540" width="800" height="3" fill="#FF7A1A" />
       <text x="32" y="588" fontFamily="sans-serif" fontWeight="900" fontStyle="italic"
-            fontSize="14" fill="#fff" letterSpacing="4">RITMO X PADEL HAUS · SUMMER SUNSET</text>
+            fontSize="14" fill="#fff" letterSpacing="4">RITMO X PADEL HAUS, SUMMER SUNSET</text>
     </svg>
   );
 }
@@ -762,7 +762,7 @@ function CourtSVG() {
       {/* Walls indication */}
       <rect x="40" y="40" width="320" height="240" fill="none" stroke="#fff" strokeWidth="1" strokeDasharray="3 6" opacity=".4" />
       <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontStyle="italic"
-            fontSize="13" fill="#fff" letterSpacing="3">PADEL HAUS · COURT</text>
+            fontSize="13" fill="#fff" letterSpacing="3">PADEL HAUS, COURT</text>
     </svg>
   );
 }
@@ -804,7 +804,7 @@ function MusicBauhaus() {
       <line x1="312" y1="84" x2="232" y2="148" stroke="#FFD60A" strokeWidth="3" />
       <circle cx="312" cy="84" r="6" fill="#FFD60A" />
       <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontStyle="italic"
-            fontSize="13" fill="#fff" letterSpacing="3">SUNSET · DJ-SET</text>
+            fontSize="13" fill="#fff" letterSpacing="3">SUNSET, DJ-SET</text>
     </svg>
   );
 }

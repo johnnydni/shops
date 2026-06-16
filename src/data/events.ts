@@ -11,8 +11,8 @@ export const EVENTS: EventItem[] = [
   {
     id: 'ritmo-x-padel-haus-summer-sunset-2026',
     type: 'turnier',
-    title: 'RITMO X Padel Haus · Summer Sunset Special',
-    subtitle: 'RITMO DNA Cup · Founders Edition',
+    title: 'RITMO X Padel Haus, Summer Sunset Special',
+    subtitle: 'RITMO DNA Cup, Founders Edition',
     date: '2026-07-18',
     venue: 'Padel Haus',
     location: 'Großmehring',
@@ -60,21 +60,21 @@ export const EVENTS: EventItem[] = [
     schedule: [
       { time: '17:30', title: 'Doors & Check-in',                  note: 'Spielerregistrierung, Bändchen-Pickup' },
       { time: '18:00', title: 'Sunset Session Start' },
-      { time: '18:15', title: 'Gruppenphase · Mexicano-Format',    note: '22 Spieler · rotierende Partner · Court 1–3 parallel · ~75 min' },
-      { time: '19:30', title: 'Top 14 stehen fest',                note: 'Top 2: Bye zum Halbfinale · Platz 3–14: Knock-Out' },
-      { time: '19:45', title: 'Knock-Out · 12 → 6',                note: 'Court 1 + 2 + 3 · alle Courts · 1 Set (Tiebreak bei 5:5)' },
-      { time: '20:45', title: 'Halbfinale · 8 → 4',                note: 'Court 2 + 3 · 6 Sieger + 2 Bye · 2 Sets (Hin + Rück, kein Decider)' },
-      { time: '20:45', title: 'Ehren-Bracket Halbfinale · 8 → 2',  note: 'Court 1 · parallel · kurze Sätze' },
-      { time: '22:00', title: 'Ehren-Finale · 2 → 1',              note: 'Court 3 · 1 Set · direkt nach dem Halbfinale' },
-      { time: '22:30', title: 'RITMO Grande Finale',               note: 'Court 3 · Flutlicht · Best of 3 Sätze bis 6 (Tiebreak bei 5:5) · Top 4 · 50-75 min' },
+      { time: '18:15', title: 'Gruppenphase, Mexicano-Format',    note: '22 Spieler, rotierende Partner, Court 1–3 parallel, ~75 min' },
+      { time: '19:30', title: 'Top 14 stehen fest',                note: 'Top 2: Bye zum Halbfinale, Platz 3–14: Knock-Out' },
+      { time: '19:45', title: 'Knock-Out, 12 → 6',                note: 'Court 1 + 2 + 3, alle Courts, 1 Set (Tiebreak bei 5:5)' },
+      { time: '20:45', title: 'Halbfinale, 8 → 4',                note: 'Court 2 + 3, 6 Sieger + 2 Bye, 2 Sets (Hin + Rück, kein Decider)' },
+      { time: '20:45', title: 'Ehren-Bracket Halbfinale, 8 → 2',  note: 'Court 1, parallel, kurze Sätze' },
+      { time: '22:00', title: 'Ehren-Finale, 2 → 1',              note: 'Court 3, 1 Set, direkt nach dem Halbfinale' },
+      { time: '22:30', title: 'RITMO Grande Finale',               note: 'Court 3, Flutlicht, Best of 3 Sätze bis 6 (Tiebreak bei 5:5), Top 4, 50-75 min' },
       { time: '23:30', title: 'Siegerehrung & Drop-Reveal' },
-      { time: '23:45', title: 'After-Party · LNRT House Music' },
+      { time: '23:45', title: 'After-Party, LNRT House Music' },
       { time: '00:00', title: 'Open End',                          note: 'Closing-Time ist Orientierung — DJ läuft bis die Energie passt' },
     ],
 
     program: [
       {
-        phase: '01 · Gruppenphase · Mexicano-Format',
+        phase: '01, Gruppenphase, Mexicano-Format',
         details:
           '22 Spieler:innen, rotierende Partner über mehrere Runden auf allen ' +
           'drei Courts parallel. Offene Punkte-Wertung — keine Sätze, keine Games. ' +
@@ -85,14 +85,14 @@ export const EVENTS: EventItem[] = [
           'ins Ehren-Bracket. Niemand fliegt komplett raus.',
       },
       {
-        phase: '02 · Knock-Out (Court 1 + 2 + 3)',
+        phase: '02, Knock-Out (Court 1 + 2 + 3)',
         details:
           'Plätze 3–14 spielen 6 Matches (12 → 6) auf allen drei Courts parallel. ' +
           '1 Set pro Pairing, bis 6 Games mit Tiebreak bei 5:5. Schnell, ' +
           'fokussiert — keine Best-of-Three-Verlängerung.',
       },
       {
-        phase: '03 · Halbfinale (Court 2 + 3) & Ehren-Bracket (Court 1)',
+        phase: '03, Halbfinale (Court 2 + 3) & Ehren-Bracket (Court 1)',
         details:
           'Sobald die Knock-Out-Runde durch ist, läuft das Halbfinale auf Court 2 + 3 ' +
           '(6 Sieger + 2 Top-Bye-Spieler = 8 → 4). 2 Sets pro Pairing — Hin und ' +
@@ -102,7 +102,7 @@ export const EVENTS: EventItem[] = [
           'Party bleiben.',
       },
       {
-        phase: '04 · Ehren-Finale & RITMO Grande Finale (Court 3)',
+        phase: '04, Ehren-Finale & RITMO Grande Finale (Court 3)',
         details:
           'Court 3 wird zur Bühne: zuerst das Ehren-Finale (2 → 1, 1 Set bis 6). ' +
           'Dann das RITMO Grande Finale — Top 4, Best of 3 Sätze bis 6 (Tiebreak ' +
@@ -114,7 +114,7 @@ export const EVENTS: EventItem[] = [
 
     venueInfo: {
       name: 'Padel Haus',
-      address: 'Großmehring · bei Ingolstadt · Standort wird mit Ticket bestätigt',
+      address: 'Großmehring, bei Ingolstadt, Standort wird mit Ticket bestätigt',
       web:     'https://padel-haus.de',
       blurb:
         'Padel Haus in Großmehring (bei Ingolstadt) ist eine der modernsten ' +
@@ -212,7 +212,7 @@ export const EVENTS: EventItem[] = [
       },
       {
         name: 'Aperol Bar',
-        tagline: 'Spritz · Signature',
+        tagline: 'Spritz, Signature',
         description:
           'Zwei Drinks auf der Karte: klassischer Aperol Spritz und der ' +
           'Padelé Spritz — unser Signature Drink für den Cup, exklusiv vor Ort. ' +
@@ -236,7 +236,7 @@ export const EVENTS: EventItem[] = [
       imageSrc: '/assets/events/sunset-dj.jpg',
     },
 
-    /* ───────── Scoring · RITMO Match Tiers ───────── */
+    /* ───────── Scoring, RITMO Match Tiers ───────── */
     scoring: {
       title: 'RITMO Match Tiers',
       description:
@@ -246,11 +246,11 @@ export const EVENTS: EventItem[] = [
         'Siege gegen starke Gegner mehr — und das Bracket-Seeding spiegelt echte ' +
         'Leistung wider, nicht nur Wins.',
       tiers: [
-        { tier: 'S', bonus: 4, label: 'Top-Pairings · höchster Schwierigkeitsgrad' },
-        { tier: 'A', bonus: 3, label: 'Starkes Pairing · ein Level über Mittel' },
+        { tier: 'S', bonus: 4, label: 'Top-Pairings, höchster Schwierigkeitsgrad' },
+        { tier: 'A', bonus: 3, label: 'Starkes Pairing, ein Level über Mittel' },
         { tier: 'B', bonus: 2, label: 'Solides Matchup' },
         { tier: 'C', bonus: 1, label: 'Standard-Pairing' },
-        { tier: 'X', bonus: 0, label: 'Warm-Up · keine Bonuspunkte' },
+        { tier: 'X', bonus: 0, label: 'Warm-Up, keine Bonuspunkte' },
       ],
     },
   },

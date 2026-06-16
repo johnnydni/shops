@@ -113,7 +113,7 @@ export function PdpHero({ product, ctaRef }: Props) {
 
           <div className="pdp-price-row">
             <div className="pdp-price"><span className="cur">{cur}</span>{value}</div>
-            <div className="pdp-price-note">Inkl. MwSt. · Kostenloser DACH-Versand</div>
+            <div className="pdp-price-note">Inkl. MwSt., Kostenloser DACH-Versand</div>
           </div>
 
           {product.variants && product.variants.length > 0 && (

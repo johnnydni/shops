@@ -80,7 +80,7 @@ export function StepReview({
                 <th>Datum</th>
                 <td>{new Intl.DateTimeFormat('de-DE', {
                   weekday: 'long', day: '2-digit', month: 'long', year: 'numeric',
-                }).format(new Date(event.date))} · ab 18:00</td>
+                }).format(new Date(event.date))}, ab 18:00</td>
               </tr>
               <tr>
                 <th>Ticket-Typ</th>
@@ -176,7 +176,7 @@ export function StepReview({
             disabled={!canSubmit}
             onClick={onSubmit}
           >
-            {busy ? 'Wird vorbereitet …' : `Sicher bezahlen · ${eur(total)}`}
+            {busy ? 'Wird vorbereitet …' : `Sicher bezahlen, ${eur(total)}`}
           </button>
           <p className="bf-submit-note">
             Du wirst zu <strong>stripe.com</strong> weitergeleitet. Bezahlbar mit

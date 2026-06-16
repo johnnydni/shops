@@ -81,7 +81,7 @@ export const BallsTournament = (p: SVGProps<SVGSVGElement>) =>
       <circle cx="305" cy="140" r="38" fill="#FFD60A" stroke="#000" strokeWidth="3" />
       <path d="M 273 140 Q 290 127 305 132 Q 320 127 337 140" stroke="#000" strokeWidth="2.2" fill="none" />
       <path d="M 273 140 Q 290 153 305 148 Q 320 153 337 140" stroke="#000" strokeWidth="2.2" fill="none" />
-      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">TOURNAMENT · 12er</text>
+      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">TOURNAMENT, 12er</text>
     </>
   ));
 
@@ -113,7 +113,7 @@ export const TeeBlack = (p: SVGProps<SVGSVGElement>) =>
       />
       <text x="200" y="200" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontStyle="italic" fontSize="36" fill="#000" letterSpacing="2">RITMO</text>
       <circle cx="200" cy="220" r="4" fill="#FF7A1A" />
-      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">TEE · BLACK PRINT</text>
+      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">TEE, BLACK PRINT</text>
     </>
   ));
 
@@ -132,7 +132,7 @@ export const RitmoDnaTee = (p: SVGProps<SVGSVGElement>) =>
       <polygon points="240,200 270,200 255,170" fill="#0A84FF" />
       {/* RITMO mark */}
       <text x="200" y="245" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontStyle="italic" fontSize="14" fill="#FFFFFF" letterSpacing="3">RITMO DNA</text>
-      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">DNA TEE · 7 SPIELSTILE</text>
+      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">DNA TEE, 7 SPIELSTILE</text>
     </>
   ));
 
@@ -150,7 +150,7 @@ export const HoodieCrew = (p: SVGProps<SVGSVGElement>) =>
       />
       <rect x="170" y="195" width="60" height="44" fill="none" stroke="#FF7A1A" strokeWidth="2" />
       <text x="200" y="225" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontStyle="italic" fontSize="20" fill="#FF7A1A" letterSpacing="2">RITMO</text>
-      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">HOODIE · CREW</text>
+      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">HOODIE, CREW</text>
     </>
   ));
 
@@ -166,7 +166,7 @@ export const PosterAppLive = (p: SVGProps<SVGSVGElement>) =>
       </text>
       <rect x="80" y="225" width="240" height="6" fill="#FF7A1A" />
       <text x="80" y="252" fontFamily="sans-serif" fontWeight="700" fontSize="11" fill="rgba(255,255,255,0.6)" letterSpacing="3">RITMOPADEL.APP</text>
-      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">POSTER · A2</text>
+      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">POSTER, A2</text>
     </>
   ));
 
@@ -180,7 +180,7 @@ export const PrintDna = (p: SVGProps<SVGSVGElement>) =>
       <polygon points="80,240 280,240 180,170" fill="#0A84FF" />
       <rect x="78" y="252" width="220" height="4" fill="#FF7A1A" />
       <text x="80" y="218" fontFamily="sans-serif" fontWeight="900" fontStyle="italic" fontSize="14" fill="#FFFFFF" letterSpacing="3">RITMO DNA</text>
-      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">PRINT · A3</text>
+      <text x="20" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="14" fontStyle="italic" fill="#000">PRINT, A3</text>
     </>
   ));
 
@@ -194,7 +194,7 @@ export const CarbonWeave = (p: SVGProps<SVGSVGElement>) =>
         <path d="M60 0 L60 320 M120 0 L120 320 M180 0 L180 320 M240 0 L240 320 M300 0 L300 320 M340 0 L340 320" />
       </g>
       <rect x="60" y="60" width="280" height="180" fill="none" stroke="#fff" strokeWidth="2" />
-      <text x="80" y="280" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">3K · CARBON · WEAVE</text>
+      <text x="80" y="280" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">3K, CARBON, WEAVE</text>
     </>
   ));
 
@@ -206,7 +206,7 @@ export const SoftCore = (p: SVGProps<SVGSVGElement>) =>
       <circle cx="200" cy="160" r="80" fill="none" stroke="#000" strokeWidth="2" />
       <circle cx="200" cy="160" r="40" fill="#FF7A1A" />
       <text x="200" y="166" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontStyle="italic" fontSize="20" fill="#000">SOFT</text>
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">EVA · SWEET-SPOT</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">EVA, SWEET-SPOT</text>
     </>
   ));
 
@@ -217,7 +217,7 @@ export const DiamondGeo = (p: SVGProps<SVGSVGElement>) =>
       <polygon points="200,40 360,280 40,280" fill="none" stroke="#0A84FF" strokeWidth="3" />
       <polygon points="200,90 320,260 80,260" fill="none" stroke="#FF7A1A" strokeWidth="2" />
       <circle cx="200" cy="220" r="34" fill="#0A84FF" />
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">SWEET-SPOT · OBEN</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">SWEET-SPOT, OBEN</text>
     </>
   ));
 
@@ -228,7 +228,7 @@ export const HardCore = (p: SVGProps<SVGSVGElement>) =>
       <rect x="100" y="80" width="200" height="160" fill="#0A0A0A" />
       <rect x="110" y="90" width="180" height="140" fill="none" stroke="#FFD60A" strokeWidth="2" />
       <text x="200" y="170" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontStyle="italic" fontSize="36" fill="#FFD60A">55°</text>
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">SHORE · HART</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">SHORE, HART</text>
     </>
   ));
 
@@ -241,7 +241,7 @@ export const PressurelessSpec = (p: SVGProps<SVGSVGElement>) =>
       <circle cx="240" cy="160" r="20" fill="#FFD60A" />
       <circle cx="310" cy="160" r="20" fill="#FFD60A" />
       <line x1="80" y1="220" x2="330" y2="220" stroke="#FF7A1A" strokeWidth="2" />
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">SPRUNG · KONSTANT</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">SPRUNG, KONSTANT</text>
     </>
   ));
 
@@ -252,7 +252,7 @@ export const FeltDetail = (p: SVGProps<SVGSVGElement>) =>
       <circle cx="200" cy="160" r="100" fill="#FFD60A" stroke="#000" strokeWidth="3" />
       <path d="M 100 160 Q 150 110 200 130 Q 250 110 300 160" stroke="#000" strokeWidth="3" fill="none" />
       <path d="M 100 160 Q 150 210 200 190 Q 250 210 300 160" stroke="#000" strokeWidth="3" fill="none" />
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">FILZ · HOCH</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">FILZ, HOCH</text>
     </>
   ));
 
@@ -273,7 +273,7 @@ export const BoxyCut = (p: SVGProps<SVGSVGElement>) =>
       <path d="M 120 60 L 280 60 L 280 280 L 120 280 Z" fill="none" stroke="#FF7A1A" strokeWidth="3" />
       <line x1="160" y1="60" x2="160" y2="280" stroke="#FFD60A" strokeWidth="2" strokeDasharray="4 4" />
       <line x1="240" y1="60" x2="240" y2="280" stroke="#FFD60A" strokeWidth="2" strokeDasharray="4 4" />
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">BOXY · CUT</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">BOXY, CUT</text>
     </>
   ));
 
@@ -312,7 +312,7 @@ export const PosterPaper = (p: SVGProps<SVGSVGElement>) =>
       <rect x="50" y="40" width="300" height="240" fill="#FFFFFF" />
       <rect x="70" y="60" width="260" height="200" fill="#0A0A0A" />
       <rect x="80" y="240" width="240" height="4" fill="#FF7A1A" />
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">250 G/M² · MATT</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">250 G/M², MATT</text>
     </>
   ));
 
@@ -377,7 +377,7 @@ export const RingBluetooth = (p: SVGProps<SVGSVGElement>) =>
         <path d="M 290 130 Q 320 160 290 190" opacity="0.75" />
         <path d="M 310 110 Q 350 160 310 210" opacity="0.5" />
       </g>
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">BLE 5.3 · PAIR ONCE</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#fff" letterSpacing="3">BLE 5.3, PAIR ONCE</text>
     </>
   ));
 
@@ -401,8 +401,8 @@ export const RingTitanium = (p: SVGProps<SVGSVGElement>) =>
         <line x1="200" y1="74"  x2="200" y2="95" />
         <line x1="200" y1="123" x2="200" y2="135" />
       </g>
-      <text x="200" y="16" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="10" fill="#000" letterSpacing="2">TITAN · 0.4 MM</text>
+      <text x="200" y="16" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="10" fill="#000" letterSpacing="2">TITAN, 0.4 MM</text>
       <text x="200" y="68" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="10" fill="#000" letterSpacing="2">CARBON-CORE</text>
-      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">3.2 G · IP68</text>
+      <text x="22" y="304" fontFamily="sans-serif" fontWeight="900" fontSize="13" fontStyle="italic" fill="#000" letterSpacing="3">3.2 G, IP68</text>
     </>
   ));

@@ -54,9 +54,9 @@ export const PRODUCTS: Product[] = [
     category: 'apparel',
     name: 'RITMO DNA Tee',
     nameAccent: 'DNA',
-    eyebrow: 'Apparel · 7 Spielstile',
+    eyebrow: 'Apparel, 7 Spielstile',
     tagline:
-      'Sieben Spielstile, ein Tee. MOTOR · CHICO/CHICA · TORO · MURO · INDIVIDUOSO · FANTASMA · HYSTERICA — jeder Stil als eigene Bauhaus-Grafik. 240 g/m² Heavy-Cotton, oversized Cut, italic Brust-Logo. Wähl deinen Spielstil.',
+      'Sieben Spielstile, ein Tee. MOTOR, CHICO/CHICA, TORO, MURO, INDIVIDUOSO, FANTASMA, HYSTERICA — jeder Stil als eigene Bauhaus-Grafik. 240 g/m² Heavy-Cotton, oversized Cut, italic Brust-Logo. Wähl deinen Spielstil.',
     shortDesc:
       'Sieben Spielstile als Bauhaus-Print. Heavy-Cotton, oversized. In Schwarz oder Weiß.',
     price: 39,
@@ -116,7 +116,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · DNA',
+        eyebrow: '01 — DNA',
         title: 'Sieben Spielstile.',
         titleAccent: 'Ein Tee.',
         body: [
@@ -125,7 +125,7 @@ export const PRODUCTS: Product[] = [
         visual: DnaDetail,
       },
       {
-        eyebrow: '02 · Stoff',
+        eyebrow: '02 — Stoff',
         title: '240 g/m².',
         titleAccent: 'Heavy-Cotton, oversized.',
         body: [
@@ -136,12 +136,12 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Material',  value: '100% Bio-Baumwolle (GOTS)' },
-      { label: 'Gewicht',   value: '240 g/m² · Single-Jersey' },
-      { label: 'Cut',       value: 'Oversized · Boxy' },
-      { label: 'Schnitt',   value: 'Damen · Herren' },
-      { label: 'Größen',    value: 'S · M · L · XL · XXL' },
-      { label: 'Spielstile',value: 'MOTOR · CHICO/CHICA · TORO · MURO · INDIVIDUOSO · FANTASMA · HYSTERICA' },
-      { label: 'Farben',    value: 'Schwarz · Weiß' },
+      { label: 'Gewicht',   value: '240 g/m², Single-Jersey' },
+      { label: 'Cut',       value: 'Oversized, Boxy' },
+      { label: 'Schnitt',   value: 'Damen, Herren' },
+      { label: 'Größen',    value: 'S, M, L, XL, XXL' },
+      { label: 'Spielstile',value: 'MOTOR, CHICO/CHICA, TORO, MURO, INDIVIDUOSO, FANTASMA, HYSTERICA' },
+      { label: 'Farben',    value: 'Schwarz, Weiß' },
       { label: 'Druck',     value: 'Wasserbasierter Siebdruck' },
       { label: 'Herkunft',  value: 'Made in Portugal' },
     ],
@@ -155,7 +155,7 @@ export const PRODUCTS: Product[] = [
     category: 'schlaeger',
     name: 'RITMO Pro',
     nameAccent: 'Pro',
-    eyebrow: 'Schläger · Flagship',
+    eyebrow: 'Schläger, Flagship',
     tagline: 'Carbon-3K Rahmen, EVA-Soft-Kern, runde Form. Gebaut für Spieler:innen, die Kontrolle nicht gegen Punch tauschen wollen — sondern beides wollen. Limited Drop, nummeriert.',
     shortDesc: 'Carbon-3K Rahmen, EVA-Soft-Kern, runde Form. Für Spieler:innen mit Kontrolle & Punch.',
     price: 189,
@@ -182,13 +182,13 @@ export const PRODUCTS: Product[] = [
       },
     ],
     trust: [
-      { label: 'Versand',   value: '2–4 Werktage · DACH frei' },
+      { label: 'Versand',   value: '2–4 Werktage, DACH frei' },
       { label: 'Garantie',  value: '12 Monate Rahmen' },
       { label: 'Rückgabe',  value: '30 Tage, ohne Wenn' },
     ],
     story: [
       {
-        eyebrow: '01 · Material',
+        eyebrow: '01 — Material',
         title: 'Carbon-3K.',
         titleAccent: 'Steif. Leicht. Ehrlich.',
         body: [
@@ -198,7 +198,7 @@ export const PRODUCTS: Product[] = [
         visual: CarbonWeave,
       },
       {
-        eyebrow: '02 · Kern',
+        eyebrow: '02 — Kern',
         title: 'EVA-Soft-Kern.',
         titleAccent: 'Spürbar weicher.',
         body: [
@@ -221,16 +221,16 @@ export const PRODUCTS: Product[] = [
       { kind: 'placeholder', title: 'Bandeja-Drill',   subtitle: 'Wie sich der Soft-Core auf der Bandeja spielt.', tag: 'Erklärung', duration: '3:02' },
     ],
     specs: [
-      { label: 'Form',          value: 'Rund · symmetrisch' },
+      { label: 'Form',          value: 'Rund, symmetrisch' },
       { label: 'Rahmen',        value: 'Carbon 3K, dreilagig' },
       { label: 'Schlagfläche',  value: 'Carbon 3K, gerauht' },
-      { label: 'Kern',          value: 'Soft EVA · 40 shore' },
+      { label: 'Kern',          value: 'Soft EVA, 40 shore' },
       { label: 'Gewicht',       value: '365 – 385 g' },
       { label: 'Balance',       value: 'Neutral' },
       { label: 'Sweet-Spot',    value: 'Mittig, großflächig' },
       { label: 'Spiel-Profil',  value: 'Kontrolle + Punch' },
       { label: 'Level',         value: 'Fortgeschritten – Profi' },
-      { label: 'Lieferumfang',  value: 'Schläger · Schutzhülle · Kettenband' },
+      { label: 'Lieferumfang',  value: 'Schläger, Schutzhülle, Kettenband' },
       { label: 'Garantie',      value: '12 Monate auf den Rahmen' },
     ],
     related: ['balls-tournament', 'tee-schwarz', 'schlaeger-edge'],
@@ -243,7 +243,7 @@ export const PRODUCTS: Product[] = [
     category: 'schlaeger',
     name: 'RITMO Edge',
     nameAccent: 'Edge',
-    eyebrow: 'Schläger · Power',
+    eyebrow: 'Schläger, Power',
     tagline: 'Diamantform, harte EVA, kompromisslose Smash-Power. Für die, die am Netz wohnen — und jeden Ball aufmachen wollen.',
     shortDesc: 'Diamantform, harte EVA, maximale Power. Für aggressive Netz-Spieler.',
     price: 159,
@@ -264,7 +264,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · Geometrie',
+        eyebrow: '01 — Geometrie',
         title: 'Diamant.',
         titleAccent: 'Power über Kontrolle.',
         body: [
@@ -274,7 +274,7 @@ export const PRODUCTS: Product[] = [
         visual: DiamondGeo,
       },
       {
-        eyebrow: '02 · Härte',
+        eyebrow: '02 — Härte',
         title: 'Harte EVA.',
         titleAccent: 'Direkter Punch.',
         body: [
@@ -298,14 +298,14 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: 'Form',         value: 'Diamant' },
       { label: 'Rahmen',       value: 'Carbon 3K' },
-      { label: 'Schlagfläche', value: 'Carbon 3K · gerauht' },
-      { label: 'Kern',         value: 'Hard EVA · 55 shore' },
+      { label: 'Schlagfläche', value: 'Carbon 3K, gerauht' },
+      { label: 'Kern',         value: 'Hard EVA, 55 shore' },
       { label: 'Gewicht',      value: '360 – 380 g' },
       { label: 'Balance',      value: 'Kopflastig' },
       { label: 'Sweet-Spot',   value: 'Oberer Schlägerkopf' },
       { label: 'Spiel-Profil', value: 'Power / Smash' },
       { label: 'Level',        value: 'Fortgeschritten – Profi' },
-      { label: 'Lieferumfang', value: 'Schläger · Schutzhülle · Kettenband' },
+      { label: 'Lieferumfang', value: 'Schläger, Schutzhülle, Kettenband' },
       { label: 'Garantie',     value: '12 Monate' },
     ],
     related: ['schlaeger-pro', 'balls-tournament', 'hoodie-crew'],
@@ -318,7 +318,7 @@ export const PRODUCTS: Product[] = [
     category: 'baelle',
     name: 'Tournament 12er',
     nameAccent: '12er',
-    eyebrow: 'Bälle · Turnier',
+    eyebrow: 'Bälle, Turnier',
     tagline: 'Drucklose Wettkampf-Bälle nach FIP-Spezifikation. 4 Drei-Pack-Dosen. Genau das, was du fürs nächste Turnier brauchst — oder fürs nächste Heim-Training.',
     shortDesc: 'Drucklose Padel-Bälle in Turnier-Qualität. 4 Drei-Pack-Dosen.',
     price: 34,
@@ -328,8 +328,8 @@ export const PRODUCTS: Product[] = [
     variants: [
       { label: 'Stückzahl', defaultValue: '12er', options: [
         { value: '12er', label: '12er' },
-        { value: '24er', label: '24er · €64', priceDelta: 30 },
-        { value: '36er', label: '36er · €89', priceDelta: 55 },
+        { value: '24er', label: '24er, €64', priceDelta: 30 },
+        { value: '36er', label: '36er, €89', priceDelta: 55 },
       ]},
     ],
     trust: [
@@ -339,7 +339,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · Druck',
+        eyebrow: '01 — Druck',
         title: 'Drucklos.',
         titleAccent: 'Konstant.',
         body: [
@@ -348,7 +348,7 @@ export const PRODUCTS: Product[] = [
         visual: PressurelessSpec,
       },
       {
-        eyebrow: '02 · Filz',
+        eyebrow: '02 — Filz',
         title: 'Hochfilziger Spielball.',
         titleAccent: 'Mehr Spin, mehr Kontrolle.',
         body: [
@@ -364,7 +364,7 @@ export const PRODUCTS: Product[] = [
       { kind: 'placeholder', title: 'Drucklos erklärt', subtitle: 'Was "drucklos" technisch bedeutet — und warum es zählt.', tag: 'Erklärung', duration: '3:55' },
     ],
     specs: [
-      { label: 'Inhalt',     value: '12 Bälle · 4 Drei-Pack-Dosen' },
+      { label: 'Inhalt',     value: '12 Bälle, 4 Drei-Pack-Dosen' },
       { label: 'Bauart',     value: 'Drucklos' },
       { label: 'Durchmesser',value: '6.35 – 6.77 cm' },
       { label: 'Gewicht',    value: '56.0 – 59.4 g' },
@@ -384,7 +384,7 @@ export const PRODUCTS: Product[] = [
     category: 'baelle',
     name: 'RITMO Ball Set',
     nameAccent: 'Ball Set',
-    eyebrow: 'Bälle · Standard',
+    eyebrow: 'Bälle, Standard',
     tagline: 'Die klassische 3er-Dose. Druckkonserviert, frisch geöffnet, sofort spielbereit. Für Training, Match oder spontane Padel-Sessions.',
     shortDesc: 'Klassische Drei-Pack-Dose, perfekt fürs nächste Match.',
     price: 9,
@@ -393,9 +393,9 @@ export const PRODUCTS: Product[] = [
     heroImageSrc: '/assets/products/balls-3pack/balls-3pack-gelb.jpg',
     variants: [
       { label: 'Menge', defaultValue: '1 Dose', options: [
-        { value: '1 Dose',  label: '1 Dose · €9' },
-        { value: '3 Dosen', label: '3 Dosen · €25', priceDelta: 16 },
-        { value: '6 Dosen', label: '6 Dosen · €49', priceDelta: 40 },
+        { value: '1 Dose',  label: '1 Dose, €9' },
+        { value: '3 Dosen', label: '3 Dosen, €25', priceDelta: 16 },
+        { value: '6 Dosen', label: '6 Dosen, €49', priceDelta: 40 },
       ]},
     ],
     trust: [
@@ -405,7 +405,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · Frische',
+        eyebrow: '01 — Frische',
         title: 'Druck-Dose.',
         titleAccent: 'Auf Pop.',
         body: [
@@ -418,11 +418,11 @@ export const PRODUCTS: Product[] = [
       { kind: 'placeholder', title: '3er vs. 12er', subtitle: 'Wann lohnt sich welche Dose?', tag: 'Erklärung', duration: '2:12' },
     ],
     specs: [
-      { label: 'Inhalt',     value: '3 Bälle · 1 Druck-Dose' },
+      { label: 'Inhalt',     value: '3 Bälle, 1 Druck-Dose' },
       { label: 'Bauart',     value: 'Druck-konserviert' },
       { label: 'Durchmesser',value: '6.35 – 6.77 cm' },
       { label: 'Gewicht',    value: '56.0 – 59.4 g' },
-      { label: 'Filz',       value: 'Wollfilz · matchtauglich' },
+      { label: 'Filz',       value: 'Wollfilz, matchtauglich' },
       { label: 'Standard',   value: 'Spiel-Niveau Amateur – Vereins-Match' },
       { label: 'Verpackung', value: 'Wiederverschließbar' },
     ],
@@ -436,7 +436,7 @@ export const PRODUCTS: Product[] = [
     category: 'apparel',
     name: 'RITMO Tee',
     nameAccent: 'Tee',
-    eyebrow: 'Apparel · Oversized',
+    eyebrow: 'Apparel, Oversized',
     tagline: 'Heavy 240 g/m² Cotton, oversized geschnitten, italic Brust-Print. Trägt sich nach dem ersten Match wie ein Lieblings-Shirt — ohne die nervigen Falten am Saum.',
     shortDesc: 'Weiches Heavy-Cotton, oversized Cut, italic Brust-Logo. S–XXL.',
     price: 39,
@@ -460,7 +460,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · Cut',
+        eyebrow: '01 — Cut',
         title: 'Oversized.',
         titleAccent: 'Aber kein Sack.',
         body: [
@@ -469,7 +469,7 @@ export const PRODUCTS: Product[] = [
         visual: BoxyCut,
       },
       {
-        eyebrow: '02 · Stoff',
+        eyebrow: '02 — Stoff',
         title: '240 g/m².',
         titleAccent: 'Substanz, kein Papier.',
         body: [
@@ -487,13 +487,13 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Material', value: '100% Bio-Baumwolle (GOTS)' },
-      { label: 'Gewicht',  value: '240 g/m² · Single-Jersey' },
-      { label: 'Cut',      value: 'Oversized · Boxy' },
-      { label: 'Größen',   value: 'S · M · L · XL · XXL' },
-      { label: 'Farben',   value: 'Schwarz · Weiß · Orange' },
+      { label: 'Gewicht',  value: '240 g/m², Single-Jersey' },
+      { label: 'Cut',      value: 'Oversized, Boxy' },
+      { label: 'Größen',   value: 'S, M, L, XL, XXL' },
+      { label: 'Farben',   value: 'Schwarz, Weiß, Orange' },
       { label: 'Druck',    value: 'Wasserbasierter Siebdruck' },
       { label: 'Herkunft', value: 'Made in Portugal' },
-      { label: 'Pflege',   value: '30°C · auf links · nicht bleichen' },
+      { label: 'Pflege',   value: '30°C, auf links, nicht bleichen' },
     ],
     related: ['hoodie-crew', 'print-dna'],
   },
@@ -505,7 +505,7 @@ export const PRODUCTS: Product[] = [
     category: 'apparel',
     name: 'RITMO Hoodie',
     nameAccent: 'Hoodie',
-    eyebrow: 'Apparel · Heavy',
+    eyebrow: 'Apparel, Heavy',
     tagline: '400 g/m² Brushed-Cotton, gefütterte Kapuze, Kängurutasche. Trägt dich von der After-Match-Pause durch den ganzen Winter.',
     shortDesc: 'Schwerer Baumwoll-Crew-Hoodie, gefütterte Kapuze, orangenes Bauhaus-Print.',
     price: 79,
@@ -528,7 +528,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · Gewicht',
+        eyebrow: '01 — Gewicht',
         title: '400 g/m².',
         titleAccent: 'Echt warm.',
         body: [
@@ -537,7 +537,7 @@ export const PRODUCTS: Product[] = [
         visual: HoodieWeight,
       },
       {
-        eyebrow: '02 · Detail',
+        eyebrow: '02 — Detail',
         title: 'Bauhaus-Print.',
         titleAccent: 'Front-Pocket-Frame.',
         body: [
@@ -552,14 +552,14 @@ export const PRODUCTS: Product[] = [
       { kind: 'placeholder', title: 'Material-Check', subtitle: '400 g Brushed-Cotton im Close-Up.', tag: 'Test', duration: '2:18' },
     ],
     specs: [
-      { label: 'Material', value: '85% Bio-Baumwolle · 15% Recycled Polyester' },
-      { label: 'Gewicht',  value: '400 g/m² · brushed' },
-      { label: 'Cut',      value: 'Regular · etwas länger' },
-      { label: 'Größen',   value: 'S · M · L · XL · XXL' },
-      { label: 'Farben',   value: 'Schwarz · Orange' },
-      { label: 'Details',  value: 'Doppelt vernähte Kapuze · Kängurutasche · Strick-Bündchen' },
+      { label: 'Material', value: '85% Bio-Baumwolle, 15% Recycled Polyester' },
+      { label: 'Gewicht',  value: '400 g/m², brushed' },
+      { label: 'Cut',      value: 'Regular, etwas länger' },
+      { label: 'Größen',   value: 'S, M, L, XL, XXL' },
+      { label: 'Farben',   value: 'Schwarz, Orange' },
+      { label: 'Details',  value: 'Doppelt vernähte Kapuze, Kängurutasche, Strick-Bündchen' },
       { label: 'Herkunft', value: 'Made in Portugal' },
-      { label: 'Pflege',   value: '30°C · auf links · nicht trocknen' },
+      { label: 'Pflege',   value: '30°C, auf links, nicht trocknen' },
     ],
     related: ['tee-schwarz', 'schlaeger-pro'],
   },
@@ -571,7 +571,7 @@ export const PRODUCTS: Product[] = [
     category: 'prints',
     name: '"App ist Live"',
     nameAccent: 'Live',
-    eyebrow: 'Print · Limited',
+    eyebrow: 'Print, Limited',
     tagline: 'A2-Format (50 × 70 cm), nummeriert auf 200 Stück, gedruckt auf 250 g/m² Mattpapier. Gerollt geliefert in einer Kraftpapier-Hülse.',
     shortDesc: 'Limited Print, 50×70 cm, gerollt geliefert. Premium-Mattpapier 250 g/m².',
     price: 24,
@@ -590,13 +590,13 @@ export const PRODUCTS: Product[] = [
       ]},
     ],
     trust: [
-      { label: 'Versand',  value: '3–5 Werktage · Rolle' },
+      { label: 'Versand',  value: '3–5 Werktage, Rolle' },
       { label: 'Auflage',  value: '200 nummeriert' },
       { label: 'Rückgabe', value: '30 Tage' },
     ],
     story: [
       {
-        eyebrow: '01 · Papier',
+        eyebrow: '01 — Papier',
         title: '250 g/m².',
         titleAccent: 'Premium Matt.',
         body: [
@@ -609,10 +609,10 @@ export const PRODUCTS: Product[] = [
       { kind: 'placeholder', title: 'Unboxing & Hängen', subtitle: 'Vom Rohr zur Wand in 90 Sekunden.', tag: 'Unboxing', duration: '1:32' },
     ],
     specs: [
-      { label: 'Format',   value: 'A2 · 50 × 70 cm' },
-      { label: 'Papier',   value: '250 g/m² · Mattpapier · FSC' },
+      { label: 'Format',   value: 'A2, 50 × 70 cm' },
+      { label: 'Papier',   value: '250 g/m², Mattpapier, FSC' },
       { label: 'Druck',    value: 'Giclée-Druck, 5-Farben-Pigment' },
-      { label: 'Auflage',  value: '200 Stück · handnummeriert' },
+      { label: 'Auflage',  value: '200 Stück, handnummeriert' },
       { label: 'Versand',  value: 'Gerollt in Kraftpapier-Hülse' },
       { label: 'Herkunft', value: 'Gedruckt in Berlin' },
     ],
@@ -626,7 +626,7 @@ export const PRODUCTS: Product[] = [
     category: 'prints',
     name: 'RITMO DNA',
     nameAccent: 'DNA',
-    eyebrow: 'Print · Bauhaus',
+    eyebrow: 'Print, Bauhaus',
     tagline: 'Kreis. Quadrat. Dreieck. Die drei Bauhaus-Grundformen, übersetzt in die drei Padel-Spielstile: Kontrolle, Power, Volley. A3, mattes Premium-Papier.',
     shortDesc: 'Bauhaus-Komposition aus den drei Padel-Spielstil-Grundformen. A3.',
     price: 18,
@@ -650,7 +650,7 @@ export const PRODUCTS: Product[] = [
     ],
     story: [
       {
-        eyebrow: '01 · Idee',
+        eyebrow: '01 — Idee',
         title: 'Drei Formen.',
         titleAccent: 'Drei Spielstile.',
         body: [
@@ -663,8 +663,8 @@ export const PRODUCTS: Product[] = [
       { kind: 'placeholder', title: 'Designprozess', subtitle: 'Wie aus drei Spielstilen drei Formen wurden.', tag: 'Erklärung', duration: '3:08' },
     ],
     specs: [
-      { label: 'Format',   value: 'A3 · 29.7 × 42 cm (auch A2)' },
-      { label: 'Papier',   value: '250 g/m² · Mattpapier · FSC' },
+      { label: 'Format',   value: 'A3, 29.7 × 42 cm (auch A2)' },
+      { label: 'Papier',   value: '250 g/m², Mattpapier, FSC' },
       { label: 'Druck',    value: 'Giclée-Druck, 5-Farben-Pigment' },
       { label: 'Auflage',  value: 'Open Edition' },
       { label: 'Versand',  value: 'Flach im Stabilkarton' },
@@ -680,7 +680,7 @@ export const PRODUCTS: Product[] = [
     category: 'tech',
     name: 'RITMO Ring',
     nameAccent: 'Ring',
-    eyebrow: 'Smart Gear · Score-Remote',
+    eyebrow: 'Smart Gear, Score-Remote',
     tagline:
       'Bluetooth-Ring zum Steuern des Scores in der RITMO Padel App. Tippen → Punkt vergeben. Doppel-Tippen → zurücksetzen mit voller Historie. Keine Sensoren, kein Tracking — nur ein präziser Daumendruck pro Punkt.',
     shortDesc:
@@ -710,13 +710,13 @@ export const PRODUCTS: Product[] = [
       },
     ],
     trust: [
-      { label: 'Versand',   value: '2–4 Werktage · DACH frei' },
+      { label: 'Versand',   value: '2–4 Werktage, DACH frei' },
       { label: 'Garantie',  value: '24 Monate' },
       { label: 'Rückgabe',  value: '30 Tage, ohne Wenn' },
     ],
     story: [
       {
-        eyebrow: '01 · Steuerung',
+        eyebrow: '01 — Steuerung',
         title: 'Tap → Punkt.',
         titleAccent: 'Double-Tap → Undo.',
         body: [
@@ -726,7 +726,7 @@ export const PRODUCTS: Product[] = [
         visual: RingBluetooth,
       },
       {
-        eyebrow: '02 · Build',
+        eyebrow: '02 — Build',
         title: 'Titan + Carbon.',
         titleAccent: '3,2 Gramm.',
         body: [
@@ -768,17 +768,17 @@ export const PRODUCTS: Product[] = [
     ],
     specs: [
       { label: 'Funktion',         value: 'Bluetooth Score-Remote für die RITMO Padel App' },
-      { label: 'Eingaben',         value: 'Tap (Punkt) · Double-Tap (Undo) · Long-Press (Reset)' },
+      { label: 'Eingaben',         value: 'Tap (Punkt), Double-Tap (Undo), Long-Press (Reset)' },
       { label: 'Konnektivität',    value: 'Bluetooth Low Energy 5.3' },
-      { label: 'App',              value: 'RITMO Padel · iOS · Android' },
+      { label: 'App',              value: 'RITMO Padel, iOS, Android' },
       { label: 'Sensorik',         value: 'Kapazitiver Touch-Punkt (keine Bewegungs-Sensoren)' },
-      { label: 'Batterie',         value: '3 Wochen Spielzeit · 60 min Schnellladung' },
+      { label: 'Batterie',         value: '3 Wochen Spielzeit, 60 min Schnellladung' },
       { label: 'Material',         value: 'Titan-Außenschale + Carbon-Composite-Kern' },
       { label: 'Gewicht',          value: '3,2 g' },
-      { label: 'Wasserschutz',     value: 'IP68 · Schwimmbad-tauglich' },
-      { label: 'Größen',           value: 'US 7 · 8 · 9 · 10 · 11 · 12' },
-      { label: 'Farben',           value: 'Schwarz · Pink · Orange' },
-      { label: 'Lieferumfang',     value: 'Ring · Magnet-Ladestation · USB-C-Kabel' },
+      { label: 'Wasserschutz',     value: 'IP68, Schwimmbad-tauglich' },
+      { label: 'Größen',           value: 'US 7, 8, 9, 10, 11, 12' },
+      { label: 'Farben',           value: 'Schwarz, Pink, Orange' },
+      { label: 'Lieferumfang',     value: 'Ring, Magnet-Ladestation, USB-C-Kabel' },
       { label: 'Garantie',         value: '24 Monate' },
     ],
     related: ['schlaeger-pro', 'schlaeger-edge', 'balls-tournament'],

@@ -6,10 +6,10 @@
  */
 export function SocialProofStrip() {
   const stats: Array<{ n: string; l: string }> = [
-    { n: '1.000+',    l: 'Spieler·innen in DACH' },
+    { n: '1.000+',    l: 'Spielerinnen in DACH' },
     { n: 'FIP-spec',  l: 'Turnier-Standard' },
     { n: '4,9 / 5',   l: 'Customer-Score' },
-    { n: '24h',       l: 'Versandzeit · Mo–Fr' },
+    { n: '24h',       l: 'Versandzeit, Mo–Fr' },
   ];
   return (
     <section className="proof" aria-label="Social proof">

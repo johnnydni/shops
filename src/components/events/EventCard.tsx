@@ -22,7 +22,7 @@ const cardVariant = {
  *
  *   Type-badge / status / tag chips
  *   Title  (+ subtitle below)
- *   Date · Venue meta row
+ *   Date, Venue meta row
  *   Description
  *   Ticket tiers (when present, otherwise flat price)
  *   Sales-window mini line
@@ -73,7 +73,6 @@ export function EventCard({ event }: { event: EventItem }) {
             {fullDate(event.date)}
             {event.endDate ? ` – ${fullDate(event.endDate)}` : ''}
           </span>
-          <span className="event-sep" aria-hidden>·</span>
           <span className="event-location">
             {event.venue ? <strong>{event.venue}</strong> : null}
             {event.venue && event.venue !== event.location ? ', ' : ''}
@@ -125,7 +124,7 @@ export function EventCard({ event }: { event: EventItem }) {
               ? eur(event.price)
               : 'Auf Anfrage'}
             {!event.tickets && event.capacity != null && (
-              <span className="event-cap"> · {event.capacity} Plätze</span>
+              <span className="event-cap">, {event.capacity} Plätze</span>
             )}
           </div>
           {event.ctaUrl ? (

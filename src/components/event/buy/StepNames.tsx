@@ -136,7 +136,7 @@ export function StepNames({
             const i = idx + 1;
             return (
               <div key={i} className="bf-row-2">
-                <Field label={`Vorname · Ticket ${i + 1}`} required>
+                <Field label={`Vorname, Ticket ${i + 1}`} required>
                   <input
                     type="text"
                     required
@@ -144,7 +144,7 @@ export function StepNames({
                     onChange={(e) => setAttendee(i, { firstName: e.target.value })}
                   />
                 </Field>
-                <Field label={`Nachname · Ticket ${i + 1}`} required>
+                <Field label={`Nachname, Ticket ${i + 1}`} required>
                   <input
                     type="text"
                     required

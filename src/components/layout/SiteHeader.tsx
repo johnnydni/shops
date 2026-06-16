@@ -54,7 +54,6 @@ export function SiteHeader() {
         <Link to="/" className="word" aria-label="RITMO Shop">
           <span>RITMO</span>
           <span className="dot" aria-hidden="true" />
-          <span className="pipe">·</span>
           <span className="sub">Shop</span>
         </Link>
 

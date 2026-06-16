@@ -113,14 +113,14 @@ const ARTICLES: Article[] = [
       'Logo-Lärm, geometrische Präzision statt Beliebigkeit. Was wir bauen ' +
       'ist simpel. Aber effektiv. Und vor allem: kreativ. RITMO ist für die, ' +
       'die Padel als Bewegung begreifen — auf dem Court und in der Ästhetik.',
-    signature: '— Illy, Nadin & Alessandra · Gründerinnen',
+    signature: '— Illy, Nadin & Alessandra, Gründerinnen',
     kind: 'Founders Letter',
     live: true,
     featured: true,
   },
   {
     when: 'Juli 2026',
-    title: 'RITMO X Padel Haus · Summer Sunset Special',
+    title: 'RITMO X Padel Haus, Summer Sunset Special',
     body:
       'Founders-Edition des RITMO DNA Cups bei Padel Haus in Großmehring. ' +
       '22 Spieler-Spots im Mexicano-Format, anschließend Knock-Out, Halbfinale ' +
@@ -135,7 +135,7 @@ const ARTICLES: Article[] = [
   },
   {
     when: 'Q3 2026',
-    title: 'Summer Collection · Drop I',
+    title: 'Summer Collection, Drop I',
     body:
       'Tees, Crew-Hoodies und Caps in einer reduzierten Sommer-Palette. ' +
       'Heavy-Cotton, Bio-zertifiziert, made in Portugal. Inklusive Restock ' +

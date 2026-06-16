@@ -123,12 +123,13 @@ const ARTICLES: Article[] = [
     title: 'RITMO X Padel Haus, Summer Sunset Special',
     body:
       'Founders-Edition des RITMO DNA Cups bei Padel Haus in Großmehring. ' +
-      '22 Spieler-Spots im Mexicano-Format, anschließend Knock-Out, Halbfinale ' +
-      'und RITMO Grande Finale (Best of 3) auf Court 3 unter Flutlicht. Parallel ' +
-      'Ehren-Bracket — niemand sitzt nur rum. Manny’s BBQ, Aperol- und Padelé-Spritz, ' +
-      'DJ ANKOE Ready Mix → LNRT House Music. 18 Uhr bis Open End. ' +
-      '22 Spieler-Tickets (€39), Zuschauer-Tickets (€15) solange der Vorrat reicht. ' +
-      'Verkauf startet 18. Juni 2026.',
+      '22 Spieler-Spots im Americano-Format (No Limits, 108 Paarungen), ' +
+      'anschließend Knock-Out, Halbfinale und RITMO Grande Finale (Best of 3) ' +
+      'auf Court 1 unter Spotlight. Parallel Courage Phase und Courage Finale — ' +
+      'niemand sitzt nur rum. Manny’s BBQ, Aperol- und Padelé-Spritz, ' +
+      'ANKOE & LNRT Ready Mix, danach DJ Scoop live. 17:30 Kick the Doors, ' +
+      'ab 23 Uhr Open End. 22 Spieler-Tickets (€39), Zuschauer-Tickets (€15) ' +
+      'solange der Vorrat reicht. Verkauf startet 18. Juni 2026.',
     live: true,
     kind: 'Event',
     cta: { label: 'Zum Event', to: '/events/ritmo-x-padel-haus-summer-sunset-2026' },

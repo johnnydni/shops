@@ -88,7 +88,7 @@ export function StepType({
               <li>Eintritt zum Spielfeld &amp; Sunset-Session</li>
               <li>Softdrink &amp; kleiner Burger inklusive</li>
               <li>Aperol-Bar offen den ganzen Abend</li>
-              <li>DJ ANKOE → LNRT House Music</li>
+              <li>ANKOE &amp; LNRT Ready Mix → DJ Scoop live</li>
             </ul>
             <div className="bf-tier-foot">
               <span className="bf-cap-note">Solange Vorrat reicht</span>

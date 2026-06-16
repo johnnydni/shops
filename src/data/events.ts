@@ -17,7 +17,7 @@ export const EVENTS: EventItem[] = [
     venue: 'Padel Haus',
     location: 'Großmehring',
     shortDesc:
-      'Gruppenphase im Mexicano-Format (rotierende Partner, alle werden durchgemixt), Top 14 in die KO-Phase: Knock-Out 1 Set (Court 1–3), Halbfinale 2 Sets (Court 2+3), RITMO Grande Finale Best of 3 auf Court 3. Parallel Ehren-Bracket auf Court 1 — niemand sitzt nur rum. Sunset, Drinks, House Music ab 18 Uhr bis Open End. Bei Padel Haus in Großmehring.',
+      'Gruppenphase im Americano-Format (No Limits, 108 Paarungen, 2 Angaben pro Kopf, alle 3 Courts parallel). Top 14 ziehen in die KO-Phase, Plätze 15–22 in die Courage Phase. Halbfinale Best of 3 (Court 2+3) parallel zum Courage-Halbfinale auf Court 1. Finals ab 22 Uhr: RITMO Grande Finale auf Court 1, Courage Finale auf Court 2, beide Best of 3 unter Spotlight. Niemand sitzt nur rum. 17:30 Kick the Doors, ab 23 Uhr Open End. ANKOE & LNRT Ready Mix, danach DJ Scoop live. Bei Padel Haus in Großmehring.',
     tags: ['Founders Edition', 'RITMO DNA Cup', 'House Music', 'Sunset'],
     tickets: [
       { name: 'Spieler',   price: 39, capacity: 22 },
@@ -34,81 +34,86 @@ export const EVENTS: EventItem[] = [
     longDesc: [
       'Der erste RITMO DNA Cup ist eine Founders-Edition — Premiere unseres ' +
       'Tournament-Formats und gleichzeitig Premiere für die Zusammenarbeit mit ' +
-      'Padel Haus. 22 Spieler:innen, drei Courts, sechs Stunden vom Sunset bis ' +
-      'Mitternacht.',
+      'Padel Haus. 22 Spieler:innen, drei Courts, von Kick the Doors um 17:30 ' +
+      'bis Open End ab 23 Uhr.',
 
-      'Das Turnier startet mit einer Gruppenphase im Mexicano-Format: rotierende ' +
-      'Partner über mehrere Runden, jeder gegen viele, offene Punkte-Wertung — ' +
-      'keine Sätze, keine Games, nur Punkte. So bekommt jede:r Spielzeit und ' +
-      'spielt mit unterschiedlichen Leuten. Die Top 14 nach Punkten ziehen in die ' +
-      'KO-Phase. Die ersten beiden Platzierten bekommen ein Bye direkt ins Halbfinale.',
+      'Phase 1, Gruppenphase im Americano-Format: 22 Spieler:innen, rotierende ' +
+      'Partner, alle drei Courts parallel — 108 verschiedene Paarungen über ' +
+      '~6 Runden, 2 Angaben pro Kopf, offene Punkte-Wertung (No Limits, keine ' +
+      'Sätze, keine Games — nur Punkte). Dein Match siehst du am Tablet neben ' +
+      'der RITMO Refresh Bar deines Courts. Wer pausiert, bekommt automatisch ' +
+      'den Mittelwert der Punkte aus der laufenden Runde gutgeschrieben — niemand ' +
+      'verliert durch eine Pause. 120 Minuten am Stück.',
 
-      'KO-Phase: Knock-Out (12 → 6) auf allen drei Courts — pro Pairing ' +
-      '1 Set bis 6 Games mit Tiebreak bei 5:5. Halbfinale auf Court 2 und 3: ' +
-      '6 Sieger plus 2 Bye-Spieler = 8 Spieler (8 → 4), pro Pairing 2 Sets ' +
-      '(Hin + Rück, ohne Decider — entschieden über die zwei Sätze). ' +
-      'Das RITMO Grande Finale auf Court 3 ist ein klassisches Best of 3 ' +
-      'Sätze bis 6 (Tiebreak bei 5:5).',
+      'Phase 2, Knock Out: Top 14 ziehen weiter. Plätze 3–14 (12 Spieler:innen) ' +
+      'spielen auf allen drei Courts parallel — Court 3: Plätze 3+14 vs 4+13, ' +
+      'Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10. Je 4 Spieler:innen pro Match, ' +
+      'No Limits, 35 Minuten — je 2 Sieger ziehen ins Halbfinale. Die Top 2 ' +
+      'aus der Gruppe haben Bye und warten in der Refresh Bar. Die Plätze 15–22 ' +
+      'wechseln in die Courage Phase und sitzen Phase 2 aus.',
 
-      'Parallel zum Halbfinale läuft auf Court 1 das Ehren-Bracket Halbfinale ' +
-      'für die 8 aus der Gruppenphase Ausgeschiedenen — kurze Sätze, damit ' +
-      'alle fit für die Party bleiben. Das Ehren-Finale läuft direkt vor dem ' +
-      'RITMO Grande Finale auf Court 3. Währenddessen: Sunset Session, ' +
-      'House-Music-DJ, Drinks, Verpflegung. Bis Mitternacht.',
+      'Phase 3, Halbfinale (60 Minuten): Auf Court 2 + 3 läuft das DNA-Halbfinale ' +
+      'im Best-of-3-Format — Match 1 mit #1 (Bye) + 3 KO-Sieger:innen, Match 2 ' +
+      'mit #2 (Bye) + 3 KO-Sieger:innen. Parallel auf Court 1 das Courage-Halbfinale: ' +
+      'die 8 aus den Plätzen 15–22 spielen nacheinander zwei Matches à 4 Spieler:innen, ' +
+      'je 30 Minuten No Limits.',
+
+      'Ab 22 Uhr die Finals, beide Best of 3 unter Spotlight: das RITMO Grande ' +
+      'Finale auf Court 1, parallel das Courage Finale auf Court 2. ' +
+      'Anschließend ab 23 Uhr Open End: Siegerehrung, ANKOE & LNRT Ready Mix ' +
+      'übergibt an DJ Scoop live, Food & Drinks bis die Energie geht.',
     ],
 
     schedule: [
-      { time: '17:30', title: 'Doors & Check-in',                  note: 'Spielerregistrierung, Bändchen-Pickup' },
-      { time: '18:00', title: 'Sunset Session Start' },
-      { time: '18:15', title: 'Gruppenphase, Mexicano-Format',    note: '22 Spieler, rotierende Partner, Court 1–3 parallel, ~75 min' },
-      { time: '19:30', title: 'Top 14 stehen fest',                note: 'Top 2: Bye zum Halbfinale, Platz 3–14: Knock-Out' },
-      { time: '19:45', title: 'Knock-Out, 12 → 6',                note: 'Court 1 + 2 + 3, alle Courts, 1 Set (Tiebreak bei 5:5)' },
-      { time: '20:45', title: 'Halbfinale, 8 → 4',                note: 'Court 2 + 3, 6 Sieger + 2 Bye, 2 Sets (Hin + Rück, kein Decider)' },
-      { time: '20:45', title: 'Ehren-Bracket Halbfinale, 8 → 2',  note: 'Court 1, parallel, kurze Sätze' },
-      { time: '22:00', title: 'Ehren-Finale, 2 → 1',              note: 'Court 3, 1 Set, direkt nach dem Halbfinale' },
-      { time: '22:30', title: 'RITMO Grande Finale',               note: 'Court 3, Flutlicht, Best of 3 Sätze bis 6 (Tiebreak bei 5:5), Top 4, 50-75 min' },
-      { time: '23:30', title: 'Siegerehrung & Drop-Reveal' },
-      { time: '23:45', title: 'After-Party, LNRT House Music' },
-      { time: '00:00', title: 'Open End',                          note: 'Closing-Time ist Orientierung — DJ läuft bis die Energie passt' },
+      { time: '17:30', title: 'Kick the Doors',                    note: 'Check-in, Warm-Up, Intro Turnierablauf' },
+      { time: '18:00', title: 'Phase 1, Gruppenphase Americano',   note: '22 Spieler:innen, rotierende Partner, alle 3 Courts parallel, 108 Paarungen, 2 Angaben pro Kopf, No Limits, 120 min' },
+      { time: '20:00', title: 'Leaderboard-Auswertung',            note: 'Top 14 ins KO, Top 2 BYE bis Halbfinale, Plätze 15–22 wechseln in die Courage Phase' },
+      { time: '20:10', title: 'Phase 2, Knock Out (12 → 6)',       note: '3 Matches parallel — Court 3: 3+14 vs 4+13, Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10, je 4 Spieler:innen, No Limits, 35 min' },
+      { time: '21:00', title: 'Phase 3, Halbfinale',               note: 'DNA Halbfinale Best of 3 auf Court 2+3 (Match 1: #1 + 3 KO-Sieger, Match 2: #2 + 3 KO-Sieger), parallel Courage-Halbfinale auf Court 1 (2× 30 min No Limits), 60 min' },
+      { time: '22:00', title: 'Finals',                            note: 'RITMO Grande Finale Best of 3 auf Court 1 (Spotlight), parallel Courage Finale Best of 3 auf Court 2 (Spotlight), Court 3 ruht' },
+      { time: '23:00', title: 'Open End',                          note: 'Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoop live, Food & Drinks' },
     ],
 
     program: [
       {
-        phase: '01, Gruppenphase, Mexicano-Format',
+        phase: '01, Gruppenphase Americano (Court 1 + 2 + 3)',
         details:
-          '22 Spieler:innen, rotierende Partner über mehrere Runden auf allen ' +
-          'drei Courts parallel. Offene Punkte-Wertung — keine Sätze, keine Games. ' +
-          'Jede:r spielt mit unterschiedlichen Leuten, sammelt Punkte über alle ' +
-          'Runden. Pausierende einer Runde bekommen den aufgerundeten Median ' +
-          'der Punkte aus der laufenden Runde gutgeschrieben — niemand verliert ' +
-          'durch eine Pause. Die Top 14 ziehen in die KO-Phase, die übrigen 8 ' +
-          'ins Ehren-Bracket. Niemand fliegt komplett raus.',
+          '22 Spieler:innen, rotierende Partner auf allen drei Courts parallel — ' +
+          '108 verschiedene Paarungen über ~6 Runden, 2 Angaben pro Kopf. Offene ' +
+          'Punkte-Wertung (No Limits, keine Sätze, keine Games — nur Punkte). ' +
+          'Pausierende einer Runde bekommen automatisch den Mittelwert der Punkte ' +
+          'aus der laufenden Runde gutgeschrieben — niemand verliert durch eine ' +
+          'Pause. Dein nächstes Match siehst du am Tablet neben der RITMO Refresh ' +
+          'Bar deines Courts. 120 Minuten am Stück. Top 14 ziehen weiter, ' +
+          'Plätze 15–22 wechseln in die Courage Phase.',
       },
       {
-        phase: '02, Knock-Out (Court 1 + 2 + 3)',
+        phase: '02, Knock Out (Court 1 + 2 + 3)',
         details:
-          'Plätze 3–14 spielen 6 Matches (12 → 6) auf allen drei Courts parallel. ' +
-          '1 Set pro Pairing, bis 6 Games mit Tiebreak bei 5:5. Schnell, ' +
-          'fokussiert — keine Best-of-Three-Verlängerung.',
+          'Plätze 3–14 (12 Spieler:innen) spielen drei KO-Matches parallel — ' +
+          'Court 3: Plätze 3+14 vs 4+13, Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10. ' +
+          'Je 4 Spieler:innen pro Match, No Limits, 35 Minuten. Je 2 Sieger:innen ' +
+          'ziehen ins DNA-Halbfinale. Die Top 2 (#1, #2) haben Bye und warten in ' +
+          'der Refresh Bar. Plätze 15–22 sitzen Phase 2 aus.',
       },
       {
-        phase: '03, Halbfinale (Court 2 + 3) & Ehren-Bracket (Court 1)',
+        phase: '03, Halbfinale & Courage-Halbfinale',
         details:
-          'Sobald die Knock-Out-Runde durch ist, läuft das Halbfinale auf Court 2 + 3 ' +
-          '(6 Sieger + 2 Top-Bye-Spieler = 8 → 4). 2 Sets pro Pairing — Hin und ' +
-          'Rück, ohne Decider, der Sieger steht über die zwei Sätze fest. Parallel ' +
-          'startet auf Court 1 das Ehren-Bracket Halbfinale (8 → 2) für die in ' +
-          'der Gruppenphase Ausgeschiedenen — kurze Sätze, damit alle fit für die ' +
-          'Party bleiben.',
+          'DNA-Halbfinale Best of 3 parallel auf Court 2 + 3: Match 1 mit #1 (Bye) ' +
+          '+ 3 KO-Sieger:innen, Match 2 mit #2 (Bye) + 3 KO-Sieger:innen — die ' +
+          'jeweiligen Sieger ziehen ins Grande Finale. Parallel auf Court 1 das ' +
+          'Courage-Halbfinale: die 8 Spieler:innen aus den Plätzen 15–22 spielen ' +
+          'zwei Matches nacheinander à 4 Spieler:innen, je 30 Minuten No Limits — ' +
+          'die 4 Sieger:innen ziehen ins Courage Finale. 60 Minuten gesamt.',
       },
       {
-        phase: '04, Ehren-Finale & RITMO Grande Finale (Court 3)',
+        phase: '04, RITMO Grande Finale + Courage Finale',
         details:
-          'Court 3 wird zur Bühne: zuerst das Ehren-Finale (2 → 1, 1 Set bis 6). ' +
-          'Dann das RITMO Grande Finale — Top 4, Best of 3 Sätze bis 6 (Tiebreak ' +
-          'bei 5:5), klassisches Padel-Finale-Format. Unter Flutlicht, mit ' +
-          'House-Music-Backdrop. Anschließend Siegerehrung, Drop-Reveal, ' +
-          'After-Party — Open End.',
+          'Die Finals laufen parallel unter Spotlight: RITMO Grande Finale auf ' +
+          'Court 1 (Top 4 aus DNA-Halbfinale, Best of 3) und Courage Finale auf ' +
+          'Court 2 (Top 4 aus Courage-Halbfinale, Best of 3). Court 3 ruht. ' +
+          'Anschließend ab 23 Uhr Open End: Siegerehrung, Musik-Übergabe von ' +
+          'ANKOE & LNRT zum DJ-Scoop-Live-Set, Food & Drinks bis die Energie geht.',
       },
     ],
 
@@ -127,7 +132,7 @@ export const EVENTS: EventItem[] = [
     faq: [
       {
         q: 'Brauche ich einen Doppel-Partner?',
-        a: 'Nein — du kannst dich allein anmelden. Das Turnier läuft im Mexicano-Format: ' +
+        a: 'Nein — du kannst dich allein anmelden. Das Turnier läuft im Americano-Format: ' +
            'alle Spieler:innen werden über mehrere Runden durchgemixt und rotieren ' +
            'Partner sowie Gegner. Heißt: du spielst mit vielen unterschiedlichen Leuten ' +
            'und musst dir keinen festen Partner suchen. Punkte sammelst du individuell.',
@@ -139,43 +144,54 @@ export const EVENTS: EventItem[] = [
       },
       {
         q: 'Wie läuft das Turnier exakt ab?',
-        a: 'GRUPPENPHASE (Mexicano-Format, Court 1+2+3 parallel, ~75 min): 22 Spieler:innen ' +
-           'rotieren über mehrere Runden Partner und Gegner. Pro Match werden offene Punkte ' +
-           'gespielt (z.B. 8 Punkte pro Runde, oder time-based). Keine Sätze, keine Games — ' +
-           'nur die Gesamtpunkte zählen. ' +
+        a: 'PHASE 0, KICK THE DOORS (17:30): Check-in, Warm-Up, Intro zum Turnierablauf.' +
+           '\n\n' +
+           'PHASE 1, GRUPPENPHASE AMERICANO (18:00–20:00, alle 3 Courts parallel): ' +
+           '22 Spieler:innen rotieren über ~6 Runden Partner und Gegner. Offene Punkte-' +
+           'Wertung (No Limits) — keine Sätze, keine Games, nur die Gesamtpunkte zählen. ' +
+           '108 verschiedene Paarungen sind möglich, jede:r hat 2 Angaben pro Match. ' +
+           'Dein nächstes Match siehst du am Tablet neben der RITMO Refresh Bar deines ' +
+           'Courts. ' +
            'Pausen-Fairness: Wer eine Runde aussetzen muss (mit 22 Spielern auf 3 Courts ' +
-           'sitzen pro Runde 10 Personen), bekommt automatisch den aufgerundeten Median ' +
-           'der in dieser Runde erzielten Punkte gutgeschrieben — niemand verliert durch ' +
-           'eine Pause. ' +
-           'Zusatz: Jedes Match wird per RITMO DNA in einen Match-Tier eingeordnet (S/A/B/C/X) ' +
-           '— gewinnst du ein höher-tieriges Match, bekommst du Bonus-Punkte. Details unten in ' +
-           'der "Match-Tier"-Sektion.' +
+           'sitzen pro Runde 10 Personen), bekommt automatisch den Mittelwert der in ' +
+           'dieser Runde erzielten Punkte gutgeschrieben — niemand verliert durch eine Pause. ' +
+           'Zusatz: Jedes Match wird per RITMO DNA in einen Match-Tier eingeordnet ' +
+           '(S/A/B/C/X) — gewinnst du ein höher-tieriges Match, bekommst du Bonus-Punkte. ' +
+           'Details unten in der "Match-Tier"-Sektion.' +
            '\n\n' +
-           'KNOCK-OUT (Court 1+2+3 parallel, ~60 min): 12 → 6. Pro Pairing genau 1 Satz ' +
-           'bis 6 Games gewonnen, Tiebreak bei 5:5. Kein Rückspiel, kein Best-of-Three.' +
+           'LEADERBOARD-AUSWERTUNG (20:00, 10 min): Punkte werden zusammengezählt. Top 14 ' +
+           'ziehen ins KO, Top 2 (#1, #2) bekommen Bye direkt ins Halbfinale, Plätze 15–22 ' +
+           'wechseln in die Courage Phase und sitzen Phase 2 aus.' +
            '\n\n' +
-           'HALBFINALE (Court 2+3 parallel, ~75 min): 8 → 4. Pro Pairing 2 Sätze (Hin + Rück), ' +
-           'beide bis 6 Games mit Tiebreak bei 5:5. Wer in Summe mehr Spiele gewonnen hat, ' +
-           'zieht weiter. Kein Decider-Match — Punkteglechheit wird über Spielgewinne aufgelöst.' +
+           'PHASE 2, KNOCK OUT (20:10–20:45, alle 3 Courts parallel, 35 min): Plätze 3–14 ' +
+           'spielen drei Matches parallel — Court 3: Plätze 3+14 vs 4+13, Court 2: 5+12 vs 6+11, ' +
+           'Court 1: 7+9 vs 8+10. Je 4 Spieler:innen pro Match, No Limits. Aus jedem Match ' +
+           'ziehen 2 Sieger:innen ins Halbfinale.' +
            '\n\n' +
-           'EHREN-BRACKET (Court 1, parallel zum Halbfinale, ~75 min): 8 → 2 im Halbfinale, ' +
-           'dann 2 → 1 im Ehren-Finale auf Court 3. Kurze Sätze (1 Satz bis 4 Games oder ' +
-           'time-based, je nach Restzeit) — Spielzeit ohne Pausenstress.' +
+           'PHASE 3, HALBFINALE (21:00–22:00, 60 min): DNA-Halbfinale Best of 3 auf Court 2+3 ' +
+           '— Match 1 mit #1 (Bye) + 3 KO-Sieger:innen, Match 2 mit #2 (Bye) + 3 KO-Sieger:innen. ' +
+           'Die Sieger ziehen ins Grande Finale. Parallel auf Court 1 das Courage-Halbfinale: ' +
+           'die 8 Spieler:innen aus den Plätzen 15–22 spielen zwei Matches nacheinander à ' +
+           '4 Spieler:innen, je 30 Minuten No Limits. Die 4 Sieger:innen ziehen ins Courage Finale.' +
            '\n\n' +
-           'RITMO GRANDE FINALE (Court 3, Flutlicht, ~60 min): Top 4 spielen ein klassisches ' +
-           'Padel-Finale — Best of 3 Sätze bis 6 Games (Tiebreak bei 5:5). Wer zwei Sätze ' +
-           'gewinnt, gewinnt den Cup. Drei Sätze möglich, wenn 1:1 nach Hin+Rück.',
+           'FINALS (ab 22:00, beide Best of 3 unter Spotlight): RITMO Grande Finale auf ' +
+           'Court 1 (Top 4 aus DNA-Halbfinale, klassisches Padel-Finale-Format — zwei ' +
+           'gewonnene Sätze entscheiden, dritter Satz wenn 1:1). Parallel Courage Finale auf ' +
+           'Court 2 (Top 4 aus Courage-Halbfinale, gleiches Format). Court 3 ruht.' +
+           '\n\n' +
+           'OPEN END (ab 23:00): Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoop ' +
+           'live, Food & Drinks bis die Energie geht.',
       },
       {
         q: 'Was ist im Spieler-Ticket enthalten?',
-        a: 'Turnier-Teilnahme (Gruppenphase + KO oder Ehren-Bracket, abhängig vom ' +
+        a: 'Turnier-Teilnahme (Gruppenphase + KO oder Courage Phase, abhängig vom ' +
            'Abschneiden in der Gruppe), Court-Zeit, Welcome-Drink, Refresh Bar, After-Party ' +
-           'und Drop-Reveal. Jede:r Spieler:in bekommt garantiert mehrere Matches.',
+           'und Siegerehrung. Jede:r Spieler:in bekommt garantiert mehrere Matches.',
       },
       {
         q: 'Was ist im Zuschauer-Ticket enthalten?',
-        a: 'Eintritt ab 17:30, Welcome-Drink, Zugang zur Sunset Session und After-Party. ' +
-           'Weitere Drinks und Food separat.',
+        a: 'Eintritt ab 17:30 (Kick the Doors), Welcome-Drink, Zugang zur Sunset Session ' +
+           'und After-Party ab 23 Uhr Open End. Weitere Drinks und Food separat.',
       },
       {
         q: 'Stornierung möglich?',
@@ -224,15 +240,15 @@ export const EVENTS: EventItem[] = [
 
     /* ───────── Musik ───────── */
     music: {
-      djName: 'DJ ANKOE',
-      setTitle: 'Ready Mix für RITMO X Padel Haus',
+      djName: 'ANKOE & LNRT, DJ SCOOP',
+      setTitle: 'Ready Mix & Live Set',
       description:
-        'ANKOE legt einen eigens für das Event produzierten Ready Mix auf — ' +
-        'Sunset-Vibes zur Gruppenphase, Tempo-Anstieg fürs Halbfinale, ' +
-        'Festival-Drop zum Grande Finale. Soundtrack, der mit dem Turnier wächst.',
+        'ANKOE und LNRT legen einen eigens für das Event produzierten Ready Mix auf — ' +
+        'Sunset-Vibes zur Gruppenphase, Tempo-Anstieg fürs Halbfinale, Festival-Drop ' +
+        'zu den Finals. Soundtrack, der mit dem Turnier wächst.',
       followUp:
-        'Nach dem Drop-Reveal läuft LNRT mit einem House-Music-Set bis Open End — ' +
-        'tiefer, deeper, dancefloor-tauglich. Padel Haus wird zum Club.',
+        'Ab 23 Uhr übernimmt DJ Scoop live — tiefer, deeper, dancefloor-tauglich, ' +
+        'Open End. Padel Haus wird zum Club.',
       imageSrc: '/assets/events/sunset-dj.jpg',
     },
 

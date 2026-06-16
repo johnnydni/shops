@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AnimatedBg } from '../components/layout/AnimatedBg';
-import { ButtonLink, ButtonAnchor } from '../components/ui/Button';
+import { ButtonLink } from '../components/ui/Button';
 import { CartStore } from '../lib/cart';
 
 /**
@@ -53,9 +53,7 @@ export function SuccessPage() {
         )}
         <div className="ok-links">
           <ButtonLink to="/">Weiter shoppen</ButtonLink>
-          <ButtonAnchor variant="out" href="https://ritmopadel.app/" rel="noopener">
-            RITMO App öffnen
-          </ButtonAnchor>
+          <ButtonLink variant="out" to="/sortiment">Zum Sortiment</ButtonLink>
         </div>
       </div>
     </section>

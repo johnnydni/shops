@@ -15,13 +15,20 @@ export const EVENTS: EventItem[] = [
     subtitle: 'RITMO DNA Cup, Founders Edition',
     date: '2026-07-18',
     venue: 'Padel Haus',
-    location: 'Großmehring',
+    location: 'Ingolstadt',
     shortDesc:
-      'Gruppenphase im Americano-Format (No Limits, 108 Paarungen, 2 Angaben pro Kopf, alle 3 Courts parallel). Top 14 ziehen in die KO-Phase, Plätze 15–22 in die Courage Phase. Halbfinale Best of 3 (Court 2+3) parallel zum Courage-Halbfinale auf Court 1. Finals ab 22 Uhr: RITMO Grande Finale auf Court 1, Courage Finale auf Court 2, beide Best of 3 unter Spotlight. Niemand sitzt nur rum. 17:30 Kick the Doors, ab 23 Uhr Open End. ANKOE & LNRT Ready Mix, danach DJ Scoop live. Bei Padel Haus in Großmehring.',
+      'Gruppenphase im Americano-Format (No Limits, 108 Paarungen, 2 Angaben pro Kopf, alle 3 Courts parallel). Top 14 ziehen in die KO-Phase, Plätze 15–22 in die Courage Phase. Halbfinale Best of 3 (Court 2+3) parallel zum Courage-Halbfinale auf Court 1. Finals ab 22 Uhr: RITMO Grande Finale auf Court 1, Courage Finale auf Court 2, beide Best of 3 unter Spotlight. Niemand sitzt nur rum. 17:30 Kick the Doors, ab 23 Uhr Open End. ANKOE & LNRT Ready Mix, danach DJ Scoob live. Bei Padel Haus in Ingolstadt.',
     tags: ['Founders Edition', 'RITMO DNA Cup', 'House Music', 'Sunset'],
     tickets: [
       { name: 'Spieler',   price: 39, capacity: 22 },
-      { name: 'Zuschauer', price: 15 },
+      {
+        name: 'Zuschauer',
+        price: 15,
+        flag: 'Early Bird',
+        note:
+          'Early-Bird-Preis. Mögliche Überraschung am Eventabend — bei einer ' +
+          'Preisanpassung haben Early-Bird-Holder eine kostenlose Upgrade-Option.',
+      },
     ],
     salesStart: '2026-06-18',
     salesEnd:   '2026-07-17',
@@ -61,7 +68,7 @@ export const EVENTS: EventItem[] = [
       'Ab 22 Uhr die Finals, beide Best of 3 unter Spotlight: das RITMO Grande ' +
       'Finale auf Court 1, parallel das Courage Finale auf Court 2. ' +
       'Anschließend ab 23 Uhr Open End: Siegerehrung, ANKOE & LNRT Ready Mix ' +
-      'übergibt an DJ Scoop live, Food & Drinks bis die Energie geht.',
+      'übergibt an DJ Scoob live, Food & Drinks bis die Energie geht.',
     ],
 
     schedule: [
@@ -71,7 +78,7 @@ export const EVENTS: EventItem[] = [
       { time: '20:10', title: 'Phase 2, Knock Out (12 → 6)',       note: '3 Matches parallel — Court 3: 3+14 vs 4+13, Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10, je 4 Spieler:innen, No Limits, 35 min' },
       { time: '21:00', title: 'Phase 3, Halbfinale',               note: 'DNA Halbfinale Best of 3 auf Court 2+3 (Match 1: #1 + 3 KO-Sieger, Match 2: #2 + 3 KO-Sieger), parallel Courage-Halbfinale auf Court 1 (2× 30 min No Limits), 60 min' },
       { time: '22:00', title: 'Finals',                            note: 'RITMO Grande Finale Best of 3 auf Court 1 (Spotlight), parallel Courage Finale Best of 3 auf Court 2 (Spotlight), Court 3 ruht' },
-      { time: '23:00', title: 'Open End',                          note: 'Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoop live, Food & Drinks' },
+      { time: '23:00', title: 'Open End',                          note: 'Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoob live, Food & Drinks' },
     ],
 
     program: [
@@ -113,16 +120,16 @@ export const EVENTS: EventItem[] = [
           'Court 1 (Top 4 aus DNA-Halbfinale, Best of 3) und Courage Finale auf ' +
           'Court 2 (Top 4 aus Courage-Halbfinale, Best of 3). Court 3 ruht. ' +
           'Anschließend ab 23 Uhr Open End: Siegerehrung, Musik-Übergabe von ' +
-          'ANKOE & LNRT zum DJ-Scoop-Live-Set, Food & Drinks bis die Energie geht.',
+          'ANKOE & LNRT zum DJ-Scoob-Live-Set, Food & Drinks bis die Energie geht.',
       },
     ],
 
     venueInfo: {
       name: 'Padel Haus',
-      address: 'Großmehring, bei Ingolstadt, Standort wird mit Ticket bestätigt',
+      address: 'Ingolstadt, Standort wird mit Ticket bestätigt',
       web:     'https://padel-haus.de',
       blurb:
-        'Padel Haus in Großmehring (bei Ingolstadt) ist eine der modernsten ' +
+        'Padel Haus in Ingolstadt ist eine der modernsten ' +
         'Padel-Anlagen Süddeutschlands. Drei Premium-Courts,' +
         'Sound-System für die passenden Padel Vibes., ' +
         'Genau der Ort, an dem ein Sunset-Cup hingehört.',
@@ -179,7 +186,7 @@ export const EVENTS: EventItem[] = [
            'gewonnene Sätze entscheiden, dritter Satz wenn 1:1). Parallel Courage Finale auf ' +
            'Court 2 (Top 4 aus Courage-Halbfinale, gleiches Format). Court 3 ruht.' +
            '\n\n' +
-           'OPEN END (ab 23:00): Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoop ' +
+           'OPEN END (ab 23:00): Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoob ' +
            'live, Food & Drinks bis die Energie geht.',
       },
       {
@@ -194,13 +201,20 @@ export const EVENTS: EventItem[] = [
            'und After-Party ab 23 Uhr Open End. Weitere Drinks und Food separat.',
       },
       {
+        q: 'Wo werden die Tickets verkauft?',
+        a: 'Der Ticketverkauf läuft über Playtomic. Sobald der Verkauf startet, ' +
+           'findest du den Link hier auf der Event-Seite und in der ' +
+           'Wartelisten-Bestätigungsmail. Wartelisten-Holder werden bevorzugt ' +
+           'benachrichtigt, bevor der allgemeine Verkauf live geht.',
+      },
+      {
         q: 'Stornierung möglich?',
         a: 'Bis 7 Tage vor Event: volle Rückerstattung. Danach übertragbar an eine ' +
            'andere Person, aber nicht erstattbar.',
       },
       {
         q: 'Wie komme ich hin?',
-        a: 'Padel Haus liegt in Großmehring bei Ingolstadt — direkt an der A9 erreichbar, ' +
+        a: 'Padel Haus liegt in Ingolstadt — direkt an der A9 erreichbar, ' +
            'Parkplätze auf dem Gelände. Mit dem Zug: Bahnhof Ingolstadt, dann ca. 15 Minuten ' +
            'mit dem Taxi. Genaue Adresse und Anfahrtsweg kommen mit der Ticket-Bestätigung.',
       },
@@ -218,12 +232,13 @@ export const EVENTS: EventItem[] = [
         imageSrc: '/assets/events/sunset-refresh-bar.jpg',
       },
       {
-        name: "Manny's BBQ",
-        tagline: 'Burger Stand',
+        name: 'Holledauer Raut’n Gold Brez’nPizza',
+        tagline: 'Breznpizza-Stand',
         description:
-          'Smashed Patties auf Brioche-Bun, knusprige Pommes, vegetarische Option. ' +
-          'Spieler-Tickets bekommen einen großen Burger, Zuschauer-Tickets einen kleinen — ' +
-          'beide inklusive. Open für Nachorder.',
+          'Holledauer Brez’nPizza in zwei Größen — knusprige Laugen-Basis, ' +
+          'belegt mit Klassikern (auch vegetarisch). Spieler-Tickets bekommen ' +
+          'eine große Brez’nPizza, Zuschauer-Tickets eine kleine — beide ' +
+          'inklusive. Open für Nachorder.',
         imageSrc: '/assets/events/sunset-bbq.jpg',
       },
       {
@@ -240,14 +255,14 @@ export const EVENTS: EventItem[] = [
 
     /* ───────── Musik ───────── */
     music: {
-      djName: 'ANKOE & LNRT, DJ SCOOP',
+      djName: 'ANKOE & LNRT, DJ SCOOB',
       setTitle: 'Ready Mix & Live Set',
       description:
         'ANKOE und LNRT legen einen eigens für das Event produzierten Ready Mix auf — ' +
         'Sunset-Vibes zur Gruppenphase, Tempo-Anstieg fürs Halbfinale, Festival-Drop ' +
         'zu den Finals. Soundtrack, der mit dem Turnier wächst.',
       followUp:
-        'Ab 23 Uhr übernimmt DJ Scoop live — tiefer, deeper, dancefloor-tauglich, ' +
+        'Ab 23 Uhr übernimmt DJ Scoob live — tiefer, deeper, dancefloor-tauglich, ' +
         'Open End. Padel Haus wird zum Club.',
       imageSrc: '/assets/events/sunset-dj.jpg',
     },
@@ -257,10 +272,11 @@ export const EVENTS: EventItem[] = [
       title: 'RITMO Match Tiers',
       description:
         'In der Gruppenphase werden alle Matches per RITMO DNA in fünf Tiers ' +
-        'eingeordnet — basierend auf Niveau und Form der Pairings. Gewinnst du ein ' +
-        'höher-tieriges Match, bekommst du Extra-Punkte aufs Gesamtkonto. So zählen ' +
-        'Siege gegen starke Gegner mehr — und das Bracket-Seeding spiegelt echte ' +
-        'Leistung wider, nicht nur Wins.',
+        'eingeordnet — basierend auf den Spielstilen der gepaarten Spieler:innen. ' +
+        'Deinen Spielstil findest du im DNA-Quiz heraus (Link am Ende dieser Sektion). ' +
+        'Gewinnst du ein höher-tieriges Match, bekommst du Extra-Punkte aufs ' +
+        'Gesamtkonto. So zählen Siege gegen starke Gegner mehr — und das Bracket-' +
+        'Seeding spiegelt echte Leistung wider, nicht nur Wins.',
       tiers: [
         { tier: 'S', bonus: 4, label: 'Top-Pairings, höchster Schwierigkeitsgrad' },
         { tier: 'A', bonus: 3, label: 'Starkes Pairing, ein Level über Mittel' },

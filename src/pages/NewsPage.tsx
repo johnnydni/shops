@@ -122,12 +122,12 @@ const ARTICLES: Article[] = [
     when: 'Juli 2026',
     title: 'RITMO X Padel Haus, Summer Sunset Special',
     body:
-      'Founders-Edition des RITMO DNA Cups bei Padel Haus in Großmehring. ' +
+      'Founders-Edition des RITMO DNA Cups bei Padel Haus in Ingolstadt. ' +
       '22 Spieler-Spots im Americano-Format (No Limits, 108 Paarungen), ' +
       'anschließend Knock-Out, Halbfinale und RITMO Grande Finale (Best of 3) ' +
       'auf Court 1 unter Spotlight. Parallel Courage Phase und Courage Finale — ' +
-      'niemand sitzt nur rum. Manny’s BBQ, Aperol- und Padelé-Spritz, ' +
-      'ANKOE & LNRT Ready Mix, danach DJ Scoop live. 17:30 Kick the Doors, ' +
+      'niemand sitzt nur rum. Holledauer Raut’n Gold Brez’nPizza, Aperol- und Padelé-Spritz, ' +
+      'ANKOE & LNRT Ready Mix, danach DJ Scoob live. 17:30 Kick the Doors, ' +
       'ab 23 Uhr Open End. 22 Spieler-Tickets (€39), Zuschauer-Tickets (€15) ' +
       'solange der Vorrat reicht. Verkauf startet 18. Juni 2026.',
     live: true,

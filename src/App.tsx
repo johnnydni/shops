@@ -11,6 +11,7 @@ import { SortimentPage } from './pages/SortimentPage';
 import { NewsPage } from './pages/NewsPage';
 import { EventsPage } from './pages/EventsPage';
 import { EventDetailPage } from './pages/EventDetailPage';
+import { EventDnaQuizPage } from './pages/EventDnaQuizPage';
 import { EventBuyPage } from './pages/EventBuyPage';
 import { EventSuccessPage } from './pages/EventSuccessPage';
 import { EventCancelPage } from './pages/EventCancelPage';
@@ -44,6 +45,7 @@ export function App() {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/:id" element={<EventDetailPage />} />
+        <Route path="/events/:id/dna-quiz" element={<EventDnaQuizPage />} />
         <Route path="/event/buy/:eventId" element={<EventBuyPage />} />
         <Route path="/event/success" element={<EventSuccessPage />} />
         <Route path="/event/cancel" element={<EventCancelPage />} />

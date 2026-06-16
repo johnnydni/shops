@@ -32,6 +32,7 @@ import { handleWebhook }        from './webhook.js';
 import { handleEventCheckout }  from './event/checkout.js';
 import { handleEventWebhook }   from './event/webhook.js';
 import { handleTicketRead, handleSessionLookup } from './event/ticket.js';
+import { handleWaitlistSubmit, handleWaitlistExport } from './event/waitlist.js';
 import { preflight, jsonResponse, corsHeaders } from './cors.js';
 
 export default {
@@ -57,6 +58,10 @@ export default {
     if (ticketMatch) return handleTicketRead(request, env, ticketMatch[1]);
     const sessionMatch = url.pathname.match(/^\/api\/event\/session\/([A-Za-z0-9_]+)$/);
     if (sessionMatch) return handleSessionLookup(request, env, sessionMatch[1]);
+
+    // Pre-sales waitlist
+    if (url.pathname === '/api/event/waitlist')          return handleWaitlistSubmit(request, env);
+    if (url.pathname === '/api/event/admin/waitlist.txt') return handleWaitlistExport(request, env);
 
     return new Response('not found', {
       status: 404,

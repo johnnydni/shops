@@ -94,8 +94,9 @@ input,select,textarea{font-family:inherit}
   display:inline-block;transform:translateY(-2px);
   animation:pulseDot 2.4s var(--ease) infinite}
 .word .pipe{margin:0 6px;color:var(--t3);font-style:normal;font-weight:400}
-.word .sub{color:var(--t2);font-weight:600;font-style:normal;letter-spacing:1.5px;
-  text-transform:uppercase;font-size:12px}
+/* SHOP rendered at same size, weight and italic as RITMO — same wordmark family. */
+.word .sub{color:var(--t1);font-weight:900;font-style:italic;
+  font-size:24px;letter-spacing:.5px;text-transform:uppercase}
 
 .nav{display:flex;gap:22px;font-size:13px;font-weight:600;color:var(--t2);
   letter-spacing:.4px;align-items:center}
@@ -2033,3 +2034,205 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   /* QR — already white-bg by component, keep it tight */
   .tkt-qr .qr{padding:4px}
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   EVENT DETAIL — iteration (TURNIER label outside, StatsStrip,
+   So-läuft-der-Cup bullets, collapsible schedule)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Hero label moved below image card ── */
+.evp-stage-foot{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:14px;padding:6px 2px;
+  font-size:13px;letter-spacing:.08em;
+}
+.evp-stage-foot .event-type-badge{position:static}
+.evp-stage-foot-sep{color:var(--t3);font-weight:300}
+.evp-stage-foot .evp-partner-badge{
+  background:transparent;color:var(--t2);padding:0;
+  font-size:13px;letter-spacing:.04em;text-transform:none;
+}
+.evp-stage-foot .evp-partner-badge b{color:var(--t1);font-weight:800}
+
+/* ── StatsStrip — creative mixed-size counter blocks ── */
+.evp-stats-strip{padding:36px 0 8px;border-bottom:1px solid var(--line)}
+.evp-stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(16px,3vw,40px);align-items:flex-end;
+}
+@media (max-width:760px){.evp-stats-row{grid-template-columns:repeat(2,1fr);gap:22px}}
+
+.evp-stat{
+  position:relative;display:flex;flex-direction:column;gap:6px;
+  padding:8px 0;font-family:'Lexend Mega','Public Sans',sans-serif;
+}
+.evp-stat-value{
+  font-weight:900;line-height:.95;color:var(--t1);
+  letter-spacing:-.04em;display:inline-flex;align-items:baseline;
+  font-variant-numeric:tabular-nums;
+}
+.evp-stat-suffix{font-size:.6em;color:var(--orange);margin-left:2px}
+.evp-stat-label{
+  font-family:'Public Sans',sans-serif;font-weight:600;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--t2);line-height:1.2;
+}
+.evp-stat-xl .evp-stat-value{font-size:clamp(64px,9vw,128px)}
+.evp-stat-lg .evp-stat-value{font-size:clamp(52px,7vw,96px)}
+.evp-stat-md .evp-stat-value{font-size:clamp(40px,6vw,72px)}
+
+/* Pixel-grid accent (4×4 cells in the corner of the stat block) */
+.evp-stat-pixel{
+  position:absolute;top:0;right:0;
+  display:grid;grid-template-columns:repeat(4,4px);grid-auto-rows:4px;gap:2px;
+  pointer-events:none;
+}
+.evp-stat-pixel-cell{background:var(--orange);display:block}
+.evp-stat-xl .evp-stat-pixel{grid-template-columns:repeat(4,6px);grid-auto-rows:6px}
+@media (max-width:760px){.evp-stat-pixel{grid-template-columns:repeat(4,3px);grid-auto-rows:3px}}
+
+/* ── So läuft der Cup — compact bullets above the timeline ── */
+.evp-cup-flow{
+  background:var(--card);border-left:3px solid var(--orange);
+  padding:22px 24px;margin-bottom:28px;
+}
+.evp-cup-flow-head{
+  font-family:'Lexend Mega',sans-serif;font-weight:800;
+  font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:14px;
+}
+.evp-cup-flow-list{
+  display:flex;flex-direction:column;gap:8px;list-style:none;padding:0;
+}
+.evp-cup-flow-list li{
+  position:relative;padding-left:18px;font-size:15px;line-height:1.55;color:var(--t1);
+}
+.evp-cup-flow-list li::before{
+  content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--orange);
+}
+.evp-cup-flow-list b{font-family:'Lexend Mega',sans-serif;font-weight:800;color:var(--t1);margin-right:6px}
+
+/* ── Collapsible detailed timeline ── */
+.evp-schedule-details{
+  border:1px solid var(--line);background:var(--card);padding:0;
+}
+.evp-schedule-details > summary{
+  cursor:pointer;list-style:none;
+  padding:16px 22px;display:flex;align-items:center;gap:10px;
+  user-select:none;color:var(--t1);font-weight:700;
+}
+.evp-schedule-details > summary::-webkit-details-marker{display:none}
+.evp-schedule-details-toggle{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Lexend Mega',sans-serif;font-size:13px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--orange);font-weight:700;
+}
+.evp-schedule-details-icon{
+  display:inline-block;width:14px;height:14px;position:relative;flex-shrink:0;
+}
+.evp-schedule-details-icon::before,
+.evp-schedule-details-icon::after{
+  content:"";position:absolute;background:var(--orange);transition:transform var(--med) var(--ease);
+}
+.evp-schedule-details-icon::before{left:0;right:0;top:6px;height:2px}
+.evp-schedule-details-icon::after{top:0;bottom:0;left:6px;width:2px}
+.evp-schedule-details[open] .evp-schedule-details-icon::after{transform:scaleY(0)}
+.evp-schedule-details[open] > summary{border-bottom:1px solid var(--line)}
+.evp-schedule-details > summary:hover{background:var(--card2)}
+.evp-schedule-details > summary::after{
+  content:"einblenden";font-family:'Public Sans',sans-serif;font-weight:600;
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);margin-left:auto;
+}
+.evp-schedule-details[open] > summary::after{content:"ausblenden"}
+.evp-schedule-details .evp-schedule-list{padding:8px 22px 22px}
+
+/* ─── Ticket card headline + flag + note ─── */
+.evp-ticket-card-headline{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.evp-ticket-card-flag{
+  display:inline-block;padding:3px 8px;background:var(--yellow);color:#000;
+  font-family:'Lexend Mega',sans-serif;font-weight:800;font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.evp-ticket-card-note{font-size:12px;color:var(--t3);line-height:1.5;margin:8px 0 16px}
+.evp-section-lead{color:var(--t2);font-size:15px;line-height:1.55;margin-top:8px;max-width:60ch}
+
+/* ─── Waitlist section ─── */
+.evp-waitlist{margin-top:48px;padding:32px;background:var(--card);border:1px solid var(--line)}
+.evp-waitlist-head{margin-bottom:18px}
+.evp-waitlist-title{
+  font-family:'Lexend Mega',sans-serif;font-size:18px;font-weight:800;
+  letter-spacing:-.01em;color:var(--t1);margin-bottom:6px;
+}
+.evp-waitlist-lead{color:var(--t2);font-size:14px;line-height:1.55;max-width:60ch}
+
+/* ─── WaitlistForm ─── */
+.wl-form{max-width:520px}
+.wl-step{display:flex;flex-direction:column;gap:14px}
+.wl-step-head{font-size:16px;font-weight:700;color:var(--t1);line-height:1.3}
+.wl-step-foot{font-size:12px;color:var(--t3);line-height:1.5;margin-top:4px}
+
+.wl-tier-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.wl-tier-row{grid-template-columns:1fr}}
+.wl-tier-btn{
+  display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;
+  padding:14px 16px;background:var(--card2);border:1px solid var(--line2);
+  cursor:pointer;color:var(--t1);transition:all var(--med) var(--ease);
+}
+.wl-tier-btn:hover{border-color:var(--orange);background:var(--card3)}
+.wl-tier-name{font-family:'Lexend Mega',sans-serif;font-weight:800;font-size:14px}
+.wl-tier-hint{font-size:12px;color:var(--t3);letter-spacing:.04em}
+
+.wl-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.wl-row-2{grid-template-columns:1fr}}
+.wl-field{display:flex;flex-direction:column;gap:4px}
+.wl-field > span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);font-weight:700}
+.wl-field input{height:40px;padding:0 12px;background:var(--bg);color:var(--t1);
+  border:1px solid var(--line2);font-size:14px}
+.wl-field input:focus{outline:none;border-color:var(--orange)}
+
+.wl-confirm-email{
+  font-family:'Lexend Mega',sans-serif;font-size:18px;color:var(--orange);
+  background:var(--card2);padding:14px 16px;border-left:3px solid var(--orange);
+  word-break:break-all;
+}
+.wl-confirm-note{font-size:13px;color:var(--t2);line-height:1.55}
+
+.wl-error{
+  padding:10px 12px;background:rgba(232,69,69,.1);border-left:3px solid var(--red);
+  color:var(--t1);font-size:13px;line-height:1.5;
+}
+.wl-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px;flex-wrap:wrap}
+
+.wl-locked{
+  padding:18px;background:var(--card2);border-left:3px solid var(--yellow);
+  color:var(--t2);font-size:14px;line-height:1.55;
+}
+.wl-locked-head{font-size:14px;font-weight:800;color:var(--yellow);margin-bottom:6px;
+  letter-spacing:.06em;text-transform:uppercase}
+
+.wl-step-done{align-items:flex-start;gap:14px}
+.wl-done-mark{
+  width:44px;height:44px;background:var(--orange);position:relative;flex-shrink:0;
+}
+.wl-done-mark::after{content:"";position:absolute;left:13px;top:18px;width:8px;height:14px;
+  border:solid #000;border-width:0 3px 3px 0;transform:rotate(45deg)}
+
+/* ─── DNA Quiz stub page + match-tier link ─── */
+.dna-quiz-main{min-height:60vh;padding-bottom:96px}
+.dna-quiz-hero{padding:64px 0 48px}
+.dna-quiz-hero .page-title{margin:8px 0 16px}
+.dna-quiz-hero .page-lead{max-width:60ch;margin-bottom:32px}
+.dna-quiz-coming{padding:28px;background:var(--card);border:1px solid var(--line);max-width:640px}
+.dna-quiz-coming-head{
+  font-family:'Lexend Mega',sans-serif;font-size:14px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--yellow);margin-bottom:8px;font-weight:800;
+}
+.dna-quiz-coming p{color:var(--t2);font-size:15px;line-height:1.55;margin-bottom:20px}
+.dna-quiz-cta-row{display:flex;gap:10px;flex-wrap:wrap}
+
+.evp-scoring-quiz-cta{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  margin-top:24px;padding:18px 22px;
+  background:var(--card2);border-left:3px solid var(--orange);flex-wrap:wrap;
+}
+.evp-scoring-quiz-cta p{color:var(--t1);font-size:14px;line-height:1.5;margin:0;flex:1;min-width:260px}

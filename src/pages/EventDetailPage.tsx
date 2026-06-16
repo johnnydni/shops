@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { animate, motion, useMotionValue, useTransform, useReducedMotion } from 'framer-motion';
 import { EVENTS } from '../data/events';
 import { Crumbs } from '../components/ui/Crumbs';
 import {
@@ -11,6 +11,7 @@ import {
 import { eur } from '../lib/format';
 import { dayRange, monthShort, fullDate } from '../lib/dates';
 import { BOOKING_LOCKED } from '../lib/featureFlags';
+import { WaitlistForm } from '../components/event/waitlist/WaitlistForm';
 
 /**
  * Computes the right CTA flavour for a given event:
@@ -93,7 +94,7 @@ export function EventDetailPage() {
         ]}
       />
       <Hero event={event} />
-      <HighlightsRow />
+      <StatsStrip />
       <StorySections event={event} />
       <Programm event={event} />
       <ScoringSection event={event} />
@@ -142,7 +143,9 @@ function Hero({ event }: { event: EventItem }) {
             <div className="evp-stage-year">{event.date.slice(0, 4)}</div>
           </div>
 
-          {/* Visual — image OR animated bauhaus placeholder */}
+          {/* Visual — image OR animated bauhaus placeholder.
+              The TURNIER + partner labels used to sit INSIDE this card;
+              they now live below it in .evp-stage-foot. */}
           <div className="evp-stage-visual">
             <BauhausVisual />
             {event.heroImageSrc && (
@@ -152,16 +155,19 @@ function Hero({ event }: { event: EventItem }) {
                 onError={(e) => { (e.currentTarget as HTMLImageElement).remove(); }}
               />
             )}
-            <div className="evp-stage-meta">
-              <span className={`event-type-badge tone-${tone}`}>
-                {EVENT_TYPE_LABEL[event.type]}
+          </div>
+
+          {/* Labels under the image card */}
+          <div className="evp-stage-foot">
+            <span className={`event-type-badge tone-${tone}`}>
+              {EVENT_TYPE_LABEL[event.type]}
+            </span>
+            <span className="evp-stage-foot-sep">|</span>
+            {event.partner && (
+              <span className="evp-partner-badge">
+                in Kooperation mit <b>{event.partner.name}</b>
               </span>
-              {event.partner && (
-                <span className="evp-partner-badge">
-                  in Kooperation mit <b>{event.partner.name}</b>
-                </span>
-              )}
-            </div>
+            )}
           </div>
         </motion.div>
 
@@ -239,47 +245,84 @@ function Hero({ event }: { event: EventItem }) {
    HIGHLIGHTS ROW — animated bauhaus dots with key facts above the
    story. Sits between the hero and the long description.
    ─────────────────────────────────────────────────────────────────── */
-function HighlightsRow() {
+/* StatsStrip — the creative replacement for the old HighlightsRow.
+   Four stat blocks in alternating sizes (xl/md/lg/xl) with counter
+   animation on the numeric value plus a pixel-grid Bauhaus accent
+   that reveals stepwise. Each block also fades in with a small
+   y-translate for the cinematic stagger. */
+function StatsStrip() {
   const reduce = useReducedMotion();
-  const items = [
-    { tone: 'orange', value: '22',         label: 'Spieler-Spots'   },
-    { tone: 'yellow', value: '3',          label: 'Courts in Padel Haus' },
-    { tone: 'blue',   value: '18 → Open',  label: 'Sunset bis Mitternacht+' },
-    { tone: 'red',    value: 'Founders',   label: 'Edition, RITMO DNA Cup' },
+  const stats: Array<{ n: number; suffix?: string; label: string; size: 'xl' | 'lg' | 'md' }> = [
+    { n: 22, suffix: '',    label: 'Spieler:innen',  size: 'xl' },
+    { n: 3,  suffix: '',    label: 'Courts',         size: 'md' },
+    { n: 18, suffix: ':00', label: 'Kick the Doors', size: 'lg' },
+    { n: 6,  suffix: 'h+',  label: 'bis Open End',   size: 'xl' },
   ];
-
   return (
-    <section className="evp-highlights">
+    <section className="evp-stats-strip">
       <motion.div
-        className="wrap evp-highlights-row"
+        className="wrap evp-stats-row"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '0px 0px -10% 0px' }}
         variants={{
           hidden: {},
-          show: { transition: { staggerChildren: reduce ? 0 : 0.14, delayChildren: 0.08 } },
+          show: { transition: { staggerChildren: reduce ? 0 : 0.18, delayChildren: 0.05 } },
         }}
       >
-        {items.map((h) => (
+        {stats.map((s, i) => (
           <motion.div
-            key={h.label}
-            className={`evp-highlight tone-${h.tone}`}
+            key={s.label}
+            className={`evp-stat evp-stat-${s.size}`}
             variants={{
-              hidden: { opacity: 0, y: reduce ? 0 : 18 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
-              },
+              hidden: { opacity: 0, y: reduce ? 0 : 22 },
+              show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } },
             }}
           >
-            <span className="evp-highlight-dot" aria-hidden />
-            <span className="evp-highlight-value">{h.value}</span>
-            <span className="evp-highlight-label">{h.label}</span>
+            <PixelAccent index={i} />
+            <span className="evp-stat-value">
+              {reduce ? <>{s.n}</> : <CountUp to={s.n} delay={i * 0.18} />}
+              {s.suffix && <span className="evp-stat-suffix">{s.suffix}</span>}
+            </span>
+            <span className="evp-stat-label">{s.label}</span>
           </motion.div>
         ))}
       </motion.div>
     </section>
+  );
+}
+
+/** Numeric counter — ticks from 0 to `to` via framer-motion. */
+function CountUp({ to, delay = 0, duration = 1.1 }: { to: number; delay?: number; duration?: number }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (v) => Math.round(v));
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    const controls = animate(count, to, { duration, delay, ease: [0.16, 1, 0.3, 1] });
+    return () => controls.stop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [to, delay, duration]);
+  useEffect(() => rounded.on('change', (v) => setVal(v)), [rounded]);
+  return <>{val}</>;
+}
+
+/** Bauhaus pixel-grid that reveals stepwise (4×4 cells, accent colour).
+    Sits in the corner of each stat block and pulses on viewport entry. */
+function PixelAccent({ index }: { index: number }) {
+  const cells = 16;
+  return (
+    <span className="evp-stat-pixel" aria-hidden="true">
+      {Array.from({ length: cells }).map((_, i) => (
+        <motion.span
+          key={i}
+          className="evp-stat-pixel-cell"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: i % 3 === 0 ? 1 : 0.35 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.18, delay: index * 0.18 + i * 0.03 }}
+        />
+      ))}
+    </span>
   );
 }
 
@@ -364,33 +407,57 @@ function Schedule({ event }: { event: EventItem }) {
             Ein <span className="accent">Tag</span>, eine Nacht.
           </h2>
         </header>
-        <motion.ol
-          className="evp-schedule-list"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: reduce ? 0 : 0.06 } },
-          }}
-        >
-          {event.schedule.map((row, i) => (
-            <motion.li
-              key={i}
-              className="evp-schedule-row"
-              variants={{
-                hidden: { opacity: 0, x: reduce ? 0 : -16 },
-                show:   { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-              }}
-            >
-              <div className="evp-schedule-time">{row.time}</div>
-              <div className="evp-schedule-body">
-                <div className="evp-schedule-title">{row.title}</div>
-                {row.note && <div className="evp-schedule-note">{row.note}</div>}
-              </div>
-            </motion.li>
-          ))}
-        </motion.ol>
+
+        {/* Compact participant-facing bullets — always visible */}
+        <div className="evp-cup-flow">
+          <h3 className="evp-cup-flow-head">So läuft der Cup</h3>
+          <ul className="evp-cup-flow-list">
+            <li><b>17:30</b> rein, Check-in, Warm-Up — danach geht's gleich los.</li>
+            <li><b>18:00–20:00</b> Gruppenphase Americano: alle 3 Courts parallel, du wechselst Partner und Gegner durch. Punkte zählen individuell. No Limits.</li>
+            <li><b>20:00</b> Leaderboard: Top 14 ziehen weiter, Top 2 haben Bye, Plätze 15–22 gehen in die Courage Phase.</li>
+            <li><b>20:10–20:45</b> Knock-Out auf allen 3 Courts — 4 Spieler:innen je Match, 35 min. 6 Sieger ziehen weiter.</li>
+            <li><b>21:00–22:00</b> Halbfinale auf Court 2+3 (Best of 3), parallel Courage-Halbfinale auf Court 1.</li>
+            <li><b>22:00</b> Finals parallel auf Court 1 + 2 — Grande Finale und Courage Finale, beide Best of 3 unter Spotlight.</li>
+            <li><b>23:00</b> Siegerehrung. DJ Scoob live bis Open End.</li>
+          </ul>
+        </div>
+
+        {/* Collapsible detail timeline */}
+        <details className="evp-schedule-details">
+          <summary>
+            <span className="evp-schedule-details-toggle">
+              <span className="evp-schedule-details-icon" aria-hidden="true" />
+              Detaillierter Ablauf einblenden
+            </span>
+          </summary>
+          <motion.ol
+            className="evp-schedule-list"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: reduce ? 0 : 0.06 } },
+            }}
+          >
+            {event.schedule.map((row, i) => (
+              <motion.li
+                key={i}
+                className="evp-schedule-row"
+                variants={{
+                  hidden: { opacity: 0, x: reduce ? 0 : -16 },
+                  show:   { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                }}
+              >
+                <div className="evp-schedule-time">{row.time}</div>
+                <div className="evp-schedule-body">
+                  <div className="evp-schedule-title">{row.title}</div>
+                  {row.note && <div className="evp-schedule-note">{row.note}</div>}
+                </div>
+              </motion.li>
+            ))}
+          </motion.ol>
+        </details>
       </div>
     </section>
   );
@@ -409,6 +476,11 @@ function TicketsBlock({ event }: { event: EventItem }) {
           <h2 className="evp-section-title">
             Spielen oder <span className="accent">zuschauen</span>.
           </h2>
+          <p className="evp-section-lead">
+            Der Ticketverkauf läuft über <strong>Playtomic</strong>. Bevor
+            der allgemeine Verkauf live geht, werden Wartelisten-Holder
+            bevorzugt per Email benachrichtigt.
+          </p>
         </header>
         <div className="evp-tickets-grid">
           {event.tickets.map((t) => (
@@ -420,28 +492,32 @@ function TicketsBlock({ event }: { event: EventItem }) {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h3 className="evp-ticket-card-name">{t.name}</h3>
+              <div className="evp-ticket-card-headline">
+                <h3 className="evp-ticket-card-name">{t.name}</h3>
+                {t.flag && <span className="evp-ticket-card-flag">{t.flag}</span>}
+              </div>
               <div className="evp-ticket-card-price">{eur(t.price)}</div>
               <div className="evp-ticket-card-cap">
                 {t.capacity != null ? `${t.capacity} Spots verfügbar` : 'Solange der Vorrat reicht'}
               </div>
+              {t.note && <p className="evp-ticket-card-note">{t.note}</p>}
               <ul className="evp-ticket-card-list">
                 {t.name === 'Spieler' ? (
                   <>
                     <li>Turnier-Teilnahme (Gruppe + KO oder Courage Phase)</li>
                     <li>Court-Zeit garantiert, mehrere Matches</li>
                     <li><b>1 Welcome-Drink</b>, Aperol Spritz, Padelé Spritz oder non-alk.</li>
-                    <li><b>1 großer Burger</b>, Manny&apos;s BBQ</li>
+                    <li><b>1 große Breznpizza</b>, Holledauer Raut'n Gold Brez'nPizza</li>
                     <li><b>Zugang RITMO Refresh Bar</b>, Obst & Säfte</li>
-                    <li>After-Party mit DJ Scoop live, Open End ab 23 Uhr</li>
+                    <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
                   </>
                 ) : (
                   <>
                     <li>Eintritt ab 17:30 (Kick the Doors)</li>
                     <li><b>1 Welcome-Drink</b>, Softdrink oder non-alk.</li>
-                    <li><b>1 kleiner Burger</b>, Manny&apos;s BBQ</li>
+                    <li><b>1 kleine Breznpizza</b>, Holledauer Raut'n Gold Brez'nPizza</li>
                     <li>Sunset Session &amp; Live-Matches</li>
-                    <li>After-Party mit DJ Scoop live, Open End ab 23 Uhr</li>
+                    <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
                     <li>Aperol &amp; weitere Drinks separat</li>
                   </>
                 )}
@@ -449,6 +525,18 @@ function TicketsBlock({ event }: { event: EventItem }) {
               <TicketCTA event={event} />
             </motion.article>
           ))}
+        </div>
+
+        {/* ─── Waitlist ──────────────────────────────────────────── */}
+        <div className="evp-waitlist">
+          <div className="evp-waitlist-head">
+            <h3 className="evp-waitlist-title">Auf die Warteliste</h3>
+            <p className="evp-waitlist-lead">
+              Trag dich ein und sei dabei, sobald die Tickets bei Playtomic
+              live gehen. Wartelisten-Holder werden bevorzugt benachrichtigt.
+            </p>
+          </div>
+          <WaitlistForm eventId={event.id} />
         </div>
       </div>
     </section>
@@ -591,6 +679,16 @@ function ScoringSection({ event }: { event: EventItem }) {
             </motion.li>
           ))}
         </motion.ul>
+
+        <div className="evp-scoring-quiz-cta">
+          <p>
+            Deinen Spielstil — und damit deine Tier-Einteilung — findest du im
+            DNA Quiz heraus.
+          </p>
+          <Link to={`/events/${event.id}/dna-quiz`} className="btn btn-out">
+            Zum DNA Quiz →
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -61,29 +61,6 @@ export function SiteHeader() {
           <Link to="/sortiment">Sortiment</Link>
           <Link to="/events">Events</Link>
           <Link to="/news">News</Link>
-          <a
-            href="https://ritmopadel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-ext"
-            aria-label="RITMO App (öffnet in neuem Tab)"
-          >
-            App
-            <svg
-              className="ext-icon"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M9 3H3v10h10V7" />
-              <path d="M9 2h5v5" />
-              <path d="M14 2L7.5 8.5" />
-            </svg>
-          </a>
           <Link
             to="/warenkorb"
             className="cart-link"
@@ -128,19 +105,6 @@ export function SiteHeader() {
                 <NavItem to="/events"    label="Events"    hint="Turniere, Demo Days, Pop-ups" />
                 <NavItem to="/news"      label="News"      hint="Founders Letter & Drops" />
                 <NavItem to="/warenkorb" label="Warenkorb" hint={`${count} Artikel`} />
-                <li className="nav-menu-sep" aria-hidden />
-                <li>
-                  <a
-                    href="https://ritmopadel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="nav-menu-link"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    <span className="nav-menu-label">RITMO App</span>
-                    <span className="nav-menu-hint">öffnet in neuem Tab ↗</span>
-                  </a>
-                </li>
               </ul>
             </div>
           </motion.div>

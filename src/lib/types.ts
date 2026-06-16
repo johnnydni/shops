@@ -192,6 +192,10 @@ export interface TicketTier {
   price: number;                         // EUR
   capacity?: number;                     // undefined = unlimited
   status?: 'open' | 'soldout' | 'waitlist';
+  /** Optional chip rendered next to the tier name (e.g. "Early Bird"). */
+  flag?: string;
+  /** Optional one-line note under the tier (e.g. upgrade-option hint). */
+  note?: string;
 }
 
 export interface EventItem {

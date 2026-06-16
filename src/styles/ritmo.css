@@ -157,6 +157,13 @@ input,select,textarea{font-family:inherit}
   .bg-anim .blob-r{right:-100px;opacity:.55}
 }
 
+/* ─── GradientBlinds (WebGL) ────────────────────────────────────────
+   Drop-in for .bg-anim — same absolute-fill semantics. Used on the
+   HomePage hero only. Pointer-events stay enabled so the spotlight
+   tracks the mouse; content above it lives in a higher z-index layer. */
+.gradient-blinds-container{position:absolute;inset:0;width:100%;height:100%;
+  overflow:hidden;z-index:0}
+
 /* Subtle film-grain overlay */
 .grain{position:fixed;inset:0;pointer-events:none;z-index:1000;mix-blend-mode:overlay;
   opacity:.08;

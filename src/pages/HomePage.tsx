@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { AnimatedBg } from '../components/layout/AnimatedBg';
+import GradientBlinds from '../components/layout/GradientBlinds';
 import { HorizontalScrollJourney } from '../components/shop/HorizontalScrollJourney';
 import { BentoShowcase } from '../components/shop/BentoShowcase';
 import { SocialProofStrip } from '../components/shop/SocialProofStrip';
@@ -61,7 +61,21 @@ export function HomePage() {
     <>
       {/* ─── 1. Hero ────────────────────────────────────────────── */}
       <section className="hero hero-xl">
-        <AnimatedBg />
+        {/*
+          WebGL gradient background (reactbits.dev "gradient-blinds").
+          Params mirror the user's reactbits.dev preview URL exactly:
+            color1=F97316  color2=753509  noise=0.47
+            blindMinWidth=35  spotlightRadius=0.75  blindCount=20
+          The component auto-pauses on prefers-reduced-motion and when
+          the tab is hidden.
+        */}
+        <GradientBlinds
+          gradientColors={['#F97316', '#753509']}
+          noise={0.47}
+          blindMinWidth={35}
+          blindCount={20}
+          spotlightRadius={0.75}
+        />
         <motion.div
           className="wrap hero-content"
           variants={heroContainer}

@@ -25,7 +25,14 @@
       "Bash(git stash *)",
       "Bash(npm install *)",
       "Bash(powershell -Command \"Stop-Process -Id 46648 -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 1; Get-NetTCPConnection -LocalPort 5173,5174 -ErrorAction SilentlyContinue | Select-Object LocalPort\")",
-      "Bash(node scripts/.tmp-remove-middots.mjs)"
+      "Bash(node scripts/.tmp-remove-middots.mjs)",
+      "Bash(node scripts/.tmp-event-updates.mjs)",
+      "Bash(node --check src/event/waitlist.js)",
+      "Bash(node --check src/index.js)",
+      "Bash(git -C C:/Users/ilied/Documents/GitHub/shops fetch origin main)",
+      "Bash(git -C C:/Users/ilied/Documents/GitHub/shops checkout main)",
+      "Bash(git -C C:/Users/ilied/Documents/GitHub/shops pull origin main)",
+      "Bash(git -C C:/Users/ilied/Documents/GitHub/shops checkout -b feat/event-iter-3)"
     ]
   }
 }

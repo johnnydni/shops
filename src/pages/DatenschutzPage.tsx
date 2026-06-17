@@ -47,9 +47,9 @@ export function DatenschutzPage() {
 
           <h2>2. Hosting</h2>
           <p>
-            Diese Website wird statisch über <strong>GitHub Pages</strong>{' '}
-            ausgeliefert (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco,
-            CA 94107, USA). Beim Aufruf werden technisch notwendige Daten
+            Diese Website wird über <strong>GitHub</strong> (GitHub, Inc.,
+            88 Colin P Kelly Jr St, San Francisco, CA 94107, USA)
+            ausgeliefert. Beim Aufruf werden technisch notwendige Daten
             verarbeitet (IP-Adresse, Zeitpunkt, abgerufene Ressource,
             Browser-User-Agent, Referrer). Rechtsgrundlage: Art. 6 Abs. 1
             lit. f DSGVO (berechtigtes Interesse am stabilen Betrieb der

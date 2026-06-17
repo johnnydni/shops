@@ -113,11 +113,8 @@ export function EventExplorer({ src, alt }: { src?: string; alt: string }) {
         ) : (
           <div className="evx-empty" aria-label="Match-Plakat demnächst">
             <div className="evx-empty-mark" aria-hidden="true" />
-            <div className="evx-empty-head">Match-Plakat kommt bald</div>
             <p className="evx-empty-sub">
-              Sobald die Aufstellungen final sind, landet hier die
-              interaktive Turnier-Grafik. Mit Pan + Zoom — nur in diesem
-              Fenster, nicht auf der ganzen Seite.
+              Hier findest du die interaktive Turnier-Grafik.
             </p>
           </div>
         )}

@@ -2216,6 +2216,13 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 }
 .evp-waitlist-lead{color:var(--t2);font-size:14px;line-height:1.55;max-width:60ch}
 
+/* Tally iframe — blends with the surrounding .evp-waitlist card.
+   Tally itself handles internal padding + colours per form settings. */
+.wl-tally-iframe{
+  display:block;width:100%;border:0;background:transparent;
+  color-scheme:dark;
+}
+
 /* ─── WaitlistForm ─── */
 .wl-form{max-width:520px}
 .wl-step{display:flex;flex-direction:column;gap:14px}

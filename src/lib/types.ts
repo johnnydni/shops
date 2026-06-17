@@ -243,6 +243,15 @@ export interface EventItem {
    */
   matchPosterSrc?: string;
 
+  /**
+   * Tally form ID for the pre-sales waitlist. Set this to the short ID
+   * from your Tally share URL (e.g. "wMa7zE" from tally.so/r/wMa7zE).
+   * When present, the detail page renders a TallyEmbed instead of our
+   * own WaitlistForm — Tally hosts the data, GDPR consent, throttling,
+   * and notifications. Leave undefined to fall back to the legacy form.
+   */
+  tallyWaitlistId?: string;
+
   /** Multi-paragraph long description rendered as the detail-page lead. */
   longDesc?: string[];
 

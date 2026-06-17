@@ -11,6 +11,7 @@ import { eur } from '../lib/format';
 import { dayRange, monthShort, fullDate } from '../lib/dates';
 import { BOOKING_LOCKED } from '../lib/featureFlags';
 import { WaitlistForm } from '../components/event/waitlist/WaitlistForm';
+import { TallyEmbed } from '../components/event/waitlist/TallyEmbed';
 import { EventExplorer } from '../components/event/explorer/EventExplorer';
 
 /**
@@ -701,7 +702,14 @@ function TicketsBlock({ event }: { event: EventItem }) {
               live gehen. Wartelisten-Holder werden bevorzugt benachrichtigt.
             </p>
           </div>
-          <WaitlistForm eventId={event.id} />
+          {event.tallyWaitlistId ? (
+            <TallyEmbed
+              formId={event.tallyWaitlistId}
+              title="RITMO Warteliste"
+            />
+          ) : (
+            <WaitlistForm eventId={event.id} />
+          )}
         </div>
       </div>
     </section>

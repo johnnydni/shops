@@ -40,6 +40,10 @@ export const EVENTS: EventItem[] = [
     partner: { name: 'Padel Haus', web: 'https://padelhaus.de' },
     heroImageSrc: '/assets/events/sunset-hero.jpg',
     matchPosterSrc: '/assets/events/sunset-match-poster.jpg',
+    // Tally form ID — leave empty until the Tally form is live. See the
+    // README's "Waitlist via Tally" section for the field list and
+    // configuration. When empty, the legacy WaitlistForm is rendered.
+    tallyWaitlistId: '',
 
     longDesc: [
       'Der erste RITMO DNA Cup, Founders-Edition. 22 Spieler:innen auf drei ' +
@@ -304,7 +308,7 @@ export const EVENTS: EventItem[] = [
       followUp:
         'Ab 23 Uhr übernimmt DJ Scoob live — tiefer, deeper, dancefloor-tauglich, ' +
         'Open End. Padel Haus wird zum Club.',
-      imageSrc: '/assets/events/dj-scoob.jpg',
+      imageSrc: '/assets/events/sunset-dj.jpg',
     },
 
     /* ───────── Scoring, RITMO Match Tiers ───────── */

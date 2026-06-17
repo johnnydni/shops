@@ -84,37 +84,49 @@ export function DatenschutzPage() {
             .
           </p>
 
-          <h2>4. Warteliste</h2>
+          <h2>4. Warteliste (Tally)</h2>
           <p>
-            Wenn du dich für ein Event auf die Warteliste setzt, verarbeiten
-            wir folgende Daten:
+            Das Wartelisten-Formular wird über <strong>Tally</strong>{' '}
+            (Tally Forms BV, Antwerpen, Belgien — EU-Hosting) als
+            eingebettetes Formular bereitgestellt. Beim Absenden werden
+            folgende Daten direkt an Tally übermittelt und dort
+            gespeichert:
           </p>
           <ul>
             <li>Vor- und Nachname</li>
             <li>E-Mail-Adresse</li>
             <li>Ticket-Wunsch (Spieler oder Zuschauer)</li>
-            <li>IP-Adresse (zur Drosselung und Missbrauchsabwehr)</li>
-            <li>Zeitpunkt der Eintragung</li>
+            <li>
+              Technische Metadaten (IP-Adresse, Zeitpunkt) — von Tally zur
+              Missbrauchsabwehr verarbeitet
+            </li>
           </ul>
           <p>
             <strong>Zweck:</strong> Information über den Verkaufsstart,
             Versand des Ticket-Kauf-Links sowie der Tickets.
             <br />
             <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO
-            (Einwilligung).
+            (Einwilligung — du erteilst sie aktiv im Tally-Formular).
             <br />
-            <strong>Speicherung:</strong> bis zum Abschluss des betreffenden
-            Events und maximal 6 Monate danach. Du kannst deine Einwilligung
+            <strong>Speicherort:</strong> Tally-Datenbank in der EU.
+            <br />
+            <strong>Speicherung:</strong> bis zum Abschluss des
+            betreffenden Events und maximal 6 Monate danach. Wir holen die
+            Einträge ab, um die Tickets zu versenden, und löschen die
+            Tally-Liste anschließend. Du kannst deine Einwilligung
             jederzeit per Mail an{' '}
             <a href="mailto:hallo@ritmopadel.de">hallo@ritmopadel.de</a>{' '}
-            widerrufen — wir löschen deine Daten dann unverzüglich.
+            widerrufen.
           </p>
           <p>
-            <strong>Interne Benachrichtigung:</strong> Zusätzlich erhält der
-            Veranstalter (RITMO Padel) eine interne E-Mail mit deinem Eintrag,
-            damit die Liste tagesaktuell verwaltet werden kann. Diese Mail
-            wird ebenfalls über Resend (siehe Abschnitt 7) verschickt und
-            nicht an Dritte weitergegeben.
+            Tally-Datenschutz:{' '}
+            <a
+              href="https://tally.so/help/gdpr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              tally.so/help/gdpr
+            </a>
           </p>
 
           <h2>5. Ticket-Verkauf via Stripe</h2>

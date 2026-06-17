@@ -30,6 +30,8 @@
 
 import { jsonResponse } from '../cors.js';
 import { getEvent } from '../eventCatalog.js';
+import { sendEmail } from '../utils/resend.js';
+import { buildWaitlistNotification } from './emails.js';
 
 const TTL_ENTRY     = 365 * 24 * 60 * 60;  // 12 months
 const TTL_RATE      = 24 * 60 * 60;        // 24h window
@@ -57,7 +59,8 @@ export async function handleWaitlistSubmit(request, env) {
   }
 
   // Event must exist (but don't expose which ids are valid for enumeration)
-  try { getEvent(v.payload.eventId); }
+  let eventCfg;
+  try { eventCfg = getEvent(v.payload.eventId); }
   catch {
     return jsonResponse({ code: 'unknown_event', error: 'Unbekanntes Event.' }, { status: 400 }, request, env);
   }
@@ -89,6 +92,35 @@ export async function handleWaitlistSubmit(request, env) {
     { expirationTtl: TTL_ENTRY }
   );
   await env.TICKETS.put(rateKey, String(current + 1), { expirationTtl: TTL_RATE });
+
+  // Fire-and-forget owner notification (inbox-as-list pattern).
+  // KV write above is the source of truth — any Resend hiccup is just
+  // logged, never blocks the signup. WAITLIST_NOTIFY_TO unset → skip.
+  if (env.WAITLIST_NOTIFY_TO && env.RESEND_API_KEY && env.RESEND_FROM) {
+    const mail = buildWaitlistNotification({
+      eventId:   v.payload.eventId,
+      eventName: eventCfg?.name || v.payload.eventId,
+      tier:      v.payload.tier,
+      firstName: v.payload.firstName,
+      lastName:  v.payload.lastName,
+      email:     v.payload.email,
+      ip,
+      createdAt: record.createdAt,
+    });
+    try {
+      const res = await sendEmail(env, {
+        to:             env.WAITLIST_NOTIFY_TO,
+        subject:        mail.subject,
+        html:           mail.html,
+        text:           mail.text,
+        tags:           ['waitlist', `event-${v.payload.eventId}`, `tier-${v.payload.tier}`],
+        idempotencyKey: `wl-notify-${id}`,
+      });
+      if (!res.ok) console.error('waitlist notify failed', res.error);
+    } catch (e) {
+      console.error('waitlist notify threw', e);
+    }
+  }
 
   return jsonResponse(
     {

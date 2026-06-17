@@ -21,6 +21,12 @@ TICKET_BASE_URL      = "https://ritmopadel.shop/event/ticket"
 RESEND_FROM          = "RITMO Padel <hello@ritmopadel.shop>"
 RESEND_REPLY_TO      = "hello@ritmopadel.shop"
 
+# ── Waitlist owner-notification recipient ──
+# Inbox-as-list pattern: every successful POST /api/event/waitlist also
+# fires a Resend notification to this address. Unset → notification is
+# skipped, the KV entry still persists (KV is the source of truth).
+WAITLIST_NOTIFY_TO   = "hallo@ritmopadel.de"
+
 # ── Cloudflare Turnstile ──
 # Site key is public (rendered in HTML). Secret goes in `wrangler secret put`.
 TURNSTILE_SITE_KEY   = ""

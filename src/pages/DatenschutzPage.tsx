@@ -109,6 +109,13 @@ export function DatenschutzPage() {
             <a href="mailto:hallo@ritmopadel.de">hallo@ritmopadel.de</a>{' '}
             widerrufen — wir löschen deine Daten dann unverzüglich.
           </p>
+          <p>
+            <strong>Interne Benachrichtigung:</strong> Zusätzlich erhält der
+            Veranstalter (RITMO Padel) eine interne E-Mail mit deinem Eintrag,
+            damit die Liste tagesaktuell verwaltet werden kann. Diese Mail
+            wird ebenfalls über Resend (siehe Abschnitt 7) verschickt und
+            nicht an Dritte weitergegeben.
+          </p>
 
           <h2>5. Ticket-Verkauf via Stripe</h2>
           <p>

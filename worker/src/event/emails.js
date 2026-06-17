@@ -145,3 +145,80 @@ export function buildConfirmationEmail(args) {
 
   return { subject, html, text };
 }
+
+/**
+ * Owner-facing notification fired when someone joins a waitlist.
+ *
+ * Used as an inbox-as-list pattern — instead of polling the KV admin
+ * dump, every entry pings the owner's mailbox so the freshest list is
+ * always one mail-search away ("waitlist sunset spieler").
+ *
+ * @param {object} args
+ * @param {string} args.eventId
+ * @param {string} args.eventName
+ * @param {'spieler'|'zuschauer'} args.tier
+ * @param {string} args.firstName
+ * @param {string} args.lastName
+ * @param {string} args.email
+ * @param {string} args.ip
+ * @param {string} args.createdAt   ISO timestamp
+ * @returns {{ subject: string, html: string, text: string }}
+ */
+export function buildWaitlistNotification(args) {
+  const { eventId, eventName, tier, firstName, lastName, email, ip, createdAt } = args;
+  const tierLabel = tier === 'spieler' ? 'Spieler' : 'Zuschauer';
+  // Subject prefix is searchable: "RITMO Waitlist · Sunset · Spieler"
+  const subject = `RITMO Waitlist · ${eventName} · ${tierLabel}`;
+  const preheader = `${firstName} ${lastName} (${tierLabel}) — ${email}`;
+
+  const bodyHtml = `
+    <h2 style="margin:0 0 12px;font-size:20px;">Neuer Wartelisten-Eintrag</h2>
+    <p style="margin:0 0 24px;color:#aaa;font-size:13px;letter-spacing:.04em;text-transform:uppercase;">
+      ${escapeHtml(eventName)}
+    </p>
+
+    <div class="tile">
+      <small>Person</small>
+      <h3>${escapeHtml(firstName)} ${escapeHtml(lastName)}</h3>
+      <p style="margin:0;font-size:14px;color:#ccc;">
+        <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a>
+      </p>
+    </div>
+
+    <div class="tile">
+      <small>Ticket-Wunsch</small>
+      <h3 style="color:#FF7A1A;">${escapeHtml(tierLabel)}</h3>
+    </div>
+
+    <div class="tile">
+      <small>Eintragung</small>
+      <p style="margin:6px 0 0;font-size:13px;color:#aaa;line-height:1.6;">
+        ${escapeHtml(createdAt)}<br>
+        Event-ID: <code style="color:#FF7A1A;">${escapeHtml(eventId)}</code><br>
+        IP: <code style="color:#aaa;">${escapeHtml(ip)}</code>
+      </p>
+    </div>
+
+    <p style="margin-top:24px;font-size:12px;color:#666;">
+      Volle Liste exportieren:
+      <code style="color:#aaa;">GET /api/event/admin/waitlist.txt?event=${escapeHtml(eventId)}</code>
+    </p>
+  `;
+
+  const html = ritmoShell({ preheader, bodyHtml });
+
+  const text = [
+    `Neuer Wartelisten-Eintrag — ${eventName}`,
+    ``,
+    `Person:        ${firstName} ${lastName}`,
+    `Email:         ${email}`,
+    `Ticket-Wunsch: ${tierLabel}`,
+    `Eintragung:    ${createdAt}`,
+    `Event-ID:      ${eventId}`,
+    `IP:            ${ip}`,
+    ``,
+    `Volle Liste: GET /api/event/admin/waitlist.txt?event=${eventId}`,
+  ].join('\n');
+
+  return { subject, html, text };
+}

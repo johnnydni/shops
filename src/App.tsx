@@ -21,6 +21,8 @@ import { CartPage } from './pages/CartPage';
 import { SuccessPage } from './pages/SuccessPage';
 import { CancelPage } from './pages/CancelPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { ImpressumPage } from './pages/ImpressumPage';
+import { DatenschutzPage } from './pages/DatenschutzPage';
 
 /**
  * Root component. Composes the shared chrome (grain, header, footer,
@@ -54,6 +56,8 @@ export function App() {
         <Route path="/warenkorb" element={<CartPage />} />
         <Route path="/bestellt" element={<SuccessPage />} />
         <Route path="/abbruch" element={<CancelPage />} />
+        <Route path="/impressum" element={<ImpressumPage />} />
+        <Route path="/datenschutz" element={<DatenschutzPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <SiteFooter />

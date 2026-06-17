@@ -73,43 +73,35 @@ export const EVENTS: EventItem[] = [
     program: [
       {
         phase: '01, Gruppenphase Americano (Court 1 + 2 + 3)',
-        details:
-          '22 Spieler:innen, rotierende Partner auf allen drei Courts parallel — ' +
-          'Rotierende Partner über ~6 Runden — jeder gegen viele. Offene ' +
-          'Punkte-Wertung (No Limits, keine Sätze, keine Games — nur Punkte). ' +
-          'Pausierende einer Runde bekommen automatisch den Mittelwert der Punkte ' +
-          'aus der laufenden Runde gutgeschrieben — niemand verliert durch eine ' +
-          'Pause. Dein nächstes Match siehst du am Tablet neben der RITMO Refresh ' +
-          'Bar deines Courts. 120 Minuten am Stück. Top 14 ziehen weiter, ' +
-          'Plätze 15–22 wechseln in die Courage Phase.',
+        details: [
+          '22 Spieler:innen, rotierende Partner über ~6 Runden parallel auf allen drei Courts.',
+          'Offene Punkte-Wertung (No Limits, keine Sätze, keine Games) — Pausen werden mit dem Rundenmittelwert ausgeglichen.',
+          '120 Minuten am Stück. Top 14 ziehen weiter, Plätze 15–22 in die Courage Phase.',
+        ],
       },
       {
         phase: '02, Knock Out (Court 1 + 2 + 3)',
-        details:
-          'Plätze 3–14 (12 Spieler:innen) spielen drei KO-Matches parallel — ' +
-          'Court 3: Plätze 3+14 vs 4+13, Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10. ' +
-          'Je 4 Spieler:innen pro Match, No Limits, 35 Minuten. Je 2 Sieger:innen ' +
-          'ziehen ins DNA-Halbfinale. Die Top 2 (#1, #2) haben Bye und warten in ' +
-          'der Refresh Bar. Plätze 15–22 sitzen Phase 2 aus.',
+        details: [
+          'Plätze 3–14 spielen drei KO-Matches parallel — je 4 Spieler:innen, No Limits, 35 Minuten.',
+          'Pairings: Court 3: 3+14 vs 4+13 · Court 2: 5+12 vs 6+11 · Court 1: 7+9 vs 8+10.',
+          'Je 2 Sieger:innen ziehen ins Halbfinale. Top 2 (#1, #2) haben Bye in der Refresh Bar.',
+        ],
       },
       {
         phase: '03, Halbfinale & Courage-Halbfinale',
-        details:
-          'DNA-Halbfinale Best of 3 parallel auf Court 2 + 3: Match 1 mit #1 (Bye) ' +
-          '+ 3 KO-Sieger:innen, Match 2 mit #2 (Bye) + 3 KO-Sieger:innen — die ' +
-          'jeweiligen Sieger ziehen ins Grande Finale. Parallel auf Court 1 das ' +
-          'Courage-Halbfinale: die 8 Spieler:innen aus den Plätzen 15–22 spielen ' +
-          'zwei Matches nacheinander à 4 Spieler:innen, je 30 Minuten No Limits — ' +
-          'die 4 Sieger:innen ziehen ins Courage Finale. 60 Minuten gesamt.',
+        details: [
+          'DNA-Halbfinale Best of 3 parallel auf Court 2 + 3, je #1/#2 plus drei KO-Sieger:innen.',
+          'Courage-Halbfinale auf Court 1: die 8 aus den Plätzen 15–22, zwei Matches à 30 min No Limits.',
+          '60 Minuten gesamt — die Sieger ziehen ins Grande Finale bzw. Courage Finale.',
+        ],
       },
       {
         phase: '04, RITMO Grande Finale + Courage Finale',
-        details:
-          'Die Finals laufen parallel unter Spotlight: RITMO Grande Finale auf ' +
-          'Court 1 (Top 4 aus DNA-Halbfinale, Best of 3) und Courage Finale auf ' +
-          'Court 2 (Top 4 aus Courage-Halbfinale, Best of 3). Court 3 ruht. ' +
-          'Anschließend ab 23 Uhr Open End: Siegerehrung, Musik-Übergabe von ' +
-          'ANKOE & LNRT zum DJ-Scoob-Live-Set, Food & Drinks bis die Energie geht.',
+        details: [
+          'Grande Finale auf Court 1 (Top 4 DNA-Halbfinale) und Courage Finale auf Court 2 — beide Best of 3 unter Spotlight.',
+          'Court 3 ruht, die Refresh Bar ist offen, Sound dreht hoch.',
+          'Ab 23 Uhr Open End: Siegerehrung, Übergabe von ANKOE & LNRT an DJ Scoob live.',
+        ],
       },
     ],
 

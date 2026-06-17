@@ -23,6 +23,10 @@ import {
  */
 export function WaitlistForm({ eventId }: { eventId: string }) {
   const [alreadyLocked, setAlreadyLocked] = useState(() => hasDeviceSignedUp(eventId));
+  // True only for the one render after a successful submit in THIS session.
+  // Distinguishes the "you're on the list now" celebration from the quiet
+  // revisit copy ("you're already on the list").
+  const [justSubmitted, setJustSubmitted] = useState(false);
   const [tier, setTier] = useState<WaitlistTier | null>(null);
   const [firstName, setFirstName] = useState('');
   const [lastName,  setLastName]  = useState('');
@@ -62,6 +66,7 @@ export function WaitlistForm({ eventId }: { eventId: string }) {
     });
     setBusy(false);
     if (res.ok) {
+      setJustSubmitted(true);
       setAlreadyLocked(true);
     } else {
       // Server rejected — keep the flag (user already in the local DB)
@@ -74,13 +79,17 @@ export function WaitlistForm({ eventId }: { eventId: string }) {
 
   /* ── Already on the list ── */
   if (alreadyLocked) {
+    const headline = justSubmitted
+      ? 'Du bist auf der Warteliste!'
+      : 'Du stehst bereits auf der Warteliste';
     return (
       <motion.div
-        className="wl-form wl-locked"
+        className={`wl-form wl-locked${justSubmitted ? ' wl-just-submitted' : ''}`}
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: justSubmitted ? 0.5 : 0.3, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h4 className="wl-locked-head">Du stehst bereits auf der Warteliste</h4>
+        <h4 className="wl-locked-head">{headline}</h4>
         <p>
           Sobald die Tickets über <strong>Playtomic</strong> live gehen,
           schicken wir dir eine Email — du musst nichts weiter tun.

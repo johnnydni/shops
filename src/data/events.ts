@@ -61,46 +61,67 @@ export const EVENTS: EventItem[] = [
     ],
 
     schedule: [
-      { time: '17:30', title: 'Kick the Doors',                    note: 'Check-in, Warm-Up, Intro Turnierablauf' },
-      { time: '18:00', title: 'Phase 1, Gruppenphase Americano',   note: '22 Spieler:innen, rotierende Partner, alle 3 Courts parallel, No Limits, 120 min' },
-      { time: '20:00', title: 'Leaderboard-Auswertung',            note: 'Top 14 ins KO, Top 2 BYE bis Halbfinale, Plätze 15–22 wechseln in die Courage Phase' },
-      { time: '20:10', title: 'Phase 2, Knock Out (12 → 6)',       note: '3 Matches parallel — Court 3: 3+14 vs 4+13, Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10, je 4 Spieler:innen, No Limits, 35 min' },
-      { time: '21:00', title: 'Phase 3, Halbfinale',               note: 'DNA Halbfinale Best of 3 auf Court 2+3 (Match 1: #1 + 3 KO-Sieger, Match 2: #2 + 3 KO-Sieger), parallel Courage-Halbfinale auf Court 1 (2× 30 min No Limits), 60 min' },
-      { time: '22:00', title: 'Finals',                            note: 'RITMO Grande Finale Best of 3 auf Court 1 (Spotlight), parallel Courage Finale Best of 3 auf Court 2 (Spotlight), Court 3 ruht' },
-      { time: '23:00', title: 'Open End',                          note: 'Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoob live, Food & Drinks' },
+      { time: '17:30', title: 'Kick the Doors', note: 'Check-in, Warm-Up, Intro Turnierablauf' },
+      { time: '18:00', title: 'Phase 1, Gruppenphase Americano' },
+      { time: '20:00', title: 'Leaderboard-Auswertung' },
+      { time: '20:10', title: 'Phase 2, Knock Out (12 → 6)' },
+      { time: '21:00', title: 'Phase 3, Halbfinale' },
+      { time: '22:00', title: 'Finals' },
+      { time: '23:00', title: 'Open End', note: 'Siegerehrung, ANKOE & LNRT Ready Mix übergibt an DJ Scoob live, Food & Drinks' },
     ],
 
     program: [
       {
-        phase: '01, Gruppenphase Americano (Court 1 + 2 + 3)',
+        phase: '01, Gruppenphase',
         details: [
-          '22 Spieler:innen, rotierende Partner über ~6 Runden parallel auf allen drei Courts.',
-          'Offene Punkte-Wertung (No Limits, keine Sätze, keine Games) — Pausen werden mit dem Rundenmittelwert ausgeglichen.',
-          '120 Minuten am Stück. Top 14 ziehen weiter, Plätze 15–22 in die Courage Phase.',
+          [
+            '120 Minuten. 22 Spieler rotieren über ca. 6 Runden auf allen drei Courts.',
+            'No Limits: Offene Punkte Wertung — 2 Angaben pro Kopf.',
+            'Pausierende erhalten den Mittelwert der Runde.',
+          ],
+          [
+            'Top 2 direktes Los zum Halbfinale, überspringen KO.',
+            'Top 14 ziehen in die KO-Phase.',
+            'Die letzten 8 gehen in die COURAGE Phase.',
+          ],
         ],
       },
       {
-        phase: '02, Knock Out (Court 1 + 2 + 3)',
+        phase: '02, Knock-Out',
         details: [
-          'Plätze 3–14 spielen drei KO-Matches parallel — je 4 Spieler:innen, No Limits, 35 Minuten.',
-          'Pairings: Court 3: 3+14 vs 4+13 · Court 2: 5+12 vs 6+11 · Court 1: 7+9 vs 8+10.',
-          'Je 2 Sieger:innen ziehen ins Halbfinale. Top 2 (#1, #2) haben Bye in der Refresh Bar.',
+          [
+            '35 Minuten. Drei KO Matches.',
+            'No Limits.',
+          ],
+          [
+            'Je ein Sieger-Paar pro Match zieht ins Halbfinale.',
+          ],
         ],
       },
       {
-        phase: '03, Halbfinale & Courage-Halbfinale',
+        phase: '03, DNA-Halbfinale & COURAGE-Halbfinale',
         details: [
-          'DNA-Halbfinale Best of 3 parallel auf Court 2 + 3, je #1/#2 plus drei KO-Sieger:innen.',
-          'Courage-Halbfinale auf Court 1: die 8 aus den Plätzen 15–22, zwei Matches à 30 min No Limits.',
-          '60 Minuten gesamt — die Sieger ziehen ins Grande Finale bzw. Courage Finale.',
+          [
+            '60 Minuten. Best of Three.',
+            'Top 2 kommt dazu. DNA-Halbfinals auf Court 1 & 2.',
+          ],
+          [
+            '30 Minuten jeweils. No Limits.',
+            'COURAGE-Halbfinals auf Court 3.',
+          ],
         ],
       },
       {
-        phase: '04, RITMO Grande Finale + Courage Finale',
+        phase: '04, RITMO Grande Finale & COURAGE Finale',
         details: [
-          'Grande Finale auf Court 1 (Top 4 DNA-Halbfinale) und Courage Finale auf Court 2 — beide Best of 3 unter Spotlight.',
-          'Court 3 ruht, die Refresh Bar ist offen, Sound dreht hoch.',
-          'Ab 23 Uhr Open End: Siegerehrung, Übergabe von ANKOE & LNRT an DJ Scoob live.',
+          [
+            '60–90 Minuten. Best of Three.',
+            'RITMO DNA Grande Finale auf Court 1.',
+            'COURAGE Finale auf Court 2.',
+          ],
+          [
+            'Siegerehrung | Open End.',
+          ],
         ],
       },
     ],
@@ -252,13 +273,12 @@ export const EVENTS: EventItem[] = [
         imageSrc: '/assets/events/sunset-refresh-bar.jpg',
       },
       {
-        name: 'Holledauer Raut’n Gold Brez’nPizza',
-        tagline: 'Breznpizza-Stand',
+        name: 'Foodtruck',
+        tagline: 'Big & Small Food Items',
         description:
-          'Holledauer Brez’nPizza in zwei Größen — knusprige Laugen-Basis, ' +
-          'belegt mit Klassikern (auch vegetarisch). Spieler-Tickets bekommen ' +
-          'eine große Brez’nPizza, Zuschauer-Tickets eine kleine — beide ' +
-          'inklusive. Open für Nachorder.',
+          'Wechselnder Foodtruck am Eventabend, vegetarisch + nicht-vegetarisch. ' +
+          'Spieler-Tickets bekommen ein Big Food Item inklusive, Zuschauer-Tickets ' +
+          'ein Small Food Item. Nachorder jederzeit möglich.',
         imageSrc: '/assets/events/sunset-bbq.jpg',
       },
       {

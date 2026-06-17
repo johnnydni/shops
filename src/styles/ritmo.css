@@ -1251,6 +1251,10 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .evp-program-phase{font-size:14px;font-weight:800;letter-spacing:2px;
   text-transform:uppercase;color:var(--orange)}
 .evp-program-detail{font-size:14.5px;line-height:1.6;color:var(--t2)}
+.evp-program-groups{display:flex;flex-direction:column;gap:14px}
+.evp-program-groups > .evp-program-bullets + .evp-program-bullets{
+  padding-top:14px;border-top:1px dashed var(--line);
+}
 .evp-program-bullets{
   list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;
 }
@@ -2375,6 +2379,51 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 }
 .evx-hint{margin-left:auto;font-size:12px;color:var(--t3);letter-spacing:.04em}
 @media (max-width:600px){.evx-hint{width:100%;text-align:left;margin-top:6px}}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BRACKETS EXPLAINER — COURAGE (yellow) + RITMO DNA (orange) cards
+   ═══════════════════════════════════════════════════════════════════ */
+.evp-brackets{padding:64px 0 72px;border-top:1px solid var(--line)}
+.evp-brackets-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.5vw,28px);
+  margin-top:22px;
+}
+@media (max-width:760px){.evp-brackets-grid{grid-template-columns:1fr}}
+.evp-bracket{
+  position:relative;background:var(--card);overflow:hidden;
+  padding:clamp(26px,3.5vw,40px) clamp(24px,3.5vw,38px);
+  border:1px solid var(--line);
+  display:flex;flex-direction:column;gap:12px;
+  transition:transform var(--med) var(--ease),border-color var(--med) var(--ease);
+}
+.evp-bracket:hover{transform:translateY(-3px)}
+.evp-bracket-eyebrow{
+  font-family:'Lexend Mega',sans-serif;font-weight:800;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--t3);
+}
+.evp-bracket-name{
+  font-family:'Lexend Mega','Public Sans',sans-serif;font-weight:900;
+  font-size:clamp(28px,3.2vw,40px);letter-spacing:-.01em;line-height:1;margin:2px 0 4px;
+}
+.evp-bracket-body{
+  font-size:clamp(15px,1.2vw,17px);line-height:1.6;color:var(--t2);max-width:38ch;margin:0;
+}
+.evp-bracket-glyph{
+  position:absolute;right:-14px;bottom:-14px;width:140px;height:140px;
+  opacity:.85;pointer-events:none;
+}
+.evp-bracket-courage{
+  border-left:6px solid var(--yellow);
+  background:linear-gradient(135deg, rgba(255,214,10,.10), var(--card) 55%);
+}
+.evp-bracket-courage:hover{border-color:var(--yellow)}
+.evp-bracket-courage .evp-bracket-name{color:var(--yellow)}
+.evp-bracket-dna{
+  border-left:6px solid var(--orange);
+  background:linear-gradient(135deg, rgba(255,122,26,.10), var(--card) 55%);
+}
+.evp-bracket-dna:hover{border-color:var(--orange)}
+.evp-bracket-dna .evp-bracket-name{color:var(--orange)}
 
 /* ═══════════════════════════════════════════════════════════════════
    LEGAL PAGES — Impressum + Datenschutz

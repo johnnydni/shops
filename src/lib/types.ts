@@ -250,8 +250,10 @@ export interface EventItem {
   schedule?: Array<{ time: string; title: string; note?: string }>;
 
   /** High-level program phases (e.g. group stage / KO / sunset session).
-   *  `details` is a short list of 3 bullet points per phase. */
-  program?: Array<{ phase: string; details: string[] }>;
+   *  `details` is one or more bullet groups per phase — each group renders
+   *  as its own list with a small visual gap between groups, so multi-step
+   *  flows (rules → result) read cleanly. */
+  program?: Array<{ phase: string; details: string[][] }>;
 
   /** FAQ entries shown as an accordion-style list. */
   faq?: Array<{ q: string; a: string }>;

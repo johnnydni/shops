@@ -17,7 +17,7 @@ export const EVENTS: EventItem[] = [
     venue: 'Padel Haus',
     location: 'Ingolstadt',
     shortDesc:
-      'Gruppenphase im Americano-Format (No Limits, 108 Paarungen, 2 Angaben pro Kopf, alle 3 Courts parallel). Top 14 ziehen in die KO-Phase, Plätze 15–22 in die Courage Phase. Halbfinale Best of 3 (Court 2+3) parallel zum Courage-Halbfinale auf Court 1. Finals ab 22 Uhr: RITMO Grande Finale auf Court 1, Courage Finale auf Court 2, beide Best of 3 unter Spotlight. Niemand sitzt nur rum. 17:30 Kick the Doors, ab 23 Uhr Open End. ANKOE & LNRT Ready Mix, danach DJ Scoob live. Bei Padel Haus in Ingolstadt.',
+      'Founders-Edition des RITMO DNA Cups. 22 Spieler:innen, 3 Courts, Americano-Gruppenphase mit anschließendem Knock-Out, Halbfinale und Grande Finale. Plätze 15–22 ziehen in die Courage Phase — niemand sitzt nur rum. 17:30 Kick the Doors, ab 23 Uhr Open End mit DJ Scoob live. Padel Haus, Ingolstadt.',
     tags: ['Founders Edition', 'RITMO DNA Cup', 'House Music', 'Sunset'],
     tickets: [
       { name: 'Spieler',   price: 39, capacity: 22 },
@@ -27,7 +27,9 @@ export const EVENTS: EventItem[] = [
         flag: 'Early Bird',
         note:
           'Early-Bird-Preis. Mögliche Überraschung am Eventabend — bei einer ' +
-          'Preisanpassung haben Early-Bird-Holder eine kostenlose Upgrade-Option.',
+          'Preisanpassung haben Early-Bird-Holder eine kostenlose Upgrade-Option. ' +
+          'Tipp: Sportschuhe und Padelschläger mitbringen, falls die Überraschung ' +
+          'dich auf den Court bringt.',
       },
     ],
     salesStart: '2026-06-18',
@@ -37,43 +39,30 @@ export const EVENTS: EventItem[] = [
 
     partner: { name: 'Padel Haus', web: 'https://padelhaus.de' },
     heroImageSrc: '/assets/events/sunset-hero.jpg',
+    matchPosterSrc: '/assets/events/sunset-match-poster.jpg',
 
     longDesc: [
-      'Der erste RITMO DNA Cup ist eine Founders-Edition — Premiere unseres ' +
-      'Tournament-Formats und gleichzeitig Premiere für die Zusammenarbeit mit ' +
-      'Padel Haus. 22 Spieler:innen, drei Courts, von Kick the Doors um 17:30 ' +
-      'bis Open End ab 23 Uhr.',
+      'Der erste RITMO DNA Cup, Founders-Edition. 22 Spieler:innen auf drei ' +
+      'Courts, von Kick the Doors um 17:30 bis Open End ab 23 Uhr. Premiere ' +
+      'unseres Tournament-Formats und gleichzeitig Premiere für die ' +
+      'Zusammenarbeit mit Padel Haus.',
 
-      'Phase 1, Gruppenphase im Americano-Format: 22 Spieler:innen, rotierende ' +
-      'Partner, alle drei Courts parallel — 108 verschiedene Paarungen über ' +
-      '~6 Runden, 2 Angaben pro Kopf, offene Punkte-Wertung (No Limits, keine ' +
-      'Sätze, keine Games — nur Punkte). Dein Match siehst du am Tablet neben ' +
-      'der RITMO Refresh Bar deines Courts. Wer pausiert, bekommt automatisch ' +
-      'den Mittelwert der Punkte aus der laufenden Runde gutgeschrieben — niemand ' +
-      'verliert durch eine Pause. 120 Minuten am Stück.',
+      'Gespielt wird in vier Phasen: Americano-Gruppenphase auf allen drei ' +
+      'Courts parallel, anschließend Knock-Out für die Top 14, dann Halbfinale ' +
+      'Best of 3 und Grande Finale auf Court 1 unter Spotlight. Wer in der ' +
+      'Gruppenphase nicht in die Top 14 schafft (Plätze 15–22), wechselt in ' +
+      'die Courage Phase — eigenes Halbfinale, eigenes Finale, parallel zur ' +
+      'Haupt-Schiene. Niemand sitzt nur rum.',
 
-      'Phase 2, Knock Out: Top 14 ziehen weiter. Plätze 3–14 (12 Spieler:innen) ' +
-      'spielen auf allen drei Courts parallel — Court 3: Plätze 3+14 vs 4+13, ' +
-      'Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10. Je 4 Spieler:innen pro Match, ' +
-      'No Limits, 35 Minuten — je 2 Sieger ziehen ins Halbfinale. Die Top 2 ' +
-      'aus der Gruppe haben Bye und warten in der Refresh Bar. Die Plätze 15–22 ' +
-      'wechseln in die Courage Phase und sitzen Phase 2 aus.',
-
-      'Phase 3, Halbfinale (60 Minuten): Auf Court 2 + 3 läuft das DNA-Halbfinale ' +
-      'im Best-of-3-Format — Match 1 mit #1 (Bye) + 3 KO-Sieger:innen, Match 2 ' +
-      'mit #2 (Bye) + 3 KO-Sieger:innen. Parallel auf Court 1 das Courage-Halbfinale: ' +
-      'die 8 aus den Plätzen 15–22 spielen nacheinander zwei Matches à 4 Spieler:innen, ' +
-      'je 30 Minuten No Limits.',
-
-      'Ab 22 Uhr die Finals, beide Best of 3 unter Spotlight: das RITMO Grande ' +
-      'Finale auf Court 1, parallel das Courage Finale auf Court 2. ' +
-      'Anschließend ab 23 Uhr Open End: Siegerehrung, ANKOE & LNRT Ready Mix ' +
-      'übergibt an DJ Scoob live, Food & Drinks bis die Energie geht.',
+      'Drumherum: ANKOE & LNRT Ready Mix während des Turniers, ab 23 Uhr DJ ' +
+      'Scoob live bis Open End. Holledauer Brez’nPizza und Aperol-Bar mit ' +
+      'Padelé Spritz inklusive im Ticket. Spielmodi und Format-Details sind ' +
+      'unten in der FAQ erklärt.',
     ],
 
     schedule: [
       { time: '17:30', title: 'Kick the Doors',                    note: 'Check-in, Warm-Up, Intro Turnierablauf' },
-      { time: '18:00', title: 'Phase 1, Gruppenphase Americano',   note: '22 Spieler:innen, rotierende Partner, alle 3 Courts parallel, 108 Paarungen, 2 Angaben pro Kopf, No Limits, 120 min' },
+      { time: '18:00', title: 'Phase 1, Gruppenphase Americano',   note: '22 Spieler:innen, rotierende Partner, alle 3 Courts parallel, No Limits, 120 min' },
       { time: '20:00', title: 'Leaderboard-Auswertung',            note: 'Top 14 ins KO, Top 2 BYE bis Halbfinale, Plätze 15–22 wechseln in die Courage Phase' },
       { time: '20:10', title: 'Phase 2, Knock Out (12 → 6)',       note: '3 Matches parallel — Court 3: 3+14 vs 4+13, Court 2: 5+12 vs 6+11, Court 1: 7+9 vs 8+10, je 4 Spieler:innen, No Limits, 35 min' },
       { time: '21:00', title: 'Phase 3, Halbfinale',               note: 'DNA Halbfinale Best of 3 auf Court 2+3 (Match 1: #1 + 3 KO-Sieger, Match 2: #2 + 3 KO-Sieger), parallel Courage-Halbfinale auf Court 1 (2× 30 min No Limits), 60 min' },
@@ -86,7 +75,7 @@ export const EVENTS: EventItem[] = [
         phase: '01, Gruppenphase Americano (Court 1 + 2 + 3)',
         details:
           '22 Spieler:innen, rotierende Partner auf allen drei Courts parallel — ' +
-          '108 verschiedene Paarungen über ~6 Runden, 2 Angaben pro Kopf. Offene ' +
+          'Rotierende Partner über ~6 Runden — jeder gegen viele. Offene ' +
           'Punkte-Wertung (No Limits, keine Sätze, keine Games — nur Punkte). ' +
           'Pausierende einer Runde bekommen automatisch den Mittelwert der Punkte ' +
           'aus der laufenden Runde gutgeschrieben — niemand verliert durch eine ' +
@@ -138,6 +127,45 @@ export const EVENTS: EventItem[] = [
 
     faq: [
       {
+        q: 'Was ist das Americano-Format?',
+        a: 'Im Americano-Format spielen alle gegen viele: Über mehrere Runden ' +
+           'rotieren Partner und Gegner, du bekommst pro Match neue Mitspieler:innen. ' +
+           'Bis zu 108 verschiedene Paarungen sind möglich. Punkte zählen individuell ' +
+           '— nicht das Team gewinnt, sondern du sammelst dein eigenes Konto. Perfekt ' +
+           'für gemischte Niveaus, gemixte Communities und alle, die ohne festen ' +
+           'Partner anreisen.',
+      },
+      {
+        q: 'Was bedeutet "No Limits"?',
+        a: 'No Limits = Punkte spielen ohne Sätze oder Games, einfach durchgespielt ' +
+           'auf Zeit. Die Match-Uhr läuft (z.B. 20 Minuten), jeder Ballwechsel ist ' +
+           'ein Punkt für eines der Teams. Wer am Ende mehr Punkte hat, gewinnt das ' +
+           'Match. Vorteil: keine Match-Bälle-Dramaturgie, jede:r kommt zum Spielen, ' +
+           'Zeit-Schedule bleibt stabil.',
+      },
+      {
+        q: 'Was ist die Courage Phase?',
+        a: 'Plätze 15–22 aus der Gruppenphase ziehen nach Phase 2 in die Courage ' +
+           'Phase weiter — ein paralleles Bracket mit eigenem Halbfinale und Finale ' +
+           'auf Court 1. So sitzt niemand nach der Gruppe nur rum: du spielst weiter, ' +
+           'nur eben auf einer anderen Schiene. Das Courage Finale läuft parallel ' +
+           'zum Grande Finale auf Court 1, beide unter Spotlight.',
+      },
+      {
+        q: 'Was heißt Best of 3?',
+        a: 'Klassisches Padel-Finale-Format: gespielt werden zwei gewonnene Sätze, ' +
+           'maximal drei. Erst Hin- und Rückspiel (Satz 1 + Satz 2). Steht es 1:1, ' +
+           'gibt es einen Decider-Satz. Sätze gehen bis 6 Games, Tiebreak bei 5:5.',
+      },
+      {
+        q: 'Wie werden die Punkte eingetragen?',
+        a: 'Neben jedem Court (Court 1, 2, 3) steht ein Tablet an der RITMO Refresh ' +
+           'Bar. Nach jedem Ballwechsel oder Match tippt eine:r aus deinem Team kurz ' +
+           'auf den Score-Button — fertig. Die Punkte landen sofort im Leaderboard. ' +
+           'Du musst nichts mitschreiben, kein Zettel, kein App-Download. Das ' +
+           'Schiedsrichter-Team ist während der Phasen vor Ort, falls etwas hakt.',
+      },
+      {
         q: 'Brauche ich einen Doppel-Partner?',
         a: 'Nein — du kannst dich allein anmelden. Das Turnier läuft im Americano-Format: ' +
            'alle Spieler:innen werden über mehrere Runden durchgemixt und rotieren ' +
@@ -156,7 +184,7 @@ export const EVENTS: EventItem[] = [
            'PHASE 1, GRUPPENPHASE AMERICANO (18:00–20:00, alle 3 Courts parallel): ' +
            '22 Spieler:innen rotieren über ~6 Runden Partner und Gegner. Offene Punkte-' +
            'Wertung (No Limits) — keine Sätze, keine Games, nur die Gesamtpunkte zählen. ' +
-           '108 verschiedene Paarungen sind möglich, jede:r hat 2 Angaben pro Match. ' +
+           'Bis zu 108 verschiedene Paarungen möglich, 2 Angaben pro Match. ' +
            'Dein nächstes Match siehst du am Tablet neben der RITMO Refresh Bar deines ' +
            'Courts. ' +
            'Pausen-Fairness: Wer eine Runde aussetzen muss (mit 22 Spielern auf 3 Courts ' +
@@ -264,7 +292,7 @@ export const EVENTS: EventItem[] = [
       followUp:
         'Ab 23 Uhr übernimmt DJ Scoob live — tiefer, deeper, dancefloor-tauglich, ' +
         'Open End. Padel Haus wird zum Club.',
-      imageSrc: '/assets/events/sunset-dj.jpg',
+      imageSrc: '/assets/events/dj-scoob.jpg',
     },
 
     /* ───────── Scoring, RITMO Match Tiers ───────── */

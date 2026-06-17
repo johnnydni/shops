@@ -304,7 +304,7 @@ export const EVENTS: EventItem[] = [
       followUp:
         'Ab 23 Uhr übernimmt DJ Scoob live — tiefer, deeper, dancefloor-tauglich, ' +
         'Open End. Padel Haus wird zum Club.',
-      imageSrc: '/assets/events/dj-scoob.jpg',
+      imageSrc: '/assets/events/dj-sunset.jpg',
     },
 
     /* ───────── Scoring, RITMO Match Tiers ───────── */

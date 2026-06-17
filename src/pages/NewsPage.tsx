@@ -123,7 +123,7 @@ const ARTICLES: Article[] = [
     title: 'RITMO X Padel Haus, Summer Sunset Special',
     body:
       'Founders-Edition des RITMO DNA Cups bei Padel Haus in Ingolstadt. ' +
-      '22 Spieler-Spots im Americano-Format (No Limits, 108 Paarungen), ' +
+      '22 Spieler-Spots im Americano-Format (No Limits), ' +
       'anschließend Knock-Out, Halbfinale und RITMO Grande Finale (Best of 3) ' +
       'auf Court 1 unter Spotlight. Parallel Courage Phase und Courage Finale — ' +
       'niemand sitzt nur rum. Holledauer Raut’n Gold Brez’nPizza, Aperol- und Padelé-Spritz, ' +

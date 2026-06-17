@@ -12,6 +12,7 @@ import { eur } from '../lib/format';
 import { dayRange, monthShort, fullDate } from '../lib/dates';
 import { BOOKING_LOCKED } from '../lib/featureFlags';
 import { WaitlistForm } from '../components/event/waitlist/WaitlistForm';
+import { EventExplorer } from '../components/event/explorer/EventExplorer';
 
 /**
  * Computes the right CTA flavour for a given event:
@@ -97,6 +98,7 @@ export function EventDetailPage() {
       <StatsStrip />
       <StorySections event={event} />
       <Programm event={event} />
+      <MatchExplorer event={event} />
       <ScoringSection event={event} />
       <Schedule event={event} />
       <TicketsBlock event={event} />
@@ -159,13 +161,13 @@ function Hero({ event }: { event: EventItem }) {
 
           {/* Labels under the image card */}
           <div className="evp-stage-foot">
-            <span className={`event-type-badge tone-${tone}`}>
+            <span className={`evp-stage-foot-badge tone-${tone}`}>
               {EVENT_TYPE_LABEL[event.type]}
             </span>
-            <span className="evp-stage-foot-sep">|</span>
             {event.partner && (
-              <span className="evp-partner-badge">
-                in Kooperation mit <b>{event.partner.name}</b>
+              <span className="evp-stage-foot-partner">
+                <span className="evp-stage-foot-partner-eyebrow">in Kooperation mit</span>
+                <span className="evp-stage-foot-partner-name">{event.partner.name}</span>
               </span>
             )}
           </div>
@@ -393,6 +395,31 @@ function Programm({ event }: { event: EventItem }) {
 }
 
 /* ───────────────────────────────────────────────────────────────────
+   MATCH EXPLORER — zoom + pan over the tournament match poster.
+   Sandboxed to its own frame so the rest of the page never scales.
+   ─────────────────────────────────────────────────────────────────── */
+function MatchExplorer({ event }: { event: EventItem }) {
+  return (
+    <section className="evp-explorer alt" id="match-explorer">
+      <div className="wrap">
+        <header className="evp-section-head">
+          <p className="rule">Match-Plakat</p>
+          <h2 className="evp-section-title">
+            Erkunde das <span className="accent">Bracket</span>.
+          </h2>
+          <p className="evp-section-lead">
+            Zoom rein, schieb rum — ohne die ganze Seite mitzubewegen. Du
+            erkennst Pairings, Court-Zuweisungen und Phasen-Übergänge im
+            Detail, während dein Scroll-Position außerhalb des Panels bleibt.
+          </p>
+        </header>
+        <EventExplorer src={event.matchPosterSrc} alt={`${event.title}: Match-Plakat`} />
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────────
    SCHEDULE — vertical time timeline
    ─────────────────────────────────────────────────────────────────── */
 function Schedule({ event }: { event: EventItem }) {
@@ -422,14 +449,12 @@ function Schedule({ event }: { event: EventItem }) {
           </ul>
         </div>
 
-        {/* Collapsible detail timeline */}
-        <details className="evp-schedule-details">
-          <summary>
-            <span className="evp-schedule-details-toggle">
-              <span className="evp-schedule-details-icon" aria-hidden="true" />
-              Detaillierter Ablauf einblenden
-            </span>
-          </summary>
+        {/* Visible detailed timeline */}
+        <div className="evp-timeline">
+          <h3 className="evp-timeline-head">
+            <span className="evp-timeline-head-line" aria-hidden="true" />
+            <span>Zeitleiste</span>
+          </h3>
           <motion.ol
             className="evp-schedule-list"
             initial="hidden"
@@ -457,7 +482,7 @@ function Schedule({ event }: { event: EventItem }) {
               </motion.li>
             ))}
           </motion.ol>
-        </details>
+        </div>
       </div>
     </section>
   );
@@ -507,7 +532,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                     <li>Turnier-Teilnahme (Gruppe + KO oder Courage Phase)</li>
                     <li>Court-Zeit garantiert, mehrere Matches</li>
                     <li><b>1 Welcome-Drink</b>, Aperol Spritz, Padelé Spritz oder non-alk.</li>
-                    <li><b>1 große Breznpizza</b>, Holledauer Raut'n Gold Brez'nPizza</li>
+                    <li><b>1 großes Food-Item</b> inklusive</li>
                     <li><b>Zugang RITMO Refresh Bar</b>, Obst & Säfte</li>
                     <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
                   </>
@@ -515,7 +540,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                   <>
                     <li>Eintritt ab 17:30 (Kick the Doors)</li>
                     <li><b>1 Welcome-Drink</b>, Softdrink oder non-alk.</li>
-                    <li><b>1 kleine Breznpizza</b>, Holledauer Raut'n Gold Brez'nPizza</li>
+                    <li><b>1 kleines Food-Item</b> inklusive</li>
                     <li>Sunset Session &amp; Live-Matches</li>
                     <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
                     <li>Aperol &amp; weitere Drinks separat</li>

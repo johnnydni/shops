@@ -236,6 +236,13 @@ export interface EventItem {
   /** Hero image for the detail page (path under public/, optional). */
   heroImageSrc?: string;
 
+  /**
+   * Optional match-poster image for the Event Explorer section. When set,
+   * the EventExplorer renders an embedded zoom-pan viewer over the image.
+   * If absent, the section shows a "demnächst" placeholder.
+   */
+  matchPosterSrc?: string;
+
   /** Multi-paragraph long description rendered as the detail-page lead. */
   longDesc?: string[];
 

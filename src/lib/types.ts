@@ -249,8 +249,9 @@ export interface EventItem {
   /** Schedule rows for the program timeline: time + title + optional note. */
   schedule?: Array<{ time: string; title: string; note?: string }>;
 
-  /** High-level program phases (e.g. group stage / KO / sunset session). */
-  program?: Array<{ phase: string; details: string }>;
+  /** High-level program phases (e.g. group stage / KO / sunset session).
+   *  `details` is a short list of 3 bullet points per phase. */
+  program?: Array<{ phase: string; details: string[] }>;
 
   /** FAQ entries shown as an accordion-style list. */
   faq?: Array<{ q: string; a: string }>;

@@ -4,7 +4,6 @@ import { animate, motion, useMotionValue, useTransform, useReducedMotion } from 
 import { EVENTS } from '../data/events';
 import { Crumbs } from '../components/ui/Crumbs';
 import {
-  EVENT_TYPE_LABEL,
   EVENT_TYPE_TONE,
   type EventItem,
 } from '../lib/types';
@@ -145,9 +144,7 @@ function Hero({ event }: { event: EventItem }) {
             <div className="evp-stage-year">{event.date.slice(0, 4)}</div>
           </div>
 
-          {/* Visual — image OR animated bauhaus placeholder.
-              The TURNIER + partner labels used to sit INSIDE this card;
-              they now live below it in .evp-stage-foot. */}
+          {/* Visual — image OR animated bauhaus placeholder. */}
           <div className="evp-stage-visual">
             <BauhausVisual />
             {event.heroImageSrc && (
@@ -156,19 +153,6 @@ function Hero({ event }: { event: EventItem }) {
                 alt={event.title}
                 onError={(e) => { (e.currentTarget as HTMLImageElement).remove(); }}
               />
-            )}
-          </div>
-
-          {/* Labels under the image card */}
-          <div className="evp-stage-foot">
-            <span className={`evp-stage-foot-badge tone-${tone}`}>
-              {EVENT_TYPE_LABEL[event.type]}
-            </span>
-            {event.partner && (
-              <span className="evp-stage-foot-partner">
-                <span className="evp-stage-foot-partner-eyebrow">in Kooperation mit</span>
-                <span className="evp-stage-foot-partner-name">{event.partner.name}</span>
-              </span>
             )}
           </div>
         </motion.div>
@@ -328,23 +312,102 @@ function PixelAccent({ index }: { index: number }) {
   );
 }
 
+/* Intro headers per slide — give each card a chapter label so the slider
+   reads as a story arc rather than three loose paragraphs. */
+const INTRO_TOPICS = [
+  { num: '01', label: 'Premiere'  },
+  { num: '02', label: 'Vier Phasen' },
+  { num: '03', label: 'Drumherum' },
+];
+
 function StorySections({ event }: { event: EventItem }) {
+  const reduce = useReducedMotion();
+  const [index, setIndex] = useState(0);
   if (!event.longDesc || event.longDesc.length === 0) return null;
+  const slides = event.longDesc;
+  const total = slides.length;
+  const go = (delta: number) =>
+    setIndex((i) => Math.max(0, Math.min(total - 1, i + delta)));
+
   return (
-    <section className="evp-story" id="story">
+    <section className="evp-intro-slider" id="story">
       <div className="wrap">
-        {event.longDesc.map((p, i) => (
-          <motion.p
-            key={i}
-            className={`evp-story-p ${i % 2 === 0 ? 'left' : 'right'}`}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-            transition={{ duration: 0.6, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+        <header className="evp-section-head evp-intro-head">
+          <p className="rule">Intro</p>
+          <h2 className="evp-section-title">
+            Drei <span className="accent">Karten</span>, ein Abend.
+          </h2>
+        </header>
+
+        <div className="evp-intro-viewport">
+          <motion.div
+            className="evp-intro-track"
+            animate={{ x: `-${index * 100}%` }}
+            transition={{ duration: reduce ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.18}
+            onDragEnd={(_, info) => {
+              const swipe = info.offset.x;
+              if (swipe < -80) go(1);
+              else if (swipe > 80) go(-1);
+            }}
           >
-            {p}
-          </motion.p>
-        ))}
+            {slides.map((text, i) => {
+              const topic = INTRO_TOPICS[i] ?? {
+                num: String(i + 1).padStart(2, '0'),
+                label: '',
+              };
+              return (
+                <div className="evp-intro-slide" key={i}>
+                  <article className="evp-intro-card">
+                    <div className="evp-intro-num" aria-hidden="true">
+                      {topic.num}
+                    </div>
+                    <div className="evp-intro-card-body">
+                      <span className="evp-intro-eyebrow">
+                        Kapitel {topic.num} / {String(total).padStart(2, '0')}
+                      </span>
+                      <h3 className="evp-intro-topic">{topic.label}</h3>
+                      <p className="evp-intro-text">{text}</p>
+                    </div>
+                  </article>
+                </div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        <div className="evp-intro-controls">
+          <div className="evp-intro-dots" role="tablist" aria-label="Intro-Kapitel">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                className={`evp-intro-dot${i === index ? ' is-active' : ''}`}
+                onClick={() => setIndex(i)}
+                aria-label={`Zu Kapitel ${i + 1}`}
+                aria-current={i === index}
+              />
+            ))}
+          </div>
+          <div className="evp-intro-nav">
+            <button
+              type="button"
+              className="evp-intro-arrow"
+              onClick={() => go(-1)}
+              disabled={index === 0}
+              aria-label="Vorheriges Kapitel"
+            >←</button>
+            <button
+              type="button"
+              className="evp-intro-arrow"
+              onClick={() => go(1)}
+              disabled={index === total - 1}
+              aria-label="Nächstes Kapitel"
+            >→</button>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -385,7 +448,11 @@ function Programm({ event }: { event: EventItem }) {
               }}
             >
               <h3 className="evp-program-phase">{p.phase}</h3>
-              <p className="evp-program-detail">{p.details}</p>
+              <ul className="evp-program-bullets">
+                {p.details.map((b, i) => (
+                  <li key={i}>{b}</li>
+                ))}
+              </ul>
             </motion.article>
           ))}
         </motion.div>
@@ -434,20 +501,6 @@ function Schedule({ event }: { event: EventItem }) {
             Ein <span className="accent">Tag</span>, eine Nacht.
           </h2>
         </header>
-
-        {/* Compact participant-facing bullets — always visible */}
-        <div className="evp-cup-flow">
-          <h3 className="evp-cup-flow-head">So läuft der Cup</h3>
-          <ul className="evp-cup-flow-list">
-            <li><b>17:30</b> rein, Check-in, Warm-Up — danach geht's gleich los.</li>
-            <li><b>18:00–20:00</b> Gruppenphase Americano: alle 3 Courts parallel, du wechselst Partner und Gegner durch. Punkte zählen individuell. No Limits.</li>
-            <li><b>20:00</b> Leaderboard: Top 14 ziehen weiter, Top 2 haben Bye, Plätze 15–22 gehen in die Courage Phase.</li>
-            <li><b>20:10–20:45</b> Knock-Out auf allen 3 Courts — 4 Spieler:innen je Match, 35 min. 6 Sieger ziehen weiter.</li>
-            <li><b>21:00–22:00</b> Halbfinale auf Court 2+3 (Best of 3), parallel Courage-Halbfinale auf Court 1.</li>
-            <li><b>22:00</b> Finals parallel auf Court 1 + 2 — Grande Finale und Courage Finale, beide Best of 3 unter Spotlight.</li>
-            <li><b>23:00</b> Siegerehrung. DJ Scoob live bis Open End.</li>
-          </ul>
-        </div>
 
         {/* Visible detailed timeline */}
         <div className="evp-timeline">

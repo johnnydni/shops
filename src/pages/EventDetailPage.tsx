@@ -98,6 +98,7 @@ export function EventDetailPage() {
       <StorySections event={event} />
       <Programm event={event} />
       <MatchExplorer event={event} />
+      <BracketsExplainer />
       <ScoringSection event={event} />
       <Schedule event={event} />
       <TicketsBlock event={event} />
@@ -448,11 +449,15 @@ function Programm({ event }: { event: EventItem }) {
               }}
             >
               <h3 className="evp-program-phase">{p.phase}</h3>
-              <ul className="evp-program-bullets">
-                {p.details.map((b, i) => (
-                  <li key={i}>{b}</li>
+              <div className="evp-program-groups">
+                {p.details.map((group, gi) => (
+                  <ul key={gi} className="evp-program-bullets">
+                    {group.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
                 ))}
-              </ul>
+              </div>
             </motion.article>
           ))}
         </motion.div>
@@ -475,14 +480,96 @@ function MatchExplorer({ event }: { event: EventItem }) {
             Erkunde das <span className="accent">Bracket</span>.
           </h2>
           <p className="evp-section-lead">
-            Zoom rein, schieb rum — ohne die ganze Seite mitzubewegen. Du
-            erkennst Pairings, Court-Zuweisungen und Phasen-Übergänge im
-            Detail, während dein Scroll-Position außerhalb des Panels bleibt.
+            Zoom in — und erkunde den Turnier-Ablauf. Pairings, Courts,
+            Phasen und alle Infos, die du brauchst.
           </p>
         </header>
         <EventExplorer src={event.matchPosterSrc} alt={`${event.title}: Match-Plakat`} />
       </div>
     </section>
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   BRACKETS EXPLAINER — two colour-coded cards:
+     COURAGE (yellow tone)     vs    RITMO DNA (orange tone)
+   Sits between MatchExplorer and ScoringSection so readers understand
+   the parallel-bracket story before seeing the scoring table.
+   ─────────────────────────────────────────────────────────────────── */
+function BracketsExplainer() {
+  const reduce = useReducedMotion();
+  return (
+    <section className="evp-brackets" id="brackets">
+      <div className="wrap">
+        <header className="evp-section-head">
+          <p className="rule">Brackets</p>
+          <h2 className="evp-section-title">
+            Zwei Wege<span className="accent">.</span>
+          </h2>
+        </header>
+
+        <motion.div
+          className="evp-brackets-grid"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+          variants={{
+            hidden: {},
+            show:   { transition: { staggerChildren: reduce ? 0 : 0.16 } },
+          }}
+        >
+          <motion.article
+            className="evp-bracket evp-bracket-courage"
+            variants={{
+              hidden: { opacity: 0, y: 26 },
+              show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+            }}
+          >
+            <span className="evp-bracket-eyebrow">Plätze 15 – 22</span>
+            <h3 className="evp-bracket-name">COURAGE</h3>
+            <p className="evp-bracket-body">
+              Mutig von dir, dass du es probiert hast! Deswegen ist das
+              noch nicht das Ende deines Padel-Abenteuers.
+            </p>
+            <BracketGlyph variant="courage" />
+          </motion.article>
+
+          <motion.article
+            className="evp-bracket evp-bracket-dna"
+            variants={{
+              hidden: { opacity: 0, y: 26 },
+              show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+            }}
+          >
+            <span className="evp-bracket-eyebrow">Top 14</span>
+            <h3 className="evp-bracket-name">RITMO DNA</h3>
+            <p className="evp-bracket-body">
+              Du hast dich durchgekämpft und deine Padel-DNA unter Beweis
+              gestellt. Miss dich mit den Besten des heutigen Abends.
+            </p>
+            <BracketGlyph variant="dna" />
+          </motion.article>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/** Inline Bauhaus glyph used as corner art for each bracket card. */
+function BracketGlyph({ variant }: { variant: 'courage' | 'dna' }) {
+  if (variant === 'courage') {
+    return (
+      <svg viewBox="0 0 120 120" className="evp-bracket-glyph" aria-hidden>
+        <circle cx="60" cy="60" r="44" fill="#FFD60A" opacity=".85" />
+        <rect x="32" y="32" width="56" height="56" fill="none" stroke="#0A0A0A" strokeWidth="3" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 120 120" className="evp-bracket-glyph" aria-hidden>
+      <polygon points="60,18 102,60 60,102 18,60" fill="#FF7A1A" opacity=".9" />
+      <circle cx="60" cy="60" r="14" fill="#0A0A0A" />
+    </svg>
   );
 }
 
@@ -585,7 +672,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                     <li>Turnier-Teilnahme (Gruppe + KO oder Courage Phase)</li>
                     <li>Court-Zeit garantiert, mehrere Matches</li>
                     <li><b>1 Welcome-Drink</b>, Aperol Spritz, Padelé Spritz oder non-alk.</li>
-                    <li><b>1 großes Food-Item</b> inklusive</li>
+                    <li><b>1 Big Food Item</b> inklusive (Foodtruck vor Ort)</li>
                     <li><b>Zugang RITMO Refresh Bar</b>, Obst & Säfte</li>
                     <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
                   </>
@@ -593,7 +680,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                   <>
                     <li>Eintritt ab 17:30 (Kick the Doors)</li>
                     <li><b>1 Welcome-Drink</b>, Softdrink oder non-alk.</li>
-                    <li><b>1 kleines Food-Item</b> inklusive</li>
+                    <li><b>1 Small Food Item</b> inklusive (Foodtruck vor Ort)</li>
                     <li>Sunset Session &amp; Live-Matches</li>
                     <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
                     <li>Aperol &amp; weitere Drinks separat</li>

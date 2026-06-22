@@ -51,15 +51,21 @@ export interface Spielstil {
 
 export const SPIELSTILE: Record<SpielstilId, Spielstil> = {
   chico: {
-    id: 'chico', slug: 'chico', name: 'CHICO',
-    subtitle: 'Der Stratege',
-    tagline: 'Ich denke zwei Schläge voraus.',
+    id: 'chico', slug: 'chico', name: 'CHICO/CHICA',
+    subtitle: 'Allrounder',
+    tagline: 'Keine halben Sachen.',
     desc:
-      'CHICO liest den Court wie ein Schachbrett. Lange Ballwechsel, gezielte Winkel, ' +
-      'geduldige Konstruktion — der Punkt fällt nicht durch Power, sondern weil der ' +
-      'Gegner längst falsch steht.',
+      'Chicos und Chicas sind vielseitig, anpassungsfähig und konstant — sie passen ' +
+      'sich schnell an Gegner, Partner und Match-Dynamik an. Kein extremes Risiko, ' +
+      'aber sehr oft die richtige Lösung.\n\n' +
+      'Dieser Spielstil liest das Match in Echtzeit und wechselt zwischen Offensive ' +
+      'und Defensive je nach Situation.',
     kernwerte: ['Geduld', 'Übersicht', 'Präzision'],
-    strengths: ['Lange Ballwechsel ohne Konzentrationsverlust', 'Liest Gegnerformation früh', 'Spielt Lücken statt Linien'],
+    strengths: [
+      'Lange Ballwechsel',
+      'Weiß, wann welcher Schlag angebracht ist',
+      'Kann alles auf einem ähnlichen Niveau',
+    ],
     shots: ['Bandeja zur Schwäche', 'Globo gezielt', 'Win-by-Position-Volley'],
     weaknesses: ['Verliert Geduld unter Druck-Tempo', 'Wenig Risiko-Punch'],
     partners: ['motor', 'muro'],
@@ -67,13 +73,18 @@ export const SPIELSTILE: Record<SpielstilId, Spielstil> = {
   },
   toro: {
     id: 'toro', slug: 'toro', name: 'TORO',
-    subtitle: 'Die Kraft',
-    tagline: 'Wenn ich treffe, ist der Punkt vorbei.',
+    subtitle: 'Der Aggressor',
+    tagline: 'Druck ist die beste Defensive.',
     desc:
       'TORO spielt Padel als Statement. Smashes mit Auflage, Vibora, harte Bandejas — ' +
-      'wer auf der anderen Seite steht, spürt jeden Schlag. Nicht der eleganteste Stil, aber der lauteste.',
-    kernwerte: ['Power', 'Präsenz', 'Punch'],
-    strengths: ['Beidhändiger Smash mit Auflage', 'Stark im Volley-Nahkampf', 'Bricht Verteidigung mit Vibora auf'],
+      'wer auf der anderen Seite steht, spürt jeden Schlag. Nicht der eleganteste Stil, ' +
+      'aber der kräftigste.',
+    kernwerte: ['Power', 'Dominanz', 'Entschlossenheit'],
+    strengths: [
+      'Smash / Remate',
+      'Netzangriff',
+      'Bricht Verteidigung mit Vibora auf',
+    ],
     shots: ['Smash por 3 / por 4', 'Vibora', 'Hard Volley'],
     weaknesses: ['Lange Ballwechsel kosten Konzentration', 'Globos lesen schwer'],
     partners: ['chico', 'fantasma'],
@@ -81,13 +92,19 @@ export const SPIELSTILE: Record<SpielstilId, Spielstil> = {
   },
   individuoso: {
     id: 'individuoso', slug: 'individuoso', name: 'INDIVIDUOSO',
-    subtitle: 'Der Künstler',
-    tagline: 'Ich spiele den Schlag, den du nicht kommen siehst.',
+    subtitle: 'Der Stratege',
+    tagline: 'Lücken sind nicht umsonst da.',
     desc:
-      'INDIVIDUOSO bricht jede Regel — und macht den Punkt. Bajadas, riskante Drehungen, ' +
-      'Crosse aus dem Lauf, Trickshots aus der Defensive. Stil über Statistik, Risiko über Routine.',
-    kernwerte: ['Kreativität', 'Risiko', 'Eleganz'],
-    strengths: ['Unorthodoxe Winkel', 'Macht aus Verteidigung Angriff', 'Spielt mit dem Tempo statt dagegen'],
+      'INDIVIDUOSO — jedes Spiel, wo er dabei ist, ist einzigartig. Seine Strategien ' +
+      'sind ebenso individuell wie sein Spielstil. Bajadas, riskante Drehungen, Crosse ' +
+      'aus dem Lauf — statistisch präzise platziert, somit wird Risiko zur kalkulierten ' +
+      'Routine, denn die Lücken sind nicht umsonst da.',
+    kernwerte: ['Strategisch', 'Antizipation', 'Präzision'],
+    strengths: [
+      'Liest Spielmuster im Voraus',
+      'Unorthodoxe Winkel in freie Lücken',
+      'Spielt mit dem Tempo statt dagegen',
+    ],
     shots: ['Bajada', 'Cross-Lob mit Drall', 'Backhand-Vibora aus dem Lauf'],
     weaknesses: ['Inkonstanz', 'Spielt manchmal sich selbst statt den Punkt'],
     partners: ['muro', 'motor'],
@@ -95,13 +112,20 @@ export const SPIELSTILE: Record<SpielstilId, Spielstil> = {
   },
   muro: {
     id: 'muro', slug: 'muro', name: 'MURO',
-    subtitle: 'Die Mauer',
-    tagline: 'Du wirst keinen Ball an mir vorbei bekommen.',
+    subtitle: 'Die Wand',
+    tagline: 'Den Fehler machst du, nicht ich.',
     desc:
-      'MURO ist die Verteidigung, die nicht bricht. Jeder Smash kommt zurück, jeder Winkel wird ' +
-      'gedeckt, jede Volley liest sich, bevor sie fällt.',
+      'MURO ist die Verteidigung, die nicht bricht. Jeder Smash kommt zurück, jeder ' +
+      'Winkel wird gedeckt, jede Volley liest sich, bevor sie fällt. Er sieht an deiner ' +
+      'Körperhaltung ganz genau, welchen Schlag du ausführen willst — und ist dann ' +
+      'entweder sofort am Netz, an der Rückwand oder bereits außerhalb des Platzes, ' +
+      'um deinen Smash zu returnen.',
     kernwerte: ['Defense', 'Geduld', 'Stabilität'],
-    strengths: ['Smash-Defense mit Globo-Reset', 'Hohe Quote bei langen Ballwechseln', 'Liest Gegner-Vibora frühzeitig'],
+    strengths: [
+      'Smash-Defense mit Globo-Reset',
+      'Hohe Return-Quote bei langen Ballwechseln',
+      'Liest Schläge sehr früh und genau',
+    ],
     shots: ['Defensive Globo', 'Block-Volley', 'Cross-Reset'],
     weaknesses: ['Wenig eigene Punktgenerierung', 'Verliert bei Speed-Eskalation'],
     partners: ['toro', 'individuoso'],
@@ -109,13 +133,20 @@ export const SPIELSTILE: Record<SpielstilId, Spielstil> = {
   },
   fantasma: {
     id: 'fantasma', slug: 'fantasma', name: 'FANTASMA',
-    subtitle: 'Der Phantom-Spieler',
-    tagline: 'Du siehst mich nicht — bis es zu spät ist.',
+    subtitle: 'Das Phantom',
+    tagline: 'Du beachtest mich nicht wirklich — aber ich sehe dein Ego.',
     desc:
       'FANTASMA spielt mit Stille. Plötzlicher Switch hinter dem Gegner, unauffällige ' +
-      'Vorbereitung, dann ein einziger entscheidender Schlag.',
-    kernwerte: ['Timing', 'Stille', 'Überraschung'],
-    strengths: ['Switcht unauffällig die Court-Seite', 'Spielt sehr leise — Gegner verlieren Fokus', 'Vibora aus dem Nichts'],
+      'Vorbereitung, dann ein einziger entscheidender Schlag. Unvorhersehbar, intuitiv ' +
+      'und mit einer unaufhörlichen Liebe für Überraschung. Ungewöhnliche Winkel, Stil- ' +
+      'und Rhythmusbrüche.\n\n' +
+      'Chaos ist angesagt.',
+    kernwerte: ['Kreativität', 'Freiheit', 'Überraschung'],
+    strengths: [
+      'Erzeugt unkonventionelle Spielzüge',
+      'Spielt sehr unauffällig — Gegner verlieren Fokus',
+      'Mentaler Game Changer',
+    ],
     shots: ['Switch-Lob', 'Quiet Volley', 'Surprise Vibora'],
     weaknesses: ['Braucht passenden Partner', 'Wenig Power bei direkter Konfrontation'],
     partners: ['toro', 'hysterica'],
@@ -124,26 +155,35 @@ export const SPIELSTILE: Record<SpielstilId, Spielstil> = {
   motor: {
     id: 'motor', slug: 'motor', name: 'MOTOR',
     subtitle: 'Die Maschine',
-    tagline: 'Ich werde nicht müde, bevor du es nicht bist.',
+    tagline: 'Den Ball kriege ich noch!',
     desc:
-      'MOTOR ist Ausdauer in Reinform. Jeder Ball erreicht, jede Position gehalten, jedes Set frisch.',
-    kernwerte: ['Ausdauer', 'Disziplin', 'Bewegung'],
-    strengths: ['Hohe Lauf-Rate über volle Sets', 'Konstante Erste-Stellung', 'Bringt jeden Ball zurück'],
+      'MOTOR ist Ausdauer in Reinform. Jeder Ball muss erreicht werden, jede Position ' +
+      'gehalten, jedes Set frische Beine.',
+    kernwerte: ['Ausdauer', 'Kampfgeist', 'Geschwindigkeit'],
+    strengths: [
+      'Hohe Lauf-Rate',
+      'Erreicht „unmögliche" Bälle',
+      'Ist schnell da, wo man ihn nicht erwartet',
+    ],
     shots: ['Cross-Volley repetitiv', 'Defensive Lob', 'Lange Bandeja-Kette'],
     weaknesses: ['Wenig Variation', 'Schwierig gegen Trickshot-Spieler'],
     partners: ['chico', 'individuoso'],
     accent: '#00C896', card: '#001A10', text: '#000', symbol: 'circle',
   },
   hysterica: {
-    id: 'hysterica', slug: 'hysterica', name: 'HYSTERICA',
-    subtitle: 'Die Dramatikerin',
+    id: 'hysterica', slug: 'hysterica', name: 'HYSTERICO/A',
+    subtitle: 'Drama Queen',
     tagline: 'Drama ist Teil meines Spiels.',
     desc:
       'HYSTERICA spielt das Match auf zwei Ebenen — auf dem Court und über dem Court. Jubel ' +
       'nach dem Punkt, ein Blick nach jedem Fehlentscheid, kleine Pause an der richtigen Stelle. ' +
       'Nicht Schauspiel, sondern Strategie: Tempo brechen, Köpfe drehen, Energie ins eigene Team holen.',
     kernwerte: ['Energie', 'Bühnenpräsenz', 'Momentum'],
-    strengths: ['Drift Tempo & Stimmung des Matches', 'Stark unter Publikum', 'Bricht gegnerischen Lauf nach 3 Punkten'],
+    strengths: [
+      'Stimmung ankurbeln',
+      'Stark unter Publikum',
+      'Schwer einzuschätzen',
+    ],
     shots: ['Loud Smash', 'Pause-und-Vibora', 'Comeback-Cross'],
     weaknesses: ['Verliert Konzentration ohne Energie-Anker', 'Eigenes Drama als Bumerang'],
     partners: ['fantasma', 'motor'],

@@ -172,7 +172,9 @@ export function EventDnaQuizPage() {
                 </div>
 
                 <p className="dna-quiz-result-tagline">{winner.tagline}</p>
-                <p className="dna-quiz-result-desc">{winner.desc}</p>
+                {winner.desc.split('\n\n').map((para, i) => (
+                  <p key={i} className="dna-quiz-result-desc">{para}</p>
+                ))}
 
                 <div className="dna-quiz-result-grid">
                   <div>

@@ -1158,6 +1158,13 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .evp-ticket-name{font-weight:800;font-style:italic;font-size:17px;color:var(--t1)}
 .evp-ticket-cap{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
   color:var(--t3);font-weight:700}
+.evp-ticket-cap.is-sold{
+  display:inline-block;padding:4px 10px;border:1.5px solid var(--t3);
+  color:var(--t2);letter-spacing:.12em;border-radius:999px;
+}
+.evp-ticket-line.is-sold .evp-ticket-name,
+.evp-ticket-line.is-sold .evp-ticket-price{opacity:.55}
+.evp-ticket-line.is-sold .evp-ticket-price{text-decoration:line-through}
 .evp-ticket-price{font-size:20px;font-weight:900;font-style:italic;
   letter-spacing:-.01em;color:var(--orange)}
 .evp-sales-note{font-size:12px;letter-spacing:.4px;color:var(--t3);font-style:italic;margin-top:-4px}

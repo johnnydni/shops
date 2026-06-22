@@ -216,14 +216,25 @@ function Hero({ event }: { event: EventItem }) {
             </motion.div>
           )}
 
-          {/* Ticket panel — compact preview */}
+          {/* Ticket panel — compact preview. Sold-out tickets show a flat
+              status pill instead of the capacity copy; the lead CTA below
+              uses the first remaining purchasable ticket so it routes to
+              the right external CTA (e.g. Playtomic) when the internal
+              tickets are sold out. */}
           <motion.div className="evp-ticket-panel" variants={child}>
             {event.tickets && event.tickets.map((t) => (
-              <div key={t.name} className="evp-ticket-line">
+              <div
+                key={t.name}
+                className={`evp-ticket-line${t.status === 'soldout' ? ' is-sold' : ''}`}
+              >
                 <span className="evp-ticket-name">{t.name}</span>
-                <span className="evp-ticket-cap">
-                  {t.capacity != null ? `${t.capacity} Spots` : 'Solange Vorrat reicht'}
-                </span>
+                {t.status === 'soldout' ? (
+                  <span className="evp-ticket-cap is-sold">Ausverkauft</span>
+                ) : (
+                  <span className="evp-ticket-cap">
+                    {t.capacity != null ? `${t.capacity} Spots` : 'Solange Vorrat reicht'}
+                  </span>
+                )}
                 <span className="evp-ticket-price">{eur(t.price)}</span>
               </div>
             ))}
@@ -239,7 +250,11 @@ function Hero({ event }: { event: EventItem }) {
             )}
 
             <div className="evp-cta-row">
-              <TicketCTA event={event} size="btn-lg" />
+              <TicketCTA
+                event={event}
+                ticket={event.tickets?.find((t) => t.status !== 'soldout')}
+                size="btn-lg"
+              />
               <a href="#programm" className="btn btn-out btn-lg">
                 Programm ansehen
               </a>

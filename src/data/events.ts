@@ -27,7 +27,7 @@ export const EVENTS: EventItem[] = [
         status: 'soldout',
       },
       {
-        name: 'Zuschauer',
+        name: 'Party Tickets!',
         price: 15,
         flag: 'Early Bird',
         ctaLabel: 'Tickets auf Playtomic',

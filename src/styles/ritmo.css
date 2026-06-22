@@ -250,6 +250,11 @@ input,select,textarea{font-family:inherit}
 .btn-pri:hover{transform:translateY(-2px);box-shadow:var(--shadow-orange)}
 .btn-pri:active{transform:translateY(0)}
 
+/* Yellow accent — RITMO DNA Quiz CTA */
+.btn-yellow{background:var(--yellow);color:#000;border-color:var(--yellow)}
+.btn-yellow:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,214,10,.35)}
+.btn-yellow:active{transform:translateY(0)}
+
 /* Ghost — outline orange */
 .btn-ghost{background:transparent;border-color:var(--orange);color:var(--orange)}
 .btn-ghost:hover{background:var(--orange);color:#000;transform:translateY(-2px);

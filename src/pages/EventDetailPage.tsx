@@ -255,6 +255,12 @@ function Hero({ event }: { event: EventItem }) {
                 ticket={event.tickets?.find((t) => t.status !== 'soldout')}
                 size="btn-lg"
               />
+              <Link
+                to={`/events/${event.id}/dna-quiz`}
+                className="btn btn-yellow btn-lg evp-cta-quiz"
+              >
+                RITMO DNA QUIZ!
+              </Link>
               <a href="#programm" className="btn btn-out btn-lg">
                 Programm ansehen
               </a>

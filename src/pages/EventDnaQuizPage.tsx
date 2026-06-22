@@ -199,10 +199,16 @@ export function EventDnaQuizPage() {
 
                 <div className="dna-quiz-cta-row">
                   <Link
-                    to={`/events/${event.id}#tickets`}
+                    to={`/events/${event.id}/spielstile`}
                     className="btn btn-pri"
                   >
-                    Zurück zum Event →
+                    Mehr über die Spielstile →
+                  </Link>
+                  <Link
+                    to={`/events/${event.id}#tickets`}
+                    className="btn btn-out"
+                  >
+                    Zurück zum Event
                   </Link>
                   <button
                     type="button"

@@ -903,10 +903,13 @@ function SpielstileSection({ event }: { event: EventItem }) {
         </p>
         <EventSlideshow slides={slides} aspect="3 / 4" intervalMs={5500} />
         <div className="evp-spielstile-cta">
-          <Link to={`/events/${event.id}/dna-quiz`} className="btn btn-pri">
+          <Link to={`/events/${event.id}/spielstile`} className="btn btn-pri">
+            Zu den Spielstilen →
+          </Link>
+          <Link to={`/events/${event.id}/dna-quiz`} className="btn btn-out">
             Zum DNA Quiz →
           </Link>
-          <span className="evp-spielstile-hint">7 Fragen, klare Antwort.</span>
+          <span className="evp-spielstile-hint">7 Archetypen · 7 Fragen.</span>
         </div>
       </div>
     </section>

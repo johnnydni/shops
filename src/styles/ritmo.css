@@ -2311,7 +2311,102 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   text-transform:uppercase;color:var(--yellow);margin-bottom:8px;font-weight:800;
 }
 .dna-quiz-coming p{color:var(--t2);font-size:15px;line-height:1.55;margin-bottom:20px}
-.dna-quiz-cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.dna-quiz-cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+
+/* Quiz UI — progress bar, question card, answer buttons, result card. */
+.dna-quiz-progress{
+  width:100%;height:4px;background:var(--line);overflow:hidden;
+  margin-top:18px;
+}
+.dna-quiz-progress-bar{
+  height:100%;background:var(--orange);transition:width .5s ease;
+}
+.dna-quiz-body{padding-top:32px}
+.dna-quiz-card{
+  background:var(--card);border:1px solid var(--line);
+  border-left:6px solid var(--orange);
+  padding:clamp(28px,4vw,48px);max-width:780px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.dna-quiz-counter{
+  font-family:'Lexend Mega',sans-serif;font-weight:800;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);
+}
+.dna-quiz-q{
+  font-family:'Lexend Mega','Public Sans',sans-serif;font-weight:900;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.15;color:var(--t1);margin:0;
+  letter-spacing:-.01em;
+}
+.dna-quiz-hint{color:var(--t3);font-size:14px;line-height:1.5;margin:0;font-style:italic}
+.dna-quiz-answers{
+  list-style:none;padding:0;margin:8px 0 0;
+  display:flex;flex-direction:column;gap:10px;
+}
+.dna-quiz-answer{
+  width:100%;display:flex;gap:14px;align-items:flex-start;text-align:left;
+  background:var(--card2);border:1px solid var(--line);
+  padding:16px 18px;color:var(--t1);font-size:15.5px;line-height:1.5;
+  cursor:pointer;transition:border-color .2s ease, background .2s ease, transform .15s ease;
+}
+.dna-quiz-answer:hover{border-color:var(--orange);background:#1A1208;transform:translateX(2px)}
+.dna-quiz-letter{
+  flex-shrink:0;width:32px;height:32px;background:var(--orange);color:#000;
+  font-family:'Lexend Mega',sans-serif;font-weight:900;font-size:14px;
+  display:flex;align-items:center;justify-content:center;letter-spacing:0;
+}
+.dna-quiz-label{flex:1;min-width:0}
+.dna-quiz-back{
+  align-self:flex-start;background:none;border:none;padding:6px 0;
+  color:var(--t3);font-size:13px;cursor:pointer;letter-spacing:.04em;
+}
+.dna-quiz-back:hover{color:var(--orange)}
+
+.dna-quiz-result{
+  background:var(--card);border:1px solid var(--line);
+  border-left:6px solid var(--orange);
+  padding:clamp(28px,4vw,48px);max-width:820px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.dna-quiz-result-head{display:flex;flex-direction:column;gap:4px}
+.dna-quiz-result-eyebrow{
+  font-family:'Lexend Mega',sans-serif;font-weight:800;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);
+}
+.dna-quiz-result-name{
+  font-family:'Lexend Mega','Public Sans',sans-serif;font-weight:900;
+  font-size:clamp(36px,5vw,64px);line-height:1;letter-spacing:-.02em;margin:0;
+}
+.dna-quiz-result-sub{color:var(--t2);font-size:18px;font-weight:600;margin:0}
+.dna-quiz-result-image{
+  width:100%;aspect-ratio:3 / 2;overflow:hidden;background:var(--card2);
+  border:1px solid var(--line);margin:8px 0;
+}
+.dna-quiz-result-image img{width:100%;height:100%;object-fit:cover;display:block}
+.dna-quiz-result-fallback{width:100%;height:100%;opacity:.85}
+.dna-quiz-result-tagline{
+  font-size:clamp(16px,1.5vw,19px);line-height:1.5;color:var(--t1);font-weight:600;margin:0;
+}
+.dna-quiz-result-desc{font-size:15.5px;line-height:1.65;color:var(--t2);margin:0}
+.dna-quiz-result-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:8px;
+}
+@media (max-width:640px){.dna-quiz-result-grid{grid-template-columns:1fr;gap:18px}}
+.dna-quiz-result-grid h4{
+  font-family:'Lexend Mega',sans-serif;font-weight:800;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin:0 0 8px;
+}
+.dna-quiz-result-grid ul{
+  list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;
+}
+.dna-quiz-result-grid li{
+  position:relative;padding-left:14px;font-size:14px;line-height:1.5;color:var(--t2);
+}
+.dna-quiz-result-grid li::before{
+  content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--orange);
+}
+.dna-quiz-result-note{
+  font-size:12px;color:var(--t3);letter-spacing:.04em;font-style:italic;margin:0;
+}
 
 .evp-scoring-quiz-cta{
   display:flex;align-items:center;justify-content:space-between;gap:18px;
@@ -2466,3 +2561,78 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   .legal h2{font-size:18px;margin:24px 0 8px}
   .legal p,.legal ul{font-size:15px}
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   EVENT SLIDESHOW — generic auto-rotate image carousel
+   ═══════════════════════════════════════════════════════════════════ */
+.evp-slideshow{position:relative;display:flex;flex-direction:column;gap:18px}
+.evp-slideshow-viewport{
+  position:relative;width:100%;overflow:hidden;
+  background:var(--card);border:1px solid var(--line);
+  border-left:6px solid var(--orange);
+}
+.evp-slideshow-slide{
+  position:absolute;inset:0;display:block;
+}
+.evp-slideshow-slide img{
+  width:100%;height:100%;object-fit:cover;display:block;user-select:none;
+}
+.evp-slideshow-fallback{
+  width:100%;height:100%;
+  background:linear-gradient(135deg, var(--orange), #0a0a0a) !important;
+  opacity:.85;
+}
+.evp-slideshow-caption{
+  position:absolute;left:0;bottom:0;right:0;
+  display:flex;flex-direction:column;gap:2px;
+  padding:18px 22px;
+  background:linear-gradient(to top, rgba(10,10,10,.78), rgba(10,10,10,0));
+  color:#fff;
+}
+.evp-slideshow-eyebrow{
+  font-family:'Lexend Mega',sans-serif;font-weight:800;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--caption-accent,var(--orange));
+}
+.evp-slideshow-title{
+  font-family:'Lexend Mega','Public Sans',sans-serif;font-weight:900;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.05;letter-spacing:-.01em;
+  color:#fff;
+}
+.evp-slideshow-dots{
+  display:flex;gap:10px;justify-content:flex-start;
+}
+.evp-slideshow-dot{
+  width:28px;height:3px;background:var(--line);border:none;padding:0;
+  cursor:pointer;transition:background .25s ease, width .25s ease;
+}
+.evp-slideshow-dot.is-active{background:var(--orange);width:44px}
+.evp-slideshow-dot:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
+
+/* Intro-Diashow wrapper — slimmer top/bottom spacing than the regular
+   pdp section, since the slider directly precedes it. */
+.evp-intro-shots{padding:36px 0 56px;border-top:1px solid var(--line)}
+
+/* Spielstile section — slideshow + accent colour per slide */
+.evp-spielstile{padding:64px 0 72px;border-top:1px solid var(--line)}
+.evp-spielstile-lead{
+  font-size:clamp(15px,1.2vw,17px);line-height:1.6;color:var(--t2);
+  max-width:60ch;margin:0 0 22px;
+}
+.evp-spielstile-cta{
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:24px;
+}
+.evp-spielstile-hint{font-size:13px;color:var(--t3);letter-spacing:.04em}
+
+/* Ticket-card per-ticket CTA — a sold-out badge that looks like a button
+   but reads as a status pill, and a small external-link affordance. */
+.evp-ticket-cta-soldout{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 24px;font-family:'Lexend Mega',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--t3);background:transparent;border:1.5px solid var(--line);
+  cursor:not-allowed;
+}
+.evp-ticket-card.is-sold .evp-ticket-card-price,
+.evp-ticket-card.is-sold .evp-ticket-card-list{opacity:.55}
+.evp-ticket-card .btn-ext-arrow{margin-left:6px;font-size:.9em}

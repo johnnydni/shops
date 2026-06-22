@@ -13,6 +13,8 @@ import { BOOKING_LOCKED } from '../lib/featureFlags';
 import { WaitlistForm } from '../components/event/waitlist/WaitlistForm';
 import { TallyEmbed } from '../components/event/waitlist/TallyEmbed';
 import { EventExplorer } from '../components/event/explorer/EventExplorer';
+import { EventSlideshow, type Slide } from '../components/event/slideshow/EventSlideshow';
+import { SPIELSTILE, type SpielstilId } from '../lib/spielstile';
 
 /**
  * Computes the right CTA flavour for a given event:
@@ -26,14 +28,36 @@ import { EventExplorer } from '../components/event/explorer/EventExplorer';
  */
 function TicketCTA({
   event,
+  ticket,
   size,
   fallbackLabel,
 }: {
   event: EventItem;
+  /** Optional per-ticket override: sold-out badge or external Playtomic link. */
+  ticket?: { status?: 'open' | 'soldout' | 'waitlist'; ctaUrl?: string; ctaLabel?: string };
   size?: 'btn-lg';
   fallbackLabel?: string;
 }) {
   const cls = `btn btn-pri${size ? ' ' + size : ''}`;
+
+  // Per-ticket override wins over event-level logic.
+  if (ticket?.status === 'soldout') {
+    return <span className="evp-ticket-cta-soldout">Ausverkauft</span>;
+  }
+  if (ticket?.ctaUrl) {
+    const label = ticket.ctaLabel ?? 'Ticket sichern';
+    return (
+      <a
+        href={ticket.ctaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cls}
+      >
+        {label}<span className="btn-ext-arrow" aria-hidden>↗</span>
+      </a>
+    );
+  }
+
   const label = event.ctaLabel ?? fallbackLabel ?? 'Ticket sichern';
 
   // Global kill switch — overrides every other state. Renders a flat
@@ -97,10 +121,11 @@ export function EventDetailPage() {
       <Hero event={event} />
       <StatsStrip />
       <StorySections event={event} />
+      <IntroSlideshow event={event} />
       <Programm event={event} />
       <MatchExplorer event={event} />
       <BracketsExplainer />
-      <ScoringSection event={event} />
+      <SpielstileSection event={event} />
       <Schedule event={event} />
       <TicketsBlock event={event} />
       <CateringSection event={event} />
@@ -672,7 +697,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                   <>
                     <li>Turnier-Teilnahme (Gruppe + KO oder Courage Phase)</li>
                     <li>Court-Zeit garantiert, mehrere Matches</li>
-                    <li><b>1 Welcome-Drink</b>, Aperol Spritz, Padelé Spritz oder non-alk.</li>
+                    <li><b>1 Drink</b>, Aperol Spritz, Padelé Spritz oder non-alk.</li>
                     <li><b>1 Big Food Item</b> inklusive (Foodtruck vor Ort)</li>
                     <li><b>Zugang RITMO Refresh Bar</b>, Obst & Säfte</li>
                     <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
@@ -680,7 +705,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                 ) : (
                   <>
                     <li>Eintritt ab 17:30 (Kick the Doors)</li>
-                    <li><b>1 Welcome-Drink</b>, Softdrink oder non-alk.</li>
+                    <li><b>1 Drink</b>, Softdrink oder non-alk.</li>
                     <li><b>1 Small Food Item</b> inklusive (Foodtruck vor Ort)</li>
                     <li>Sunset Session &amp; Live-Matches</li>
                     <li>After-Party mit DJ Scoob live, Open End ab 23 Uhr</li>
@@ -688,7 +713,7 @@ function TicketsBlock({ event }: { event: EventItem }) {
                   </>
                 )}
               </ul>
-              <TicketCTA event={event} />
+              <TicketCTA event={event} ticket={t} />
             </motion.article>
           ))}
         </div>
@@ -809,58 +834,64 @@ function Faq({ event }: { event: EventItem }) {
 }
 
 /* ───────────────────────────────────────────────────────────────────
-   SCORING — RITMO Match Tiers table
+   INTRO SLIDESHOW — auto-rotating image strip between intro + program
    ─────────────────────────────────────────────────────────────────── */
-function ScoringSection({ event }: { event: EventItem }) {
-  const s = event.scoring;
-  if (!s || s.tiers.length === 0) return null;
+function IntroSlideshow({ event }: { event: EventItem }) {
+  if (!event.shotsSlideshow || event.shotsSlideshow.length === 0) return null;
   return (
-    <section className="evp-scoring" id="scoring">
+    <section className="evp-intro-shots" id="impressionen">
       <div className="wrap">
         <header className="evp-section-head">
-          <p className="rule">Scoring</p>
+          <p className="rule">Impressionen</p>
           <h2 className="evp-section-title">
-            {s.title}<span className="accent">.</span>
+            Sunset, <span className="accent">live</span>.
           </h2>
         </header>
-        <p className="evp-scoring-blurb">{s.description}</p>
-        <motion.ul
-          className="evp-tier-list"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.06 } },
-          }}
-        >
-          {s.tiers.map((t) => (
-            <motion.li
-              key={t.tier}
-              className={`evp-tier evp-tier-${t.tier.toLowerCase()}`}
-              variants={{
-                hidden: { opacity: 0, x: -12 },
-                show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
-              }}
-            >
-              <span className="evp-tier-badge">{t.tier}</span>
-              <span className="evp-tier-bonus">
-                {t.bonus > 0 ? '+' : ''}{t.bonus}
-                <span className="evp-tier-bonus-suffix"> Pkt.</span>
-              </span>
-              <span className="evp-tier-label">{t.label ?? `${t.tier}-Tier`}</span>
-            </motion.li>
-          ))}
-        </motion.ul>
+        <EventSlideshow slides={event.shotsSlideshow} aspect="16 / 9" />
+      </div>
+    </section>
+  );
+}
 
-        <div className="evp-scoring-quiz-cta">
-          <p>
-            Deinen Spielstil — und damit deine Tier-Einteilung — findest du im
-            DNA Quiz heraus.
-          </p>
-          <Link to={`/events/${event.id}/dna-quiz`} className="btn btn-out">
+/* ───────────────────────────────────────────────────────────────────
+   SPIELSTILE — 7-Archetype auto-rotating carousel + Quiz CTA
+   Replaces the prior Match-Tiers scoring table.
+   ─────────────────────────────────────────────────────────────────── */
+const SPIELSTIL_ORDER: SpielstilId[] = [
+  'chico', 'toro', 'individuoso', 'muro', 'fantasma', 'motor', 'hysterica',
+];
+
+function SpielstileSection({ event }: { event: EventItem }) {
+  const slides: Slide[] = SPIELSTIL_ORDER.map((id) => {
+    const s = SPIELSTILE[id];
+    return {
+      src: `/assets/spielstile/${s.slug}.jpg`,
+      alt: `${s.name} — ${s.subtitle}`,
+      eyebrow: s.subtitle,
+      title: s.name,
+      accent: s.accent,
+    };
+  });
+  return (
+    <section className="evp-spielstile" id="spielstile">
+      <div className="wrap">
+        <header className="evp-section-head">
+          <p className="rule">Spielstile</p>
+          <h2 className="evp-section-title">
+            RITMO <span className="accent">DNA</span>.
+          </h2>
+        </header>
+        <p className="evp-spielstile-lead">
+          Sieben Archetypen, die festlegen wie du auf dem Court tickst —
+          deine Padel-DNA. Sie prägt Bracket-Seeding und Match-Tier
+          beim Cup. Wisch durch, finde deinen Typ.
+        </p>
+        <EventSlideshow slides={slides} aspect="3 / 4" intervalMs={5500} />
+        <div className="evp-spielstile-cta">
+          <Link to={`/events/${event.id}/dna-quiz`} className="btn btn-pri">
             Zum DNA Quiz →
           </Link>
+          <span className="evp-spielstile-hint">7 Fragen, klare Antwort.</span>
         </div>
       </div>
     </section>

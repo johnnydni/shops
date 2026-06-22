@@ -196,6 +196,10 @@ export interface TicketTier {
   flag?: string;
   /** Optional one-line note under the tier (e.g. upgrade-option hint). */
   note?: string;
+  /** Optional override: external CTA URL (opens in new tab). */
+  ctaUrl?: string;
+  /** Optional CTA label, defaults to the event-level label. */
+  ctaLabel?: string;
 }
 
 export interface EventItem {
@@ -251,6 +255,14 @@ export interface EventItem {
    * and notifications. Leave undefined to fall back to the legacy form.
    */
   tallyWaitlistId?: string;
+
+  /**
+   * Optional auto-rotating image strip rendered between the intro slider
+   * and the program section. Each entry is a public path under
+   * `/assets/events/...`. Missing files fall back to the slideshow's
+   * gradient tile so the section never breaks the layout.
+   */
+  shotsSlideshow?: Array<{ src: string; alt: string; eyebrow?: string; title?: string }>;
 
   /** Multi-paragraph long description rendered as the detail-page lead. */
   longDesc?: string[];

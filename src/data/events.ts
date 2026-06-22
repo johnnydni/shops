@@ -20,11 +20,20 @@ export const EVENTS: EventItem[] = [
       'Founders-Edition des RITMO DNA Cups. 22 Spieler:innen, 3 Courts, Americano-Gruppenphase mit anschließendem Knock-Out, Halbfinale und Grande Finale. Plätze 15–22 ziehen in die Courage Phase — niemand sitzt nur rum. 17:30 Kick the Doors, ab 23 Uhr Open End mit DJ Scoob live. Padel Haus, Ingolstadt.',
     tags: ['Founders Edition', 'RITMO DNA Cup', 'House Music', 'Sunset'],
     tickets: [
-      { name: 'Spieler',   price: 39, capacity: 22 },
+      {
+        name: 'Spieler',
+        price: 39,
+        capacity: 22,
+        status: 'soldout',
+      },
       {
         name: 'Zuschauer',
         price: 15,
         flag: 'Early Bird',
+        ctaLabel: 'Tickets auf Playtomic',
+        ctaUrl:
+          'https://playtomic.io/tournaments/418dae33-27aa-45ec-a7e0-1bd7ec87aaa5' +
+          '?utm_source=app_ios&utm_campaign=share',
         note:
           'Early-Bird-Preis. Mögliche Überraschung am Eventabend — bei einer ' +
           'Preisanpassung haben Early-Bird-Holder eine kostenlose Upgrade-Option. ' +
@@ -44,6 +53,13 @@ export const EVENTS: EventItem[] = [
     // README's "Waitlist via Tally" section for the field list and
     // configuration. When empty, the legacy WaitlistForm is rendered.
     tallyWaitlistId: '',
+    shotsSlideshow: [
+      { src: '/assets/events/diashow1.jpg', alt: 'Padel Haus, Sunset-Vibes' },
+      { src: '/assets/events/diashow2.jpg', alt: 'Court-Action im Sunset' },
+      { src: '/assets/events/diashow3.jpg', alt: 'Crowd + Refresh Bar' },
+      { src: '/assets/events/diashow4.jpg', alt: 'DJ Scoob live' },
+      { src: '/assets/events/diashow5.jpg', alt: 'Finals unter Spotlight' },
+    ],
 
     longDesc: [
       'Der erste RITMO DNA Cup, Founders-Edition. 22 Spieler:innen auf drei ' +

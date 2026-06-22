@@ -2569,7 +2569,7 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
 .evp-slideshow-viewport{
   position:relative;width:100%;overflow:hidden;
   background:var(--card);border:1px solid var(--line);
-  border-left:6px solid var(--orange);
+  border-radius:24px;
 }
 .evp-slideshow-slide{
   position:absolute;inset:0;display:block;
@@ -2589,6 +2589,20 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line)}
   background:linear-gradient(to top, rgba(10,10,10,.78), rgba(10,10,10,0));
   color:#fff;
 }
+
+/* Spielstile-specific override: smaller centered card, image displayed
+   "contain" so the full poster artwork is visible with breathing room. */
+.evp-spielstile .evp-slideshow-viewport{
+  max-width:460px;margin:0 auto;background:#0F0F0F;
+}
+.evp-spielstile .evp-slideshow-slide img{
+  object-fit:contain;padding:18px;box-sizing:border-box;
+}
+.evp-spielstile .evp-slideshow-caption{
+  padding:14px 18px;
+  background:linear-gradient(to top, rgba(10,10,10,.92), rgba(10,10,10,.55) 60%, rgba(10,10,10,0));
+}
+.evp-spielstile .evp-slideshow-dots{justify-content:center}
 .evp-slideshow-eyebrow{
   font-family:'Lexend Mega',sans-serif;font-weight:800;
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;

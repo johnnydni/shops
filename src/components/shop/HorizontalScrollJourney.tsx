@@ -16,8 +16,13 @@ interface Props {
  * one per variant option that carries an `image` (typically colour
  * swatches). Used to feed the journey-card auto-crossfade slideshow so
  * products with multiple colourways visually announce themselves.
+ *
+ * If the product carries an explicit `cardImages` array, it wins
+ * outright — that's the escape hatch for multi-variant products like
+ * the DNA-Tee whose images are composed from a pattern.
  */
 function collectProductImages(p: Product): string[] {
+  if (p.cardImages && p.cardImages.length) return p.cardImages;
   const seen = new Set<string>();
   const out: string[] = [];
   const push = (src?: string) => {

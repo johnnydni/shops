@@ -150,6 +150,15 @@ export interface Product {
    */
   imagePattern?: string;
 
+  /**
+   * Optional explicit image list used by the home-page "Die Journey"
+   * card crossfade. Overrides the auto-collected list (`imageSrc` +
+   * per-variant images). Useful for multi-variant products like the
+   * DNA-Tee where each spielstil is its own card-worthy photo and the
+   * auto-collector can't compose paths from `imagePattern`.
+   */
+  cardImages?: string[];
+
   story: FeatureSection[];
   bleed?: EditorialBleed;
   videos?: VideoItem[];

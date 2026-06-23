@@ -69,6 +69,18 @@ export const PRODUCTS: Product[] = [
      * Asset paths follow `{spielstil}-{schnitt}-{farbe}.jpg`.
      */
     imagePattern: '/assets/products/ritmo-dna-tee/{spielstil}-{schnitt}-{farbe}.jpg',
+    // Home "Die Journey" carousel — show all 7 spielstile in their male-
+    // white tee shots. HYSTERICA's male shot isn't shot yet, so the
+    // female-white version stands in.
+    cardImages: [
+      '/assets/products/ritmo-dna-tee/motor-male-white.jpg',
+      '/assets/products/ritmo-dna-tee/chico-chica-male-white.jpg',
+      '/assets/products/ritmo-dna-tee/toro-male-white.jpg',
+      '/assets/products/ritmo-dna-tee/muro-male-white.jpg',
+      '/assets/products/ritmo-dna-tee/individuoso-male-white.jpg',
+      '/assets/products/ritmo-dna-tee/fantasma-male-white.jpg',
+      '/assets/products/ritmo-dna-tee/hysterica-female-white.jpg',
+    ],
     flag: { label: 'Drop I', tone: 'new' },
     variants: [
       {

@@ -888,7 +888,6 @@ function SpielstileSection({ event }: { event: EventItem }) {
     return {
       src: `/assets/spielstile/${s.slug}.jpg`,
       alt: `${s.name} — ${s.subtitle}`,
-      eyebrow: s.subtitle,
       title: s.name,
       accent: s.accent,
     };

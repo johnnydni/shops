@@ -12,6 +12,25 @@ interface Props {
 }
 
 /**
+ * Collect every distinct image a product can show — the main hero plus
+ * one per variant option that carries an `image` (typically colour
+ * swatches). Used to feed the journey-card auto-crossfade slideshow so
+ * products with multiple colourways visually announce themselves.
+ */
+function collectProductImages(p: Product): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  const push = (src?: string) => {
+    if (src && !seen.has(src)) { seen.add(src); out.push(src); }
+  };
+  push(p.imageSrc);
+  for (const group of p.variants ?? []) {
+    for (const opt of group.options) push(opt.image);
+  }
+  return out;
+}
+
+/**
  * Horizontal Scroll Journey — implements the pattern recommended by the
  * ui-ux-pro-max skill for immersive product discovery. Each product is a
  * scroll-snap panel; users swipe / arrow-key / drag through the lineup.
@@ -68,6 +87,7 @@ export function HorizontalScrollJourney({
         {products.map((p, i) => {
           const { cur, value } = eurParts(p.price);
           const href = `/produkt/${p.slug}`;
+          const images = collectProductImages(p);
           return (
             <Link
               key={p.id}
@@ -79,7 +99,11 @@ export function HorizontalScrollJourney({
                 <span className="hjourney-num">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <ProductImage illustration={p.illustration} src={p.imageSrc} alt="" />
+                {images.length > 1 ? (
+                  <JourneySlideshow images={images} alt={p.name} delay={i * 600} />
+                ) : (
+                  <ProductImage illustration={p.illustration} src={p.imageSrc} alt="" />
+                )}
               </div>
               <div className="hjourney-body">
                 <span className="hjourney-eyebrow">
@@ -99,5 +123,70 @@ export function HorizontalScrollJourney({
         })}
       </div>
     </section>
+  );
+}
+
+/**
+ * Auto-crossfade slideshow for journey cards.
+ *
+ * Stacks every image as an absolutely-positioned <img> in the same slot
+ * (the gradient `.fallback` underneath stays as the safety net). Only
+ * the currently-active image has `opacity: 1`; CSS handles the .6s
+ * fade. Images that fail to load drop out and are skipped on the next
+ * cycle — so a missing photo never freezes the loop on a blank tile.
+ *
+ * `delay` staggers the autoplay start across cards so the whole row
+ * doesn't pulse in unison; it just makes the journey feel alive.
+ */
+function JourneySlideshow({
+  images,
+  alt,
+  delay = 0,
+}: {
+  images: string[];
+  alt: string;
+  delay?: number;
+}) {
+  const [index, setIndex] = useState(0);
+  const [failed, setFailed] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    const live = images.map((_, i) => i).filter((i) => !failed[i]);
+    if (live.length <= 1) return;
+    let timer: number | undefined;
+    const start = window.setTimeout(() => {
+      const tick = () => {
+        setIndex((cur) => {
+          const liveNow = images.map((_, i) => i).filter((i) => !failed[i]);
+          if (liveNow.length <= 1) return cur;
+          const pos = liveNow.indexOf(cur);
+          return liveNow[(pos + 1) % liveNow.length];
+        });
+      };
+      timer = window.setInterval(tick, 2800);
+    }, delay);
+    return () => {
+      window.clearTimeout(start);
+      if (timer) window.clearInterval(timer);
+    };
+  }, [images, delay, failed]);
+
+  return (
+    <>
+      <div className="fallback" aria-hidden="true" />
+      {images.map((src, i) =>
+        failed[i] ? null : (
+          <img
+            key={src}
+            src={src}
+            alt={i === 0 ? alt : ''}
+            loading="lazy"
+            className="hjourney-slide"
+            style={{ opacity: i === index ? 1 : 0 }}
+            onError={() => setFailed((f) => ({ ...f, [i]: true }))}
+          />
+        )
+      )}
+    </>
   );
 }

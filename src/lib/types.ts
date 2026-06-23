@@ -31,6 +31,13 @@ export interface VariantOption {
   priceDelta?: number;    // EUR, default 0
   swatch?: 'black' | 'white' | 'orange' | 'yellow' | 'blue' | 'pink';
   /**
+   * When true, the option is rendered but cannot be picked — used when
+   * a colour/size is announced but not yet in stock. The picker shows a
+   * locked visual (strike-through swatch, dimmed chip), the click is
+   * a no-op, and the user can't land in an invalid combination.
+   */
+  disabled?: boolean;
+  /**
    * Optional product image for this specific option. When set, picking
    * this variant swaps the PDP hero image. Typically attached to colour
    * variants — size/format options usually leave this empty.

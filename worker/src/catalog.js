@@ -70,7 +70,7 @@ export const CATALOG = {
     category: 'Apparel',
   },
   'poster-app-live': {
-    name: '"App ist Live" Print',
+    name: 'RITMO Founders Cup Print',
     price: 2400,
     category: 'Print',
     variantPriceMap: {

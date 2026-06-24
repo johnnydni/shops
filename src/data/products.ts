@@ -116,8 +116,7 @@ export const PRODUCTS: Product[] = [
         label: 'Farbe',
         defaultValue: 'Weiß',
         options: [
-          { value: 'Schwarz', valueSlug: 'black', swatch: 'black', disabled: true },
-          { value: 'Weiß',    valueSlug: 'white', swatch: 'white' },
+          { value: 'Weiß', valueSlug: 'white', swatch: 'white' },
         ],
       },
     ],

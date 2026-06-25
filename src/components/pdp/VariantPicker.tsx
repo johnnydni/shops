@@ -37,8 +37,9 @@ export function VariantPicker({ group, selected, onSelect }: Props) {
             aria-label={group.label}
           >
             {group.options.map((opt) => (
-              <option key={opt.value} value={opt.value}>
+              <option key={opt.value} value={opt.value} disabled={opt.disabled}>
                 {opt.label ?? opt.value}
+                {opt.disabled ? ' — bald verfügbar' : ''}
               </option>
             ))}
           </select>
@@ -59,14 +60,18 @@ export function VariantPicker({ group, selected, onSelect }: Props) {
         <div className="opt-row">
           {group.options.map((opt) => {
             const active = opt.value === selected;
+            const locked = !!opt.disabled;
+            const lockedTitle = locked ? `${opt.label ?? opt.value} — bald verfügbar` : undefined;
             if (mode === 'swatches' && opt.swatch) {
               return (
                 <button
                   key={opt.value}
                   type="button"
-                  className={`opt-swatch sw-${opt.swatch}${active ? ' active' : ''}`}
-                  aria-label={opt.label ?? opt.value}
-                  onClick={() => onSelect(opt.value)}
+                  className={`opt-swatch sw-${opt.swatch}${active ? ' active' : ''}${locked ? ' is-locked' : ''}`}
+                  aria-label={lockedTitle ?? opt.label ?? opt.value}
+                  title={lockedTitle}
+                  disabled={locked}
+                  onClick={() => !locked && onSelect(opt.value)}
                 />
               );
             }
@@ -74,10 +79,13 @@ export function VariantPicker({ group, selected, onSelect }: Props) {
               <button
                 key={opt.value}
                 type="button"
-                className={`opt-btn${active ? ' active' : ''}`}
-                onClick={() => onSelect(opt.value)}
+                className={`opt-btn${active ? ' active' : ''}${locked ? ' is-locked' : ''}`}
+                title={lockedTitle}
+                disabled={locked}
+                onClick={() => !locked && onSelect(opt.value)}
               >
                 {opt.label ?? opt.value}
+                {locked && <span className="opt-locked-hint"> · bald</span>}
               </button>
             );
           })}
